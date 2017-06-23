@@ -12,7 +12,7 @@ CFLAGS  = -g -Wall
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -I../html
+INCLUDES = -I../html -I../html/form
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
@@ -25,7 +25,7 @@ LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
 #LIBS = -lliblog4cxx
 
 # define the C source files- "main" is always last
-SRCS =  html/html_page.cpp html/html_title.cpp main.cpp html/html_form.cpp
+SRCS =  html/html_page.cpp html/html_title.cpp html/html_form.cpp html/form/html_form_input.cpp main.cpp
 
 # define the C object files
 #
