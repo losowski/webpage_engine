@@ -12,7 +12,7 @@ CFLAGS  = -g -Wall
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -I../include
+INCLUDES = -I../html
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
@@ -25,7 +25,7 @@ LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
 #LIBS = -lliblog4cxx
 
 # define the C source files- "main" is always last
-SRCS = AIMsgBase.cpp ai_protocol.cpp ai_master.cpp
+SRCS =  html/html_page.cpp html/html_title.cpp main.cpp
 
 # define the C object files
 #
@@ -38,7 +38,7 @@ SRCS = AIMsgBase.cpp ai_protocol.cpp ai_master.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # define the executable file
-MAIN = master
+MAIN = web_engine
 
 #
 # The following part of the makefile is generic; it can be used to
@@ -50,7 +50,7 @@ MAIN = master
 default: $(MAIN)
 
 all: $(MAIN)
-	echo "ai_master_compiled"
+	echo "Web engine compiled"
 
 $(MAIN): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)

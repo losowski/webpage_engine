@@ -1,20 +1,22 @@
-#ifndef HTML_PAGE_HPP
- #define HTML_PAGE_HPP
+#ifndef HTML_TITLE_HPP
+#define HTML_TITLE_HPP
 
 #include <string>
-#include "html_title.hpp"
 
 using namespace std;
 
 namespace html {
-class HTMLPage {
+class HTMLTitle {
 	public:
-		HTMLPage(void);
-		~HTMLPage(void);
+		HTMLTitle(const string & title);
+		~HTMLTitle(void);
 	public:
-		string create_page(void);
+		void create_title(void);
+		string get_title(void);
+		void set_title(const string & title);
 	private:
-		HTMLTitle m_html_title;
+		string		m_title;
+		string		m_html_title;
 };
 }
-#endif //HTML_PAGE_HPP
+#endif //HTML_TITLE_HPP
