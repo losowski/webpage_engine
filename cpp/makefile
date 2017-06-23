@@ -25,7 +25,7 @@ LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
 #LIBS = -lliblog4cxx
 
 # define the C source files- "main" is always last
-SRCS =  html/html_page.cpp html/html_title.cpp main.cpp
+SRCS =  html/html_page.cpp html/html_title.cpp main.cpp html/html_form.cpp
 
 # define the C object files
 #
