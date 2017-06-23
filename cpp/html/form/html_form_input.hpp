@@ -10,8 +10,9 @@ namespace html {
 namespace form {
 class HTMLFormInput {
 	public:
-		HTMLFormInput();
-		virtual ~HTMLFormInput();
+		/* Constuctor must be virtual if a function is virtual */
+		virtual HTMLFormInput();
+		~HTMLFormInput();
 	public:
 		virtual void create_form_input(void);
 		string get_form_input(void);
