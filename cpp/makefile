@@ -38,7 +38,7 @@ SRCS =  html/html_page.cpp html/html_title.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # define the executable file
-MAIN = web_engine
+MAIN = web_engine.cgi
 
 #
 # The following part of the makefile is generic; it can be used to

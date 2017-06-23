@@ -24,6 +24,7 @@ void HTMLPage::create_page(void)
 	m_html_title.create_title();
 	/* Generate the actual page */
 	m_html_page.clear();
+	m_html_page += "Content-type: text/html\n\n";
 	m_html_page += "<html>\n";
 	/* Header */
 	m_html_page += "<head>\n";

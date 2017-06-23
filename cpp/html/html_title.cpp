@@ -16,7 +16,7 @@ HTMLTitle::~HTMLTitle(void)
 
 void HTMLTitle::create_title(void)
 {
-	m_html_title = "<head>" + m_title + "</head>\n";
+	m_html_title = "<title>" + m_title + "</title>\n";
 }
 
 string HTMLTitle::get_title(void)
