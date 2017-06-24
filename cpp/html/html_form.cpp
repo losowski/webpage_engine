@@ -26,7 +26,7 @@ void HTMLForm::create_form(void)
 	}
 	m_html_form += ">";
 	/* Iterate over the form input objects */
-	m_html_form += "<\form>";
+	m_html_form += "</form>";
 }
 
 string HTMLForm::get_form(void)
