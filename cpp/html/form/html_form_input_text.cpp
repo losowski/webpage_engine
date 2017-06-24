@@ -1,4 +1,4 @@
-#include "html_form_input.hpp"
+#include "html_form_input_text.hpp"
 
 #include <string>
 
@@ -7,7 +7,7 @@ using namespace std;
 namespace html {
 namespace form {
 
-HTMLFormInputText::HTMLFormInputText(const string & field_name, const string & label, const string & value): m_type("text")
+HTMLFormInputText::HTMLFormInputText(const string & field_name, const string & label, const string & value): HTMLFormInput (field_name, label, value), HTMLFormInput::m_type("text")
 {
 }
 

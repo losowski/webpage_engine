@@ -2,7 +2,6 @@
 #define HTML_FORM_INPUT_HPP
 
 #include <string>
-#include <list>
 
 using namespace std;
 
@@ -17,8 +16,9 @@ class HTMLFormInput {
 	public:
 		virtual void create_form_input(void);
 		string get_form_input(void);
-	protected:
+	public:
 		const string			m_type;
+	protected:
 		string					m_field_name;
 		string					m_label;
 		string					m_value;
