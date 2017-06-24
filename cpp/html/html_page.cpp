@@ -1,5 +1,5 @@
 #include "html_page.hpp"
-#include "html_title.hpp"
+
 #include <string>
 
 using namespace std;
@@ -36,8 +36,13 @@ void HTMLPage::create_page(void)
 	m_html_page += "</head>\n";
 	/* body */
 	m_html_page += "<body>\n";
-	/* div */
-	/* form */
+	/* ALL body components are to be made using the same base class:
+	 -	div
+	 -	form
+	 -	text
+	 -	hyperlink
+	 -	image 
+	*/
 	m_html_page += "</body>\n";
 	/* End of HTML */
 	m_html_page += "</html>\n";
@@ -57,6 +62,13 @@ void HTMLPage::add_title(HTMLTitle & title)
 HTMLTitle & HTMLPage::get_title(void)
 {
 	return m_html_title;
+}
+
+boost::shared_ptr<HTMLForm> HTMLPage::add_form(void)
+{
+	boost::shared_ptr<HTMLForm> content_item (new HTMLForm());
+	m_html_content.push_back(content_item);
+	return content_item;
 }
 
 }

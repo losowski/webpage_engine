@@ -11,7 +11,7 @@ namespace form {
 class HTMLFormInput {
 	public:
 		/* Constuctor must be virtual if a function is virtual */
-		virtual HTMLFormInput();
+		HTMLFormInput();
 		~HTMLFormInput();
 	public:
 		virtual void create_form_input(void);

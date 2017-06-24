@@ -1,10 +1,11 @@
 #ifndef HTML_FORM_HPP
 #define HTML_FORM_HPP
 
-//#include "html_form_input.hpp"
+#include "form/html_form_input.hpp"
 
 #include <string>
 #include <list>
+#include <boost/shared_ptr.hpp>
 
 using namespace std;
 
@@ -18,9 +19,9 @@ class HTMLForm {
 		//HTMLFormInput * add_	
 		string get_form(void);
 	private:
-//		list<HTMLFormInput>		m_html_form_input;
-		string					m_form_action;
-		string					m_html_form;
+		list< boost::shared_ptr<form::HTMLFormInput> >		m_html_form_input;
+		string												m_form_action;
+		string												m_html_form;
 };
 }
 #endif //HTML_FORM_HPP

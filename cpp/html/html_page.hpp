@@ -1,8 +1,12 @@
 #ifndef HTML_PAGE_HPP
 #define HTML_PAGE_HPP
 
-#include <string>
 #include "html_title.hpp"
+#include "html_form.hpp"
+
+#include <string>
+#include <list>
+#include <boost/shared_ptr.hpp>
 
 using namespace std;
 
@@ -16,11 +20,15 @@ class HTMLPage {
 		void create_page(void);
 		string get_page(void);
 	public:
+		/* Title */
 		void add_title(HTMLTitle & title);
 		HTMLTitle & get_title (void);
+		/* Form */
+		boost::shared_ptr<HTMLForm> add_form(void);
 	private:
-		string		m_html_page;
-		HTMLTitle	m_html_title;
+		string									m_html_page;
+		HTMLTitle								m_html_title;
+		list< boost::shared_ptr<HTMLForm> >		m_html_content; /* Should be common baseclass - form for now! */
 };
 }
 #endif //HTML_PAGE_HPP
