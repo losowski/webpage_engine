@@ -1,4 +1,5 @@
 #include "html_form.hpp"
+#include "form/html_form_input_text.hpp"
 
 #include <string>
 
@@ -34,6 +35,11 @@ string HTMLForm::get_form(void)
 	return m_html_form;
 }
 
+void HTMLForm::add_text_input(const string & field_name, const string & label, const string & value)
+{
+	HTMLFormInputPtr input_field ( new form::HTMLFormInputText(field_name, label, value));
+	m_html_form_input.push_back(input_field);	
+}
 
 }
 
