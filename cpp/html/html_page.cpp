@@ -71,3 +71,4 @@ HTMLFormPtr HTMLPage::add_form(const string & name, const string & action)
 	return content_item;
 }
 
+}
