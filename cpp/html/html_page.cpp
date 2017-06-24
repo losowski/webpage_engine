@@ -64,12 +64,10 @@ HTMLTitle & HTMLPage::get_title(void)
 	return m_html_title;
 }
 
-boost::shared_ptr<HTMLForm> HTMLPage::add_form(void)
+HTMLFormPtr HTMLPage::add_form(const string & name, const string & action)
 {
-	boost::shared_ptr<HTMLForm> content_item (new HTMLForm());
+	HTMLFormPtr content_item (new HTMLForm(name, action));
 	m_html_content.push_back(content_item);
 	return content_item;
-}
-
 }
 

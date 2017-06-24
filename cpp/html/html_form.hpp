@@ -10,18 +10,22 @@
 using namespace std;
 
 namespace html {
+
+typedef boost::shared_ptr<form::HTMLFormInput> HTMLFormInputPtr;
+
 class HTMLForm {
 	public:
-		HTMLForm(void);
+		HTMLForm(const string & name, const string & action);
 		~HTMLForm(void);
 	public:
 		void create_form(void);
 		//HTMLFormInput * add_	
 		string get_form(void);
 	private:
-		list< boost::shared_ptr<form::HTMLFormInput> >		m_html_form_input;
-		string												m_form_action;
-		string												m_html_form;
+		list< HTMLFormInputPtr >			m_html_form_input;
+		string								m_html_form;
+		string								m_html_form_name;
+		string								m_html_form_action;
 };
 }
 #endif //HTML_FORM_HPP
