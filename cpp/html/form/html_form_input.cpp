@@ -11,7 +11,7 @@ HTMLFormInput::HTMLFormInput()
 {
 }
 
-HTMLFormInput::HTMLFormInput(const string & field_name, const string & label, const string & value)
+HTMLFormInput::HTMLFormInput(const string & field_name, const string & label, const string & value): m_field_name(field_name), m_label(label), m_value(value)
 {
 }
 
