@@ -8,8 +8,7 @@ namespace html {
 namespace form {
 
 HTMLFormInputText::HTMLFormInputText(const string & field_name, const string & label, const string & value):
-	HTMLFormInput (field_name, label, value),
-	HTMLFormInput::m_type("text")
+	HTMLFormInput ("text",field_name, label, value)
 {
 }
 

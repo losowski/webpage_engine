@@ -11,7 +11,7 @@ class HTMLFormInput {
 	public:
 		/* Constuctor must be virtual if a function is virtual */
 		HTMLFormInput();
-		HTMLFormInput(const string & field_name, const string & label, const string & value);
+		HTMLFormInput(const string type, const string & field_name, const string & label, const string & value);
 		~HTMLFormInput();
 	public:
 		virtual void create_form_input(void);
