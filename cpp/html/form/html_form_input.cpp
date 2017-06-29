@@ -1,7 +1,5 @@
 #include "html_form_input.hpp"
 
-#include <string>
-
 using namespace std;
 
 namespace html {

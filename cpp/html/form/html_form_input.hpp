@@ -12,7 +12,7 @@ class HTMLFormInput {
 		/* Constuctor must be virtual if a function is virtual */
 		HTMLFormInput();
 		HTMLFormInput(const string type, const string & field_name, const string & label, const string & value);
-		~HTMLFormInput();
+		virtual ~HTMLFormInput();
 	public:
 		virtual void create_form_input(void);
 		string get_form_input(void);
