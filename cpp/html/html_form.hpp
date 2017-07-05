@@ -19,7 +19,7 @@ class HTMLForm {
 		~HTMLForm(void);
 	public:
 		void create_form(void);
-		void add_text_input(const string & field_name, const string & label, const string & value);
+		void add_text_input(const string & field_name, const string & label, const string & value = "");
 		string get_form(void);
 	private:
 		list< HTMLFormInputPtr >			m_html_form_input;
