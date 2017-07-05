@@ -26,7 +26,7 @@ void HTMLForm::create_form(void)
 	{
 		 m_html_form += " action=\"" + m_html_form_action + "\"";
 	}
-	m_html_form += ">";
+	m_html_form += ">\n";
 	/* Iterate over the form input objects */
 	BOOST_FOREACH(HTMLFormInputPtr forminput, m_html_form_input)
 	{

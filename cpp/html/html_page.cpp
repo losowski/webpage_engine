@@ -1,6 +1,7 @@
 #include "html_page.hpp"
 
 #include <string>
+#include <boost/foreach.hpp>
 
 using namespace std;
 
@@ -43,6 +44,11 @@ void HTMLPage::create_page(void)
 	 -	hyperlink
 	 -	image 
 	*/
+	BOOST_FOREACH(HTMLFormPtr htmlcontent, m_html_content)
+	{
+		htmlcontent->create_form();
+		m_html_page += htmlcontent->get_form();
+	}
 	m_html_page += "</body>\n";
 	/* End of HTML */
 	m_html_page += "</html>\n";
