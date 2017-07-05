@@ -31,7 +31,7 @@ void HTMLForm::create_form(void)
 	BOOST_FOREACH(HTMLFormInputPtr forminput, m_html_form_input)
 	{
 		forminput->create_form_input();
-		 m_html_form += forminput->get_form_input();
+		m_html_form += forminput->get_form_input();
 	}
 	m_html_form += "</form>";
 }
