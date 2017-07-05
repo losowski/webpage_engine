@@ -1,5 +1,6 @@
 #include "html_form.hpp"
 #include "form/html_form_input_text.hpp"
+#include "form/html_form_input_radio.hpp"
 
 #include <string>
 #include <boost/foreach.hpp>
@@ -41,9 +42,15 @@ string HTMLForm::get_form(void)
 	return m_html_form;
 }
 
-void HTMLForm::add_text_input(const string & field_name, const string & label, const string & value = "")
+void HTMLForm::add_text_input(const string & field_name, const string & label, const string & value)
 {
 	HTMLFormInputPtr input_field ( new form::HTMLFormInputText(field_name, label, value));
+	m_html_form_input.push_back(input_field);	
+}
+
+void HTMLForm::add_radio_input(const string & field_name, const string & label, const string & value)
+{
+	HTMLFormInputPtr input_field ( new form::HTMLFormInputRadio(field_name, label, value));
 	m_html_form_input.push_back(input_field);	
 }
 

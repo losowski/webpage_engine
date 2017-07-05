@@ -12,7 +12,6 @@ namespace html {
 namespace form {
 class HTMLFormInputText: public html::form::HTMLFormInput {
 	public:
-		/* Constuctor must be virtual if a function is virtual */
 		HTMLFormInputText(const string & field_name, const string & label, const string & value);
 		~HTMLFormInputText();
 	public:
