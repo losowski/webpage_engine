@@ -2,6 +2,7 @@
 #include "form/html_form_input_text.hpp"
 
 #include <string>
+#include <boost/foreach.hpp>
 
 using namespace std;
 
@@ -27,6 +28,11 @@ void HTMLForm::create_form(void)
 	}
 	m_html_form += ">";
 	/* Iterate over the form input objects */
+	BOOST_FOREACH(HTMLFormInputPtr forminput, m_html_form_input)
+	{
+		forminput->create_form_input();
+		 m_html_form += forminput->get_form_input();
+	}
 	m_html_form += "</form>";
 }
 
