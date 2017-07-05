@@ -14,7 +14,7 @@ class HTMLFormInput {
 		HTMLFormInput(const string type, const string & field_name, const string & label, const string & value);
 		virtual ~HTMLFormInput();
 	public:
-		virtual void create_form_input(void);
+		virtual void create_form_input(void) =0;
 		string get_form_input(void);
 	public:
 		const string			m_type;
