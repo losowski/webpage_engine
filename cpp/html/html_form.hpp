@@ -2,6 +2,7 @@
 #define HTML_FORM_HPP
 
 #include "form/html_form_input.hpp"
+#include "form/html_form_input_menu.hpp"
 
 #include <string>
 #include <list>
@@ -13,6 +14,7 @@ namespace html {
 
 typedef string								HTMLFormInputMethod;
 typedef boost::shared_ptr<form::HTMLFormInput> HTMLFormInputPtr;
+typedef boost::shared_ptr<form::HTMLFormInputMenu> HTMLFormInputMenuPtr;
 
 class HTMLForm {
 	public:
@@ -27,7 +29,8 @@ class HTMLForm {
 		void set_method(const HTMLFormInputMethod & method);
 		// Text Type Input
 		void add_text_input(const string & field_name, const string & label, const string & value = "");
-		//void add_password_input(const string & field_name, const string & label);
+		void add_password_input(const string & field_name, const string & label);
+		HTMLFormInputMenuPtr add_menu_input(const string & field_name, const string & label);
 		// Tick Box Type input
 		//void add_checkbox_input(const string & field_name, const string & label, const string & value);
 		void add_radio_input(const string & field_name, const string & label, const string & value);

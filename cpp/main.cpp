@@ -12,6 +12,11 @@ int main (int argc, char * argv[])
 	form->add_text_input("realname", "Full Name", "Dictator Otato");
 	form->add_radio_input("gender", "Male", "male");
 	form->add_radio_input("gender", "Female", "female");
+	HTMLFormInputMenuPtr menu = form->add_menu_input("animals", "Select an Animal");
+	menu->add_menu_selection("Cat", "cat");
+	menu->add_menu_selection("Dog", "dog", false);
+	menu->add_menu_selection("Goat", "goat", true);
+	menu->add_menu_selection("Unicorn", "Unicorn");
 	form->add_reset_input();
 	//form->add_button();
 	page.create_page();

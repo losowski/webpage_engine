@@ -1,6 +1,7 @@
 #include "html_form.hpp"
 #include "form/html_form_input_text.hpp"
 #include "form/html_form_input_radio.hpp"
+#include "form/html_form_input_menu.hpp"
 
 #include <string>
 #include <boost/foreach.hpp>
@@ -62,6 +63,13 @@ void HTMLForm::add_text_input(const string & field_name, const string & label, c
 {
 	HTMLFormInputPtr input_field ( new form::HTMLFormInputText(field_name, label, value));
 	m_html_form_input.push_back(input_field);	
+}
+
+HTMLFormInputMenuPtr HTMLForm::add_menu_input(const string & field_name, const string & label)
+{
+	HTMLFormInputMenuPtr input_field ( new HTMLFormInputMenuPtr(field_name, label, ""));
+	m_html_form_input.push_back(input_field);
+	return 	 input_field;
 }
 
 //Check Box Type Inputs
