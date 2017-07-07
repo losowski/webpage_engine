@@ -31,7 +31,7 @@ class HTMLPage {
 	private:
 		string									m_html_page;
 		HTMLTitle								m_html_title;
-		list< HTMLFormPtr >		m_html_content; /* Should be common baseclass - form for now! */
+		list< HTMLFormPtr >						m_html_content; /* Should be common baseclass - form for now! */
 };
 }
 #endif //HTML_PAGE_HPP

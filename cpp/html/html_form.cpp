@@ -9,13 +9,19 @@ using namespace std;
 
 namespace html {
 
-HTMLForm::HTMLForm(const string & name, const string & action): m_html_form_name(name), m_html_form_action(action)
+
+const HTMLFormInputMethod HTMLForm::HTML_FORM_GET("GET");
+const HTMLFormInputMethod HTMLForm::HTML_FORM_POST("POST");
+
+
+HTMLForm::HTMLForm(const string & name, const string & action): m_submit_method(HTMLForm::HTML_FORM_POST), m_submit_button_name("Submit"), m_html_form_name(name), m_html_form_action(action)
 {
 }
 
 HTMLForm::~HTMLForm(void)
 {
 }
+
 
 void HTMLForm::create_form(void)
 {
@@ -27,13 +33,14 @@ void HTMLForm::create_form(void)
 	{
 		 m_html_form += " action=\"" + m_html_form_action + "\"";
 	}
-	m_html_form += ">\n";
+	m_html_form += " method=\"" +  m_submit_method +  "\">\n";
 	/* Iterate over the form input objects */
 	BOOST_FOREACH(HTMLFormInputPtr forminput, m_html_form_input)
 	{
 		forminput->create_form_input();
 		m_html_form += forminput->get_form_input();
 	}
+	m_html_form += "<input type=\"submit\" value=\"" + m_submit_button_name + "\">";
 	m_html_form += "</form>";
 }
 
@@ -42,16 +49,28 @@ string HTMLForm::get_form(void)
 	return m_html_form;
 }
 
+void HTMLForm::set_method(const HTMLFormInputMethod & method)
+{
+}
+
+//Text Type Inputs
 void HTMLForm::add_text_input(const string & field_name, const string & label, const string & value)
 {
 	HTMLFormInputPtr input_field ( new form::HTMLFormInputText(field_name, label, value));
 	m_html_form_input.push_back(input_field);	
 }
 
+//Check Box Type Inputs
 void HTMLForm::add_radio_input(const string & field_name, const string & label, const string & value)
 {
 	HTMLFormInputPtr input_field ( new form::HTMLFormInputRadio(field_name, label, value));
 	m_html_form_input.push_back(input_field);	
+}
+
+//Button Type Inputs
+void HTMLForm::set_submit_name(const string & button_name)
+{
+	m_submit_button_name = button_name;
 }
 
 }
