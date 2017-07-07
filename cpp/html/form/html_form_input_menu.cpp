@@ -7,7 +7,7 @@ using namespace std;
 namespace html {
 namespace form {
 
-HTMLFormInputMenu::HTMLFormInputMenu(const string & field_name, const string & label, const string & value):
+HTMLFormInputMenu::HTMLFormInputMenu(const string & field_name, const string & label):
 	HTMLFormInput ("text",field_name, label, value),
 	m_size_to_display(5),
 	m_multiple_selections(false)

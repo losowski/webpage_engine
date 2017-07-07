@@ -17,7 +17,7 @@ typedef boost::shared_ptr<form::HTMLFormInputMenuSelection> HTMLFormInputMenuSel
 
 class HTMLFormInputMenu: public html::form::HTMLFormInput {
 	public:
-		HTMLFormInputMenu(const string & field_name, const string & label, const string & value);
+		HTMLFormInputMenu(const string & field_name, const string & label);
 		~HTMLFormInputMenu();
 	public:
 		void create_form_input(void);

@@ -67,7 +67,7 @@ void HTMLForm::add_text_input(const string & field_name, const string & label, c
 
 HTMLFormInputMenuPtr HTMLForm::add_menu_input(const string & field_name, const string & label)
 {
-	HTMLFormInputMenuPtr input_field ( new HTMLFormInputMenuPtr(field_name, label, ""));
+	HTMLFormInputMenuPtr input_field ( new HTMLFormInputMenuPtr(field_name, label));
 	m_html_form_input.push_back(input_field);
 	return 	 input_field;
 }
