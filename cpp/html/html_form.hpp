@@ -34,14 +34,15 @@ class HTMLForm {
 		//Button Type Input
 		void set_submit_name(const string & button_name);
 		//void add_button_input(const string & field_name, const string & label, const string & value);
-		//void add_reset_input(void);
+		void add_reset_input(void);
 		//void add_image_input(const string & field_name, const string & label);
-		// File Locator input		
+		// File Locator input
 		//void add_file_input(const string & field_name, const string & label, const string & value);
 
 	private:
 		string								m_submit_method;
 		string								m_submit_button_name;
+		bool								m_reset_button;
 		string								m_html_form_name;
 		string								m_html_form_action;
 		list< HTMLFormInputPtr >			m_html_form_input;

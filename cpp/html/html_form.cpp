@@ -14,7 +14,7 @@ const HTMLFormInputMethod HTMLForm::HTML_FORM_GET("GET");
 const HTMLFormInputMethod HTMLForm::HTML_FORM_POST("POST");
 
 
-HTMLForm::HTMLForm(const string & name, const string & action): m_submit_method(HTMLForm::HTML_FORM_POST), m_submit_button_name("Submit"), m_html_form_name(name), m_html_form_action(action)
+HTMLForm::HTMLForm(const string & name, const string & action): m_submit_method(HTMLForm::HTML_FORM_POST), m_submit_button_name("Submit"), m_reset_button(false), m_html_form_name(name), m_html_form_action(action)
 {
 }
 
@@ -41,6 +41,10 @@ void HTMLForm::create_form(void)
 		m_html_form += forminput->get_form_input();
 	}
 	m_html_form += "<input type=\"submit\" value=\"" + m_submit_button_name + "\">";
+	if (m_reset_button == true)
+	{
+		m_html_form += "<input type=\"reset\">";
+	}
 	m_html_form += "</form>";
 }
 
@@ -71,6 +75,11 @@ void HTMLForm::add_radio_input(const string & field_name, const string & label, 
 void HTMLForm::set_submit_name(const string & button_name)
 {
 	m_submit_button_name = button_name;
+}
+
+void HTMLForm::add_reset_input(void)
+{
+	m_reset_button = true;
 }
 
 }

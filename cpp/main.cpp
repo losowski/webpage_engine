@@ -12,6 +12,7 @@ int main (int argc, char * argv[])
 	form->add_text_input("realname", "Full Name", "Dictator Otato");
 	form->add_radio_input("gender", "Male", "male");
 	form->add_radio_input("gender", "Female", "female");
+	form->add_reset_input();
 	//form->add_button();
 	page.create_page();
 	std::cout << page.get_page() << std::endl;
