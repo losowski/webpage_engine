@@ -73,9 +73,9 @@ HTMLFormInputMenuPtr HTMLForm::add_menu_input(const string & field_name, const s
 }
 
 //Check Box Type Inputs
-void HTMLForm::add_radio_input(const string & field_name, const string & label, const string & value)
+void HTMLForm::add_radio_input(const string & field_name, const string & label)
 {
-	HTMLFormInputPtr input_field ( new form::HTMLFormInputRadio(field_name, label, value));
+	HTMLFormInputPtr input_field ( new form::HTMLFormInputRadio(field_name, label));
 	m_html_form_input.push_back(input_field);	
 }
 
