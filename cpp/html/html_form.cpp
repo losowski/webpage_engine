@@ -67,15 +67,15 @@ void HTMLForm::add_text_input(const string & field_name, const string & label, c
 
 HTMLFormInputMenuPtr HTMLForm::add_menu_input(const string & field_name, const string & label)
 {
-	HTMLFormInputMenuPtr input_field ( new HTMLFormInputMenuPtr(field_name, label));
+	HTMLFormInputMenuPtr input_field ( new form::HTMLFormInputMenu(field_name, label));
 	m_html_form_input.push_back(input_field);
 	return 	 input_field;
 }
 
 //Check Box Type Inputs
-void HTMLForm::add_radio_input(const string & field_name, const string & label)
+void HTMLForm::add_radio_input(const string & field_name, const string & label, const string & value)
 {
-	HTMLFormInputPtr input_field ( new form::HTMLFormInputRadio(field_name, label));
+	HTMLFormInputPtr input_field ( new form::HTMLFormInputRadio(field_name, label, value));
 	m_html_form_input.push_back(input_field);	
 }
 

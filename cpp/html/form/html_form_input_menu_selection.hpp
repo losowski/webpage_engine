@@ -9,6 +9,7 @@ using namespace std;
 
 namespace html {
 namespace form {
+
 class HTMLFormInputMenuSelection:  public html::form::HTMLFormInput {
 	public:
 		HTMLFormInputMenuSelection(const string & label, const string & value, bool selected = false);

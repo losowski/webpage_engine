@@ -8,7 +8,7 @@ namespace html {
 namespace form {
 
 HTMLFormInputMenu::HTMLFormInputMenu(const string & field_name, const string & label):
-	HTMLFormInput ("text",field_name, label, value),
+	HTMLFormInput ("text",field_name, label, label),
 	m_size_to_display(5),
 	m_multiple_selections(false)
 {
@@ -21,7 +21,7 @@ HTMLFormInputMenu::~HTMLFormInputMenu()
 void HTMLFormInputMenu::create_form_input(void)
 {
 	m_html_form_input = "<br>" + m_label + "<br>\n";
-	m_html_form_input += "<select \" name=\"" + m_field_name + "\" "
+	m_html_form_input += "<select \" name=\"" + m_field_name + "\" ";
 	if (m_multiple_selections == true)
 	{
 		m_html_form_input += "multiple";
@@ -35,13 +35,13 @@ void HTMLFormInputMenu::create_form_input(void)
 	{
 		selection->create_form_input();
 		m_html_form += selection->get_form_input();
-	}W
+	}
 	m_html_form_input += "</select>\n";
 }
 
 void HTMLFormInputMenu::add_menu_selection(const string & label, const string & value, bool selected = false)
 {
-	HTMLFormInputMenuSelectionPtr input_field ( new form::HTMLFormInputMenuSelectionPtr(label, value, selected));
+	HTMLFormInputMenuSelectionPtr input_field ( new form::HTMLFormInputMenuSelectionr(label, value, selected));
 	m_selections.push_back(input_field);
 }
 
