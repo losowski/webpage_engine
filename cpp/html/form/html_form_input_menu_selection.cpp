@@ -5,7 +5,7 @@ using namespace std;
 namespace html {
 namespace form {
 
-HTMLFormInputMenuSelectionMenuSelection::HTMLFormInputMenuSelectionMenuSelection(const string & label, const string & value, bool selected):
+HTMLFormInputMenuSelection::HTMLFormInputMenuSelection(const string & label, const string & value, bool selected):
 	HTMLFormInput ("option",label, label, value),
 	m_selected(selected)
 {
