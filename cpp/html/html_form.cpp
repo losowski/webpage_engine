@@ -1,5 +1,6 @@
 #include "html_form.hpp"
 #include "form/html_form_input_text.hpp"
+#include "form/html_form_input_password.hpp"
 #include "form/html_form_input_radio.hpp"
 #include "form/html_form_input_menu.hpp"
 
@@ -62,7 +63,13 @@ void HTMLForm::set_method(const HTMLFormInputMethod & method)
 void HTMLForm::add_text_input(const string & field_name, const string & label, const string & value)
 {
 	HTMLFormInputPtr input_field ( new form::HTMLFormInputText(field_name, label, value));
-	m_html_form_input.push_back(input_field);	
+	m_html_form_input.push_back(input_field);
+}
+
+void HTMLForm::add_password_input(const string & field_name, const string & label)
+{
+	HTMLFormInputPtr input_field ( new form::HTMLFormInputPassword(field_name, label));
+	m_html_form_input.push_back(input_field);
 }
 
 HTMLFormInputMenuPtr HTMLForm::add_menu_input(const string & field_name, const string & label)
@@ -76,7 +83,7 @@ HTMLFormInputMenuPtr HTMLForm::add_menu_input(const string & field_name, const s
 void HTMLForm::add_radio_input(const string & field_name, const string & label, const string & value)
 {
 	HTMLFormInputPtr input_field ( new form::HTMLFormInputRadio(field_name, label, value));
-	m_html_form_input.push_back(input_field);	
+	m_html_form_input.push_back(input_field);
 }
 
 //Button Type Inputs
