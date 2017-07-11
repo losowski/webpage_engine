@@ -32,8 +32,10 @@ void HTMLFormInputMenu::create_form_input(void)
 		m_html_form_input += "multiple";
 	}
 	m_html_form_input += " size=\"";
+	//m_html_form_input += string::atoi(m_size_to_display);
 	//m_html_form_input << m_size_to_display;
-	//m_html_form_input +=  std::string::to_string(m_size_to_display)
+	//m_html_form_input +=  std::string::to_string(m_size_to_display);
+	m_html_form_input +=  std::to_string(m_size_to_display);
 	m_html_form_input +=  "\">\n";
 	BOOST_FOREACH(HTMLFormInputMenuSelectionPtr selection, m_selections)
 	{
