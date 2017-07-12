@@ -88,6 +88,13 @@ void HTMLPage::add_style(const string & url)
 	m_html_header_content.push_back(style);
 }
 
+/* Only allowed once */
+void HTMLPage::add_meta_data(const header::HTHMLHeaderMetaType::MetaType & type, const string & content)
+{
+	HTMLHeaderPtr meta ( new header::HTMLHeaderMeta(url));
+	m_html_header_content.push_back(meta);
+}
+
 
 HTMLFormPtr HTMLPage::add_form(const string & name, const string & action)
 {

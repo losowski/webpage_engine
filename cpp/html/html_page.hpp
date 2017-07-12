@@ -5,6 +5,7 @@
 #include "html_form.hpp"
 #include "html_header_script.hpp"
 #include "html_header_style.hpp"
+#include "html_header_meta.hpp"
 
 #include <string>
 #include <list>
@@ -32,6 +33,9 @@ class HTMLPage {
 		/* Header */
 		void add_script(const string & url);
 		void add_style(const string & url);
+		/* Only allowed once */
+		void add_meta_data(const header::HTMLHeaderMeta::HTHMLHeaderMetaType & type, const string & content);
+
 		/* Form */
 		HTMLFormPtr add_form(const string & name, const string & action);
 	private:

@@ -25,7 +25,7 @@ LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
 #LIBS = -lliblog4cxx
 
 # define the C source files- "main" is always last
-SRCS =  html/html_page.cpp html/html_title.cpp html/html_form.cpp html/form/html_form_input.cpp html/form/html_form_input_text.cpp html/form/html_form_input_password.cpp html/form/html_form_input_radio.cpp html/form/html_form_input_menu_selection.cpp html/form/html_form_input_menu.cpp html/html_header.cpp html/html_header_script.cpp html/html_header_style.cpp main.cpp
+SRCS =  html/html_page.cpp html/html_title.cpp html/html_form.cpp html/form/html_form_input.cpp html/form/html_form_input_text.cpp html/form/html_form_input_password.cpp html/form/html_form_input_radio.cpp html/form/html_form_input_menu_selection.cpp html/form/html_form_input_menu.cpp html/html_header.cpp html/html_header_script.cpp html/html_header_style.cpp html/html_header_meta.cpp main.cpp
 
 # define the C object files
 #
