@@ -15,9 +15,6 @@ class HTMLHeaderScript: public html::header::HTMLHeader {
 		~HTMLHeaderScript(void);
 	public:
 		void create_header(void);
-	protected:
-		string								m_resource_url;
-		string								m_html_header;
 };
 }
 }
