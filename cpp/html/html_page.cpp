@@ -70,6 +70,7 @@ void HTMLPage::add_title(HTMLTitle & title)
 	m_html_title = title;
 }
 
+
 HTMLTitle & HTMLPage::get_title(void)
 {
 	return m_html_title;
@@ -80,6 +81,13 @@ void HTMLPage::add_script(const string & url)
 	HTMLHeaderPtr script ( new header::HTMLHeaderScript(url));
 	m_html_header_content.push_back(script);
 }
+
+void HTMLPage::add_style(const string & url)
+{
+	HTMLHeaderPtr style ( new header::HTMLHeaderStyle(url));
+	m_html_header_content.push_back(style);
+}
+
 
 HTMLFormPtr HTMLPage::add_form(const string & name, const string & action)
 {

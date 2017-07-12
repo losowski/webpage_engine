@@ -16,7 +16,7 @@ HTMLHeaderScript::~HTMLHeaderScript(void)
 
 void HTMLHeaderScript::create_header(void)
 {
-	m_html_header = "<script src=\"" + m_resource_url + ".js\"></script>\n";
+	m_html_header = "<script src=\"" + m_resource_url + ".js\" type=\"text/javascript\"></script>\n";
 }
 
 }

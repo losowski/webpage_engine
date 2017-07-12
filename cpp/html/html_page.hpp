@@ -4,6 +4,7 @@
 #include "html_title.hpp"
 #include "html_form.hpp"
 #include "html_header_script.hpp"
+#include "html_header_style.hpp"
 
 #include <string>
 #include <list>
@@ -30,6 +31,7 @@ class HTMLPage {
 		HTMLTitle & get_title (void);
 		/* Header */
 		void add_script(const string & url);
+		void add_style(const string & url);
 		/* Form */
 		HTMLFormPtr add_form(const string & name, const string & action);
 	private:

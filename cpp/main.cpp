@@ -8,6 +8,7 @@ int main (int argc, char * argv[])
 	//Demo Function
 	HTMLPage page ("Hello World");
 	page.add_script("demo");
+	page.add_style("gangnam");
 	HTMLFormPtr form = page.add_form("testing_form", "web01");
 	form->add_password_input("pword", "Secret Word");
 	form->add_text_input("nickname", "Pet Name");
