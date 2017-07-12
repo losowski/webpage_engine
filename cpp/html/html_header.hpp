@@ -13,7 +13,7 @@ class HTMLHeader {
 		HTMLHeader(const string & url);
 		virtual ~HTMLHeader(void);
 	public:
-		virtual void create_header(void);
+		virtual void create_header(void) =0;
 		string get_header(void);
 	protected:
 		string								m_resource_url;
