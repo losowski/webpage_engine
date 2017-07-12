@@ -3,6 +3,7 @@
 
 #include "html_title.hpp"
 #include "html_form.hpp"
+#include "html_header_script.hpp"
 
 #include <string>
 #include <list>
@@ -13,6 +14,7 @@ using namespace std;
 namespace html {
 
 typedef boost::shared_ptr<HTMLForm> HTMLFormPtr;
+typedef boost::shared_ptr<header::HTMLHeader> HTMLHeaderPtr;
 
 class HTMLPage {
 	public:
@@ -26,12 +28,16 @@ class HTMLPage {
 		/* Title */
 		void add_title(HTMLTitle & title);
 		HTMLTitle & get_title (void);
+		/* Header */
+		void add_script(const string & url);
 		/* Form */
 		HTMLFormPtr add_form(const string & name, const string & action);
 	private:
 		string									m_html_page;
 		HTMLTitle								m_html_title;
+		list< HTMLHeaderPtr >					m_html_header_content;
 		list< HTMLFormPtr >						m_html_content; /* Should be common baseclass - form for now! */
+	
 };
 }
 #endif //HTML_PAGE_HPP

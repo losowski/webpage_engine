@@ -34,6 +34,11 @@ void HTMLPage::create_page(void)
 	/* script */
 	/* style */
 	/* meta */
+	BOOST_FOREACH(HTMLHeaderPtr headerinput, m_html_header_content)
+	{
+		headerinput->create_header();
+		m_html_page += headerinput->get_header();
+	}
 	m_html_page += "</head>\n";
 	/* body */
 	m_html_page += "<body>\n";
@@ -68,6 +73,12 @@ void HTMLPage::add_title(HTMLTitle & title)
 HTMLTitle & HTMLPage::get_title(void)
 {
 	return m_html_title;
+}
+
+void HTMLPage::add_script(const string & url)
+{
+	HTMLHeaderPtr script ( new header::HTMLHeaderScript(url));
+	m_html_header_content.push_back(script);
 }
 
 HTMLFormPtr HTMLPage::add_form(const string & name, const string & action)
