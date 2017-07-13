@@ -1,0 +1,6 @@
+DEPENDENCIES
+============
+
+libcgicc (libraries and development)
+LIB:		/usr/lib/libcgicc.so.5
+INCLUDE:	/usr/include/cgicc
