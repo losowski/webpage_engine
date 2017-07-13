@@ -89,9 +89,9 @@ void HTMLPage::add_style(const string & url)
 }
 
 /* Only allowed once */
-void HTMLPage::add_meta_data(const header::HTHMLHeaderMetaType::MetaType & type, const string & content)
+void HTMLPage::add_meta_data(const header::MetaType & type, const string & content)
 {
-	HTMLHeaderPtr meta ( new header::HTMLHeaderMeta(url));
+	HTMLHeaderPtr meta ( new header::HTMLHeaderMeta(type, content));
 	m_html_header_content.push_back(meta);
 }
 

@@ -34,7 +34,7 @@ class HTMLPage {
 		void add_script(const string & url);
 		void add_style(const string & url);
 		/* Only allowed once */
-		void add_meta_data(const header::HTMLHeaderMeta::HTHMLHeaderMetaType & type, const string & content);
+		void add_meta_data(const header::MetaType & type, const string & content);
 
 		/* Form */
 		HTMLFormPtr add_form(const string & name, const string & action);

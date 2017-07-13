@@ -1,5 +1,5 @@
-#ifndef HTML_HEADER_STYLE_HPP
-#define HTML_HEADER_STYLE_HPP
+#ifndef HTML_HEADER_META_HPP
+#define HTML_HEADER_META_HPP
 
 #include "html_header.hpp"
 #include <string>
@@ -9,11 +9,11 @@ using namespace std;
 namespace html {
 namespace header {
 
-typedef string			HTHMLHeaderMetaType;
+typedef string			MetaType;
 
 class HTMLHeaderMeta: public html::header::HTMLHeader {
 	public:
-		HTMLHeaderMeta(const HTHMLHeaderMetaType & tag, const string & content);
+		HTMLHeaderMeta(const MetaType & tag, const string & content);
 		~HTMLHeaderMeta(void);
 	public:
 		static const MetaType HTML_META_DESCRIPTION;
@@ -26,4 +26,4 @@ class HTMLHeaderMeta: public html::header::HTMLHeader {
 };
 }
 }
-#endif //HTML_HEADER_STYLE_HPP
+#endif //HTML_HEADER_META_HPP
