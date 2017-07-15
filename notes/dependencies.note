@@ -4,3 +4,6 @@ DEPENDENCIES
 libcgicc (libraries and development)
 LIB:		/usr/lib/libcgicc.so.5
 INCLUDE:	/usr/include/cgicc
+
+libcxxtools9
+	-- More useful tools for handling stuff
