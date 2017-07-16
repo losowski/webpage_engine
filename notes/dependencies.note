@@ -5,5 +5,15 @@ libcgicc (libraries and development)
 LIB:		/usr/lib/libcgicc.so.5
 INCLUDE:	/usr/include/cgicc
 
+
+libpq++ (needed to communicate with database)
+LIB:
+INCLUDE:
+W: Failed to fetch http://http.debian.net/debian/pool/main/p/postgresql-9.4/libpq-dev_9.4.10-0+deb8u1_amd64.deb
+  404  Not Found [IP: 151.101.16.204 80]
+
+
+
+
 libcxxtools9
 	-- More useful tools for handling stuff
