@@ -1,0 +1,57 @@
+CMS Database
+============
+
+SCHEMA - 1x DB per site
+=======================
+tPage
+	- page_id
+	- page_name
+	- home_page (bool)
+
+tPageGroup
+	- page_group_id
+	- name
+	- position_x
+	- position_y
+	- size_x
+	- size_y
+
+tPageComponent
+	- page_component_id
+	- page_id
+	- page_group_id
+	- element_number
+	- displayed
+	- type
+	- page_parameter_id
+	- page_parameter_optional_id
+	- sql_function_name (name of command/SQL that is provided by the SQL engine)- called on submit of form
+
+tPageParameter
+	- page_parameter_id
+	- label
+	- db_key
+	- default_value
+	- value_validation
+
+tPageParameterOptional
+	- page_parameter_optional_id
+	- label
+	- db_key
+	- default_value
+	- value_validation
+
+
+SQL Plan to run
+===============
+	UNION on parameters and optional parameters
+	- This will provide the complete list of variables we will look at
+
+====================
+== IMPLEMENTATION ==
+====================
+- Application will start with the designated homepage
+- This will launch all components
+	- Components will be displayed according to the groups and the output of the CSS engine (using those groups for profiling)
+- This page will include elements
+	- These elements will enable navigation around the site
