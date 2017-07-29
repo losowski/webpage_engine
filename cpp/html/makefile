@@ -8,7 +8,7 @@ CC = g++
 # compiler flags:
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -fPIC -std=c++11 -g -Wall
+CFLAGS  = -shared -fPIC -std=c++11 -g -Wall
 
 # define any directories containing header files other than /usr/include
 #
