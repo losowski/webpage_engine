@@ -1,0 +1,46 @@
+General Design
+==============
+
+libhtml
+	- Low Level HTML output
+	- Currently text based (not XML based) for simplicity
+		- Modular nature of this should mean a switch is possible at a future stage
+	- Aimed exclusively at writing correct HTML
+	- must be sensible enough and granular enough that any other module can write it
+	- Designed to complement libcgicc
+
+libwebpge
+	- LINK: libhtml
+	- Macro functions to group HTML into usable CMS style elements
+		+ Title
+		+ Top panel
+		+ Title Bar
+		+ Top menu
+		+ Left hand menu
+		+ Right hand menu
+		+ Bottom menu
+		+ Bottom panel
+		+ Main page area
+
+libcms
+	- LINK: libwebpage
+	- LINK: libhtml
+	- LINK: libcgicc
+	- LINK: libpq++
+	- Interface with cgicc library
+	- Interface with postgresql database
+	- Provides a CMS interface for web constrution
+	- Enables macro and low-level web page generation from the contents of the DB
+	- Also links to the actual data database
+
+
+libconfig
+	- XML reader library to provide the configuration
+
+main.cpp
+	- LINK: libcms
+	- LIMNK: libconfig
+	- Calls libconfig with connection file
+		- Obtains the connection parameters
+	- Calls libcms with:
+		- postgesql connection parameters
