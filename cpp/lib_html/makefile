@@ -38,7 +38,7 @@ SRCS =  html_page.cpp html_title.cpp html_form.cpp form/html_form_input.cpp form
 OBJS = $(SRCS:.cpp=.o)
 
 # define the executable file
-MAIN = libhtml.so
+MAIN = ../lib/libhtml.so
 
 #
 # The following part of the makefile is generic; it can be used to
