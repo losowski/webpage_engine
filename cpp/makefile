@@ -12,12 +12,12 @@ CFLAGS  = -std=c++11 -g -Wall
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -I../html -I../html/form
+INCLUDES = -I../lib_webpage
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
 #   their path using -Lpath, something like:
-LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
+LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lhtml
 
 # define any libraries to link into executable:
 #   if I want to link in libraries (libx.so or libx.a) I use the -llibname
@@ -25,7 +25,7 @@ LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
 #LIBS = -lliblog4cxx
 
 # define the C source files- "main" is always last
-SRCS =  html/html_page.cpp html/html_title.cpp html/html_form.cpp html/form/html_form_input.cpp html/form/html_form_input_text.cpp html/form/html_form_input_password.cpp html/form/html_form_input_radio.cpp html/form/html_form_input_menu_selection.cpp html/form/html_form_input_menu.cpp html/html_header.cpp html/html_header_script.cpp html/html_header_style.cpp html/html_header_meta.cpp main.cpp
+SRCS = main.cpp
 
 # define the C object files
 #
@@ -40,6 +40,10 @@ OBJS = $(SRCS:.cpp=.o)
 # define the executable file
 MAIN = web_engine.cgi
 
+#Subdirectory
+#TOPTARGETS := all clean
+SUBDIRS = lib_html #lib_webpage
+
 #
 # The following part of the makefile is generic; it can be used to
 # build any executable just by changing the definitions above and by
@@ -51,6 +55,11 @@ default: $(MAIN)
 
 all: $(MAIN)
 	echo "Web engine compiled"
+
+$(SUBDIRS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+#PHONY: $(TOPTARGETS) $(SUBDIRS)
 
 $(MAIN): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)

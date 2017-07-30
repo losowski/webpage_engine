@@ -1,12 +1,13 @@
-#include "html/html_page.hpp"
+#include "lib_webpage/web_page.hpp"
 #include <iostream>
 using namespace std;
-using namespace html;
+using namespace web;
 
 int main (int argc, char * argv[])
 {
 	//Demo Function
-	HTMLPage page ("Hello World");
+	WebPage page ("Hello World");
+	/*
 	page.add_script("demo");
 	page.add_style("gangnam");
 	page.add_meta_data(header::HTMLHeaderMeta::HTML_META_KEYWORDS, "Demo, Super");
@@ -23,6 +24,7 @@ int main (int argc, char * argv[])
 	menu->add_menu_selection("Unicorn", "Unicorn");
 	form->add_reset_input();
 	//form->add_button();
+	*/
 	page.create_page();
 	std::cout << page.get_page() << std::endl;
 }
