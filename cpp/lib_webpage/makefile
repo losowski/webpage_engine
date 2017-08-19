@@ -22,7 +22,7 @@ LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
 # define any libraries to link into executable:
 #   if I want to link in libraries (libx.so or libx.a) I use the -llibname
 #   option, something like (this will link in libmylib.so and libm.so:
-LIBS = -L../lib -llibhtml.so
+LIBS = -L../lib -lhtml
 
 # define the C source files- "main" is always last
 SRCS =  web_page.cpp

@@ -22,6 +22,9 @@ class WebPage: protected html::HTMLPage {
 		// Bottom menu
 		// Bottom panel
 		// Main page area	
+	//call these base class functions to run
+		//void create_page(void);
+		//string get_page(void);
 };
 }
 #endif //WEB_PAGE_HPP
