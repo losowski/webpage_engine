@@ -8,5 +8,5 @@ Package: libhtml
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Generate string HTML output
-Generate very common HTML statmenets using a C++ oriented library.
-Allows building a CGI script using a very basic API to construct menus in a logical and simplified manner
+ Generate very common HTML statmenets using a C++ oriented library.
+ Allows building a CGI script using a very basic API to construct menus in a logical and simplified manner
