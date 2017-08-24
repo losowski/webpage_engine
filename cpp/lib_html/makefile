@@ -1,71 +1,113 @@
-# Contents based onL:
-# https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html
+# MAKEFILE for thie libhtml library
 
-# master
-# the compiler: gcc for C program, define as g++ for C++
-CC = g++
+###############
+# DEFINITIONS #
+###############
+# BASE DIRECTORY for install (/usr/local is good)
+BASE_PREFIX = /usr/local
+MAN_BASE_PREFIX = $(BASE_PREFIX)/share/man
 
-# compiler flags:
-#  -g    adds debugging information to the executable file
-#  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -shared -fPIC -std=c++11 -g -Wall
+LOCAL_BASE_PREFIX = ..
+LOCAL_MAN_BASE_PREFIX = $(BASE_PREFIX)/share/man
+# #DEFINE: These go into CFLAGS later
+#OTHER1 -D_NAME_YOUR_DEFINE=99
 
-# define any directories containing header files other than /usr/include
-#
+######################
+# SYSTEM DEFINITIONS #
+######################
+INSTALL= install
+RM= rm -f
+MKDIR = mkdir -p
+
+###########
+# INSTALL #
+###########
+
+# MAKE FILE VERSIONING
+# VERSION
+include Makefile.inc/VERSION
+
+#MANUAL DEFINITIONS
+MAN_DIR=$(MAN_BASE_DIR)/man1
+# MAN_EXT No idea what this means
+MAN_EXT=1
+
+
+#BUILDING DEFINITIONS
+BIN_DIR=$(BASE_PREFIX)/bin
+LIB_DIR=$(BASE_PREFIX)/lib
+LIB_DIR=$(BASE_PREFIX)/lib
+
+INSTALL_PROGRAM_PERM=$(INSTALL) -c -m 0755 #readable and executable by anyone, writing restricted to user owner
+INSTALL_DATA_PERM = $(INSTALL) -c -m 0644 #readable by anyone. Writable by user owner
+
+#LOCALBUILDING DEFINITIONS
+LOCAL_BIN_DIR=$(LOCAL_BASE_PREFIX)/bin
+LOCAL_LIB_DIR=$(LOCAL_BASE_PREFIX)/lib
+LOCAL_LIB_DIR=$(LOCAL_BASE_PREFIX)/lib
+
+
+###############
+# COMPILATION #
+###############
+#Compiler (gcc or g++)
+CC ?= g++
+
+TARGET_FLAG = -shared -fPIC -std=c++11
+#Compiler options (i.e. pedantic etc -g = adds debugging)
+COMPILER_OPTIONS = -g -Wall
+
+#Compiler flags - and include the Makefile.inc/VERSION (VERSION)
+CFLAGS = $(TARGET_FLAG) $(COMPILER_OPTIONS) -DVERSION=\"$(VERSION)\" #Other definitions $(OTHER1)
+
+###################
+## PROJECT FILES ##
+###################
+PROGRAM_NAME=libhtml
+BINARY_TARGET=$(PROGRAM_NAME).so
+#INCLUDES
 INCLUDES = -I/form
 
-# define library paths in addition to /usr/lib
-#   if I wanted to include libraries not in /usr/lib I'd specify
-#   their path using -Lpath, something like:
-LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
+#Libraries
+LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
 
-# define any libraries to link into executable:
-#   if I want to link in libraries (libx.so or libx.a) I use the -llibname
-#   option, something like (this will link in libmylib.so and libm.so:
-#LIBS = -lliblog4cxx
-
-# define the C source files- "main" is always last
+#Soures
 SRCS =  html_page.cpp html_title.cpp html_form.cpp form/html_form_input.cpp form/html_form_input_text.cpp form/html_form_input_password.cpp form/html_form_input_radio.cpp form/html_form_input_menu_selection.cpp form/html_form_input_menu.cpp html_header.cpp html_header_script.cpp html_header_style.cpp html_header_meta.cpp
 
-# define the C object files
-#
-# This uses Suffix Replacement within a macro:
-#   $(name:string1=string2)
-#         For each word in 'name' replace 'string1' with 'string2'
-# Below we are replacing the suffix .c of all words in the macro SRCS
-# with the .o suffix
-#
-OBJS = $(SRCS:.cpp=.o)
+###########
+## MAGIC ##
+###########
+OBJECT_FILES = $(SRCS:.cpp=.o)
 
-# define the executable file
-MAIN = ../lib/libhtml.so
+####################
+# MAKEFILE SCRIPTS #
+####################
 
-#
-# The following part of the makefile is generic; it can be used to
-# build any executable just by changing the definitions above and by
-# deleting dependencies appended to the file from 'make depend'
-#
-.PHONY: depend clean
+default: $(BINARY_TARGET)
+ 
+all: $(BINARY_TARGET)
 
-default: $(MAIN)
+$(BINARY_TARGET): $(OBJECT_FILES)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(BINARY_TARGET) $(OBJECT_FILES)
 
-all: $(MAIN)
-	echo "Web engine compiled"
+installdirs:
+	test -d $(BIN_DIR) || $(MKDIR) $(BIN_DIR)
+	test -d $(MAN_DIR) || $(MKDIR) $(MAN_DIR)
 
-$(MAIN): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
+install: $(BINARY_TARGET) installdirs
+	$(INSTALL_PROGRAM)	$(BINARY_TARGET)   $(BIN_DIR)/$(BINARY_TARGET)
+	$(INSTALL_DATA)		$(BINARY_TARGET).$(MAN_EXT) $(MAN_DIR)/$(PROGRAM_NAME).$(MAN_EXT)
 
-# this is a suffix replacement rule for building .o's from .c's
-# it uses automatic variables $<: the name of the prerequisite of
-# the rule(a .c file) and $@: the name of the target of the rule (a .o file)
-# (see the gnu make manual section about automatic variables)
+install:  local installdirs
+	$(INSTALL_PROGRAM)	$(BINARY_TARGET)   $(LOCAL_BIN_DIR)/$(BINARY_TARGET)
+	$(INSTALL_DATA)		$(BINARY_TARGET).$(MAN_EXT) $(LOCAL_MAN_DIR)/$(PROGRAM_NAME).$(MAN_EXT)
+
+#No idea what this adds
 .cpp.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
 clean:
-	rm $(OBJS) *~ $(MAIN)
+	$(RM) $(OBJECT_FILES)
+	$(RM) $(BINARY_TARGET)
+	$(RM) *~ md5/*~
 
-depend: $(SRCS)
-	makedepend $(INCLUDES) $^
-
-# DO NOT DELETE THIS LINE -- make depend needs it
