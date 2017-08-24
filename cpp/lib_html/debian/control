@@ -2,8 +2,9 @@ Source: libhtml
 Section:non-free/devel
 Priority: optional
 Maintainer: Eugene Losowski-Gallagher <eugene.losowskigallagher@googlemail.com>
-Build-Depends: debhelper (>=9), libc (>=6), libstdc (>=6), libgcc(>=1)
-Standards-Version: 3.9.4
+Build-Depends: debhelper (>=9), libc6 (>=2.19), libstdc++6 (>=4.9.2), libgcc1(>=4.9.2)
+Standards-Version: 3.9.8
+
 Package: libhtml
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
