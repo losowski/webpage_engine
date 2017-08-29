@@ -21,3 +21,6 @@ include /usr/share/dpkg/default.mk
 
 override_dh_installdocs:
 	dh_installdocs		CONTRIBUTORS TODO
+
+override_dh_auto_install:
+	$(MAKE) DESTDIR=$$(pwd)/debian/lib_html prefix=/usr install
