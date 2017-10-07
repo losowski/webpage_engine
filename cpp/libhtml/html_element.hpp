@@ -12,7 +12,8 @@ namespace html {
 
 typedef boost::shared_ptr<HTMLElementBase> HTMLElementBasePtr;
 
-class HTMLElement {
+class HTMLElement : public html::HTMLElementBase
+{
 	public:
 		HTMLElement(void);
 		~HTMLElement(void);
@@ -24,5 +25,6 @@ class HTMLElement {
 	private:
 		list< HTMLElementBasePtr >					m_html_element_list;
 };
+
 }
 #endif //HTML_ELEMENT_HPP
