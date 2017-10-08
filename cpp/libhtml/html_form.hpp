@@ -1,6 +1,7 @@
 #ifndef HTML_FORM_HPP
 #define HTML_FORM_HPP
 
+#include "html_base.hpp"
 #include "form/html_form_input.hpp"
 #include "form/html_form_input_menu.hpp"
 
@@ -16,7 +17,8 @@ typedef string								HTMLFormInputMethod;
 typedef boost::shared_ptr<form::HTMLFormInput> HTMLFormInputPtr;
 typedef boost::shared_ptr<form::HTMLFormInputMenu> HTMLFormInputMenuPtr;
 
-class HTMLForm {
+class HTMLForm : public html::HTMLBase
+{
 	public:
 		HTMLForm(const string & name, const string & action);
 		~HTMLForm(void);
@@ -24,8 +26,8 @@ class HTMLForm {
 		static const HTMLFormInputMethod HTML_FORM_GET;
 		static const HTMLFormInputMethod HTML_FORM_POST;
 	public:
-		void create_form(void);
-		string get_form(void);
+		void create_html(void);
+		//Internal functions
 		void set_method(const HTMLFormInputMethod & method);
 		// Text Type Input
 		void add_text_input(const string & field_name, const string & label, const string & value = "");
@@ -46,10 +48,9 @@ class HTMLForm {
 		string								m_submit_method;
 		string								m_submit_button_name;
 		bool								m_reset_button;
-		string								m_html_form_name;
-		string								m_html_form_action;
-		list< HTMLFormInputPtr >			m_html_form_input;
-		string								m_html_form;
+		string								m_html_name;
+		string								m_html_action;
+		list< HTMLFormInputPtr >			m_html_input;
 };
 }
 #endif //HTML_FORM_HPP

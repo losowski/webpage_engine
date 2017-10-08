@@ -51,8 +51,8 @@ void HTMLPage::create_page(void)
 	*/
 	BOOST_FOREACH(HTMLFormPtr htmlcontent, m_html_content)
 	{
-		htmlcontent->create_form();
-		m_html_page += htmlcontent->get_form();
+		htmlcontent->create_html();
+		m_html_page += htmlcontent->get_html();
 	}
 	m_html_page += "</body>\n";
 	/* End of HTML */

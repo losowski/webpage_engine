@@ -1,31 +1,30 @@
 #ifndef HTML_BODY_HPP
 #define HTML_BODY_HPP
 
-#include "html_form.hpp"
-
-#include <string>
 #include <list>
+
+#include "html_body_base.hpp"
+
 
 using namespace std;
 
 namespace html {
 
-class HTMLBody : public html::HTMLElement
+//typedef boost::shared_ptr<HTMLBodyBase> HTMLBodyBasePtr;
+typedef boost::shared_ptr<HTMLBase> HTMLBasePtr;
+
+class HTMLBody : public html::HTMLBodyBase
 {
 	public:
 		HTMLBody(void);
 		~HTMLBody(void);
 	public:
 		void create_body(void);
-		string get_body(void);
 	public:
 		/* Form */
 		HTMLFormPtr add_form(const string & name, const string & action);
 	private:
-		string									m_html_body;
-		HTMLTitle								m_html_title;
-		list< HTMLHeaderPtr >					m_html_header_content;
-		list< HTMLFormPtr >						m_html_content; /* Should be common baseclass - form for now! */
+		list< HTMLBasePtr >					m_html_body_content; /* Should be common baseclass - form for now! */
 
 };
 }
