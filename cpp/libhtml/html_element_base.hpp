@@ -15,7 +15,6 @@ class HTMLElementBase {
 		HTMLElementBase(void);
 		~HTMLElementBase(void);
 	public:
-		virtual void create_element(void) = 0;
 		string get_element(void);
 	protected:
 		string								m_html_element;

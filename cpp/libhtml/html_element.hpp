@@ -17,12 +17,10 @@ class HTMLElement : public html::HTMLElementBase
 	public:
 		HTMLElement(void);
 		~HTMLElement(void);
-	public:
-		virtual void create_element(void) = 0;
-	public:
+	protected:
 		//helper functions - Calls create_element on the sub elements
 		void create_sub_elements(void);
-	private:
+	protected:
 		list< HTMLElementBasePtr >					m_html_element_list;
 };
 
