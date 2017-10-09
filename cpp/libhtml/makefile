@@ -73,7 +73,7 @@ INCLUDES = -I/form
 LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
 
 #Soures
-SRCS = html_base.cpp html_body_base.cpp html_body_element.cpp html_body.cpp html_page.cpp html_title.cpp html_form.cpp form/html_form_input.cpp form/html_form_input_text.cpp form/html_form_input_password.cpp form/html_form_input_radio.cpp form/html_form_input_menu_selection.cpp form/html_form_input_menu.cpp html_header.cpp html_header_script.cpp html_header_style.cpp html_header_meta.cpp
+SRCS = html_base.cpp html_body_base.cpp html_form.cpp html_body_element.cpp html_body.cpp html_page.cpp html_title.cpp form/html_form_input.cpp form/html_form_input_text.cpp form/html_form_input_password.cpp form/html_form_input_radio.cpp form/html_form_input_menu_selection.cpp form/html_form_input_menu.cpp html_header.cpp html_header_script.cpp html_header_style.cpp html_header_meta.cpp
 
 ###########
 ## MAGIC ##

@@ -3,14 +3,17 @@
 
 
 #include "html_base.hpp"
+
+#include <boost/shared_ptr.hpp>
+
 // Special Functions
-#include "html_form.hpp"
+//#include "html_form.hpp"
 
 using namespace std;
 
 namespace html {
-class HTMLForm;
 
+class HTMLForm;
 typedef boost::shared_ptr<HTMLForm> HTMLFormPtr;
 
 class HTMLBodyBase : public html::HTMLBase

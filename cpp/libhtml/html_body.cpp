@@ -1,7 +1,5 @@
 #include "html_body.hpp"
 
-#include <boost/foreach.hpp>
-
 using namespace std;
 
 namespace html {
