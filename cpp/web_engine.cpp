@@ -23,7 +23,7 @@ int main (int argc, char * argv[])
 	menu->add_menu_selection("Unicorn", "Unicorn");
 	form->add_reset_input();
 	//form->add_button();
-	page.create_page();
-	std::cout << page.get_page() << std::endl;
+	page.create_html();
+	std::cout << page.get_html() << std::endl;
 }
 

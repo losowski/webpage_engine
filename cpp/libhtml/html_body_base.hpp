@@ -12,7 +12,7 @@ namespace html {
 
 typedef boost::shared_ptr<HTMLForm> HTMLFormPtr;
 
-class HTMLBodyBase : public HTMLBase
+class HTMLBodyBase : public html::HTMLBase
 {
 	public:
 		HTMLBodyBase(void);
@@ -20,7 +20,6 @@ class HTMLBodyBase : public HTMLBase
 	public:
 		/* Create body must be virtual */
 		virtual void create_html(void) = 0;
-		string get_html(void);
 	public:
 		/* Form */
 		virtual HTMLFormPtr add_form(const string & name, const string & action) = 0;

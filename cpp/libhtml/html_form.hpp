@@ -1,7 +1,7 @@
 #ifndef HTML_FORM_HPP
 #define HTML_FORM_HPP
 
-#include "html_base.hpp"
+#include "html_body_element.hpp"
 #include "form/html_form_input.hpp"
 #include "form/html_form_input_menu.hpp"
 
@@ -17,7 +17,7 @@ typedef string								HTMLFormInputMethod;
 typedef boost::shared_ptr<form::HTMLFormInput> HTMLFormInputPtr;
 typedef boost::shared_ptr<form::HTMLFormInputMenu> HTMLFormInputMenuPtr;
 
-class HTMLForm : public html::HTMLBase
+class HTMLForm : public html::HTMLBodyBase
 {
 	public:
 		HTMLForm(const string & name, const string & action);
