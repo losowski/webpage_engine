@@ -1,4 +1,4 @@
-#include "html_body_x.hpp"
+#include "html_body_element.hpp"
 
 #include <boost/foreach.hpp>
 
@@ -20,7 +20,7 @@ HTMLBodyElement::~HTMLBodyElement(void)
 {
 }
 
-string HTMLBodyElement::create_html(void)
+void HTMLBodyElement::create_html(void)
 {
 	m_html = "<" + m_type + " name=\"" + m_name + "\">\n";
 	BOOST_FOREACH(HTMLBodyBasePtr bodyContent, m_html_body_content)
@@ -31,7 +31,7 @@ string HTMLBodyElement::create_html(void)
 	m_html = "\n</" + m_type + ">\n";
 }
 
-HTMLFormPtr HTMLBody::add_form(const string & name, const string & action)
+HTMLFormPtr HTMLBodyElement::add_form(const string & name, const string & action)
 {
 	//TODO: HTMLForm is meant to derive off HTMLBase so that it can 
 	HTMLBodyBasePtr content_item (new HTMLForm(name, action));

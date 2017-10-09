@@ -9,6 +9,7 @@
 using namespace std;
 
 namespace html {
+class HTMLForm;
 
 typedef boost::shared_ptr<HTMLForm> HTMLFormPtr;
 

@@ -19,7 +19,7 @@ class HTMLBodyElement : public html::HTMLBodyBase
 		HTMLBodyElement(const string & type, const string & name = "");
 		~HTMLBodyElement(void);
 	public:
-		virtual string create_html(void);
+		void create_html(void);
 	public:
 		/* Form */
 		HTMLFormPtr add_form(const string & name, const string & action);
