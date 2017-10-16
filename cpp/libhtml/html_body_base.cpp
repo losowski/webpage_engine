@@ -4,7 +4,8 @@ using namespace std;
 
 namespace html {
 
-HTMLBodyBase::HTMLBodyBase(void)
+HTMLBodyBase::HTMLBodyBase(const string & type, const string & name) :
+	m_type(type), m_name(name)
 {
 }
 

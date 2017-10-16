@@ -31,6 +31,11 @@ void HTMLBodyElement::create_html(void)
 	m_html = "\n</" + m_type + ">\n";
 }
 
+void HTMLBodyElement::add_element(HTMLBodyBasePtr element)
+{
+		m_html_body_content.push_back(element);
+}
+
 HTMLFormPtr HTMLBodyElement::add_form(const string & name, const string & action)
 {
 	HTMLBodyBasePtr content_item (new html::HTMLForm(name, action));
