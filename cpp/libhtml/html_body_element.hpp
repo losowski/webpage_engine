@@ -16,7 +16,9 @@ class HTMLBodyElement : public html::HTMLBodyBase
 		~HTMLBodyElement(void);
 	public:
 		//void create_html(void); // Override
-	//HTMLFormPtr add_form(const string & name, const string & action)
 };
+
+typedef boost::shared_ptr< HTMLBodyElement > HTMLBodyElementPtr;
+
 }
 #endif //HTML_BODY_ELEMENT_HPP
