@@ -15,7 +15,7 @@ using namespace std;
 
 namespace html {
 
-typedef boost::shared_ptr<HTMLForm> HTMLFormPtr;
+
 typedef boost::shared_ptr<header::HTMLHeader> HTMLHeaderPtr;
 
 class HTMLPage {

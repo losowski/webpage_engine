@@ -16,7 +16,13 @@ const HTMLFormInputMethod HTMLForm::HTML_FORM_GET("GET");
 const HTMLFormInputMethod HTMLForm::HTML_FORM_POST("POST");
 
 
-HTMLForm::HTMLForm(const string & name, const string & action): m_submit_method(HTMLForm::HTML_FORM_POST), m_submit_button_name("Submit"), m_reset_button(false), m_html_name(name), m_html_action(action)
+HTMLForm::HTMLForm(const string & name, const string & action):
+	HTMLBodyElement("Form", name),
+	m_submit_method(HTMLForm::HTML_FORM_POST),
+	m_submit_button_name("Submit"),
+	m_reset_button(false),
+	m_html_name(name),
+	m_html_action(action)
 {
 }
 
