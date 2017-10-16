@@ -3,7 +3,8 @@
 
 #include "html_base.hpp"
 
-//#include <boost/shared_ptr.hpp>
+#include <list>
+#include <boost/shared_ptr.hpp>
 
 using namespace std;
 
@@ -13,15 +14,18 @@ namespace html {
 class HTMLBodyBase : public html::HTMLBase
 {
 	public:
+		typedef boost::shared_ptr<HTMLBodyBase> HTMLBodyBasePtr;
+	public:
 		HTMLBodyBase(const string & type, const string & name = "");
 		~HTMLBodyBase(void);
 	public:
 		/* Create body must be virtual */
 		virtual void create_html(void) = 0;
-		//virtual add_element(HTMLBodyBasePtr element) = 0; //Need this function
+		void add_element(HTMLBodyBasePtr element);
 	protected:
 		string				m_type;
 		string				m_name;
+		list< HTMLBodyBasePtr >			m_html_body_content;
 
 };
 

@@ -4,9 +4,6 @@
 #include "html_body_base.hpp"
 #include "html_form.hpp"
 
-#include <list>
-
-
 
 using namespace std;
 
@@ -22,11 +19,8 @@ class HTMLBodyElement : public html::HTMLBodyBase
 		HTMLBodyElement(const string & type, const string & name = "");
 		~HTMLBodyElement(void);
 	public:
-		void create_html(void);
-		void add_element(HTMLBodyBasePtr element);
-	protected:
-		list< HTMLBodyBasePtr >			m_html_body_content; /* Should be common baseclass - form for now! */
-
+		//void create_html(void); // Override
+	HTMLFormPtr add_form(const string & name, const string & action)
 };
 }
 #endif //HTML_BODY_ELEMENT_HPP
