@@ -1,4 +1,5 @@
-#include "html/html_page.hpp"
+#include "html_page.hpp"
+#include "html_element_factory.hpp"
 #include <iostream>
 using namespace std;
 using namespace html;

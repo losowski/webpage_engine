@@ -12,7 +12,7 @@ CFLAGS  = -std=c++11 -g -Wall
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -I../lib_webpage
+INCLUDES = -Ilibhtml
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
@@ -25,7 +25,7 @@ LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lhtml
 #LIBS = -lliblog4cxx
 
 # define the C source files- "main" is always last
-SRCS = main.cpp
+SRCS = web_engine.cpp
 
 # define the C object files
 #
