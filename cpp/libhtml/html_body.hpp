@@ -1,14 +1,14 @@
 #ifndef HTML_BODY_HPP
 #define HTML_BODY_HPP
 
-#include "html_body_base.hpp"
+#include "html_body_element.hpp"
 
 
 using namespace std;
 
 namespace html {
 
-class HTMLBody : public html::HTMLBodyBase
+class HTMLBody : public html::HTMLBodyElement
 {
 	public:
 		HTMLBody(void);
