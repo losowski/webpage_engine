@@ -23,9 +23,9 @@ class HTMLElementFactory : public html::HTMLElementFactoryBase
 		/* Form */
 		static HTMLFormPtr add_form(HTMLBodyElementPtr element, const string & name, const string & action);
 		/* generic Formatting */
-		static HTMLBodyElementPtr add_div(HTMLBodyElementPtr element, const string & name, const string & text);
-		static HTMLBodyElementPtr add_span(HTMLBodyElementPtr element, const string & name, const string & text);
-		static HTMLBodyElementPtr add_h1(HTMLBodyElementPtr element, const string & name, const string & text);
+		static HTMLBodyElementPtr add_div(HTMLBodyElementPtr element, const string & name, const string & text = "");
+		static HTMLBodyElementPtr add_span(HTMLBodyElementPtr element, const string & name, const string & text = "");
+		static HTMLBodyElementPtr add_h1(HTMLBodyElementPtr element, const string & name, const string & text = "");
 
 };
 
