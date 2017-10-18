@@ -12,12 +12,12 @@ CFLAGS  = -std=c++11 -g -Wall
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -Ilibhtml
+INCLUDES = -I../../libhtml
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
 #   their path using -Lpath, something like:
-LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lhtml
+LFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lhtml
 
 # define any libraries to link into executable:
 #   if I want to link in libraries (libx.so or libx.a) I use the -llibname

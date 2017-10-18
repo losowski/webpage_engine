@@ -18,7 +18,8 @@ namespace html {
 
 typedef boost::shared_ptr<header::HTMLHeader> HTMLHeaderPtr;
 
-class HTMLPage {
+class HTMLPage
+{
 	public:
 		HTMLPage(void);
 		HTMLPage(const string & title);
