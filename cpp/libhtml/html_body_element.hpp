@@ -15,7 +15,7 @@ class HTMLBodyElement : public html::HTMLBodyBase
 		HTMLBodyElement(const string & type, const string & name = "");
 		~HTMLBodyElement(void);
 	public:
-		//void create_html(void); // Override
+		void create_html(void); // Override
 };
 
 typedef boost::shared_ptr< HTMLBodyElement > HTMLBodyElementPtr;

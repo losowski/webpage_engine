@@ -4,8 +4,8 @@ using namespace std;
 
 namespace html {
 
-HTMLDiv::HTMLDiv(void):
-	HTMLBodyElement("div")
+HTMLDiv::HTMLDiv(const string & name, const string & text):
+	HTMLTextBase("div", name, text)
 {
 }
 

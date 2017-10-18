@@ -1,17 +1,17 @@
 #ifndef HTML_DIV_HPP
 #define HTML_DIV_HPP
 
-#include "html_body_element.hpp"
+#include "html_text_base.hpp"
 
 
 using namespace std;
 
 namespace html {
 
-class HTMLDiv : public html::HTMLBodyElement
+class HTMLDiv : public html::HTMLTextBase
 {
 	public:
-		HTMLDiv(void);
+		HTMLDiv(const string & name, const string & text);
 		~HTMLDiv(void);
 };
 }

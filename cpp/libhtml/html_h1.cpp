@@ -4,8 +4,8 @@ using namespace std;
 
 namespace html {
 
-HTMLH1::HTMLH1(void):
-	HTMLBodyElement("h1")
+HTMLH1::HTMLH1(const string & name, const string & text):
+	HTMLTextBase("h1", name, text)
 {
 }
 

@@ -22,4 +22,26 @@ HTMLFormPtr HTMLElementFactory::add_form(HTMLBodyElementPtr element, const strin
 }
 
 
+HTMLBodyElementPtr HTMLElementFactory::add_div(HTMLBodyElementPtr element, const string & name, const string & text)
+{
+	HTMLFormPtr content_item (new HTMLDiv(name, text));
+	element->add_element(content_item);
+	return content_item;
+}
+
+HTMLBodyElementPtr HTMLElementFactory::add_span(HTMLBodyElementPtr element, const string & name, const string & text)
+{
+	HTMLFormPtr content_item (new HTMLSpan(name, text));
+	element->add_element(content_item);
+	return content_item;
+}
+
+HTMLBodyElementPtr HTMLElementFactory::add_h1(HTMLBodyElementPtr element, const string & name, const string & text)
+{
+	HTMLFormPtr content_item (new HTMLH1(name, text));
+	element->add_element(content_item);
+	return content_item;
+}
+
+
 }

@@ -1,17 +1,17 @@
 #ifndef HTML_SPAN_HPP
 #define HTML_SPAN_HPP
 
-#include "html_body_element.hpp"
+#include "html_text_base.hpp"
 
 
 using namespace std;
 
 namespace html {
 
-class HTMLSpan : public html::HTMLBodyElement
+class HTMLSpan : public html::HTMLTextBase
 {
 	public:
-		HTMLSpan(void);
+		HTMLSpan(const string & name, const string & text);
 		~HTMLSpan(void);
 };
 }

@@ -1,17 +1,17 @@
 #ifndef HTML_H1_HPP
 #define HTML_H1_HPP
 
-#include "html_body_element.hpp"
+#include "html_text_base.hpp"
 
 
 using namespace std;
 
 namespace html {
 
-class HTMLH1 : public html::HTMLBodyElement
+class HTMLH1 : public html::HTMLTextBase
 {
 	public:
-		HTMLH1(void);
+		HTMLH1(const string & name, const string & text);
 		~HTMLH1(void);
 };
 }

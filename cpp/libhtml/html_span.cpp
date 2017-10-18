@@ -4,8 +4,8 @@ using namespace std;
 
 namespace html {
 
-HTMLSpan::HTMLSpan(void):
-	HTMLBodyElement("span")
+HTMLSpan::HTMLSpan(const string & name, const string & text):
+	HTMLTextBase("span", name, text)
 {
 }
 
