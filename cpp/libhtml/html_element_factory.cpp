@@ -12,6 +12,12 @@ HTMLElementFactory::HTMLElementFactory(void)
 HTMLElementFactory::~HTMLElementFactory(void)
 {
 }
+/* Page */
+HTMLPagePtr HTMLElementFactory::create_page(const string & name)
+{
+	HTMLPagePtr page (new HTMLPage(name));
+	return page;
+}
 
 /* Form */
 HTMLFormPtr HTMLElementFactory::add_form(HTMLBodyBasePtr element, const string & name, const string & action)
@@ -21,7 +27,7 @@ HTMLFormPtr HTMLElementFactory::add_form(HTMLBodyBasePtr element, const string &
 	return content_item;
 }
 
-
+/* generic Formatting */
 HTMLBodyBasePtr HTMLElementFactory::add_div(HTMLBodyBasePtr element, const string & name, const string & text)
 {
 	HTMLBodyElementPtr content_item (new HTMLDiv(name, text));

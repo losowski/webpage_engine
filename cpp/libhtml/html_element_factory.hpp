@@ -3,7 +3,8 @@
 
 #include "html_element_factory_base.hpp"
 
-#include "html_body_element.hpp"
+#include "html_body_base.hpp"
+#include "html_page.hpp"
 #include "html_form.hpp"
 #include "html_div.hpp"
 #include "html_span.hpp"
@@ -24,6 +25,8 @@ class HTMLElementFactory : public html::HTMLElementFactoryBase
 		HTMLElementFactory(void);
 		~HTMLElementFactory(void);
 	public:
+		/* Page */
+		static HTMLPagePtr create_page(const string & name);
 		/* Form */
 		static HTMLFormPtr add_form(HTMLBodyBasePtr element, const string & name, const string & action);
 		/* generic Formatting */
