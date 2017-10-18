@@ -2,7 +2,6 @@
 #define HTML_BODY_ELEMENT_HPP
 
 #include "html_body_base.hpp"
-//#include "html_form.hpp"
 
 
 using namespace std;
@@ -15,7 +14,7 @@ class HTMLBodyElement : public html::HTMLBodyBase
 		HTMLBodyElement(const string & type, const string & name = "");
 		~HTMLBodyElement(void);
 	public:
-		void create_html(void); // Override
+		virtual void create_html(void); // Override
 };
 
 typedef boost::shared_ptr< HTMLBodyElement > HTMLBodyElementPtr;

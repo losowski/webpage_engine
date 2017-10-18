@@ -1,11 +1,13 @@
 #include "html_text_base.hpp"
 
+#include <boost/foreach.hpp>
+
 using namespace std;
 
 namespace html {
 
-HTMLTextBase::HTMLTextBase(const string & name, const string & text):
-	HTMLBodyElement("h1", name),
+HTMLTextBase::HTMLTextBase(const string & type, const string & name, const string & text):
+	HTMLBodyElement(type, name),
 	m_text(text)
 	
 {
