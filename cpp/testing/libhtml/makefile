@@ -77,4 +77,7 @@ clean:
 depend: $(SRCS)
 	makedepend $(INCLUDES) $^
 
+install:
+	cp $(MAIN) /var/www/cgi-bin/.
+
 # DO NOT DELETE THIS LINE -- make depend needs it
