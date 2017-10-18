@@ -5,7 +5,7 @@ using namespace std;
 namespace html {
 
 HTMLDiv::HTMLDiv(void):
-	HTMLDivElement("div")
+	HTMLBodyElement("div")
 {
 }
 

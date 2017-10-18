@@ -5,7 +5,7 @@ using namespace std;
 namespace html {
 
 HTMLSpan::HTMLSpan(void):
-	HTMLSpanElement("span")
+	HTMLBodyElement("span")
 {
 }
 

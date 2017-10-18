@@ -5,7 +5,7 @@ using namespace std;
 namespace html {
 
 HTMLH1::HTMLH1(void):
-	HTMLH1Element("h1")
+	HTMLBodyElement("h1")
 {
 }
 

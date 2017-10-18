@@ -1,19 +1,25 @@
-#ifndef HTML_ELEMENT_HPP
-#define HTML_ELEMENT_HPP
+#ifndef HTML_ELEMENT_FACTORY_HPP
+#define HTML_ELEMENT_FACTORY_HPP
+
+#include "html_element_factory_base.hpp"
+
+#include "html_body_element.hpp"
+#include "html_form.hpp"
 
 using namespace std;
 
 namespace html {
 
-class HTMLElementFactor : public html::HTMLElementFactoryBase
+class HTMLElementFactory : public html::HTMLElementFactoryBase
 {
 	public:
-		HTMLElementFactoryBase(void);
-		~HTMLElementFactoryBase(void);
+		HTMLElementFactory(void);
+		~HTMLElementFactory(void);
 	public:
 		/* Form */
 		static HTMLFormPtr add_form(HTMLBodyElementPtr element, const string & name, const string & action);
 
 };
+
 }
-#endif //HTML_ELEMENT_HPP
+#endif //HTML_ELEMENT_FACTORY_HPP
