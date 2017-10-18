@@ -9,7 +9,11 @@
 #include "html_span.hpp"
 #include "html_h1.hpp"
 
-
+/*
+	THIS CLASS HAS SOME DUPLICAION
+	- It is designed to fill in additional formatting that the normal html_page cannot
+	- This allows text formatting without infinite loop dependencies
+*/
 using namespace std;
 
 namespace html {
@@ -21,11 +25,11 @@ class HTMLElementFactory : public html::HTMLElementFactoryBase
 		~HTMLElementFactory(void);
 	public:
 		/* Form */
-		static HTMLFormPtr add_form(HTMLBodyElementPtr element, const string & name, const string & action);
+		static HTMLFormPtr add_form(HTMLBodyBasePtr element, const string & name, const string & action);
 		/* generic Formatting */
-		static HTMLBodyElementPtr add_div(HTMLBodyElementPtr element, const string & name, const string & text = "");
-		static HTMLBodyElementPtr add_span(HTMLBodyElementPtr element, const string & name, const string & text = "");
-		static HTMLBodyElementPtr add_h1(HTMLBodyElementPtr element, const string & name, const string & text = "");
+		static HTMLBodyBasePtr add_div(HTMLBodyBasePtr element, const string & name, const string & text = "");
+		static HTMLBodyBasePtr add_span(HTMLBodyBasePtr element, const string & name, const string & text = "");
+		static HTMLBodyBasePtr add_h1(HTMLBodyBasePtr element, const string & name, const string & text = "");
 
 };
 

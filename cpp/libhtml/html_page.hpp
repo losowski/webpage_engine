@@ -1,6 +1,8 @@
 #ifndef HTML_PAGE_HPP
 #define HTML_PAGE_HPP
 
+#include "html_body_base.hpp"
+
 #include "html_title.hpp"
 #include "html_form.hpp"
 #include "html_header_script.hpp"
@@ -18,14 +20,13 @@ namespace html {
 
 typedef boost::shared_ptr<header::HTMLHeader> HTMLHeaderPtr;
 
-class HTMLPage
+class HTMLPage : public html::HTMLBodyBase
 {
 	public:
-		HTMLPage(void);
 		HTMLPage(const string & title);
 		~HTMLPage(void);
 	public:
-		void create_page(void);
+		void create_html(void);
 		string get_page(void);
 	public:
 		/* Title */
@@ -40,7 +41,6 @@ class HTMLPage
 		/* Form */
 		HTMLFormPtr add_form(const string & name, const string & action);
 	private:
-		string									m_html_page;
 		HTMLTitle								m_html_title;
 		list< HTMLHeaderPtr >					m_html_header_content;
 		list< HTMLFormPtr >						m_html_content; /* Should be common baseclass - form for now! */

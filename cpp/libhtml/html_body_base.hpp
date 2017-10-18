@@ -23,12 +23,13 @@ class HTMLBodyBase : public html::HTMLBase
 		virtual void create_html(void) = 0;
 		void add_element(HTMLBodyBasePtr element);
 	protected:
-		string				m_type;
-		string				m_name;
+		string							m_type;
+		string							m_name;
 		list< HTMLBodyBasePtr >			m_html_body_content;
 
 };
 
+typedef boost::shared_ptr< HTMLBodyBase > HTMLBodyBasePtr;
 
 
 }
