@@ -11,7 +11,7 @@ namespace html {
 class HTMLSpan : public html::HTMLTextBase
 {
 	public:
-		HTMLSpan(const string & name, const string & text);
+		HTMLSpan(const string & name, const string & text = "");
 		~HTMLSpan(void);
 };
 }

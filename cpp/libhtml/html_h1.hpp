@@ -11,7 +11,7 @@ namespace html {
 class HTMLH1 : public html::HTMLTextBase
 {
 	public:
-		HTMLH1(const string & name, const string & text);
+		HTMLH1(const string & name, const string & text = "");
 		~HTMLH1(void);
 };
 }

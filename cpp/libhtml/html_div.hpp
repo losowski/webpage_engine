@@ -11,7 +11,7 @@ namespace html {
 class HTMLDiv : public html::HTMLTextBase
 {
 	public:
-		HTMLDiv(const string & name, const string & text);
+		HTMLDiv(const string & name, const string & text = "");
 		~HTMLDiv(void);
 };
 }

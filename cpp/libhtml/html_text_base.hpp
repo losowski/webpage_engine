@@ -11,7 +11,7 @@ namespace html {
 class HTMLTextBase : public html::HTMLBodyElement
 {
 	public:
-		HTMLTextBase(const string & type, const string & name, const string & text);
+		HTMLTextBase(const string & type, const string & name, const string & text = "");
 		~HTMLTextBase(void);
 	public:
 		virtual void create_html(void);
