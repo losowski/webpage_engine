@@ -40,10 +40,14 @@ class HTMLPage : public html::HTMLBodyBase
 
 		/* Form */
 		HTMLFormPtr add_form(const string & name, const string & action);
+		/* generic Formatting */
+		HTMLBodyBasePtr add_div(const string & name, const string & text = "");
+		HTMLBodyBasePtr add_span(const string & name, const string & text = "");
+		HTMLBodyBasePtr add_h1(const string & name, const string & text = "");
 	private:
 		HTMLTitle								m_html_title;
 		list< HTMLHeaderPtr >					m_html_header_content;
-		list< HTMLFormPtr >						m_html_content; /* Should be common baseclass - form for now! */
+		list< HTMLBodyBasePtr >					m_html_content; /* Should be common baseclass - form for now! */
 
 };
 

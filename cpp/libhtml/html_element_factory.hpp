@@ -33,7 +33,6 @@ class HTMLElementFactory : public html::HTMLElementFactoryBase
 		static HTMLBodyBasePtr add_div(HTMLBodyBasePtr element, const string & name, const string & text = "");
 		static HTMLBodyBasePtr add_span(HTMLBodyBasePtr element, const string & name, const string & text = "");
 		static HTMLBodyBasePtr add_h1(HTMLBodyBasePtr element, const string & name, const string & text = "");
-
 };
 
 }
