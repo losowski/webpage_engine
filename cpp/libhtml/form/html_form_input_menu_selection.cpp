@@ -22,7 +22,7 @@ void HTMLFormInputMenuSelection::create_form_input(void)
 	{
 		m_html_form_input += " selected";
 	}
-	m_html_form_input += " value=\"" + m_value + "\">" + m_label + "</" + m_type + ">";
+	m_html_form_input += " value=\"" + m_value + "\">" + m_label + "</" + m_type + ">\n";
 }
 
 string HTMLFormInputMenuSelection::get_form_input(void)
