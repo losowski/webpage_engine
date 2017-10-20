@@ -47,8 +47,6 @@ class HTMLPage : public html::HTMLBodyBase
 	private:
 		HTMLTitle								m_html_title;
 		list< HTMLHeaderPtr >					m_html_header_content;
-		list< HTMLBodyBasePtr >					m_html_content; /* Should be common baseclass - form for now! */
-
 };
 
 typedef boost::shared_ptr< HTMLPage > HTMLPagePtr;

@@ -51,7 +51,7 @@ void HTMLPage::create_html(void)
 	 -	hyperlink
 	 -	image 
 	*/
-	BOOST_FOREACH(HTMLBodyBasePtr htmlcontent, m_html_content)
+	BOOST_FOREACH(HTMLBodyBasePtr htmlcontent, m_html_body_content)
 	{
 		htmlcontent->create_html();
 		m_html += htmlcontent->get_html();
@@ -101,7 +101,7 @@ void HTMLPage::add_meta_data(const header::MetaType & type, const string & conte
 HTMLFormPtr HTMLPage::add_form(const string & name, const string & action)
 {
 	HTMLFormPtr content_item (new HTMLForm(name, action));
-	m_html_content.push_back(content_item);
+	this->add_element(content_item);
 	return content_item;
 }
 
@@ -109,21 +109,21 @@ HTMLFormPtr HTMLPage::add_form(const string & name, const string & action)
 HTMLBodyBasePtr HTMLPage::add_div(const string & name, const string & text)
 {
 	HTMLBodyElementPtr content_item (new HTMLDiv(name, text));
-	m_html_content.push_back(content_item);
+	this->add_element(content_item);
 	return content_item;
 }
 
 HTMLBodyBasePtr HTMLPage::add_span(const string & name, const string & text)
 {
 	HTMLBodyElementPtr content_item (new HTMLSpan(name, text));
-	m_html_content.push_back(content_item);
+	this->add_element(content_item);
 	return content_item;
 }
 
 HTMLBodyBasePtr HTMLPage::add_h1(const string & name, const string & text)
 {
 	HTMLBodyElementPtr content_item (new HTMLH1(name, text));
-	m_html_content.push_back(content_item);
+	this->add_element(content_item);
 	return content_item;
 }
 
