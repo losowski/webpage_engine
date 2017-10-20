@@ -23,7 +23,7 @@ void HTMLBodyBase::create_html(void)
 		bodyContent->create_html();
 		m_html += bodyContent->get_html();
 	}
-	m_html = "\n</" + m_type + ">\n";
+	m_html += "\n</" + m_type + ">\n";
 }
 
 void HTMLBodyBase::add_element(HTMLBodyBasePtr element)
