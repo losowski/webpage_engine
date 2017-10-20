@@ -11,8 +11,10 @@ int main (int argc, char * argv[])
 	page->add_style("gangnam");
 	page->add_meta_data(header::HTMLHeaderMeta::HTML_META_KEYWORDS, "Demo, Super");
 	HTMLElementFactory::add_div(page, "divider1");
-	HTMLElementFactory::add_div(page, "divider1");
+	HTMLElementFactory::add_span(page, "divider1");
+	page->add_h1("Secret Identity Form");
 	HTMLFormPtr form = page->add_form("testing_form", "web01");
+	page->add_span("secret-form");
 	form->add_password_input("pword", "Secret Word");
 	form->add_text_input("nickname", "Pet Name");
 	form->add_text_input("realname", "Full Name", "Dictator Otato");
