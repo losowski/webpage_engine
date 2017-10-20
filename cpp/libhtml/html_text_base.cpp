@@ -32,7 +32,7 @@ void HTMLTextBase::create_html(void)
 	{
 		m_html += m_text;
 	}
-	m_html = "\n</" + m_type + ">\n";
+	m_html += "</" + m_type + ">\n";
 }
 
 }
