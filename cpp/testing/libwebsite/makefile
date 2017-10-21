@@ -8,16 +8,16 @@ CC = g++
 # compiler flags:
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -shared -fPIC -std=c++11 -g -Wall
+CFLAGS  = -std=c++11 -g -Wall
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -I/form
+INCLUDES = -I../../libwebsite
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
 #   their path using -Lpath, something like:
-LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
+LFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lhtml
 
 # define any libraries to link into executable:
 #   if I want to link in libraries (libx.so or libx.a) I use the -llibname
@@ -25,7 +25,7 @@ LFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
 #LIBS = -lliblog4cxx
 
 # define the C source files- "main" is always last
-SRCS =  html_page.cpp html_title.cpp html_form.cpp form/html_form_input.cpp form/html_form_input_text.cpp form/html_form_input_password.cpp form/html_form_input_radio.cpp form/html_form_input_menu_selection.cpp form/html_form_input_menu.cpp html_header.cpp html_header_script.cpp html_header_style.cpp html_header_meta.cpp
+SRCS = libwebsite.cpp
 
 # define the C object files
 #
@@ -38,7 +38,11 @@ SRCS =  html_page.cpp html_title.cpp html_form.cpp form/html_form_input.cpp form
 OBJS = $(SRCS:.cpp=.o)
 
 # define the executable file
-MAIN = ../lib/libhtml.so
+MAIN = libwebsite.cgi
+
+#Subdirectory
+#TOPTARGETS := all clean
+SUBDIRS = lib_html #lib_webpage
 
 #
 # The following part of the makefile is generic; it can be used to
@@ -51,6 +55,11 @@ default: $(MAIN)
 
 all: $(MAIN)
 	echo "Web engine compiled"
+
+$(SUBDIRS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+#PHONY: $(TOPTARGETS) $(SUBDIRS)
 
 $(MAIN): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
@@ -67,5 +76,8 @@ clean:
 
 depend: $(SRCS)
 	makedepend $(INCLUDES) $^
+
+install:
+	cp $(MAIN) /var/www/cgi-bin/.
 
 # DO NOT DELETE THIS LINE -- make depend needs it
