@@ -17,7 +17,7 @@ INCLUDES = -I../../libwebsite
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
 #   their path using -Lpath, something like:
-LFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lhtml
+LFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebsite
 
 # define any libraries to link into executable:
 #   if I want to link in libraries (libx.so or libx.a) I use the -llibname
@@ -42,7 +42,7 @@ MAIN = libwebsite.cgi
 
 #Subdirectory
 #TOPTARGETS := all clean
-SUBDIRS = lib_html #lib_webpage
+#SUBDIRS = libhtml #lib_webpage
 
 #
 # The following part of the makefile is generic; it can be used to

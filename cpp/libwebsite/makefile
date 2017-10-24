@@ -65,15 +65,15 @@ CFLAGS = $(TARGET_FLAG) $(COMPILER_OPTIONS) -DVERSION=\"$(VERSION)\" #Other defi
 ###################
 ## PROJECT FILES ##
 ###################
-PROGRAM_NAME=libhtml.so
+PROGRAM_NAME=libwebsite.so
 #INCLUDES
-INCLUDES = -I/form
+INCLUDES = -I../libhtml
 
 #Libraries
-LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu
+LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lhtml
 
 #Soures
-SRCS = html_base.cpp html_body_base.cpp html_body_element.cpp html_form.cpp html_text_base.cpp html_div.cpp html_span.cpp html_h1.cpp html_page.cpp html_title.cpp form/html_form_input.cpp form/html_form_input_text.cpp form/html_form_input_password.cpp form/html_form_input_radio.cpp form/html_form_input_menu_selection.cpp form/html_form_input_menu.cpp html_header.cpp html_header_script.cpp html_header_style.cpp html_header_meta.cpp html_element_factory_base.cpp html_element_factory.cpp
+SRCS = web_page_base.cpp
 
 ###########
 ## MAGIC ##
