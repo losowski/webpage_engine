@@ -1,4 +1,4 @@
-#include "web_page_base.hpp"
+#include "web_page_default.hpp"
 
 using namespace std;
 using namespace web;
@@ -6,7 +6,7 @@ using namespace web;
 int main (int argc, char * argv[])
 {
 	//Demo Function
-	WebPageBase wpb("Demo My Website");
+	WebPageDefault wpb("Demo My Website");
 	wpb.buildWebsite();
 	wpb.displayWebsite();
 }

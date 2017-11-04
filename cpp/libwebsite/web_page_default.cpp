@@ -13,8 +13,6 @@ WebPageDefault::WebPageDefault(const string & title):
 
 WebPageDefault::~WebPageDefault(void)
 {
-	this->WebPageBase::~WebPageBase();
-
 }
 
 }

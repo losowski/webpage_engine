@@ -73,7 +73,7 @@ INCLUDES = -I../libhtml
 LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lhtml
 
 #Soures
-SRCS = web_page_base.cpp
+SRCS = web_page_base.cpp web_page_default.cpp
 
 ###########
 ## MAGIC ##

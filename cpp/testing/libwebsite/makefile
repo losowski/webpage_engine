@@ -12,7 +12,7 @@ CFLAGS  = -std=c++11 -g -Wall
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -I../../libwebsite
+INCLUDES = -I../../libwebsite -I../../libhtml
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify

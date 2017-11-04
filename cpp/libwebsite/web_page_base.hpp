@@ -1,6 +1,7 @@
 #ifndef WEB_PAGE_BASE_HPP
 #define WEB_PAGE_BASE_HPP
 
+#include "html_page.hpp"
 #include "html_element_factory.hpp"
 
 using namespace std;
