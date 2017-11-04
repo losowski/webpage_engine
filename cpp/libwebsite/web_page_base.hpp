@@ -32,7 +32,7 @@ class WebPageBase
 		void displayWebsite(void);
 
 	protected:
-		HTMLPagePtr			m_page;
+		HTMLPage			m_page;
 		string				m_header;
 };
 }
