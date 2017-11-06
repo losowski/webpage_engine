@@ -12,12 +12,12 @@ CFLAGS  = -std=c++11 -g -Wall
 
 # define any directories containing header files other than /usr/include
 #
-INCLUDES = -I../../libwebsite -I../../libhtml
+INCLUDES = -I../../libwebpage -I../../libhtml
 
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
 #   their path using -Lpath, something like:
-LFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebsite
+LFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebpage
 
 # define any libraries to link into executable:
 #   if I want to link in libraries (libx.so or libx.a) I use the -llibname
@@ -25,7 +25,7 @@ LFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebsite
 #LIBS = -lliblog4cxx
 
 # define the C source files- "main" is always last
-SRCS = libwebsite.cpp
+SRCS = libwebpage.cpp
 
 # define the C object files
 #
