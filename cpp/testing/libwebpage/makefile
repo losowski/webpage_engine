@@ -53,7 +53,7 @@ LOCAL_MAN_DIR=$(LOCAL_MAN_BASE_PREFIX)/man$(MAN_EXT)
 # COMPILATION #
 ###############
 #Compiler (gcc or g++)
-CC ?= g++
+CC = g++
 
 TARGET_FLAG = -std=c++11
 #Compiler options (i.e. pedantic etc -g = adds debugging)
