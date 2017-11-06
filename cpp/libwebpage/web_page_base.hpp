@@ -15,6 +15,9 @@ class WebPageBase
 		WebPageBase(const string & title);
 		~WebPageBase(void);
 	public:
+		// Media
+		void set_cdn(const string & cdn);
+		void set_media_path(const string & path);
 		// Top Menu
 		void setHeader(const string & header);
 		// Title
@@ -33,6 +36,8 @@ class WebPageBase
 		void displayWebsite(void);
 
 	protected:
+		string				m_cdn;
+		string				m_media_path;
 		HTMLPage			m_page;
 		string				m_header;
 };

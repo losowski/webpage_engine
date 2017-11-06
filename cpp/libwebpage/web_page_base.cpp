@@ -10,12 +10,23 @@ using namespace html;
 namespace web {
 
 WebPageBase::WebPageBase(const string & title):
+		m_cdn ("//localhost/"),
 		m_page ( title )
 {
 }
 
 WebPageBase::~WebPageBase(void)
 {
+}
+
+void WebPageBase::set_cdn(const string & cdn)
+{
+	m_cdn = "//" + cdn + "/";
+}
+
+void WebPageBase::set_media_path(const string & path)
+{
+	m_media_path = path;
 }
 
 void WebPageBase::setHeader(const string & header)
