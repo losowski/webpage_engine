@@ -19,7 +19,7 @@ class WebPageBase
 		void set_cdn(const string & cdn);
 		void set_media_path(const string & path);
 		// Top Menu
-		void setHeader(const string & header);
+		void setPageTitle(const string & header);
 		// Title
 		// Top panel
 		// Title Bar
@@ -34,7 +34,16 @@ class WebPageBase
 		//string get_page(void);
 		void buildWebsite(void);
 		void displayWebsite(void);
-
+	protected:
+		// Building functions
+		void buildTopPanel(void);
+		void buildTopMenu(void);
+		void buildTopMenuLowerPanel(void);
+		void buildLeftMenu(void);
+		void buildRightMenu(void);
+		void buildBottomMenu(void);
+		void buildFooter(void);
+		void buildFooterPanel(void);
 	protected:
 		string				m_cdn;
 		string				m_media_path;
