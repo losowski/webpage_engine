@@ -1,83 +1,124 @@
-# Contents based onL:
-# https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html
+# MAKEFILE for thie libhtml library
 
-# master
-# the compiler: gcc for C program, define as g++ for C++
-CC = g++
+###############
+# DEFINITIONS #
+###############
+# BASE DIRECTORY for install (/usr/local is good)
+BASE_PREFIX = /usr/local
+MAN_BASE_PREFIX = $(BASE_PREFIX)/share/man
 
-# compiler flags:
-#  -g    adds debugging information to the executable file
-#  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -std=c++11 -g -Wall
+# #DEFINE: These go into CFLAGS later
+#OTHER1 -D_NAME_YOUR_DEFINE=99
 
-# define any directories containing header files other than /usr/include
-#
+
+######################
+# SYSTEM DEFINITIONS #
+######################
+INSTALL= install
+RM= rm -rf
+MKDIR = mkdir -p
+
+###########
+# INSTALL #
+###########
+
+# MAKE FILE VERSIONING
+# VERSION
+#include Makefile.inc/VERSION
+
+#MANUAL DEFINITIONS
+# MAN_EXT No idea what this means
+MAN_EXT=1
+
+
+#BUILDING DEFINITIONS
+BIN_DIR=$(BASE_PREFIX)/bin
+LIB_DIR=$(BASE_PREFIX)/lib
+MAN_DIR=$(MAN_BASE_PREFIX)/man$(MAN_EXT)
+
+INSTALL_PROGRAM_PERM=$(INSTALL) -c -m 0755 #readable and executable by anyone, writing restricted to user owner
+INSTALL_DATA_PERM = $(INSTALL) -c -m 0644 #readable by anyone. Writable by user owner
+
+
+###
+## LOCAL BUILD ##
+###
+LOCAL_BASE_PREFIX = ..
+LOCAL_MAN_BASE_PREFIX = $(LOCAL_BASE_PREFIX)/share/man
+LOCAL_BIN_DIR=$(LOCAL_BASE_PREFIX)/bin
+LOCAL_LIB_DIR=$(LOCAL_BASE_PREFIX)/lib
+LOCAL_MAN_DIR=$(LOCAL_MAN_BASE_PREFIX)/man$(MAN_EXT)
+
+###############
+# COMPILATION #
+###############
+#Compiler (gcc or g++)
+CC ?= g++
+
+TARGET_FLAG = -std=c++11
+#Compiler options (i.e. pedantic etc -g = adds debugging)
+COMPILER_OPTIONS = -g -Wall
+
+#Compiler flags - and include the Makefile.inc/VERSION (VERSION)
+CFLAGS = $(TARGET_FLAG) $(COMPILER_OPTIONS) #-DVERSION=\"$(VERSION)\" #Other definitions $(OTHER1)
+
+
+###################
+## PROJECT FILES ##
+###################
+PROGRAM_NAME = libwebpage.cgi
+#INCLUDES
 INCLUDES = -I../../libwebpage -I../../libhtml
 
-# define library paths in addition to /usr/lib
-#   if I wanted to include libraries not in /usr/lib I'd specify
-#   their path using -Lpath, something like:
-LFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebpage
+#Libraries
+LDFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebpage
 
-# define any libraries to link into executable:
-#   if I want to link in libraries (libx.so or libx.a) I use the -llibname
-#   option, something like (this will link in libmylib.so and libm.so:
-#LIBS = -lliblog4cxx
-
-# define the C source files- "main" is always last
+#Soures
 SRCS = libwebpage.cpp
 
-# define the C object files
-#
-# This uses Suffix Replacement within a macro:
-#   $(name:string1=string2)
-#         For each word in 'name' replace 'string1' with 'string2'
-# Below we are replacing the suffix .c of all words in the macro SRCS
-# with the .o suffix
-#
-OBJS = $(SRCS:.cpp=.o)
+###########
+## MAGIC ##
+###########
+OBJECT_FILES = $(SRCS:.cpp=.o)
 
-# define the executable file
-MAIN = libwebpage.cgi
+####################
+# MAKEFILE SCRIPTS #
+####################
 
-#Subdirectory
-#TOPTARGETS := all clean
-#SUBDIRS = libhtml #lib_webpage
+default: $(PROGRAM_NAME)
+ 
+all: $(PROGRAM_NAME)
 
-#
-# The following part of the makefile is generic; it can be used to
-# build any executable just by changing the definitions above and by
-# deleting dependencies appended to the file from 'make depend'
-#
-.PHONY: depend clean
+$(PROGRAM_NAME): $(OBJECT_FILES)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(PROGRAM_NAME) $(OBJECT_FILES)
 
-default: $(MAIN)
+installdirs:
+	test -d $(DESTDIR)$(BIN_DIR) || $(MKDIR) $(DESTDIR)$(BIN_DIR)
+	#test -d $(DESTDIR)$(LIB_DIR) || $(MKDIR) $(DESTDIR)$(LIB_DIR)
+	#test -d $(DESTDIR)$(MAN_DIR) || $(MKDIR) $(DESTDIR)$(MAN_DIR)
 
-all: $(MAIN)
-	echo "Web engine compiled"
+install: $(PROGRAM_NAME) installdirs
+	$(INSTALL_PROGRAM_PERM)	$(PROGRAM_NAME)   $(DESTDIR)$(BIN_DIR)/$(PROGRAM_NAME)
+	#$(INSTALL_PROGRAM_PERM)	$(PROGRAM_NAME)   $(DESTDIR)$(LIB_DIR)/$(PROGRAM_NAME)
+	#$(INSTALL_DATA_PERM)		$(PROGRAM_NAME).$(MAN_EXT) $(DESTDIR)$(MAN_DIR)/$(PROGRAM_NAME).$(MAN_EXT)
 
-$(SUBDIRS):
-	$(MAKE) -C $@ $(MAKECMDGOALS)
+# Local Install (build directories)
+local_installdirs:
+	#test -d $(LOCAL_BIN_DIR) || $(MKDIR) $(LOCAL_BIN_DIR)
+	test -d $(LOCAL_LIB_DIR) || $(MKDIR) $(LOCAL_LIB_DIR)
+	#test -d $(LOCAL_MAN_DIR) || $(MKDIR) $(LOCAL_MAN_DIR)
 
-#PHONY: $(TOPTARGETS) $(SUBDIRS)
+local_install: $(PROGRAM_NAME) local_installdirs
+	#$(INSTALL_PROGRAM_PERM)	$(PROGRAM_NAME)   $(LOCAL_BIN_DIR)/$(PROGRAM_NAME)
+	$(INSTALL_PROGRAM_PERM)	$(PROGRAM_NAME)   $(LOCAL_LIB_DIR)/$(PROGRAM_NAME)
+	#$(INSTALL_DATA)		$(PROGRAM_NAME).$(MAN_EXT) $(LOCAL_MAN_DIR)/$(PROGRAM_NAME).$(MAN_EXT)
 
-$(MAIN): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
-
-# this is a suffix replacement rule for building .o's from .c's
-# it uses automatic variables $<: the name of the prerequisite of
-# the rule(a .c file) and $@: the name of the target of the rule (a .o file)
-# (see the gnu make manual section about automatic variables)
+#No idea what this adds
 .cpp.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
 clean:
-	rm $(OBJS) *~ $(MAIN)
-
-depend: $(SRCS)
-	makedepend $(INCLUDES) $^
-
-install:
-	cp $(MAIN) /var/www/cgi-bin/.
+	$(RM) $(OBJECT_FILES)
+	$(RM) $(PROGRAM_NAME)
 
 # DO NOT DELETE THIS LINE -- make depend needs it
