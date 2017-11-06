@@ -37,18 +37,24 @@ void WebPageBase::setHeader(const string & header)
 
 void WebPageBase::buildWebsite(void)
 {
-	/*
-	 *	Top Menu
-	 */
+	/* Top panel */
+	HTMLBodyBasePtr toppanel = m_page.add_span("top-panel");
+	/* Top Menu */
 	HTMLBodyBasePtr topmenu = m_page.add_span("top-menu");
-	HTMLBodyBasePtr toppanel = HTMLElementFactory::add_span(topmenu, "top-panel");
-	HTMLBodyBasePtr header = HTMLElementFactory::add_span(topmenu, "header");
-	// Add the header
-	HTMLElementFactory::add_h1(header, "header", m_header);
-	HTMLBodyBasePtr logo = HTMLElementFactory::add_span(topmenu, "logo");
-	HTMLBodyBasePtr bottompanel = HTMLElementFactory::add_span(topmenu, "bottom-panel");
-	HTMLBodyBasePtr timeplaceholder = HTMLElementFactory::add_span(topmenu, "time-placeholder");
-
+	HTMLBodyBasePtr topmenulogo = HTMLElementFactory::add_span(topmenu, "logo");
+	HTMLBodyBasePtr header = HTMLElementFactory::add_span(topmenu, "header-title");
+	HTMLElementFactory::add_h1(header, "header-title", m_header);
+	/* Left Hand Menu */
+	HTMLBodyBasePtr lefthandmenu = m_page.add_span("left-hand-menu");
+	HTMLBodyBasePtr lefthandmenulogo = HTMLElementFactory::add_span(lefthandmenu, "logo");
+	/* Right Hand Menu */
+	HTMLBodyBasePtr righthandmenu = m_page.add_span("right-hand-menu");
+	/* Bottom Menu */
+	HTMLBodyBasePtr bottommenu = m_page.add_span("bottom-menu");
+	/* Footer */
+	HTMLBodyBasePtr footer = m_page.add_span("footer");
+	/* Footer Panel */
+	HTMLBodyBasePtr footerpanel = m_page.add_span("footer-panel");
 }
 
 void WebPageBase::displayWebsite(void)
@@ -58,3 +64,4 @@ void WebPageBase::displayWebsite(void)
 }
 
 }
+

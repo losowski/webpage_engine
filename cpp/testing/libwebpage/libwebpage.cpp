@@ -6,7 +6,8 @@ using namespace web;
 int main (int argc, char * argv[])
 {
 	//Demo Function
-	WebPageDefault wpb("Fosters Imaginary Friends");
+	WebPageDefault wpb("Fosters");
+	wpb.setHeader("Fosters Imaginary Friends");
 	wpb.buildWebsite();
 	wpb.displayWebsite();
 }
