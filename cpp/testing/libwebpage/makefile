@@ -43,7 +43,7 @@ INSTALL_DATA_PERM = $(INSTALL) -c -m 0644 #readable by anyone. Writable by user 
 ###
 ## LOCAL BUILD ##
 ###
-LOCAL_BASE_PREFIX = ..
+LOCAL_BASE_PREFIX = ../..
 LOCAL_MAN_BASE_PREFIX = $(LOCAL_BASE_PREFIX)/share/man
 LOCAL_BIN_DIR=$(LOCAL_BASE_PREFIX)/bin
 LOCAL_LIB_DIR=$(LOCAL_BASE_PREFIX)/lib
@@ -104,13 +104,13 @@ install: $(PROGRAM_NAME) installdirs
 
 # Local Install (build directories)
 local_installdirs:
-	#test -d $(LOCAL_BIN_DIR) || $(MKDIR) $(LOCAL_BIN_DIR)
-	test -d $(LOCAL_LIB_DIR) || $(MKDIR) $(LOCAL_LIB_DIR)
+	test -d $(LOCAL_BIN_DIR) || $(MKDIR) $(LOCAL_BIN_DIR)
+	#test -d $(LOCAL_LIB_DIR) || $(MKDIR) $(LOCAL_LIB_DIR)
 	#test -d $(LOCAL_MAN_DIR) || $(MKDIR) $(LOCAL_MAN_DIR)
 
 local_install: $(PROGRAM_NAME) local_installdirs
-	#$(INSTALL_PROGRAM_PERM)	$(PROGRAM_NAME)   $(LOCAL_BIN_DIR)/$(PROGRAM_NAME)
-	$(INSTALL_PROGRAM_PERM)	$(PROGRAM_NAME)   $(LOCAL_LIB_DIR)/$(PROGRAM_NAME)
+	$(INSTALL_PROGRAM_PERM)	$(PROGRAM_NAME)   $(LOCAL_BIN_DIR)/$(PROGRAM_NAME)
+	#$(INSTALL_PROGRAM_PERM)	$(PROGRAM_NAME)   $(LOCAL_LIB_DIR)/$(PROGRAM_NAME)
 	#$(INSTALL_DATA)		$(PROGRAM_NAME).$(MAN_EXT) $(LOCAL_MAN_DIR)/$(PROGRAM_NAME).$(MAN_EXT)
 
 #No idea what this adds
