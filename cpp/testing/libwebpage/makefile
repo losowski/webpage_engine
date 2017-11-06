@@ -38,7 +38,7 @@ SRCS = libwebpage.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # define the executable file
-MAIN = libwebsite.cgi
+MAIN = libwebpage.cgi
 
 #Subdirectory
 #TOPTARGETS := all clean
