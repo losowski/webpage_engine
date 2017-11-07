@@ -4,10 +4,17 @@
 #include "html_page.hpp"
 #include "html_element_factory.hpp"
 
+#include <tuple>
+#include <list>
+
 using namespace std;
 using namespace html;
 
 namespace web {
+
+//Left Hand Menu Types
+typedef tuple< string , string> LHMItem;
+
 
 class WebPageBase
 {
@@ -18,17 +25,18 @@ class WebPageBase
 		// Media
 		void set_cdn(const string & cdn);
 		void set_media_path(const string & path);
-		// Top Menu
-		void setPageTitle(const string & header);
-		// Title
 		// Top panel
-		// Title Bar
-		// Top menu
-		// Left hand menu
+		// Top Menu
+		void TM_addLogo(const string & logo);
+		void TM_setPageTitle(const string & header);
+		// Left Hand Menu
+		void LHM_addLogo(const string & logo);
+		void LHM_addMenuItem(const string & link, const string & text);
 		// Right hand menu
-		// Bottom menu
-		// Bottom panel
 		// Main page area
+		// Bottom menu
+		// Footer
+		// Footer Panel
 	//call these base class functions to run
 		//void create_page(void);
 		//string get_page(void);
@@ -45,10 +53,22 @@ class WebPageBase
 		void buildFooter(void);
 		void buildFooterPanel(void);
 	protected:
-		string				m_cdn;
-		string				m_media_path;
-		HTMLPage			m_page;
-		string				m_header;
+		//Generic
+		string						m_cdn;
+		string						m_media_path;
+		HTMLPage					m_page;
+		// Top Menu
+		string						m_tm_header;
+		string						m_tm_header_logo;
+		// Left Hand Menu
+		string						m_lhm_logo;
+		list < LHMItem >			m_lhm_menu_items;
+		// Right hand menu
+		// Main page area
+		// Bottom menu
+		// Footer
+		// Footer Panel
+
 };
 }
 #endif //WEB_PAGE_BASE_HPP
