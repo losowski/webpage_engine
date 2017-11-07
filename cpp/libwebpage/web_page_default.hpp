@@ -3,7 +3,6 @@
 
 #include "web_page_base.hpp"
 
-//TODO: Some how this broke it!. Fix ASAP
 using namespace std;
 using namespace html;
 
