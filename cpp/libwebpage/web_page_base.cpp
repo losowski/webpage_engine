@@ -57,6 +57,11 @@ void WebPageBase::buildTopMenu(void)
 	HTMLBodyBasePtr tmheader = HTMLElementFactory::add_span(tm, "header-title");
 	HTMLElementFactory::add_h1(tmheader, "header-title", m_tm_header);
 }
+// Top Menu Lower Panel
+void WebPageBase::buildTopMenuLowerPanel(void)
+{
+}
+
 
 // Left Hand Menu
 void WebPageBase::LHM_addLogo(const string & logo)
