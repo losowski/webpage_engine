@@ -6,6 +6,10 @@
 #include "html_div.hpp"
 #include "html_span.hpp"
 #include "html_h1.hpp"
+#include "html_img.hpp"
+#include "html_link.hpp"
+
+
 
 using namespace std;
 
@@ -123,6 +127,20 @@ HTMLBodyBasePtr HTMLPage::add_span(const string & name, const string & text)
 HTMLBodyBasePtr HTMLPage::add_h1(const string & name, const string & text)
 {
 	HTMLBodyElementPtr content_item (new HTMLH1(name, text));
+	this->add_element(content_item);
+	return content_item;
+}
+
+HTMLBodyBasePtr HTMLPage::add_image(const string & name, const string & image, const string & text)
+{
+	HTMLBodyElementPtr content_item (new HTMLImg(name, image, text));
+	this->add_element(content_item);
+	return content_item;
+}
+
+HTMLBodyBasePtr HTMLPage::add_link(const string & name, const string & link, const string & text)
+{
+	HTMLBodyElementPtr content_item (new HTMLLink(name, link, text));
 	this->add_element(content_item);
 	return content_item;
 }

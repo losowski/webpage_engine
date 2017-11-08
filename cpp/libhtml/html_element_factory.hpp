@@ -9,6 +9,8 @@
 #include "html_div.hpp"
 #include "html_span.hpp"
 #include "html_h1.hpp"
+#include "html_img.hpp"
+#include "html_link.hpp"
 
 /*
 	THIS CLASS HAS SOME DUPLICAION
@@ -33,6 +35,8 @@ class HTMLElementFactory : public html::HTMLElementFactoryBase
 		static HTMLBodyBasePtr add_div(HTMLBodyBasePtr element, const string & name, const string & text = "");
 		static HTMLBodyBasePtr add_span(HTMLBodyBasePtr element, const string & name, const string & text = "");
 		static HTMLBodyBasePtr add_h1(HTMLBodyBasePtr element, const string & name, const string & text = "");
+		static HTMLBodyBasePtr add_image(HTMLBodyBasePtr element, const string & name, const string & image, const string & text = "");
+		static HTMLBodyBasePtr add_link(HTMLBodyBasePtr element, const string & name, const string & link, const string & text = "");
 };
 
 }

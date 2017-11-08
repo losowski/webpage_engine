@@ -49,5 +49,19 @@ HTMLBodyBasePtr HTMLElementFactory::add_h1(HTMLBodyBasePtr element, const string
 	return content_item;
 }
 
+HTMLBodyBasePtr HTMLElementFactory::add_image(HTMLBodyBasePtr element, const string & name, const string & image, const string & text)
+{
+	HTMLBodyElementPtr content_item (new HTMLImg(name, image, text));
+	element->add_element(content_item);
+	return content_item;
+}
+
+HTMLBodyBasePtr HTMLElementFactory::add_link(HTMLBodyBasePtr element, const string & name, const string & link, const string & text)
+{
+	HTMLBodyElementPtr content_item (new HTMLLink(name, link, text));
+	element->add_element(content_item);
+	return content_item;
+}
+
 
 }

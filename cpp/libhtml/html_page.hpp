@@ -44,6 +44,8 @@ class HTMLPage : public html::HTMLBodyBase
 		HTMLBodyBasePtr add_div(const string & name, const string & text = "");
 		HTMLBodyBasePtr add_span(const string & name, const string & text = "");
 		HTMLBodyBasePtr add_h1(const string & name, const string & text = "");
+		HTMLBodyBasePtr add_image(const string & name, const string & image, const string & text = "");
+		HTMLBodyBasePtr add_link(const string & name, const string & link, const string & text = "");
 	private:
 		HTMLTitle								m_html_title;
 		list< HTMLHeaderPtr >					m_html_header_content;
