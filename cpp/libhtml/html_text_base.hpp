@@ -16,6 +16,8 @@ class HTMLTextBase : public html::HTMLBodyElement
 	public:
 		virtual void create_html(void);
 	protected:
+		void create_child_html(void);
+	protected:
 		string				m_text;
 };
 }

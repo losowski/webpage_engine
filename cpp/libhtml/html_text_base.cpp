@@ -20,6 +20,12 @@ HTMLTextBase::~HTMLTextBase(void)
 void HTMLTextBase::create_html(void)
 {
 	m_html = "<" + m_type + " name=\"" + m_name + "\">\n";
+	create_child_html();
+	m_html += "</" + m_type + ">\n";
+}
+
+void HTMLTextBase::create_child_html(void)
+{
 	if (m_text.empty() == true)
 	{
 		BOOST_FOREACH(HTMLBodyBasePtr bodyContent, m_html_body_content)
@@ -32,7 +38,6 @@ void HTMLTextBase::create_html(void)
 	{
 		m_html += m_text;
 	}
-	m_html += "</" + m_type + ">\n";
 }
 
 }
