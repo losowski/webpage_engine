@@ -91,27 +91,39 @@ void WebPageBase::LHM_addLogo(const string & logo)
 	m_lhm_logo = m_cdn + m_media_path + logo;
 }
 
-void WebPageBase::LHM_addMenuItem(const string & link, const string & text)
+void WebPageBase::LHM_addMenuItem(const string & name, const string & link, const string & text)
 {
-	m_lhm_menu_items.emplace_front( LHMItem(link, text) ); //C++11
+	m_lhm_menu_items.emplace_front( MenuItem(name, link, text) ); //C++11
 }
 
 
 void WebPageBase::buildLeftMenu(void)
 {
 	HTMLBodyBasePtr lhm = m_page.add_span("left-hand-menu");
+	//Logo
 	HTMLBodyBasePtr lhmspanlogo = HTMLElementFactory::add_span(lhm, "logo");
 	HTMLBodyBasePtr lhmlogo = HTMLElementFactory::add_image(lhmspanlogo, m_lhm_logo, m_lhm_logo);
-	BOOST_FOREACH(LHMItem lhmmenuitem, m_lhm_menu_items)
+	//Menu Items
+	BOOST_FOREACH(MenuItem lhmitem, m_lhm_menu_items)
 	{
 		HTMLBodyBasePtr linkspan = HTMLElementFactory::add_span(lhm, "lmh-menu-item");
-		HTMLBodyBasePtr link = HTMLElementFactory::add_link(linkspan, get<0>(lhmmenuitem), get<1>(lhmmenuitem));
+		HTMLBodyBasePtr link = HTMLElementFactory::add_link(linkspan, get<0>(lhmitem), get<1>(lhmitem));
 	}
 }
 // Right hand menu
+void WebPageBase::RHM_addMenuItem(const string & name, const string & link, const string & text)
+{
+	m_rhm_menu_items.emplace_front( MenuItem(name, link, text) ); //C++11
+}
+
 void WebPageBase::buildRightMenu(void)
 {
-	HTMLBodyBasePtr righthandmenu = m_page.add_span("right-hand-menu");
+	HTMLBodyBasePtr rhm = m_page.add_span("right-hand-menu");
+	BOOST_FOREACH(MenuItem rhmitem, m_rhm_menu_items)
+	{
+		HTMLBodyBasePtr rhmspan = HTMLElementFactory::add_span(rhm, "rhm-menu-item");
+		HTMLBodyBasePtr link = HTMLElementFactory::add_link(rhmspan, get<0>(rhmitem), get<1>(rhmitem), get<2>(rhmitem));
+	}
 }
 
 // Main page area

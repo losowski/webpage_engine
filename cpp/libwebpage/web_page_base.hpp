@@ -13,7 +13,7 @@ using namespace html;
 namespace web {
 
 //Left Hand Menu Types
-typedef tuple< string , string> LHMItem;
+typedef tuple< string, string, string > MenuItem;
 
 
 class WebPageBase
@@ -36,8 +36,9 @@ class WebPageBase
 		void TM_setPageTitle(const string & header);
 		// Left Hand Menu
 		void LHM_addLogo(const string & logo);
-		void LHM_addMenuItem(const string & link, const string & text);
+		void LHM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Right hand menu
+		void RHM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Main page area
 		// Bottom menu
 		// Footer
@@ -69,8 +70,9 @@ class WebPageBase
 		string						m_tm_header_logo;
 		// Left Hand Menu
 		string						m_lhm_logo;
-		list < LHMItem >			m_lhm_menu_items;
+		list < MenuItem >			m_lhm_menu_items;
 		// Right hand menu
+		list < MenuItem >			m_rhm_menu_items;
 		// Main page area
 		// Bottom menu
 		// Footer
