@@ -107,7 +107,7 @@ void WebPageBase::buildLeftMenu(void)
 	BOOST_FOREACH(MenuItem lhmitem, m_lhm_menu_items)
 	{
 		HTMLBodyBasePtr linkspan = HTMLElementFactory::add_span(lhm, "lmh-menu-item");
-		HTMLBodyBasePtr link = HTMLElementFactory::add_link(linkspan, get<0>(lhmitem), get<1>(lhmitem));
+		HTMLBodyBasePtr link = HTMLElementFactory::add_link(linkspan, get<0>(lhmitem), get<1>(lhmitem), get<2>(lhmitem));
 	}
 }
 // Right hand menu
@@ -128,9 +128,32 @@ void WebPageBase::buildRightMenu(void)
 
 // Main page area
 // Bottom menu
+void WebPageBase::BM_addAffiliate(const string & logo, const string & link, const string & text)
+{
+	m_bm_affiliate.emplace_front( AffiliateItem(logo, link, text) ); //C++11
+}
+
+void WebPageBase::BM_addMenuItem(const string & name, const string & link, const string & text)
+{
+	m_bm_menu_items.emplace_front( MenuItem(name, link, text) ); //C++11
+}
+
 void WebPageBase::buildBottomMenu(void)
 {
-	HTMLBodyBasePtr bottommenu = m_page.add_span("bottom-menu");
+	HTMLBodyBasePtr bm = m_page.add_span("bottom-menu");
+	//Affiliates
+	BOOST_FOREACH(AffiliateItem bmaffiliate, m_bm_affiliate)
+	{
+		HTMLBodyBasePtr bmspan = HTMLElementFactory::add_span(bm, "affiliate");
+		HTMLBodyBasePtr bmlink = HTMLElementFactory::add_link(bmspan, "affiliate", get<1>(bmaffiliate));
+		HTMLBodyBasePtr bmimage = HTMLElementFactory::add_image(bmlink, get<0>(bmaffiliate), get<2>(bmaffiliate));
+	}
+	//Menu Items
+	BOOST_FOREACH(MenuItem bmitem, m_bm_menu_items)
+	{
+		HTMLBodyBasePtr bmspan = HTMLElementFactory::add_span(bm, "rhm-menu-item");
+		HTMLBodyBasePtr bmlink = HTMLElementFactory::add_link(bmspan, get<0>(bmitem), get<1>(bmitem), get<2>(bmitem));
+	}
 }
 
 // Footer

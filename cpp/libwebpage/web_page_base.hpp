@@ -14,6 +14,7 @@ namespace web {
 
 //Left Hand Menu Types
 typedef tuple< string, string, string > MenuItem;
+typedef tuple< string, string, string > AffiliateItem;
 
 
 class WebPageBase
@@ -41,6 +42,8 @@ class WebPageBase
 		void RHM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Main page area
 		// Bottom menu
+		void BM_addAffiliate(const string & logo, const string & link, const string & text="");
+		void BM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Footer
 		// Footer Panel
 	//call these base class functions to run
@@ -75,6 +78,8 @@ class WebPageBase
 		list < MenuItem >			m_rhm_menu_items;
 		// Main page area
 		// Bottom menu
+		list < AffiliateItem >		m_bm_affiliate;
+		list < MenuItem >			m_bm_menu_items;
 		// Footer
 		// Footer Panel
 
