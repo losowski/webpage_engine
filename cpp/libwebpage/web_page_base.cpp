@@ -31,12 +31,34 @@ void WebPageBase::set_media_path(const string & path)
 	m_media_path = path;
 }
 
+void WebPageBase::set_javascriptPath(const string & path)
+{
+	m_javascript_path = path;
+}
+
+void WebPageBase::set_cssPath(const string & path)
+{
+	m_css_path = path;
+}
+
+
+//Header Functions
+//TODO: Include SEO functions (meta tag)
+void WebPageBase::H_addJavascript(const string & filename)
+{
+	m_page.add_script(m_javascript_path + filename);
+}
+
+void WebPageBase::H_addCSS(const string & filename)
+{
+	m_page.add_style(m_css_path + filename);
+}
+
 // Top panel
 void WebPageBase::buildTopPanel(void)
 {
 	HTMLBodyBasePtr toppanel = m_page.add_span("top-panel");
 }
-
 
 // Top Menu
 void WebPageBase::TM_addLogo(const string & logo)
@@ -85,7 +107,6 @@ void WebPageBase::buildLeftMenu(void)
 		HTMLBodyBasePtr linkspan = HTMLElementFactory::add_span(lhm, "lmh-menu-item");
 		HTMLBodyBasePtr link = HTMLElementFactory::add_link(linkspan, get<0>(lhmmenuitem), get<1>(lhmmenuitem));
 	}
-
 }
 // Right hand menu
 void WebPageBase::buildRightMenu(void)

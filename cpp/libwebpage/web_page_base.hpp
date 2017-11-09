@@ -25,6 +25,11 @@ class WebPageBase
 		// Media
 		void set_cdn(const string & cdn);
 		void set_media_path(const string & path);
+		void set_javascriptPath(const string & path);
+		void set_cssPath(const string & path);
+		//Header Functions
+		void H_addJavascript(const string & filename);
+		void H_addCSS(const string & filename);
 		// Top panel
 		// Top Menu
 		void TM_addLogo(const string & logo);
@@ -56,6 +61,8 @@ class WebPageBase
 		//Generic
 		string						m_cdn;
 		string						m_media_path;
+		string						m_javascript_path;
+		string						m_css_path;
 		HTMLPage					m_page;
 		// Top Menu
 		string						m_tm_header;
