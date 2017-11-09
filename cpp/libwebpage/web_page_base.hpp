@@ -29,8 +29,8 @@ class WebPageBase
 		void set_javascriptPath(const string & path);
 		void set_cssPath(const string & path);
 		//Header Functions
-		void H_addJavascript(const string & filename);
-		void H_addCSS(const string & filename);
+		void addJavascript(const string & filename);
+		void addCSS(const string & filename);
 		// Top panel
 		// Top Menu
 		void TM_addLogo(const string & logo);
