@@ -46,12 +46,12 @@ void WebPageBase::set_cssPath(const string & path)
 //TODO: Include SEO functions (meta tag)
 void WebPageBase::addJavascript(const string & filename)
 {
-	m_page.add_script(m_javascript_path + filename + ".js");
+	m_page.add_script(m_javascript_path + filename);
 }
 
 void WebPageBase::addCSS(const string & filename)
 {
-	m_page.add_style(m_css_path + filename + ".css");
+	m_page.add_style(m_css_path + filename);
 }
 
 // Top panel
