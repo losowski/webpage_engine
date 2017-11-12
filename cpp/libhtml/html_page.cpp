@@ -8,6 +8,7 @@
 #include "html_h1.hpp"
 #include "html_img.hpp"
 #include "html_link.hpp"
+#include "html_text.hpp"
 
 
 
@@ -141,6 +142,13 @@ HTMLBodyBasePtr HTMLPage::add_image(const string & name, const string & image, c
 HTMLBodyBasePtr HTMLPage::add_link(const string & name, const string & link, const string & text)
 {
 	HTMLBodyElementPtr content_item (new HTMLLink(name, link, text));
+	this->add_element(content_item);
+	return content_item;
+}
+
+HTMLBodyBasePtr HTMLPage::add_text(const string & name, const string & text)
+{
+	HTMLBodyElementPtr content_item (new HTMLText(name, text));
 	this->add_element(content_item);
 	return content_item;
 }

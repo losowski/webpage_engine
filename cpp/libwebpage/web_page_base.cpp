@@ -162,8 +162,8 @@ void WebPageBase::buildBottomMenu(void)
 void WebPageBase::buildFooter(void)
 {
 	HTMLBodyBasePtr footer = m_page.add_span("footer");
-	HTMLBodyBasePtr foottext = HTMLElementFactory::add_span(footer, "text");
-	//HTMLBodyBasePtr footlicencingtxt = HTMLElementFactory::add_text(foottext, "Desgined Built and maintained by Eugene Web Designs");
+	HTMLBodyBasePtr foottextspan = HTMLElementFactory::add_span(footer, "text");
+	//HTMLBodyBasePtr foottext = HTMLElementFactory::add_text(foottext, "Desgined Built and maintained by Eugene Web Designs");
 	HTMLBodyBasePtr footlicencing = HTMLElementFactory::add_span(footer, "licencing");
 	//HTMLBodyBasePtr footlicencingtxt = HTMLElementFactory::add_text(footlicencing, "Copyright Eugene Web Designs 2017");
 }
