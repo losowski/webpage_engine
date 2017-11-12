@@ -1,0 +1,12 @@
+TODO NOTES
+==========
+
+PENDING
+=======
++ Move the CDN to libhtml page
++ Default for CDN is empty string - make it conditional to print based on if set or not
++ Set the CDN from the WEBPage as currently (but store in libhtml libary)
+
++ Add a alt-text parameter to img class to display the filename
+
++ Add a text object class to allow adding free text (unformatted HTML)
