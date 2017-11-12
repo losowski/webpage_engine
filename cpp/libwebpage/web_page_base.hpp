@@ -45,7 +45,6 @@ class WebPageBase
 		void BM_addAffiliate(const string & logo, const string & link, const string & text="");
 		void BM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Footer
-		// Footer Panel
 	//call these base class functions to run
 		//void create_page(void);
 		//string get_page(void);
@@ -60,7 +59,6 @@ class WebPageBase
 		void buildRightMenu(void);
 		void buildBottomMenu(void);
 		void buildFooter(void);
-		void buildFooterPanel(void);
 	protected:
 		//Generic
 		string						m_cdn;
@@ -81,8 +79,6 @@ class WebPageBase
 		list < AffiliateItem >		m_bm_affiliate;
 		list < MenuItem >			m_bm_menu_items;
 		// Footer
-		// Footer Panel
-
 };
 }
 #endif //WEB_PAGE_BASE_HPP

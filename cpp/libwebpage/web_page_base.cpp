@@ -162,13 +162,12 @@ void WebPageBase::buildBottomMenu(void)
 void WebPageBase::buildFooter(void)
 {
 	HTMLBodyBasePtr footer = m_page.add_span("footer");
+	HTMLBodyBasePtr foottext = HTMLElementFactory::add_span(footer, "text");
+	//HTMLBodyBasePtr footlicencingtxt = HTMLElementFactory::add_text(foottext, "Desgined Built and maintained by Eugene Web Designs");
+	HTMLBodyBasePtr footlicencing = HTMLElementFactory::add_span(footer, "licencing");
+	//HTMLBodyBasePtr footlicencingtxt = HTMLElementFactory::add_text(footlicencing, "Copyright Eugene Web Designs 2017");
 }
 
-// Footer Panel
-void WebPageBase::buildFooterPanel(void)
-{
-	HTMLBodyBasePtr footerpanel = m_page.add_span("footer-panel");
-}
 
 // Displaying Functions
 void WebPageBase::buildWebsite(void)
@@ -181,7 +180,6 @@ void WebPageBase::buildWebsite(void)
 	buildRightMenu();
 	buildBottomMenu();
 	buildFooter();
-	buildFooterPanel();
 }
 
 void WebPageBase::displayWebsite(void)
