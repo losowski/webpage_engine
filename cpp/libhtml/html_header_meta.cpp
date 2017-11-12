@@ -21,7 +21,7 @@ HTMLHeaderMeta::~HTMLHeaderMeta(void)
 
 void HTMLHeaderMeta::create_header(void)
 {
-	m_html_header = "<meta name=\"" + m_resource_url + "\" content=\"" + m_meta_content + "\"></meta>\n";
+	m_html_header = "<meta class=\"" + m_resource_url + "\" content=\"" + m_meta_content + "\"></meta>\n";
 }
 
 }

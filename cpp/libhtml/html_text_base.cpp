@@ -19,7 +19,7 @@ HTMLTextBase::~HTMLTextBase(void)
 
 void HTMLTextBase::create_html(void)
 {
-	m_html = "<" + m_type + " name=\"" + m_name + "\">\n";
+	m_html = "<" + m_type + " class=\"" + m_name + "\">\n";
 	create_child_html();
 	m_html += "</" + m_type + ">\n";
 }

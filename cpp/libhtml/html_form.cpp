@@ -36,7 +36,7 @@ void HTMLForm::create_html(void)
 	//Call the create object function on each element - might need to be a static function
 	//for_each (m_html_input.begin(), m_html_input;.end(), create_form_input);
 	/* Create the form */
-	m_html = "<form name=\"" + m_html_name +  "\"";
+	m_html = "<form class=\"" + m_html_name +  "\"";
 	if (!m_html_action.empty())
 	{
 		 m_html += " action=\"" + m_html_action + "\"";
