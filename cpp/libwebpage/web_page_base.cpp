@@ -75,6 +75,9 @@ void WebPageBase::TM_setPageTitle(const string & header)
 
 void WebPageBase::buildTopMenu(void)
 {
+	//Scripts
+	m_page.add_style("top-menu");
+	//Menu
 	HTMLBodyBasePtr tm = m_page.add_span("top-menu");
 	HTMLBodyBasePtr tmspanlogo = HTMLElementFactory::add_span(tm, "logo");
 	HTMLBodyBasePtr tmlogo = HTMLElementFactory::add_image(tmspanlogo, m_tm_header_logo, PAGE_CDN(m_tm_header_logo), m_tm_header_logo);
@@ -101,6 +104,9 @@ void WebPageBase::LHM_addMenuItem(const string & name, const string & link, cons
 
 void WebPageBase::buildLeftMenu(void)
 {
+	//Scripts
+	m_page.add_style("left-hand-menu");
+	//Menu
 	HTMLBodyBasePtr lhm = m_page.add_span("left-hand-menu");
 	//Logo
 	HTMLBodyBasePtr lhmspanlogo = HTMLElementFactory::add_span(lhm, "logo");
@@ -129,6 +135,11 @@ void WebPageBase::buildRightMenu(void)
 }
 
 // Main page area
+void WebPageBase::buildMainMenu(void)
+{
+	//Do Nothing. Override for implementation
+}
+
 // Bottom menu
 void WebPageBase::BM_addAffiliate(const string & logo, const string & link, const string & text)
 {
@@ -177,6 +188,7 @@ void WebPageBase::buildWebsite(void)
 	buildTopMenu();
 	buildTopMenuLowerPanel();
 	buildLeftMenu();
+	buildMainMenu();
 	buildRightMenu();
 	buildBottomMenu();
 	buildFooter();
