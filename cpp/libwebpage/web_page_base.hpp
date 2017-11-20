@@ -7,8 +7,15 @@
 #include <tuple>
 #include <list>
 
+//CGI
+#include "cgicc/CgiDefs.h"
+#include "cgicc/Cgicc.h"
+#include "cgicc/HTTPHTMLHeader.h"
+#include "cgicc/HTMLClasses.h"
+
 using namespace std;
 using namespace html;
+
 
 namespace web {
 
@@ -23,6 +30,7 @@ class WebPageBase
 		WebPageBase(const string & title);
 		~WebPageBase(void);
 	public:
+		void parse(void);
 		// Media
 		void set_cdn(const string & cdn);
 		void set_media_path(const string & path);
@@ -67,6 +75,7 @@ class WebPageBase
 		string						m_javascript_path;
 		string						m_css_path;
 		HTMLPage					m_page;
+		cgicc::Cgicc *				m_cgi;
 		// Top Menu
 		string						m_tm_header;
 		string						m_tm_header_logo;

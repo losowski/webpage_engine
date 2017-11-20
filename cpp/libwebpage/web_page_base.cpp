@@ -14,11 +14,30 @@ namespace web {
 
 WebPageBase::WebPageBase(const string & title):
 		m_cdn ("//localhost/"),
-		m_page ( title )
+		m_page ( title ),
+		m_cgi	(NULL)
 {
+
+	try {
+		m_cgi = new cgicc::Cgicc;
+	}
+	catch(exception& e) {
+		// Caught a standard library exception
+		std::cout << "EXCEPTION: " << e.what() << std::endl;
+	}
 }
 
 WebPageBase::~WebPageBase(void)
+{
+	//Hopefully Clean the m_cgi object
+	if (this->m_cgi != NULL)
+	{
+		delete this->m_cgi;
+	}
+}
+
+//Parse Function
+void WebPageBase::parse(void)
 {
 }
 
