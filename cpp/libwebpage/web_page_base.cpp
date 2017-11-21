@@ -18,15 +18,6 @@ WebPageBase::WebPageBase(const string & title):
 		m_cgi	(NULL),
 		m_dbconnection(NULL)
 {
-
-	try {
-		m_cgi = new cgicc::Cgicc;
-	}
-	catch(exception& e) {
-		// Caught a standard library exception
-		std::cout << "EXCEPTION: " << e.what() << std::endl;
-		exit(EXIT_FAILURE);
-	}
 }
 
 WebPageBase::~WebPageBase(void)
@@ -55,6 +46,9 @@ void WebPageBase::connect(const string & connection)
 {
 	try
 	{
+		//Get the CGI parameters
+		m_cgi = new cgicc::Cgicc;
+		// Connect to the database
 		m_dbconnection = new pqxx::connection(connection);
 		// Call Parse Here
 		this->parse();
