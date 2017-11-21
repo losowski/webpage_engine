@@ -70,7 +70,7 @@ PROGRAM_NAME=libwebpage.so
 INCLUDES = -I../libhtml
 
 #Libraries
-LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lcgicc -lhtml
+LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lcgicc -lpq -lpqxx -lhtml
 
 #Soures
 SRCS = web_page_base.cpp web_page_default.cpp

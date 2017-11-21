@@ -13,6 +13,9 @@
 #include "cgicc/HTTPHTMLHeader.h"
 #include "cgicc/HTMLClasses.h"
 
+//Database
+#include <pqxx/pqxx>
+
 using namespace std;
 using namespace html;
 
@@ -29,8 +32,11 @@ class WebPageBase
 	public:
 		WebPageBase(const string & title);
 		~WebPageBase(void);
+
+	protected:
+		void parse(void); // Override
 	public:
-		void parse(void);
+		void connect(const string & connection);
 		// Media
 		void set_cdn(const string & cdn);
 		void set_media_path(const string & path);
@@ -53,9 +59,7 @@ class WebPageBase
 		void BM_addAffiliate(const string & logo, const string & link, const string & text="");
 		void BM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Footer
-	//call these base class functions to run
-		//void create_page(void);
-		//string get_page(void);
+		//call these base class functions to run
 		void buildWebsite(void);
 		void displayWebsite(void);
 	protected:
@@ -76,6 +80,7 @@ class WebPageBase
 		string						m_css_path;
 		HTMLPage					m_page;
 		cgicc::Cgicc *				m_cgi;
+		pqxx::connection *			m_dbconnection;
 		// Top Menu
 		string						m_tm_header;
 		string						m_tm_header_logo;

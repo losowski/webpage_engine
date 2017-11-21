@@ -15,17 +15,17 @@ namespace web {
 WebPageBase::WebPageBase(const string & title):
 		m_cdn ("//localhost/"),
 		m_page ( title ),
-		m_cgi	(NULL)
+		m_cgi	(NULL),
+		m_dbconnection(NULL)
 {
 
 	try {
 		m_cgi = new cgicc::Cgicc;
-		// Call Parse Here
-		this->parse();
 	}
 	catch(exception& e) {
 		// Caught a standard library exception
 		std::cout << "EXCEPTION: " << e.what() << std::endl;
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -36,12 +36,42 @@ WebPageBase::~WebPageBase(void)
 	{
 		delete this->m_cgi;
 	}
+	//Hopefully Clean the m_dbconnection object
+	if (this->m_dbconnection != NULL)
+	{
+		delete this->m_dbconnection;
+	}
 }
-
+//Protected:
 //Parse Function
 void WebPageBase::parse(void)
 {
+	// Replace the internals of this function in the derived class
 }
+
+
+//Public:
+void WebPageBase::connect(const string & connection)
+{
+	try
+	{
+		m_dbconnection = new pqxx::connection(connection);
+		// Call Parse Here
+		this->parse();
+	}
+	catch (const pqxx::sql_error &e)
+	{
+		std::cerr << "SQL error: " << e.what() << std::endl;
+		std::cerr << "Query was: " << e.query() << std::endl;
+		exit(EXIT_FAILURE);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+		exit(EXIT_FAILURE);
+	}
+}
+
 
 //Build the page
 void WebPageBase::set_cdn(const string & cdn)
