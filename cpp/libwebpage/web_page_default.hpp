@@ -13,6 +13,8 @@ class WebPageDefault : public web::WebPageBase
 	public:
 		WebPageDefault(const string & title);
 		~WebPageDefault(void);
+	public:
+		void buildMainMenu(void);
 };
 }
 #endif //WEB_PAGE_DEFAULT_HPP
