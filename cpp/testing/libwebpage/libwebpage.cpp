@@ -7,7 +7,6 @@ int main (int argc, char * argv[])
 {
 	//Demo Function
 	WebPageDefault wpb("Fosters");
-	wob.parse();
 	wpb.TM_setPageTitle("Fosters Imaginary Friends");
 	//Javascript
 	wpb.addJavascript("fosters");

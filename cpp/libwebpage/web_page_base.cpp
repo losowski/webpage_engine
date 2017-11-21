@@ -20,6 +20,8 @@ WebPageBase::WebPageBase(const string & title):
 
 	try {
 		m_cgi = new cgicc::Cgicc;
+		// Call Parse Here
+		this->parse();
 	}
 	catch(exception& e) {
 		// Caught a standard library exception
