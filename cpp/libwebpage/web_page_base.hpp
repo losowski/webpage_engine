@@ -68,7 +68,7 @@ class WebPageBase
 		void buildTopMenu(void);
 		void buildTopMenuLowerPanel(void);
 		void buildLeftMenu(void);
-		void buildMainMenu(void); // Override
+		virtual void buildMainMenu(void); // Override
 		void buildRightMenu(void);
 		void buildBottomMenu(void);
 		void buildFooter(void);
