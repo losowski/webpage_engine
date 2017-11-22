@@ -66,15 +66,15 @@ CFLAGS = $(TARGET_FLAG) $(COMPILER_OPTIONS) #-DVERSION=\"$(VERSION)\" #Other def
 ###################
 ## PROJECT FILES ##
 ###################
-PROGRAM_NAME = libwebpage.cgi
+PROGRAM_NAME = libwebcms.cgi
 #INCLUDES
-INCLUDES = -I../../libwebpage -I../../libhtml
+INCLUDES = -I../../libwebcms -I../../libwebpage -I../../libhtml
 
 #Libraries
-LDFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebpage
+LDFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebpage -lwebcms
 
 #Soures
-SRCS = libwebpage.cpp
+SRCS = libwebcms.cpp
 
 ###########
 ## MAGIC ##
