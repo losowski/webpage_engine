@@ -58,3 +58,39 @@ ALTER TABLE "tCMSPage"
   ADD CONSTRAINT fk_cmspage_site_id FOREIGN KEY (site_id)
       REFERENCES "tCMSSite" (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+-- Table: "tCMSField"
+
+-- DROP TABLE "tCMSField";
+
+CREATE TABLE "tCMSField"
+(
+  id bigserial NOT NULL,
+  page_id bigint NOT NULL,
+  field_name text NOT NULL,
+  table_name text NOT NULL,
+  column_name text NOT NULL,
+  CONSTRAINT pk_cmsfield PRIMARY KEY (id),
+  CONSTRAINT fk_field_page FOREIGN KEY (page_id)
+      REFERENCES "tCMSPage" (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE "tCMSField"
+  OWNER TO postgres;
+
+-- Index: idx_field
+-- DROP INDEX idx_field;
+CREATE INDEX idx_field
+  ON "tCMSField"
+  USING btree
+  (id);
+
+-- Index: idx_field_page
+-- DROP INDEX idx_field_page;
+CREATE INDEX idx_field_page
+  ON "tCMSField"
+  USING btree
+  (page_id);
