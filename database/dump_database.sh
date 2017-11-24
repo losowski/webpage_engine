@@ -1,5 +1,5 @@
 #!/bin/sh
-#psql -d cmsdb -U cms -w
+#psql -h localhost -d cmsdb -U cms -W
 #Script to dump everything
 #pg_dump Ft  -Ucms cmsdb > sql/cmsdb.tar
 #Script to make entire DBi schema, create etc
