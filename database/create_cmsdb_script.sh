@@ -21,5 +21,7 @@ echo "-- SCRIPT END" >> create_cmsdb.sql
 cat cmsdb.sql >> create_cmsdb.sql
 cat cmsdb_data.sql >> create_cmsdb.sql
 
+#Write in the Stored procedures
+
 #Modify the schema so we load the correct one
 #sed -iv 's/cms_schema/cmsdb.cms_schema/' create_cmsdb.sql
