@@ -38,10 +38,10 @@ class WebPageBase
 	public:
 		void connect(const string & connection);
 		// Media
-		void set_cdn(const string & cdn);
-		void set_media_path(const string & path);
-		void set_javascriptPath(const string & path);
-		void set_cssPath(const string & path);
+		void setCDN(const string & cdn);
+		void setMediaPath(const string & path);
+		void setJavascriptPath(const string & path);
+		void setCSSPath(const string & path);
 		//Header Functions
 		void addJavascript(const string & filename);
 		void addCSS(const string & filename);

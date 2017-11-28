@@ -68,24 +68,24 @@ void WebPageBase::connect(const string & connection)
 
 
 //Build the page
-void WebPageBase::set_cdn(const string & cdn)
+void WebPageBase::setCDN(const string & cdn)
 {
 	m_cdn = "//" + cdn + "/";
 }
 
-void WebPageBase::set_media_path(const string & path)
+void WebPageBase::setMediaPath(const string & path)
 {
 	m_media_path = path + "/";
 }
 
-void WebPageBase::set_javascriptPath(const string & path)
+void WebPageBase::setJavascriptPath(const string & path)
 {
-	m_javascript_path = path;
+	m_javascript_path = path + "/";
 }
 
-void WebPageBase::set_cssPath(const string & path)
+void WebPageBase::setCSSPath(const string & path)
 {
-	m_css_path = path;
+	m_css_path = path + "/";
 }
 
 
