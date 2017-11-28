@@ -17,7 +17,9 @@ WebPageDefault::~WebPageDefault(void)
 //Public
 void WebPageDefault::buildMainMenu(void)
 {
-	m_page.add_style("default-layout");
+	//Style
+	addCSS("default-layout");
+	//Scripts
 	//Menu
 	HTMLBodyBasePtr tm = m_page.add_span("default-layout");
 	HTMLBodyBasePtr text = HTMLElementFactory::add_text(tm, "Adopt Cheese! - He likes chocolate milk");
