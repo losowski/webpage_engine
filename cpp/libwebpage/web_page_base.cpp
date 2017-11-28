@@ -10,7 +10,7 @@ using namespace html;
 
 namespace web {
 
-#define PAGE_CDN(image){ m_cdn + m_media_path + image}
+#define PAGE_CDN_IMAGE(image){ m_cdn + m_media_path + image}
 
 WebPageBase::WebPageBase(const string & title):
 		m_cdn ("//localhost/"),
@@ -93,12 +93,12 @@ void WebPageBase::setCSSPath(const string & path)
 //TODO: Include SEO functions (meta tag)
 void WebPageBase::addJavascript(const string & filename)
 {
-	m_page.add_script(m_javascript_path + filename);
+	m_page.add_script(m_cdn + m_javascript_path + filename);
 }
 
 void WebPageBase::addCSS(const string & filename)
 {
-	m_page.add_style(m_css_path + filename);
+	m_page.add_style(m_cdn + m_css_path + filename);
 }
 
 // Top panel
@@ -120,12 +120,13 @@ void WebPageBase::TM_setPageTitle(const string & header)
 
 void WebPageBase::buildTopMenu(void)
 {
+	//Style
+	addCSS("top-menu");
 	//Scripts
-	m_page.add_style("top-menu");
 	//Menu
 	HTMLBodyBasePtr tm = m_page.add_span("top-menu");
 	HTMLBodyBasePtr tmspanlogo = HTMLElementFactory::add_span(tm, "logo");
-	HTMLBodyBasePtr tmlogo = HTMLElementFactory::add_image(tmspanlogo, m_tm_header_logo, PAGE_CDN(m_tm_header_logo), m_tm_header_logo);
+	HTMLBodyBasePtr tmlogo = HTMLElementFactory::add_image(tmspanlogo, m_tm_header_logo, PAGE_CDN_IMAGE(m_tm_header_logo), m_tm_header_logo);
 	HTMLBodyBasePtr tmheader = HTMLElementFactory::add_span(tm, "header-title");
 	HTMLElementFactory::add_h1(tmheader, "header-title", m_tm_header);
 }
@@ -149,13 +150,14 @@ void WebPageBase::LHM_addMenuItem(const string & name, const string & link, cons
 
 void WebPageBase::buildLeftMenu(void)
 {
+	//Style
+	addCSS("left-hand-menu");
 	//Scripts
-	m_page.add_style("left-hand-menu");
 	//Menu
 	HTMLBodyBasePtr lhm = m_page.add_span("left-hand-menu");
 	//Logo
 	HTMLBodyBasePtr lhmspanlogo = HTMLElementFactory::add_span(lhm, "logo");
-	HTMLBodyBasePtr lhmlogo = HTMLElementFactory::add_image(lhmspanlogo, m_lhm_logo, PAGE_CDN(m_lhm_logo), m_lhm_logo);
+	HTMLBodyBasePtr lhmlogo = HTMLElementFactory::add_image(lhmspanlogo, m_lhm_logo, PAGE_CDN_IMAGE(m_lhm_logo), m_lhm_logo);
 	//Menu Items
 	BOOST_FOREACH(MenuItem lhmitem, m_lhm_menu_items)
 	{

@@ -11,8 +11,6 @@ int main (int argc, char * argv[])
 	wpb.setMediaPath("www");
 	wpb.setJavascriptPath("www");
 	wpb.setCSSPath("www");
-	//Javascript
-	wpb.addJavascript("fosters");
 	//Content
 	wpb.TM_addLogo("doggo.png");
 	//Left Hand menu
