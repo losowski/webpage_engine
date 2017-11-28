@@ -8,6 +8,7 @@ int main (int argc, char * argv[])
 	//Demo Function
 	WebPageDefault wpb("Fosters");
 	wpb.TM_setPageTitle("Fosters Imaginary Friends");
+	wpb.set_media_path("www");
 	//Javascript
 	wpb.addJavascript("fosters");
 	//Content

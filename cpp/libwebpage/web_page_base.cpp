@@ -75,7 +75,7 @@ void WebPageBase::set_cdn(const string & cdn)
 
 void WebPageBase::set_media_path(const string & path)
 {
-	m_media_path = path;
+	m_media_path = path + "/";
 }
 
 void WebPageBase::set_javascriptPath(const string & path)
