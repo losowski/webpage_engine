@@ -126,7 +126,7 @@ void WebPageBase::buildTopMenu(void)
 	//Menu
 	HTMLBodyBasePtr tm = m_page.add_span("top-menu");
 	HTMLBodyBasePtr tmspanlogo = HTMLElementFactory::add_span(tm, "logo");
-	HTMLBodyBasePtr tmlogo = HTMLElementFactory::add_image(tmspanlogo, m_tm_header_logo, PAGE_CDN_IMAGE(m_tm_header_logo));
+	HTMLBodyBasePtr tmlogo = HTMLElementFactory::add_image(tmspanlogo, "top-menu-logo", PAGE_CDN_IMAGE(m_tm_header_logo));
 	HTMLBodyBasePtr tmheader = HTMLElementFactory::add_span(tm, "header-title");
 	HTMLElementFactory::add_h1(tmheader, "header-title", m_tm_header);
 }
@@ -157,7 +157,7 @@ void WebPageBase::buildLeftMenu(void)
 	HTMLBodyBasePtr lhm = m_page.add_span("left-hand-menu");
 	//Logo
 	HTMLBodyBasePtr lhmspanlogo = HTMLElementFactory::add_span(lhm, "logo");
-	HTMLBodyBasePtr lhmlogo = HTMLElementFactory::add_image(lhmspanlogo, m_lhm_logo, PAGE_CDN_IMAGE(m_lhm_logo));
+	HTMLBodyBasePtr lhmlogo = HTMLElementFactory::add_image(lhmspanlogo, "left-hand-menu-logo", PAGE_CDN_IMAGE(m_lhm_logo));
 	//Menu Items
 	BOOST_FOREACH(MenuItem lhmitem, m_lhm_menu_items)
 	{
