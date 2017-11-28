@@ -16,7 +16,7 @@ HTMLImg::~HTMLImg(void)
 
 void HTMLImg::create_html(void)
 {
-	m_html = "<" + m_type + " class=\"" + m_name + "\"  src=\"" + m_image + "\">\n";
+	m_html = "<" + m_type + " class=\"" + m_name + "\"  src=\"" + m_image + "\" alt=\"" + m_name + "\">\n";
 	create_child_html();
 	m_html += "</" + m_type + ">\n";
 }
