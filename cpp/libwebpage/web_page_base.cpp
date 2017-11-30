@@ -175,6 +175,9 @@ void WebPageBase::RHM_addMenuItem(const string & name, const string & link, cons
 
 void WebPageBase::buildRightMenu(void)
 {
+	//Style
+	addCSS("right-hand-menu");
+	//Scripts
 	HTMLBodyBasePtr rhm = m_page.add_div("right-hand-menu");
 	BOOST_FOREACH(MenuItem rhmitem, m_rhm_menu_items)
 	{
@@ -202,6 +205,9 @@ void WebPageBase::BM_addMenuItem(const string & name, const string & link, const
 
 void WebPageBase::buildBottomMenu(void)
 {
+	//Style
+	addCSS("bottom-menu");
+	//Scripts
 	HTMLBodyBasePtr bm = m_page.add_div("bottom-menu");
 	//Affiliates
 	BOOST_FOREACH(AffiliateItem bmaffiliate, m_bm_affiliate)
@@ -221,6 +227,9 @@ void WebPageBase::buildBottomMenu(void)
 // Footer
 void WebPageBase::buildFooter(void)
 {
+	//Style
+	addCSS("footer");
+	//Scripts
 	HTMLBodyBasePtr footer = m_page.add_div("footer");
 	HTMLBodyBasePtr foottextspan = HTMLElementFactory::add_div(footer, "text");
 	HTMLBodyBasePtr foottext = HTMLElementFactory::add_text(foottextspan, "Desgined Built and maintained by Eugene Web Designs");
