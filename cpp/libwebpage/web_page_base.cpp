@@ -124,10 +124,12 @@ void WebPageBase::buildTopMenu(void)
 	addCSS("top-menu");
 	//Scripts
 	//Menu
-	HTMLBodyBasePtr tm = m_page.add_span("top-menu");
-	HTMLBodyBasePtr tmspanlogo = HTMLElementFactory::add_span(tm, "logo");
+	HTMLBodyBasePtr tm = m_page.add_div("top-menu");
+	//Logo
+	HTMLBodyBasePtr tmspanlogo = HTMLElementFactory::add_div(tm, "logo");
 	HTMLBodyBasePtr tmlogo = HTMLElementFactory::add_image(tmspanlogo, "top-menu-logo", PAGE_CDN_IMAGE(m_tm_header_logo));
-	HTMLBodyBasePtr tmheader = HTMLElementFactory::add_span(tm, "header-title");
+	//Title
+	HTMLBodyBasePtr tmheader = HTMLElementFactory::add_div(tm, "title");
 	HTMLElementFactory::add_h1(tmheader, "header-title", m_tm_header);
 }
 // Top Menu Lower Panel
