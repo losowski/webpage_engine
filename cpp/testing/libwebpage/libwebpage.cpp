@@ -15,7 +15,7 @@ int main (int argc, char * argv[])
 	wpb.TM_addLogo("doggo.png");
 	//Left Hand menu
 	wpb.LHM_addLogo("doggo2.png");
-	wpb.LHM_addMenuItem("cgi-bin/libwebpage.cgi", "Home Link");
+	wpb.LHM_addMenuItem("home", "libwebpage.cgi", "Home Link");
 	wpb.RHM_addMenuItem("cgi-bin/index.html", "default");
 	//Build
 	wpb.buildWebsite();
