@@ -110,7 +110,7 @@ void WebPageBase::buildTopPanel(void)
 // Top Menu
 void WebPageBase::TM_addLogo(const string & logo)
 {
-	m_tm_header_logo = logo;
+	m_tm_header_logo = PAGE_CDN_IMAGE(logo);
 }
 
 void WebPageBase::TM_setPageTitle(const string & header)
@@ -127,7 +127,7 @@ void WebPageBase::buildTopMenu(void)
 	HTMLBodyBasePtr tm = m_page.add_div("top-menu");
 	//Logo
 	HTMLBodyBasePtr tmspanlogo = HTMLElementFactory::add_div(tm, "logo");
-	HTMLBodyBasePtr tmlogo = HTMLElementFactory::add_image(tmspanlogo, "top-menu-logo", PAGE_CDN_IMAGE(m_tm_header_logo));
+	HTMLBodyBasePtr tmlogo = HTMLElementFactory::add_image(tmspanlogo, "top-menu-logo", m_tm_header_logo);
 	//Title
 	HTMLBodyBasePtr tmheader = HTMLElementFactory::add_div(tm, "title");
 	HTMLElementFactory::add_h1(tmheader, "header-title", m_tm_header);
@@ -141,7 +141,7 @@ void WebPageBase::buildTopMenuLowerPanel(void)
 // Left Hand Menu
 void WebPageBase::LHM_addLogo(const string & logo)
 {
-	m_lhm_logo = logo;
+	m_lhm_logo = PAGE_CDN_IMAGE(logo);
 }
 
 void WebPageBase::LHM_addMenuItem(const string & name, const string & link, const string & text)
@@ -159,7 +159,7 @@ void WebPageBase::buildLeftMenu(void)
 	HTMLBodyBasePtr lhm = m_page.add_div("left-hand-menu");
 	//Logo
 	HTMLBodyBasePtr lhmspanlogo = HTMLElementFactory::add_div(lhm, "logo");
-	HTMLBodyBasePtr lhmlogo = HTMLElementFactory::add_image(lhmspanlogo, "left-hand-menu-logo", PAGE_CDN_IMAGE(m_lhm_logo));
+	HTMLBodyBasePtr lhmlogo = HTMLElementFactory::add_image(lhmspanlogo, "left-hand-menu-logo", m_lhm_logo);
 	//Menu Items
 	BOOST_FOREACH(MenuItem lhmitem, m_lhm_menu_items)
 	{
