@@ -5,12 +5,11 @@ div.top-menu {
 	background-color: lightblue;
 }
 div.top-menu div.logo img.top-menu-logo {
-	height: 100px;
-	width: 100px;
+	height: 300px;
+	width: 300px;
 }
 div.top-menu div.title {
 	position: fixed;
-	left:110px;
 	top: 0px;
 	height: 100px;
 	width: 80%;

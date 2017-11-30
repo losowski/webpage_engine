@@ -1,4 +1,22 @@
-span.left-hand-menu span.logo img.left-hand-menu-logo {
-	width: 100px;
-	height: 100px;
+div.left-hand-menu {
+	position: fixed;
+	top: 310px;
+	height: 100%;
+	width: 300px;
+	border-style: solid;
+	border-color: white;
+	background-color: lightblue;
+}
+div.left-hand-menu div.logo img.left-hand-menu-logo {
+	width: 300px;
+	height: 50px;
+}
+div.left-hand-menu div.lmh-menu-item {
+    text-align: left;
+	/*height: 100px;
+	width: 80%;*/
+	font-size: 20px;
+    color: red;
+
+
 }
