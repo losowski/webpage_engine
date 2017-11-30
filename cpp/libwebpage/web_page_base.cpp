@@ -104,7 +104,7 @@ void WebPageBase::addCSS(const string & filename)
 // Top panel
 void WebPageBase::buildTopPanel(void)
 {
-	HTMLBodyBasePtr toppanel = m_page.add_span("top-panel");
+	HTMLBodyBasePtr toppanel = m_page.add_div("top-panel");
 }
 
 // Top Menu
@@ -156,14 +156,14 @@ void WebPageBase::buildLeftMenu(void)
 	addCSS("left-hand-menu");
 	//Scripts
 	//Menu
-	HTMLBodyBasePtr lhm = m_page.add_span("left-hand-menu");
+	HTMLBodyBasePtr lhm = m_page.add_div("left-hand-menu");
 	//Logo
-	HTMLBodyBasePtr lhmspanlogo = HTMLElementFactory::add_span(lhm, "logo");
+	HTMLBodyBasePtr lhmspanlogo = HTMLElementFactory::add_div(lhm, "logo");
 	HTMLBodyBasePtr lhmlogo = HTMLElementFactory::add_image(lhmspanlogo, "left-hand-menu-logo", PAGE_CDN_IMAGE(m_lhm_logo));
 	//Menu Items
 	BOOST_FOREACH(MenuItem lhmitem, m_lhm_menu_items)
 	{
-		HTMLBodyBasePtr linkspan = HTMLElementFactory::add_span(lhm, "lmh-menu-item");
+		HTMLBodyBasePtr linkspan = HTMLElementFactory::add_div(lhm, "lmh-menu-item");
 		HTMLBodyBasePtr link = HTMLElementFactory::add_link(linkspan, get<0>(lhmitem), get<1>(lhmitem), get<2>(lhmitem));
 	}
 }
@@ -175,10 +175,10 @@ void WebPageBase::RHM_addMenuItem(const string & name, const string & link, cons
 
 void WebPageBase::buildRightMenu(void)
 {
-	HTMLBodyBasePtr rhm = m_page.add_span("right-hand-menu");
+	HTMLBodyBasePtr rhm = m_page.add_div("right-hand-menu");
 	BOOST_FOREACH(MenuItem rhmitem, m_rhm_menu_items)
 	{
-		HTMLBodyBasePtr rhmspan = HTMLElementFactory::add_span(rhm, "rhm-menu-item");
+		HTMLBodyBasePtr rhmspan = HTMLElementFactory::add_div(rhm, "rhm-menu-item");
 		HTMLBodyBasePtr link = HTMLElementFactory::add_link(rhmspan, get<0>(rhmitem), get<1>(rhmitem), get<2>(rhmitem));
 	}
 }
@@ -202,18 +202,18 @@ void WebPageBase::BM_addMenuItem(const string & name, const string & link, const
 
 void WebPageBase::buildBottomMenu(void)
 {
-	HTMLBodyBasePtr bm = m_page.add_span("bottom-menu");
+	HTMLBodyBasePtr bm = m_page.add_div("bottom-menu");
 	//Affiliates
 	BOOST_FOREACH(AffiliateItem bmaffiliate, m_bm_affiliate)
 	{
-		HTMLBodyBasePtr bmspan = HTMLElementFactory::add_span(bm, "affiliate");
+		HTMLBodyBasePtr bmspan = HTMLElementFactory::add_div(bm, "affiliate");
 		HTMLBodyBasePtr bmlink = HTMLElementFactory::add_link(bmspan, "affiliate", get<1>(bmaffiliate));
 		HTMLBodyBasePtr bmimage = HTMLElementFactory::add_image(bmlink, get<0>(bmaffiliate), get<2>(bmaffiliate));
 	}
 	//Menu Items
 	BOOST_FOREACH(MenuItem bmitem, m_bm_menu_items)
 	{
-		HTMLBodyBasePtr bmspan = HTMLElementFactory::add_span(bm, "rhm-menu-item");
+		HTMLBodyBasePtr bmspan = HTMLElementFactory::add_div(bm, "rhm-menu-item");
 		HTMLBodyBasePtr bmlink = HTMLElementFactory::add_link(bmspan, get<0>(bmitem), get<1>(bmitem), get<2>(bmitem));
 	}
 }
@@ -221,10 +221,10 @@ void WebPageBase::buildBottomMenu(void)
 // Footer
 void WebPageBase::buildFooter(void)
 {
-	HTMLBodyBasePtr footer = m_page.add_span("footer");
-	HTMLBodyBasePtr foottextspan = HTMLElementFactory::add_span(footer, "text");
+	HTMLBodyBasePtr footer = m_page.add_div("footer");
+	HTMLBodyBasePtr foottextspan = HTMLElementFactory::add_div(footer, "text");
 	HTMLBodyBasePtr foottext = HTMLElementFactory::add_text(foottextspan, "Desgined Built and maintained by Eugene Web Designs");
-	HTMLBodyBasePtr footlicencing = HTMLElementFactory::add_span(footer, "licencing");
+	HTMLBodyBasePtr footlicencing = HTMLElementFactory::add_div(footer, "licencing");
 	HTMLBodyBasePtr footlicencingtxt = HTMLElementFactory::add_text(footlicencing, "Copyright Eugene Web Designs 2017");
 }
 
