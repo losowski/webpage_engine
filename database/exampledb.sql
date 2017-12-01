@@ -1,4 +1,4 @@
-
+-- psql -h localhost -U demo -d demodb -W
 --
 -- Create the demo user for the demodb
 --
