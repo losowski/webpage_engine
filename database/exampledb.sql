@@ -27,6 +27,7 @@ CREATE TABLE "demo_schema.tContact"
   id bigserial NOT NULL,
   forename text NOT NULL,
   happiness numeric	NOT NULL,
+  created_date date NOT NULL,
   CONSTRAINT pk_contact PRIMARY KEY (id)
 )
 WITH (
