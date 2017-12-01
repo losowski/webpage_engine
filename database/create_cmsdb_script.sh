@@ -14,9 +14,10 @@ cat cms_grant.sql >> create_cmsdb.sql
 # Triple backslash to work with debian (ignores arguments)
 echo "-- SCRIPT BEGIN: set up connection and schema" >> create_cmsdb.sql
 echo "\\\connect cmsdb" >> create_cmsdb.sql
+echo "--\n-- Create the schema\n--" >> create_cmsdb.sql
+echo "CREATE SCHEMA IF NOT EXISTS cms_schema AUTHORIZATION cms;\n" >> create_cmsdb.sql
 echo "set schema 'cms_schema';" >> create_cmsdb.sql
 echo "-- SCRIPT END" >> create_cmsdb.sql
-
 #Write the data into the system
 cat cmsdb.sql >> create_cmsdb.sql
 cat cmsdb_data.sql >> create_cmsdb.sql
