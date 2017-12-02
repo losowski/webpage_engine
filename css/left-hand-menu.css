@@ -1,5 +1,5 @@
 div.left-hand-menu {
-	position: fixed;
+	position: absolute;
 	top: 310px;
 	height: 100%;
 	width: 300px;

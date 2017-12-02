@@ -9,7 +9,7 @@ div.top-menu div.logo img.top-menu-logo {
 	width: 300px;
 }
 div.top-menu div.title {
-	position: fixed;
+	position: absolute;
 	top: 0px;
 	height: 100px;
 	width: 80%;
