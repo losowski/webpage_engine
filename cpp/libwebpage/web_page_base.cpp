@@ -231,7 +231,7 @@ void WebPageBase::buildFooter(void)
 	addCSS("footer");
 	//Scripts
 	HTMLBodyBasePtr footer = m_page.add_div("footer");
-	HTMLBodyBasePtr foottextspan = HTMLElementFactory::add_div(footer, "text");
+	HTMLBodyBasePtr foottextspan = HTMLElementFactory::add_div(footer, "footer-text");
 	HTMLBodyBasePtr foottext = HTMLElementFactory::add_text(foottextspan, "Desgined Built and maintained by Eugene Web Designs");
 	HTMLBodyBasePtr footlicencing = HTMLElementFactory::add_div(footer, "licencing");
 	HTMLBodyBasePtr footlicencingtxt = HTMLElementFactory::add_text(footlicencing, "Copyright Eugene Web Designs 2017");
