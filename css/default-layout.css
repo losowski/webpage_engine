@@ -1,0 +1,8 @@
+div.default-layout {
+	position: absolute;
+	top: 120px;
+	left: 320px;
+	width: 1800px;
+	height: 600px;
+	background-color: dodgerblue;
+}
