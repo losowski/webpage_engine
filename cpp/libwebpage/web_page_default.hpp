@@ -14,6 +14,7 @@ class WebPageDefault : public web::WebPageBase
 		WebPageDefault(const string & title);
 		~WebPageDefault(void);
 	public:
+		void actionData(void);
 		void buildMainMenu(void);
 };
 }

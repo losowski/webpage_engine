@@ -37,6 +37,7 @@ class WebPageBase
 		void parse(void); // Override
 	public:
 		void connect(const string & connection);
+		virtual void actionData(void) = 0;
 		// Media
 		void setCDN(const string & cdn);
 		void setMediaPath(const string & path);

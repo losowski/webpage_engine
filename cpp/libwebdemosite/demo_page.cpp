@@ -1,33 +1,32 @@
-#include "web_page_default.hpp"
+#include "demo_page.hpp"
 
 using namespace std;
 using namespace html;
 
 namespace web {
 
-WebPageDefault::WebPageDefault(const string & title):
+DemoPage::DemoPage(const string & title):
 		web::WebPageBase ( title )
 {
 
 }
 
-WebPageDefault::~WebPageDefault(void)
+DemoPage::~DemoPage(void)
 {
 }
 //Public
-void WebPageDefault::buildMainMenu(void)
+void DemoPage::buildMainMenu(void)
 {
 	//Style
-	addCSS("default-layout");
+	addCSS("demo-page-layout");
 	//Scripts
 	//Menu
 	HTMLBodyBasePtr tm = m_page.add_span("default-layout");
 	HTMLBodyBasePtr text = HTMLElementFactory::add_text(tm, "Adopt Cheese! - He likes chocolate milk");
 }
 
-void WebPageDefault::actionData(void)
+void DemoPage::actionData(void)
 {
 }
-
 
 }
