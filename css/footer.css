@@ -1,25 +1,23 @@
 div.footer {
 	position: absolute;
 	top:700px;
-	height: 100px;
+	height: 60px;
 	width: 100%;
 	border-style: solid;
 	border-color: white;
 	background-color: lightblue;
-	font-size: 50px;
     color: blue;
 }
-div.footer div.text {
+div.footer div.footer-text {
 	font-size: 10px;
     color: blue;
 	text-align: right;
 	vertical-align:center;
 }
 div.footer div.licencing {
-	position: absolute;
 	bottom: 0px;
 	font-size: 10px;
     color: darkblue;
-	text-align: left;
+	text-align: right;
 	vertical-align:center;
 }
