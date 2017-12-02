@@ -1,0 +1,7 @@
+div.footer {
+	height: 100%;
+	width: 100%;
+	border-style: solid;
+	border-color: white;
+	background-color: lightblue;
+}

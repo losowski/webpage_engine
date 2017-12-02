@@ -21,7 +21,7 @@ void WebPageDefault::buildMainMenu(void)
 	addCSS("default-layout");
 	//Scripts
 	//Menu
-	HTMLBodyBasePtr tm = m_page.add_span("default-layout");
+	HTMLBodyBasePtr tm = m_page.add_div("default-layout");
 	HTMLBodyBasePtr text = HTMLElementFactory::add_text(tm, "Adopt Cheese! - He likes chocolate milk");
 }
 
