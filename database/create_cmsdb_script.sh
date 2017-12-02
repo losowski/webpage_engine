@@ -2,6 +2,9 @@
 #
 # Script to read back backups of the database
 #
+## WARNING:
+# Do not blindly copy from pg_admin
+# This will quote table names  - these should be created in lower-case in any event
 #Create a blank file
 echo "" > create_cmsdb.sql
 
