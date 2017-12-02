@@ -1,5 +1,5 @@
--- psql -h localhost -U demo -d demodb -W
 --
+-- psql -h localhost -U demo -d demodb -W
 -- Create the demo user for the demodb
 --
 CREATE ROLE demo LOGIN NOSUPERUSER INHERIT CREATEDB CREATEROLE NOREPLICATION PASSWORD 'demodb';
@@ -22,7 +22,7 @@ set schema 'demo_schema';
 -- SCRIPT END
 -- Table: "tContact"
 -- DROP TABLE "tContact";
-CREATE TABLE "demo_schema.tContact"
+CREATE TABLE demo_schema.tContact
 (
   id bigserial NOT NULL,
   forename text NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE "demo_schema.tContact"
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE "demo_schema.tContact"
+ALTER TABLE demo_schema.tContact
   OWNER TO demo;
 
 -- Index: idx_contact_id
