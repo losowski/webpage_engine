@@ -38,7 +38,7 @@ class HTMLElementFactory : public html::HTMLElementFactoryBase
 		static HTMLBodyBasePtr add_h1(HTMLBodyBasePtr element, const string & name, const string & text = "");
 		static HTMLBodyBasePtr add_image(HTMLBodyBasePtr element, const string & name, const string & image, const string & text = "");
 		static HTMLBodyBasePtr add_link(HTMLBodyBasePtr element, const string & name, const string & link, const string & text = "");
-		static HTMLBodyBasePtr add_text(HTMLBodyBasePtr element, const string & name, const string & text = "");
+		static HTMLBodyBasePtr add_text(HTMLBodyBasePtr element, const string & text = "");
 };
 
 }

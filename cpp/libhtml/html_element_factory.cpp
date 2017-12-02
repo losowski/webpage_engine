@@ -63,9 +63,9 @@ HTMLBodyBasePtr HTMLElementFactory::add_link(HTMLBodyBasePtr element, const stri
 	return content_item;
 }
 
-HTMLBodyBasePtr HTMLElementFactory::add_text(HTMLBodyBasePtr element, const string & name, const string & text)
+HTMLBodyBasePtr HTMLElementFactory::add_text(HTMLBodyBasePtr element, const string & text)
 {
-	HTMLBodyElementPtr content_item (new HTMLText(name, text));
+	HTMLBodyElementPtr content_item (new HTMLText(text));
 	element->add_element(content_item);
 	return content_item;
 }

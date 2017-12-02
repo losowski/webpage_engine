@@ -146,9 +146,9 @@ HTMLBodyBasePtr HTMLPage::add_link(const string & name, const string & link, con
 	return content_item;
 }
 
-HTMLBodyBasePtr HTMLPage::add_text(const string & name, const string & text)
+HTMLBodyBasePtr HTMLPage::add_text(const string & text)
 {
-	HTMLBodyElementPtr content_item (new HTMLText(name, text));
+	HTMLBodyElementPtr content_item (new HTMLText(text));
 	this->add_element(content_item);
 	return content_item;
 }

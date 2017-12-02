@@ -11,7 +11,7 @@ namespace html {
 class HTMLText : public html::HTMLTextBase
 {
 	public:
-		HTMLText(const string & name, const string & text = "");
+		HTMLText(const string & text = "");
 		~HTMLText(void);
 };
 }
