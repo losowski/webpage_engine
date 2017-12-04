@@ -1,6 +1,7 @@
 div.top-menu {
 	height: 100px;
 	background-color: lightblue;
+	width: 1890px;
 }
 div.top-menu div.logo img.top-menu-logo {
 	height: 300px;
@@ -19,5 +20,4 @@ div.top-menu div.title h1.header-title {
     text-align: center;
 	vertical-align:center;
 	height: 100px;
-	width: 100%;
 }
