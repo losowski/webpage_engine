@@ -66,6 +66,28 @@ void WebPageBase::connect(const string & connection)
 	}
 }
 
+// CGI
+void WebPageBase::actionData(void)
+{
+	try
+	{
+		// Action the CGI
+		actionDataCGI();
+		// Action the SQL
+		actionDataSQL();
+	}
+	catch (const pqxx::sql_error &e)
+	{
+		std::cerr << "actionData SQL error: " << e.what() << std::endl;
+		std::cerr << "actionData Query was: " << e.query() << std::endl;
+		exit(EXIT_FAILURE);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "actionData Error: " << e.what() << std::endl;
+		exit(EXIT_FAILURE);
+	}
+}
 
 //Build the page
 void WebPageBase::setCDN(const string & cdn)

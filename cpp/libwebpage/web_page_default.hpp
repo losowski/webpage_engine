@@ -14,8 +14,11 @@ class WebPageDefault : public web::WebPageBase
 		WebPageDefault(const string & title);
 		~WebPageDefault(void);
 	public:
-		void actionData(void);
+		void actionDataCGI(void);
+		void actionDataSQL(void);
 		void buildMainMenu(void);
+	public:
+		string		m_text;
 };
 }
 #endif //WEB_PAGE_DEFAULT_HPP

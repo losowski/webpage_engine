@@ -14,8 +14,14 @@ class DemoPage : public web::WebPageBase
 		DemoPage(const string & title);
 		~DemoPage(void);
 	public:
-		void actionData(void);
+		void actionDataCGI(void);
+		void actionDataSQL(void);
 		void buildMainMenu(void);
+	private:
+		string				m_id;
+		string				m_forename;
+		string				m_happiness;
+		string				m_creation_date;
 };
 }
 #endif //DEMO_PAGE_HPP

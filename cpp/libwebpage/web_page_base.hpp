@@ -19,7 +19,6 @@
 using namespace std;
 using namespace html;
 
-
 namespace web {
 
 //Left Hand Menu Types
@@ -37,7 +36,9 @@ class WebPageBase
 		void parse(void); // Override
 	public:
 		void connect(const string & connection);
-		virtual void actionData(void) = 0;
+		void actionData(void);
+		virtual void actionDataCGI(void) = 0;
+		virtual void actionDataSQL(void) = 0;
 		// Media
 		void setCDN(const string & cdn);
 		void setMediaPath(const string & path);
