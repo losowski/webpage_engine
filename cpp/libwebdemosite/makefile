@@ -67,13 +67,13 @@ CFLAGS = $(TARGET_FLAG) $(COMPILER_OPTIONS) -DVERSION=\"$(VERSION)\" #Other defi
 ###################
 PROGRAM_NAME=libwebpage.so
 #INCLUDES
-INCLUDES = -I../libhtml
+INCLUDES = -I../libhtml -I../libwebpage
 
 #Libraries
 LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lcgicc -lpq -lpqxx -lhtml
 
 #Soures
-SRCS = web_page_base.cpp web_page_default.cpp
+SRCS = demo_page.cpp
 
 ###########
 ## MAGIC ##
