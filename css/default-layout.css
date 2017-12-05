@@ -6,3 +6,10 @@ div.default-layout {
 	height: 1100px;
 	background-color: dodgerblue;
 }
+div.default-layout form.defaultform {
+	width:400px;
+}
+
+div.default-layout form.defaultform input.message {
+	width:400px;
+}

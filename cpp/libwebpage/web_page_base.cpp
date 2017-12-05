@@ -72,9 +72,15 @@ void WebPageBase::actionData(void)
 	try
 	{
 		// Action the CGI
-		actionDataCGI();
+		if (m_cgi != NULL)
+		{
+			actionDataCGI();
+		}
 		// Action the SQL
-		actionDataSQL();
+		if (m_dbconnection != NULL)
+		{
+			actionDataSQL();
+		}
 	}
 	catch (const pqxx::sql_error &e)
 	{

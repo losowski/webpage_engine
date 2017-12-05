@@ -24,13 +24,21 @@ void WebPageDefault::buildMainMenu(void)
 	//Scripts
 	//HTML
 	HTMLBodyBasePtr tm = m_page.add_div("default-layout");
-	HTMLBodyBasePtr text = HTMLElementFactory::add_text(tm, m_text);
+	HTMLFormPtr df = HTMLElementFactory::add_form(tm, "defaultform", "libwebsite.cgi");
+	df->add_text_input("text", "Message for Fosters", m_text);
+	df->set_submit_name("Enter");
 }
 
 void WebPageDefault::actionDataCGI(void)
 {
-// -- Iterators
-	const_form_iterator ittext = m_cgi->getElement("text");
+	/*
+		Code design
+		1) Get the form in the class cgicc::FormEntry
+			m_cgi->getElement("libwebsite.cgi");
+		2) For each field in the named form, get the tada usign "getValue"
+	*/
+	// -- Iterators
+	cgicc::form_iterator ittext = m_cgi->getElement("libwebsite.cgi");
 	// -- Setting the values
 	if (ittext != m_cgi->getElements().end() && ittext->getValue().empty() == false)
 	{
