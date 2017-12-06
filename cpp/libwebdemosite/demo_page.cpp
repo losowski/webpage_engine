@@ -2,6 +2,7 @@
 
 using namespace std;
 using namespace html;
+using namespace cgicc;
 
 namespace web {
 
@@ -33,11 +34,19 @@ void DemoPage::buildMainMenu(void)
 
 void DemoPage::actionDataCGI(void)
 {
+	/*
+		Code design
+		1) Get the form in the class cgicc::FormEntry
+			cgicc::form_iterator it = m_cgi->getElement("libwebsite.cgi");
+		2) For each field in the named form, get the data using "getValue"
+	*/
+	//Get Form
+	m_cgi->getElement("demoform");
 	// -- Iterators
-	const_form_iterator itid = m_cgi->getElement("id");
-	const_form_iterator itforename = m_cgi->getElement("forename");
-	const_form_iterator ithappiness = m_cgi->getElement("happiness");
-	const_form_iterator itcreation_date = m_cgi->getElement("creation_date");
+	cgicc::form_iterator itid = m_cgi->getElement("id");
+	cgicc::form_iterator itforename = m_cgi->getElement("forename");
+	cgicc::form_iterator ithappiness = m_cgi->getElement("happiness");
+	cgicc::form_iterator itcreation_date = m_cgi->getElement("creation_date");
 	// -- Setting the values
 	if (itid != m_cgi->getElements().end() && itid->getValue().empty() == false)
 	{

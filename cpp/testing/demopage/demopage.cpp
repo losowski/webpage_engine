@@ -19,6 +19,9 @@ int main (int argc, char * argv[])
 	demo.LHM_addMenuItem("home", "libwebpage.cgi", "Home Link");
 	demo.RHM_addMenuItem("cgi-bin/index.html", "default");
 	//CMS FUNCTIONS
+	//CGI
+	demo.connectDB("host=localhost dbname=demodb user=demo password=demodb");
+	demo.parseCGI();
 	demo.actionData();
 	//Build
 	demo.buildWebsite();

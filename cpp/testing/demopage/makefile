@@ -71,7 +71,7 @@ PROGRAM_NAME = demopage.cgi
 INCLUDES = -I../../libwebdemosite -I../../libwebpage -I../../libhtml
 
 #Libraries
-LDFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebpage -lwebdemosite
+LDFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebdemosite -lwebpage -lhtml
 
 #Soures
 SRCS = demopage.cpp

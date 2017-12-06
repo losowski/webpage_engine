@@ -34,8 +34,8 @@ void WebPageDefault::actionDataCGI(void)
 	/*
 		Code design
 		1) Get the form in the class cgicc::FormEntry
-			m_cgi->getElement("libwebsite.cgi");
-		2) For each field in the named form, get the tada usign "getValue"
+			cgicc::form_iterator it = m_cgi->getElement("libwebsite.cgi");
+		2) For each field in the named form, get the data using "getValue"
 	*/
 	// -- Iterators
 	cgicc::form_iterator ittext = m_cgi->getElement("libwebsite.cgi");

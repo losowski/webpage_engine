@@ -65,7 +65,7 @@ CFLAGS = $(TARGET_FLAG) $(COMPILER_OPTIONS) -DVERSION=\"$(VERSION)\" #Other defi
 ###################
 ## PROJECT FILES ##
 ###################
-PROGRAM_NAME=libwebpage.so
+PROGRAM_NAME=libwebdemosite.so
 #INCLUDES
 INCLUDES = -I../libhtml -I../libwebpage
 
