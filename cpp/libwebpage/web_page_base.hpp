@@ -31,14 +31,12 @@ class WebPageBase
 	public:
 		WebPageBase(const string & title);
 		~WebPageBase(void);
-
-	protected:
-		void parse(void); // Override
 	public:
-		void connect(const string & connection);
-		void actionData(void);
-		virtual void actionDataCGI(void) = 0;
+		void connectDB(const string & connection);
 		virtual void actionDataSQL(void) = 0;
+		void parseCGI(void);
+		virtual void actionDataCGI(void) = 0;
+		void actionData(void);
 		// Media
 		void setCDN(const string & cdn);
 		void setMediaPath(const string & path);

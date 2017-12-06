@@ -33,25 +33,13 @@ WebPageBase::~WebPageBase(void)
 		delete this->m_dbconnection;
 	}
 }
-//Protected:
-//Parse Function
-void WebPageBase::parse(void)
-{
-	// Replace the internals of this function in the derived class
-}
-
-
 //Public:
-void WebPageBase::connect(const string & connection)
+void WebPageBase::connectDB(const string & connection)
 {
 	try
 	{
-		//Get the CGI parameters
-		m_cgi = new cgicc::Cgicc;
 		// Connect to the database
 		m_dbconnection = new pqxx::connection(connection);
-		// Call Parse Here
-		this->parse();
 	}
 	catch (const pqxx::sql_error &e)
 	{
@@ -65,6 +53,23 @@ void WebPageBase::connect(const string & connection)
 		exit(EXIT_FAILURE);
 	}
 }
+
+
+void WebPageBase::parseCGI(void)
+{
+	try
+	{
+		//Get the CGI parameters
+		m_cgi = new cgicc::Cgicc;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+		exit(EXIT_FAILURE);
+	}
+}
+
+
 
 // CGI
 void WebPageBase::actionData(void)
