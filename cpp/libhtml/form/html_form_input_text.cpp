@@ -18,7 +18,7 @@ HTMLFormInputText::~HTMLFormInputText()
 
 void HTMLFormInputText::create_form_input(void)
 {
-	m_html_form_input = "<br>" + m_label + "<br>\n";
+	m_html_form_input = "<div class=\"" + m_field_name+ "\">" + m_label + "<div>\n";
 	m_html_form_input += "<input class=\"" + m_field_name + "\" type=\"" + m_type + "\" name=\"" + m_field_name + "\" value=\"" + m_value + "\">\n";
 	m_html_form_input += "</input>\n";
 }
