@@ -6,3 +6,9 @@ div.demo-layout {
 	height: 1100px;
 	background-color: dodgerblue;
 }
+
+div.demo-layout form.demoform {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}

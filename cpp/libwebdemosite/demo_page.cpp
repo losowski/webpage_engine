@@ -19,7 +19,7 @@ DemoPage::~DemoPage(void)
 void DemoPage::buildMainMenu(void)
 {
 	//Style
-	addCSS("default-layout");
+	addCSS("demo-layout");
 	//Scripts
 	//HTML
 	HTMLBodyBasePtr demo = m_page.add_div("demo-layout");
