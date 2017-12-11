@@ -53,7 +53,7 @@ void HTMLForm::create_html(void)
 	m_html += "</div>";
 	if (m_reset_button == true)
 	{
-		m_html += "<input type=\"reset\">";
+		m_html += "<input class=\"reset\" type=\"reset\">";
 	}
 	m_html += "</form>";
 }
