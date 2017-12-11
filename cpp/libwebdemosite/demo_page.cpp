@@ -26,9 +26,9 @@ void DemoPage::buildMainMenu(void)
 	//MENU
 	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "libdemosite.cgi");
 	df->add_text_input("id", "id", m_id);
-	df->add_text_input("forename", "forename", m_forename);
-	df->add_text_input("happiness", "happiness", m_happiness);
-	df->add_text_input("creation_date", "creation_date", m_creation_date);
+	df->add_text_input("forename", "Forename", m_forename);
+	df->add_text_input("happiness", "Happiness Level", m_happiness);
+	df->add_text_input("creation_date", "Creation Date", m_creation_date);
 	df->set_submit_name("Enter");
 }
 

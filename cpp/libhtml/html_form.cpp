@@ -48,7 +48,9 @@ void HTMLForm::create_html(void)
 		forminput->create_form_input();
 		m_html += forminput->get_form_input();
 	}
-	m_html += "<input type=\"submit\" value=\"" + m_submit_button_name + "\">";
+	m_html += "<div class=\"submit\">";
+	m_html += "<input class=\"submit\" type=\"submit\" value=\"" + m_submit_button_name + "\">";
+	m_html += "</div>";
 	if (m_reset_button == true)
 	{
 		m_html += "<input type=\"reset\">";

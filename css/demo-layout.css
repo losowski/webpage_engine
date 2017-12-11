@@ -12,3 +12,14 @@ div.demo-layout form.demoform {
 	top: 10px;
 	left: 10px;
 }
+
+div.demo-layout form.demoform div {
+	 font-size: 18px;
+}
+
+div.demo-layout form.demoform input.submit {
+	position: absolute;
+	left:10px;
+	width: 60px;
+	height: 20px;
+}
