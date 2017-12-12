@@ -36,6 +36,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+
 -- Update
 CREATE OR REPLACE FUNCTION demo_schema.pUpdContact(
 	p_id					demo_schema.tcontact.id%TYPE,
@@ -49,10 +50,10 @@ DECLARE
 	v_created_date			demo_schema.tcontact.created_date%TYPE;
 BEGIN
 	-- Get current Data and lock it
-	SELECT FOR UPDATE
+	SELECT
 		COALESCE(p_forename, forename),
 		COALESCE(p_happiness, happiness),
-		COALESCE(p_created_date, created_date),
+		COALESCE(p_created_date, created_date)
 	INTO
 		v_forename,
 		v_happiness,
@@ -61,22 +62,15 @@ BEGIN
 		demo_schema.tContact
 	WHERE
 		id = p_id
+	FOR UPDATE
 	;
 	-- Update data
 	UPDATE
 		demo_schema.tContact
 	SET
-		(
-			forename,
-			happiness,
-			created_date
-		)
-	VALUES
-		(
-			v_forename,
-			v_happiness,
-			v_created_date
-		)
+			forename = v_forename,
+			happiness = v_happiness,
+			created_date = v_created_date
 	WHERE
 		id = p_id
 	;
@@ -84,6 +78,14 @@ BEGIN
 	RETURN p_id;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
+
+
+
+
+
 
 -- Delete
 CREATE OR REPLACE FUNCTION demo_schema.pDelContact(
