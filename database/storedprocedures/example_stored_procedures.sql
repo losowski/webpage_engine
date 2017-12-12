@@ -1,4 +1,31 @@
 -- SELECT
+CREATE OR REPLACE FUNCTION demo_schema.pSelContact(
+	p_forename				demo_schema.tcontact.id%TYPE
+	) RETURNS RECORD AS $$
+DECLARE
+	v_rowdata					RECORD;
+BEGIN
+	-- Select data
+	SELECT
+		id,
+		forename,
+		happiness,
+		created_date
+	FROM
+		demo_schema.tContact
+	WHERE
+		id = p_id
+	;
+	-- Return Data
+ 	RETURN v_rowdata;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+
 -- INSERT
 CREATE OR REPLACE FUNCTION demo_schema.pInsContact(
 	p_forename				demo_schema.tcontact.forename%TYPE,
@@ -34,6 +61,8 @@ BEGIN
 	RETURN v_id;
 END;
 $$ LANGUAGE plpgsql;
+
+
 
 
 
