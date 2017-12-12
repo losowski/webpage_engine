@@ -21,10 +21,18 @@ HTMLFormInput::~HTMLFormInput()
 {
 }
 
+//Create Label
+void HTMLFormInput::create_label(void)
+{
+	m_html_form_input = "<div class=\"" + m_field_name+ "\">" + m_label + "</div>\n";
+}
+//Get the form input
 string HTMLFormInput::get_form_input(void)
 {
 	return m_html_form_input;
 }
+
+
 
 
 }

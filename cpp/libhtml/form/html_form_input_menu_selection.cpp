@@ -17,6 +17,8 @@ HTMLFormInputMenuSelection::~HTMLFormInputMenuSelection()
 
 void HTMLFormInputMenuSelection::create_form_input(void)
 {
+	//TODO: Add the label function
+	//	create_label();
 	m_html_form_input = "<" + m_type;
 	if (m_selected == true)
 	{

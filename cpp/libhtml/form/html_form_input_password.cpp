@@ -18,7 +18,7 @@ HTMLFormInputPassword::~HTMLFormInputPassword()
 
 void HTMLFormInputPassword::create_form_input(void)
 {
-	m_html_form_input = "<br>" + m_label + "<br>\n";
+	create_label();
 	m_html_form_input += "<input type=\"" + m_type + "\" name=\"" + m_field_name + "\">\n";
 	m_html_form_input += "</input>\n";
 }

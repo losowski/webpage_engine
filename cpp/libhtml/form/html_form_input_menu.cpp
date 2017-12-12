@@ -21,7 +21,7 @@ HTMLFormInputMenu::~HTMLFormInputMenu()
 
 void HTMLFormInputMenu::create_form_input(void)
 {
-	m_html_form_input = "<br>" + m_label + "<br>\n";
+	create_label();
 	m_html_form_input += "<select \" name=\"" + m_field_name + "\" ";
 	if (m_multiple_selections == true)
 	{
