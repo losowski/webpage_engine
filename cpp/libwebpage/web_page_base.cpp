@@ -61,6 +61,8 @@ void WebPageBase::parseCGI(void)
 	{
 		//Get the CGI parameters
 		m_cgi = new cgicc::Cgicc;
+		//Process the query string
+		process_getCGIEnvironment();
 	}
 	catch (const std::exception &e)
 	{
@@ -69,7 +71,41 @@ void WebPageBase::parseCGI(void)
 	}
 }
 
+void WebPageBase::parse_getCGIEnvironment(const string & kvp)
+{
+	// Iterate over elements in vector to get instances of "="
+	std::size_t found = kvp.find_first_of("=");
+	string key (kvp, 0, found);
+	string value (kvp, found +1, std::string::npos);
+	//Insert the value
+	m_cgi_environment[key] = value;	
+}
 
+string WebPageBase::getCGIEnvironment(const string & key)
+{
+	return m_cgi_environment[key];
+}
+
+void WebPageBase::process_getCGIEnvironment(void)
+{
+	// CGICC get the environment
+	string query = m_cgi->getEnvironment().getQueryString();
+	//Iterate over query to get all instances of "&"
+	std::size_t unfound = 0;
+	std::size_t found = query.find_first_of("&");
+	while (found != std::string::npos)
+	{
+		string kvp(query, unfound, found);
+		parse_getCGIEnvironment(kvp);
+		//Set unfound properly
+		unfound = found;
+		//Get next iteration
+		std::size_t found = query.find_first_of("&",found+1);
+	}
+	//Final round
+	string kvp(query, unfound, found);
+	parse_getCGIEnvironment(kvp);
+}
 
 // CGI
 void WebPageBase::actionData(void)

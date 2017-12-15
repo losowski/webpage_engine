@@ -1,34 +1,6 @@
--- SELECT
-CREATE OR REPLACE FUNCTION demo_schema.pSelContact(
-	p_id				demo_schema.tcontact.id%TYPE
-	) RETURNS RECORD AS $$
-DECLARE
-	v_rowdata					RECORD;
-BEGIN
-	-- Select data
-	SELECT
-		id,
-		forename,
-		happiness,
-		created_date
-	FROM
-		demo_schema.tContact
-	WHERE
-		id = p_id
-	;
-	-- Return Data
- 	RETURN v_rowdata;
-END;
-$$ LANGUAGE plpgsql;
-
-
-
-
-
-
 -- Update-Insert
-CREATE OR REPLACE FUNCTION demo_schema.pInsUpdContact(
-	p_id					demo_schema.tcontact.id%TYPE,
+CREATE OR REPLACE FUNCTION demo_schema.pSelInsUpdContact(
+	p_id					demo_schema.tcontact.id%TYPE default NULL,
 	p_forename				demo_schema.tcontact.forename%TYPE default NULL,
 	p_happiness				demo_schema.tcontact.happiness%TYPE default NULL,
 	p_created_date			demo_schema.tcontact.created_date%TYPE default NULL
@@ -38,6 +10,7 @@ DECLARE
 	v_forename				demo_schema.tcontact.forename%TYPE;
 	v_happiness				demo_schema.tcontact.happiness%TYPE;
 	v_created_date			demo_schema.tcontact.created_date%TYPE;
+	v_rowdata				RECORD;
 BEGIN
 	BEGIN
 	-- Get current Data and lock it
@@ -98,9 +71,19 @@ BEGIN
 				LASTVAL()
 			;
 	END;
-
-	-- Return ID
-	RETURN p_id;
+	-- Select data
+	SELECT
+		COALESCE(p_id, id),
+		COALESCE(p_forename, forename),
+		COALESCE(p_happiness, happiness),
+		COALESCE(p_created_date, created_date)
+	FROM
+		demo_schema.tContact
+	WHERE
+		id = p_id
+	;
+	-- Return Data
+ 	RETURN v_rowdata;
 END;
 $$ LANGUAGE plpgsql;
 

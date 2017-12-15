@@ -1,5 +1,10 @@
 #include "demo_page.hpp"
 
+//Libpxx
+#include <pqxx/cursor>
+#include <pqxx/transaction>
+#include <pqxx/result>
+
 using namespace std;
 using namespace html;
 using namespace cgicc;
@@ -24,7 +29,7 @@ void DemoPage::buildMainMenu(void)
 	//HTML
 	HTMLBodyBasePtr demo = m_page.add_div("demo-layout");
 	//MENU
-	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "libdemosite.cgi");
+	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "demopage.cgi");
 	df->add_text_input("id", "id", m_id);
 	df->add_text_input("forename", "Forename", m_forename);
 	df->add_text_input("happiness", "Happiness Level", m_happiness);
@@ -64,10 +69,24 @@ void DemoPage::actionDataCGI(void)
 	{
 		m_creation_date = itcreation_date->getValue();
 	}
+	//Get QueryString
+	m_id = getCGIEnvironment("id");
 }
 
 void DemoPage::actionDataSQL (void)
 {
+	//Already Loaded the CGI
+	pqxx::work txn(*m_dbconnection); //Pointer
+	//Run Query
+	//pqxx::result res = txn.exec("demo_schema.pSelInsUpdContact(" + txn.quote(m_id) + ")");
+	//Process result
+	/*
+	for (auto row: res) {
+		m_forename.assign(row["forename"].c_str());
+		m_happiness.assign(row["happiness"].c_str());
+		m_creation_date.assign(row["created_date"].c_str());
+	}
+	*/
 }
 
 }
