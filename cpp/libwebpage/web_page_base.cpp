@@ -53,6 +53,13 @@ void WebPageBase::connectDB(const string & connection)
 // CGI and Database
 void WebPageBase::actionData(void)
 {
+	/*
+		1)	Parse the QueryString
+		2)	Get the Data from the Database / external service
+		3)	Amalgamate the Input parameters
+		4)	Run the command against database / external service
+		5)	Display the results
+	*/
 	try
 	{
 		// Action the CGI
