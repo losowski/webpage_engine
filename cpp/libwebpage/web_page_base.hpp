@@ -1,18 +1,14 @@
 #ifndef WEB_PAGE_BASE_HPP
 #define WEB_PAGE_BASE_HPP
 
+#include "web_page_base_cgi.hpp"
+
 #include "html_page.hpp"
 #include "html_element_factory.hpp"
 
+
 #include <tuple>
 #include <list>
-#include <map>
-
-//CGI
-#include "cgicc/CgiDefs.h"
-#include "cgicc/Cgicc.h"
-#include "cgicc/HTTPHTMLHeader.h"
-#include "cgicc/HTMLClasses.h"
 
 //Database
 #include <pqxx/pqxx>
@@ -27,7 +23,7 @@ typedef tuple< string, string, string > MenuItem;
 typedef tuple< string, string, string > AffiliateItem;
 
 
-class WebPageBase
+class WebPageBase : public WebPageBaseCGI
 {
 	public:
 		WebPageBase(const string & title);
@@ -35,8 +31,8 @@ class WebPageBase
 	public:
 		void connectDB(const string & connection);
 		virtual void actionDataSQL(void) = 0;
-		void parseCGI(void);
-		string getCGIEnvironment(const string & key);
+		//void parseCGI(void); // IN base class
+		//string getCGIEnvironment(const string & key);
 		virtual void actionDataCGI(void) = 0;
 		void actionData(void);
 		// Media
@@ -64,9 +60,6 @@ class WebPageBase
 		//call these base class functions to run
 		void buildWebsite(void);
 		void displayWebsite(void);
-	private:
-		void process_getCGIEnvironment(void);
-		void parse_getCGIEnvironment(const string & kvp);
 	protected:
 		// Building functions
 		void buildTopPanel(void);
@@ -84,8 +77,6 @@ class WebPageBase
 		string						m_javascript_path;
 		string						m_css_path;
 		HTMLPage					m_page;
-		cgicc::Cgicc *				m_cgi;
-		map < string, string >		m_cgi_environment;
 		pqxx::connection *			m_dbconnection;
 		// Top Menu
 		string						m_tm_header;

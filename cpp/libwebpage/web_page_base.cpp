@@ -13,20 +13,15 @@ namespace web {
 #define PAGE_CDN_IMAGE(image){ m_cdn + m_media_path + image}
 
 WebPageBase::WebPageBase(const string & title):
+		WebPageBaseCGI(),
 		m_cdn ("//localhost/"),
 		m_page ( title ),
-		m_cgi	(NULL),
 		m_dbconnection(NULL)
 {
 }
 
 WebPageBase::~WebPageBase(void)
 {
-	//Hopefully Clean the m_cgi object
-	if (this->m_cgi != NULL)
-	{
-		delete this->m_cgi;
-	}
 	//Hopefully Clean the m_dbconnection object
 	if (this->m_dbconnection != NULL)
 	{
@@ -55,59 +50,7 @@ void WebPageBase::connectDB(const string & connection)
 }
 
 
-void WebPageBase::parseCGI(void)
-{
-	try
-	{
-		//Get the CGI parameters
-		m_cgi = new cgicc::Cgicc;
-		//Process the query string
-		process_getCGIEnvironment();
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-		exit(EXIT_FAILURE);
-	}
-}
-
-void WebPageBase::parse_getCGIEnvironment(const string & kvp)
-{
-	// Iterate over elements in vector to get instances of "="
-	std::size_t found = kvp.find_first_of("=");
-	string key (kvp, 0, found);
-	string value (kvp, found +1, std::string::npos);
-	//Insert the value
-	m_cgi_environment[key] = value;	
-}
-
-string WebPageBase::getCGIEnvironment(const string & key)
-{
-	return m_cgi_environment[key];
-}
-
-void WebPageBase::process_getCGIEnvironment(void)
-{
-	// CGICC get the environment
-	string query = m_cgi->getEnvironment().getQueryString();
-	//Iterate over query to get all instances of "&"
-	std::size_t unfound = 0;
-	std::size_t found = query.find_first_of("&");
-	while (found != std::string::npos)
-	{
-		string kvp(query, unfound, found);
-		parse_getCGIEnvironment(kvp);
-		//Set unfound properly
-		unfound = found;
-		//Get next iteration
-		std::size_t found = query.find_first_of("&",found+1);
-	}
-	//Final round
-	string kvp(query, unfound, found);
-	parse_getCGIEnvironment(kvp);
-}
-
-// CGI
+// CGI and Database
 void WebPageBase::actionData(void)
 {
 	try
