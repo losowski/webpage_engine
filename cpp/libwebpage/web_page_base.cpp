@@ -55,10 +55,20 @@ void WebPageBase::actionData(void)
 {
 	/*
 		1)	Parse the QueryString
+			-	Primary Key
+			-	Action
+				- For forms this is a hidden input field
 		2)	Get the Data from the Database / external service
-		3)	Amalgamate the Input parameters
-		4)	Run the command against database / external service
-		5)	Display the results
+			-	Use the Primary key to decide what data to fetch
+			-	Action:
+				- UNSET	:	Only select data only
+				- Set	:	Perform action
+		3)	Run the command against database / external service
+			- Two stages
+			1)	UPDATE / INSERT / DELETE / NONE
+			2)	SELECT
+		4)	Display the results
+			-	Run the build program
 	*/
 	try
 	{
