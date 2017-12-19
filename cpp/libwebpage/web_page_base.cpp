@@ -58,21 +58,21 @@ void WebPageBase::actionData(void)
 			-	Primary Key
 			-	Action
 				- For forms this is a hidden input field
-		2)	Get the Data from the Database / external service
-			-	Use the Primary key to decide what data to fetch
-			-	Action:
-				- UNSET	:	Only select data only
-				- Set	:	Perform action
-		3)	Run the command against database / external service
-			- Two stages
-			1)	UPDATE / INSERT / DELETE / NONE
-			2)	SELECT
-		4)	Display the results
-			-	Run the build program
+		2) Identify key for action
+			UNSET	- Skip to step 4
+			SET		- Perform specified action (See step 3)
+		3) Perform the action
+			Database:	UPDATE / INSERT / DELETE / NONE
+		4) Get the data to display
+			Database:	SELECT
+		5) Display the data
+			- Build the webpage
 	*/
 	try
 	{
-		// Action the CGI
+		// Step 1: Processing the QueryString
+		// 	- Done as part of initialisation of m_cgi
+
 		if (m_cgi != NULL)
 		{
 			actionDataCGI();
@@ -80,7 +80,16 @@ void WebPageBase::actionData(void)
 		// Action the SQL
 		if (m_dbconnection != NULL)
 		{
-			actionDataSQL();
+			//Get a transaction
+			pqxx::work txn(*m_dbconnection);
+			// Step 2: Identify key for action
+			if (getCGIEnvironment("key").empty() == false)
+			{
+				 // Step 3: Perform the action
+				actionDataUpdateSQL(txn, getCGIEnvironment("key"));
+			}
+			// Step 4: Get the data to display
+			actionDataSelectSQL(txn);
 		}
 	}
 	catch (const pqxx::sql_error &e)

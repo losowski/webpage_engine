@@ -28,6 +28,7 @@ class WebPageBaseCGI
 		void process_getCGIEnvironment(void);
 		void parse_getCGIEnvironment(const string & kvp);
 	protected:
+		//CGI Objects
 		cgicc::Cgicc *				m_cgi;
 		map < string, string >		m_cgi_environment;
 };

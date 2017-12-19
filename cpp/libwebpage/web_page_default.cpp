@@ -46,9 +46,14 @@ void WebPageDefault::actionDataCGI(void)
 	}
 }
 
-void WebPageDefault::actionDataSQL (void)
+void WebPageDefault::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
 }
+
+void WebPageDefault::actionDataSelectSQL(pqxx::work & txn)
+{
+}
+
 
 
 }

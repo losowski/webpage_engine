@@ -73,12 +73,16 @@ void DemoPage::actionDataCGI(void)
 	m_id = getCGIEnvironment("id");
 }
 
-void DemoPage::actionDataSQL (void)
+
+void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
-	//Already Loaded the CGI
-	pqxx::work txn(*m_dbconnection); //Pointer
+
+}
+
+void DemoPage::actionDataSelectSQL (pqxx::work & txn)
+{
 	//Run Query
-	//pqxx::result res = txn.exec("demo_schema.pSelInsUpdContact(" + txn.quote(m_id) + ")");
+	pqxx::result res = txn.exec("demo_schema.pSelContact(" + txn.quote(m_id) + ")");
 	//Process result
 	/*
 	for (auto row: res) {
@@ -88,5 +92,7 @@ void DemoPage::actionDataSQL (void)
 	}
 	*/
 }
+
+
 
 }
