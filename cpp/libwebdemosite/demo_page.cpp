@@ -33,7 +33,7 @@ void DemoPage::buildMainMenu(void)
 	df->add_text_input("id", "id", m_id);
 	df->add_text_input("forename", "Forename", m_forename);
 	df->add_text_input("happiness", "Happiness Level", m_happiness);
-	df->add_text_input("creation_date", "Creation Date", m_creation_date);
+	df->add_text_input("creation_date", "Creation Date", m_created_date);
 	df->set_submit_name("Enter");
 }
 
@@ -67,7 +67,7 @@ void DemoPage::actionDataCGI(void)
 	}
 	if (itcreation_date != m_cgi->getElements().end() && itcreation_date->getValue().empty() == false)
 	{
-		m_creation_date = itcreation_date->getValue();
+		m_created_date = itcreation_date->getValue();
 	}
 	//Get QueryString
 	m_id = getCGIEnvironment("id");
@@ -76,7 +76,7 @@ void DemoPage::actionDataCGI(void)
 
 void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
-
+	pqxx::result res = txn.exec("demo_schema.pUpdContact(" + txn.quote(m_id) + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
 }
 
 void DemoPage::actionDataSelectSQL (pqxx::work & txn)
@@ -88,7 +88,7 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 	for (auto row: res) {
 		m_forename.assign(row["forename"].c_str());
 		m_happiness.assign(row["happiness"].c_str());
-		m_creation_date.assign(row["created_date"].c_str());
+		m_created_date.assign(row["created_date"].c_str());
 	}
 	*/
 }

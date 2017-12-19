@@ -94,12 +94,15 @@ void WebPageBase::actionData(void)
 	}
 	catch (const pqxx::sql_error &e)
 	{
+		//TODO: Add redirect to a static webpage to say "Technical Difficulties"
+		m_page.add_title("Whoops! Something went wrong:/");		//	std::cout << "Whoops! Something went wrong:/" << std::endl;
+		//Report what went wrong
 		std::cerr << "actionData SQL error: " << e.what() << std::endl;
 		std::cerr << "actionData Query was: " << e.query() << std::endl;
-		exit(EXIT_FAILURE);
 	}
 	catch (const std::exception &e)
 	{
+		//TODO: Add redirect to a static webpage - 404?
 		std::cerr << "actionData Error: " << e.what() << std::endl;
 		exit(EXIT_FAILURE);
 	}

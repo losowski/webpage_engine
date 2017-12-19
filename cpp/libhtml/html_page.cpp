@@ -72,15 +72,9 @@ string HTMLPage::get_page(void)
 }
 
 
-void HTMLPage::add_title(HTMLTitle & title)
+void HTMLPage::add_title(const string & title)
 {
-	m_html_title = title;
-}
-
-
-HTMLTitle & HTMLPage::get_title(void)
-{
-	return m_html_title;
+	m_html_title.set_title(title);
 }
 
 void HTMLPage::add_script(const string & url)

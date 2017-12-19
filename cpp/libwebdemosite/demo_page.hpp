@@ -22,7 +22,7 @@ class DemoPage : public web::WebPageBase
 		string				m_id;
 		string				m_forename;
 		string				m_happiness;
-		string				m_creation_date;
+		string				m_created_date;
 };
 }
 #endif //DEMO_PAGE_HPP

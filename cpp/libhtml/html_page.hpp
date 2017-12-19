@@ -30,8 +30,7 @@ class HTMLPage : public html::HTMLBodyBase
 		string get_page(void);
 	public:
 		/* Title */
-		void add_title(HTMLTitle & title);
-		HTMLTitle & get_title (void);
+		void add_title(const string & title);
 		/* Header */
 		void add_script(const string & url);
 		void add_style(const string & url);
