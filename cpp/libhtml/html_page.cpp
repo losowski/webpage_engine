@@ -73,12 +73,14 @@ string HTMLPage::get_page(void)
 
 void HTMLPage::clear_page(void)
 {
+	std::cerr << "Clearing page!" << std::endl;
 	//Destroy header objects
 	m_html_header_content.clear();
 	//Destroy body objects
 	m_html_body_content.clear();
 	//Clear the buffer
 	m_html.clear();
+	std::cerr << "Page cleared!" << std::endl;
 }
 
 
