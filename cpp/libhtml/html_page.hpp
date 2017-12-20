@@ -27,6 +27,7 @@ class HTMLPage : public html::HTMLBodyBase
 		~HTMLPage(void);
 	public:
 		void create_html(void);
+		void clear_page(void);
 		string get_page(void);
 	public:
 		/* Title */

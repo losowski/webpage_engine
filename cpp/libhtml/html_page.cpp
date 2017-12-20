@@ -71,6 +71,17 @@ string HTMLPage::get_page(void)
 	return m_html;
 }
 
+void HTMLPage::clear_page(void)
+{
+	//Destroy header objects
+	m_html_header_content.clear();
+	//Destroy body objects
+	m_html_body_content.clear();
+	//Clear the buffer
+	m_html.clear();
+}
+
+
 
 void HTMLPage::add_title(const string & title)
 {
