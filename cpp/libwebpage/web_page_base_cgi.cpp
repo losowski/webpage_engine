@@ -40,7 +40,7 @@ void WebPageBaseCGI::parse_getCGIEnvironment(const string & kvp)
 	// Iterate over elements in vector to get instances of "="
 	std::size_t found = kvp.find_first_of("=");
 	string key (kvp, 0, found);
-	string value (kvp, found +1, std::string::npos);
+	string value (kvp, found +1, (kvp.size()-found-1));
 	//Insert the value
 	m_cgi_environment[key] = value;
 }
@@ -62,12 +62,12 @@ void WebPageBaseCGI::process_getCGIEnvironment(void)
 		string kvp(query, unfound, found);
 		parse_getCGIEnvironment(kvp);
 		//Set unfound properly
-		unfound = found;
+		unfound = found+1;
 		//Get next iteration
-		std::size_t found = query.find_first_of("&",found+1);
+		found = query.find_first_of("&",found+2);
 	}
-	//Final round
-	string kvp(query, unfound, found);
+	//Final round - found == std::string::npos
+	string kvp(query, unfound, query.size()-unfound);
 	parse_getCGIEnvironment(kvp);
 }
 
