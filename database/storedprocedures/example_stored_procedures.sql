@@ -11,6 +11,8 @@ BEGIN
 		forename,
 		happiness,
 		created_date
+	INTO
+		v_rowdata
 	FROM
 		demo_schema.tContact
 	WHERE

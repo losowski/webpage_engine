@@ -74,24 +74,34 @@ void DemoPage::actionDataCGI(void)
 }
 
 
-void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
-{
-	pqxx::result res = txn.exec("demo_schema.pInsUpdContact(" + txn.quote(m_id) + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
-}
 
 void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 {
 	//Run Query
-	pqxx::result res = txn.exec("demo_schema.pSelContact(" + txn.quote(m_id) + ")");
-	//Process result
+	pqxx::result res = txn.prepared("SELECT demo_schema.pSelContact")(m_id).exec();// exec("demo_schema.pSelContact(" + txn.quote(m_id) + ")");
+	if (false == res.empty())
+	{
+		//Process result
+		for (pqxx::result::size_type it = 0; it != res.capacity(); ++it)
+		{
+			pqxx::result::tuple row = res[it];
+			m_forename.assign(row["forename"].c_str());
+			m_happiness.assign(row["happiness"].c_str());
+			m_created_date.assign(row["created_date"].c_str());
+		}
+	}
+}
+
+void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
+{
+	//pqxx::result res = txn.exec("demo_schema.pInsUpdContact(" + txn.quote(m_id) + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
 	/*
-	for (auto row: res) {
-		m_forename.assign(row["forename"].c_str());
-		m_happiness.assign(row["happiness"].c_str());
-		m_created_date.assign(row["created_date"].c_str());
+	if (0 == res.affected_rows())
+	{
 	}
 	*/
 }
+
 
 
 

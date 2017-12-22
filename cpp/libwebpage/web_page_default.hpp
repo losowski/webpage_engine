@@ -15,8 +15,8 @@ class WebPageDefault : public web::WebPageBase
 		~WebPageDefault(void);
 	public:
 		void actionDataCGI(void);
-		void actionDataUpdateSQL (pqxx::work & txn, const string & key);
 		void actionDataSelectSQL(pqxx::work & txn);
+		void actionDataUpdateSQL (pqxx::work & txn, const string & key);
 		void buildMainMenu(void);
 	public:
 		string		m_text;

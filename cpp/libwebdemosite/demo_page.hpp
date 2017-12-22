@@ -15,8 +15,8 @@ class DemoPage : public web::WebPageBase
 		~DemoPage(void);
 	public:
 		void actionDataCGI(void);
-		void actionDataUpdateSQL (pqxx::work & txn, const string & key);
 		void actionDataSelectSQL(pqxx::work & txn);
+		void actionDataUpdateSQL (pqxx::work & txn, const string & key);
 		void buildMainMenu(void);
 	private:
 		string				m_id;

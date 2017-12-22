@@ -30,8 +30,8 @@ class WebPageBase : public WebPageBaseCGI
 		~WebPageBase(void);
 	public:
 		void connectDB(const string & connection);
-		virtual void actionDataUpdateSQL(pqxx::work & txn, const string & key) = 0;
 		virtual void actionDataSelectSQL(pqxx::work & txn) = 0;
+		virtual void actionDataUpdateSQL(pqxx::work & txn, const string & key) = 0;
 		//void parseCGI(void); // IN base class
 		//string getCGIEnvironment(const string & key);
 		virtual void actionDataCGI(void) = 0;
