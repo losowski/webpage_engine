@@ -77,18 +77,24 @@ void DemoPage::actionDataCGI(void)
 
 void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 {
-	//Run Query
-	pqxx::result res = txn.prepared("SELECT demo_schema.pSelContact")(m_id).exec();// exec("demo_schema.pSelContact(" + txn.quote(m_id) + ")");
-	if (false == res.empty())
+	//Run Query - Must be a traditional SQL statement and not a stored procedure. 
+	//		Those return a tuple for the ROW (1 column of concatenated strings) - incompatible
+	//TODO: Perhaps a stored procedure here
+	pqxx::result res = txn.exec("SELECT \
+		id, \
+		forename, \
+		happiness, \
+		created_date \
+	FROM \
+		demo_schema.tContact \
+	WHERE \
+		id = " + txn.quote(m_id) + ";");
+	//for (pqxx::result::const_iterator row = res.begin(); row != res.end(); ++row) //Maybe try this out?
+	for (pqxx::result::size_type i = 0; i != res.size(); ++i)
 	{
-		//Process result
-		for (pqxx::result::size_type it = 0; it != res.capacity(); ++it)
-		{
-			pqxx::result::tuple row = res[it];
-			m_forename.assign(row["forename"].c_str());
-			m_happiness.assign(row["happiness"].c_str());
-			m_created_date.assign(row["created_date"].c_str());
-		}
+			m_forename.assign(res[i]["forename"].c_str());
+			m_happiness.assign(res[i]["happiness"].c_str());
+			m_created_date.assign(res[i]["created_date"].c_str());
 	}
 }
 
