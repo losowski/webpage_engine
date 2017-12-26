@@ -30,6 +30,8 @@ void DemoPage::buildMainMenu(void)
 	HTMLBodyBasePtr demo = m_page.add_div("demo-layout");
 	//MENU
 	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "demopage.cgi");
+	HTMLFormInputPtr key = df->add_text_input("key", "key", m_id);
+	key->setHidden();
 	df->add_text_input("id", "id", m_id);
 	df->add_text_input("forename", "Forename", m_forename);
 	df->add_text_input("happiness", "Happiness Level", m_happiness);

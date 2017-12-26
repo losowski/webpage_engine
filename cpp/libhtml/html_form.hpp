@@ -34,12 +34,12 @@ class HTMLForm : public html::HTMLBodyElement
 		//Internal functions
 		void set_method(const HTMLFormInputMethod & method);
 		// Text Type Input
-		void add_text_input(const string & field_name, const string & label, const string & value = "");
-		void add_password_input(const string & field_name, const string & label);
+		HTMLFormInputPtr add_text_input(const string & field_name, const string & label, const string & value = "");
+		HTMLFormInputPtr add_password_input(const string & field_name, const string & label);
 		HTMLFormInputMenuPtr add_menu_input(const string & field_name, const string & label);
 		// Tick Box Type input
 		//void add_checkbox_input(const string & field_name, const string & label, const string & value);
-		void add_radio_input(const string & field_name, const string & label, const string & value);
+		HTMLFormInputPtr add_radio_input(const string & field_name, const string & label, const string & value);
 		//Button Type Input
 		void set_submit_name(const string & button_name);
 		//void add_button_input(const string & field_name, const string & label, const string & value);

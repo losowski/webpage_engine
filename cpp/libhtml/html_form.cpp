@@ -63,16 +63,18 @@ void HTMLForm::set_method(const HTMLFormInputMethod & method)
 }
 
 //Text Type Inputs
-void HTMLForm::add_text_input(const string & field_name, const string & label, const string & value)
+HTMLFormInputPtr HTMLForm::add_text_input(const string & field_name, const string & label, const string & value)
 {
 	HTMLFormInputPtr input_field ( new form::HTMLFormInputText(field_name, label, value));
 	m_html_input.push_back(input_field);
+	return input_field;
 }
 
-void HTMLForm::add_password_input(const string & field_name, const string & label)
+HTMLFormInputPtr HTMLForm::add_password_input(const string & field_name, const string & label)
 {
 	HTMLFormInputPtr input_field ( new form::HTMLFormInputPassword(field_name, label));
 	m_html_input.push_back(input_field);
+	return input_field;
 }
 
 HTMLFormInputMenuPtr HTMLForm::add_menu_input(const string & field_name, const string & label)
@@ -83,10 +85,11 @@ HTMLFormInputMenuPtr HTMLForm::add_menu_input(const string & field_name, const s
 }
 
 //Check Box Type Inputs
-void HTMLForm::add_radio_input(const string & field_name, const string & label, const string & value)
+HTMLFormInputPtr HTMLForm::add_radio_input(const string & field_name, const string & label, const string & value)
 {
 	HTMLFormInputPtr input_field ( new form::HTMLFormInputRadio(field_name, label, value));
 	m_html_input.push_back(input_field);
+	return input_field;
 }
 
 //Button Type Inputs

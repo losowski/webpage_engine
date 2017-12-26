@@ -19,7 +19,7 @@ HTMLFormInputText::~HTMLFormInputText()
 void HTMLFormInputText::create_form_input(void)
 {
 	create_label();
-	m_html_form_input += "<input class=\"" + m_field_name + "\" type=\"" + m_type + "\" name=\"" + m_field_name + "\" value=\"" + m_value + "\">\n";
+	m_html_form_input += "<input class=\"" + m_field_name + "\" type=\"" + m_type + "\" name=\"" + m_field_name + "\" value=\"" + m_value + "\"" + getAttributes() + ">\n";
 	m_html_form_input += "</input>\n";
 }
 
