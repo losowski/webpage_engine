@@ -55,13 +55,23 @@ void DemoPage::actionDataCGI(void)
 	cgicc::form_iterator ithappiness = m_cgi->getElement("happiness");
 	cgicc::form_iterator itcreation_date = m_cgi->getElement("creation_date");
 	// -- Setting the values
+
 	if (itid != m_cgi->getElements().end() && itid->getValue().empty() == false)
 	{
 		m_id = itid->getValue();
+		std::cerr << "We have a ID value for the form" << std::endl;
+	}
+	if ((false == getCGIEnvironment("id").empty()) && (true == m_id.empty()))
+	{
+		//Get QueryString
+		m_id = getCGIEnvironment("id");
+		std::cerr << "We have a PAGE ID " << std::endl;
 	}
 	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
 	{
+		std::cerr << "BEFORE FORM NAME:" << m_forename << std::endl;
 		m_forename = itforename->getValue();
+		std::cerr << "FORM NAME:" << m_forename << std::endl;
 	}
 	if (ithappiness != m_cgi->getElements().end() && ithappiness->getValue().empty() == false)
 	{
@@ -71,15 +81,14 @@ void DemoPage::actionDataCGI(void)
 	{
 		m_created_date = itcreation_date->getValue();
 	}
-	//Get QueryString
-	m_id = getCGIEnvironment("id");
+
 }
 
 
 
 void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 {
-	//Run Query - Must be a traditional SQL statement and not a stored procedure. 
+	//Run Query - Must be a traditional SQL statement and not a stored procedure.
 	//		Those return a tuple for the ROW (1 column of concatenated strings) - incompatible
 	//TODO: Perhaps a stored procedure here
 	pqxx::result res = txn.exec("SELECT \
@@ -94,10 +103,20 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 	//for (pqxx::result::const_iterator row = res.begin(); row != res.end(); ++row) //Maybe try this out?
 	for (pqxx::result::size_type i = 0; i != res.size(); ++i)
 	{
+		if (true == m_forename.empty())
+		{
 			m_forename.assign(res[i]["forename"].c_str());
+		}
+		if (true == m_happiness.empty())
+		{
 			m_happiness.assign(res[i]["happiness"].c_str());
+		}
+		if (true == m_created_date.empty())
+		{
 			m_created_date.assign(res[i]["created_date"].c_str());
+		}
 	}
+	std::cerr << "FORM NAME SQL:" << m_forename << std::endl;
 }
 
 void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
