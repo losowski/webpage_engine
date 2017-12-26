@@ -26,8 +26,6 @@ $$ LANGUAGE plpgsql;
 
 
 
-
-
 -- Update-Insert
 CREATE OR REPLACE FUNCTION demo_schema.pInsUpdContact(
 	p_id					demo_schema.tcontact.id%TYPE,
@@ -42,7 +40,9 @@ DECLARE
 	v_created_date			demo_schema.tcontact.created_date%TYPE;
 BEGIN
 	BEGIN
-	-- Get current Data and lock it
+		-- Set v_id
+		v_id := p_id;
+		-- Get current Data and lock it
 		SELECT
 			COALESCE(p_forename, forename),
 			COALESCE(p_happiness, happiness),
@@ -57,23 +57,27 @@ BEGIN
 			id = p_id
 		FOR UPDATE
 		;
-	-- Set v_id
-		v_id := p_id;
-	-- Compare values
-	IF v_forename != p_forename OR
-		v_happiness != p_happiness OR
-		v_created_date != p_created_date THEN
+		-- Compare values for each entry
+		IF v_forename != p_forename AND p_forename IS NOT NULL THEN
+			v_forename := p_forename;
+		END IF;
+		IF v_happiness != p_happiness AND p_happiness IS NOT NULL THEN
+			v_happiness := p_happiness;
+		END IF;
+		IF v_created_date != p_created_date AND p_created_date IS NOT NULL THEN
+			v_created_date := p_created_date;
+		END IF;
+
 		-- Update data
-			UPDATE
-				demo_schema.tContact
-			SET
-					forename = v_forename,
-					happiness = v_happiness,
-					created_date = v_created_date
-			WHERE
-				id = p_id
-			;
-	END IF;
+		UPDATE
+			demo_schema.tContact
+		SET
+				forename = v_forename,
+				happiness = v_happiness,
+				created_date = v_created_date
+		WHERE
+			id = v_id
+		;
 	EXCEPTION
 		WHEN no_data_found THEN
 			-- Insert data
@@ -99,10 +103,10 @@ BEGIN
 			FROM
 				LASTVAL()
 			;
-	END;
+	END; -- Exception
 
 	-- Return ID
-	RETURN p_id;
+	RETURN v_id;
 END;
 $$ LANGUAGE plpgsql;
 
