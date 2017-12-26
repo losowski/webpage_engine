@@ -30,7 +30,7 @@ void DemoPage::buildMainMenu(void)
 	HTMLBodyBasePtr demo = m_page.add_div("demo-layout");
 	//MENU
 	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "demopage.cgi");
-	HTMLFormInputPtr key = df->add_text_input("key", "key", m_id);
+	HTMLFormInputPtr key = df->add_text_input("key", "key", "update");
 	key->setHidden();
 	df->add_text_input("id", "id", m_id);
 	df->add_text_input("forename", "Forename", m_forename);
@@ -55,11 +55,11 @@ void DemoPage::actionDataCGI(void)
 	cgicc::form_iterator ithappiness = m_cgi->getElement("happiness");
 	cgicc::form_iterator itcreation_date = m_cgi->getElement("creation_date");
 	// -- Setting the values
-
-	if (itid != m_cgi->getElements().end() && itid->getValue().empty() == false)
+	if ((false == getCGIEnvironment("key").empty()) && (true == m_id.empty()))
 	{
-		m_id = itid->getValue();
-		std::cerr << "We have a ID value for the form" << std::endl;
+		//Get QueryString
+		string action = getCGIEnvironment("key");
+		std::cerr << "We have a PAGE ID " <<  action << std::endl;
 	}
 	if ((false == getCGIEnvironment("id").empty()) && (true == m_id.empty()))
 	{
@@ -67,6 +67,14 @@ void DemoPage::actionDataCGI(void)
 		m_id = getCGIEnvironment("id");
 		std::cerr << "We have a PAGE ID " << std::endl;
 	}
+
+
+	if (itid != m_cgi->getElements().end() && itid->getValue().empty() == false)
+	{
+		m_id = itid->getValue();
+		std::cerr << "We have a ID value for the form" << std::endl;
+	}
+
 	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
 	{
 		std::cerr << "BEFORE FORM NAME:" << m_forename << std::endl;
