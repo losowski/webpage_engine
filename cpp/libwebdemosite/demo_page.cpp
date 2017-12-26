@@ -128,7 +128,7 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
 	std::cerr << "Key = " << key << std::endl;
-	pqxx::result res = txn.exec("demo_schema.pInsUpdContact(" + txn.quote(m_id) + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
+	pqxx::result res = txn.exec("SELECT demo_schema.pInsUpdContact(" + txn.quote(m_id) + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
 	if (0 == res.affected_rows())
 	{
 		std::cerr << "Stuff changed" << std::endl;
