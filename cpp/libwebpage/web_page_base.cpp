@@ -83,7 +83,8 @@ void WebPageBase::actionData(void)
 			//Get a transaction
 			pqxx::work txn(*m_dbconnection);
 			// Step 2: Identify key for action
-			if (getCGIEnvironment("key").empty() == false)
+			// FIXME: This needs to take into account the form input to deliver a true KEY value.
+			if (false == m_cgikey.empty())
 			{
 				 // Step 3: Perform the action
 				actionDataUpdateSQL(txn, getCGIEnvironment("key"));

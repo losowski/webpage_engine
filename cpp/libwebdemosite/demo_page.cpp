@@ -50,17 +50,12 @@ void DemoPage::actionDataCGI(void)
 	//Get Form
 	m_cgi->getElement("demoform");
 	// -- Iterators
+	cgicc::form_iterator itkey = m_cgi->getElement("key");
 	cgicc::form_iterator itid = m_cgi->getElement("id");
 	cgicc::form_iterator itforename = m_cgi->getElement("forename");
 	cgicc::form_iterator ithappiness = m_cgi->getElement("happiness");
 	cgicc::form_iterator itcreation_date = m_cgi->getElement("creation_date");
 	// -- Setting the values
-	if ((false == getCGIEnvironment("key").empty()) && (true == m_id.empty()))
-	{
-		//Get QueryString
-		string action = getCGIEnvironment("key");
-		std::cerr << "We have a PAGE ID " <<  action << std::endl;
-	}
 	if ((false == getCGIEnvironment("id").empty()) && (true == m_id.empty()))
 	{
 		//Get QueryString
@@ -68,13 +63,16 @@ void DemoPage::actionDataCGI(void)
 		std::cerr << "We have a PAGE ID " << std::endl;
 	}
 
-
+	if (itkey != m_cgi->getElements().end() && itkey->getValue().empty() == false)
+	{
+		m_cgikey = itkey->getValue();
+		std::cerr << "We have a KEY value for the form" << std::endl;
+	}
 	if (itid != m_cgi->getElements().end() && itid->getValue().empty() == false)
 	{
 		m_id = itid->getValue();
 		std::cerr << "We have a ID value for the form" << std::endl;
 	}
-
 	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
 	{
 		std::cerr << "BEFORE FORM NAME:" << m_forename << std::endl;
@@ -135,6 +133,7 @@ void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 	{
 		std::cerr << "Stuff changed" << std::endl;
 	}
+	txn.commit();
 }
 
 
