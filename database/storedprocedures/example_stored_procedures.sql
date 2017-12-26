@@ -60,7 +60,7 @@ BEGIN
 	-- Set v_id
 		v_id := p_id;
 	-- Compare values
-	IF v_forname != p_forename OR
+	IF v_forename != p_forename OR
 		v_happiness != p_happiness OR
 		v_created_date != p_created_date THEN
 		-- Update data
