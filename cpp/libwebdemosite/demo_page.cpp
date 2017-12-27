@@ -33,7 +33,7 @@ void DemoPage::buildMainMenu(void)
 	HTMLFormInputPtr key = df->add_text_input("key", "key", "update");
 	key->setHidden();
 	HTMLFormInputPtr id = df->add_text_input("id", "id", m_id);
-	id->setDisabled();
+	id->setHidden();
 	df->add_text_input("forename", "Forename", m_forename);
 	df->add_text_input("happiness", "Happiness Level", m_happiness);
 	df->add_text_input("creation_date", "Creation Date", m_created_date);
@@ -56,23 +56,27 @@ void DemoPage::actionDataCGI(void)
 	cgicc::form_iterator itforename = m_cgi->getElement("forename");
 	cgicc::form_iterator ithappiness = m_cgi->getElement("happiness");
 	cgicc::form_iterator itcreation_date = m_cgi->getElement("creation_date");
-	// -- Setting the values
-	if ((false == getCGIEnvironment("id").empty()) && (true == m_id.empty()))
-	{
-		//Get QueryString
-		m_id = getCGIEnvironment("id");
-		std::cerr << "We have a PAGE ID " << std::endl;
-	}
-
+	// -- Setting the Key
+	std::cerr << "Getting Key" << std::endl;
 	if (itkey != m_cgi->getElements().end() && itkey->getValue().empty() == false)
 	{
 		m_cgikey = itkey->getValue();
-		std::cerr << "We have a KEY value for the form" << std::endl;
+		std::cerr << "We have a KEY value for the form:" << m_cgikey << std::endl;
 	}
-	if (itid != m_cgi->getElements().end() && itid->getValue().empty() == false)
+	// -- Setting the values
+	std::cerr << "Getting Values" << std::endl;
+
+	if (itid != m_cgi->getElements().end()) //&& (itid->getValue().empty() == false))
 	{
 		m_id = itid->getValue();
-		std::cerr << "We have a ID value for the form" << std::endl;
+		std::cerr << "We have a ID value for the form:" << m_id << "." << std::endl;
+	}
+	if (true == m_id.empty())
+	{
+		std::cerr << "We really need an ID value!" << m_id << "." << std::endl;
+		//Get QueryString
+		m_id = getCGIEnvironment("id");
+		std::cerr << "We have a PAGE ID:" << m_id << "." << std::endl;
 	}
 	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
 	{
@@ -88,7 +92,7 @@ void DemoPage::actionDataCGI(void)
 	{
 		m_created_date = itcreation_date->getValue();
 	}
-
+	std::cerr << "ID at end of actionDataCGI:" << m_id << std::endl;
 }
 
 
@@ -134,6 +138,7 @@ void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 	{
 		std::cerr << "Stuff changed" << std::endl;
 	}
+	std::cerr << "Commit" << std::endl;
 	txn.commit();
 }
 
