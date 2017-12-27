@@ -57,32 +57,23 @@ void DemoPage::actionDataCGI(void)
 	cgicc::form_iterator ithappiness = m_cgi->getElement("happiness");
 	cgicc::form_iterator itcreation_date = m_cgi->getElement("creation_date");
 	// -- Setting the Key
-	std::cerr << "Getting Key" << std::endl;
 	if (itkey != m_cgi->getElements().end() && itkey->getValue().empty() == false)
 	{
 		m_cgikey = itkey->getValue();
-		std::cerr << "We have a KEY value for the form:" << m_cgikey << std::endl;
 	}
 	// -- Setting the values
-	std::cerr << "Getting Values" << std::endl;
-
 	if (itid != m_cgi->getElements().end()) //&& (itid->getValue().empty() == false))
 	{
 		m_id = itid->getValue();
-		std::cerr << "We have a ID value for the form:" << m_id << "." << std::endl;
 	}
 	if (true == m_id.empty())
 	{
-		std::cerr << "We really need an ID value!" << m_id << "." << std::endl;
 		//Get QueryString
 		m_id = getCGIEnvironment("id");
-		std::cerr << "We have a PAGE ID:" << m_id << "." << std::endl;
 	}
 	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
 	{
-		std::cerr << "BEFORE FORM NAME:" << m_forename << std::endl;
 		m_forename = itforename->getValue();
-		std::cerr << "FORM NAME:" << m_forename << std::endl;
 	}
 	if (ithappiness != m_cgi->getElements().end() && ithappiness->getValue().empty() == false)
 	{
@@ -92,7 +83,6 @@ void DemoPage::actionDataCGI(void)
 	{
 		m_created_date = itcreation_date->getValue();
 	}
-	std::cerr << "ID at end of actionDataCGI:" << m_id << std::endl;
 }
 
 
@@ -132,17 +122,8 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 
 void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
-	std::cerr << "Key = " << key << std::endl;
 	pqxx::result res = txn.exec("SELECT demo_schema.pInsUpdContact(" + txn.quote(m_id) + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
-	if (0 == res.affected_rows())
-	{
-		std::cerr << "Stuff changed" << std::endl;
-	}
-	std::cerr << "Commit" << std::endl;
 	//txn.commit(); //Apparently unneeded as stored procedures are automatically transactional
 }
-
-
-
 
 }
