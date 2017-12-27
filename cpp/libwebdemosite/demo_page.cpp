@@ -139,7 +139,7 @@ void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 		std::cerr << "Stuff changed" << std::endl;
 	}
 	std::cerr << "Commit" << std::endl;
-	txn.commit();
+	//txn.commit(); //Apparently unneeded as stored procedures are automatically transactional
 }
 
 
