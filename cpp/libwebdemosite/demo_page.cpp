@@ -32,7 +32,8 @@ void DemoPage::buildMainMenu(void)
 	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "demopage.cgi");
 	HTMLFormInputPtr key = df->add_text_input("key", "key", "update");
 	key->setHidden();
-	df->add_text_input("id", "id", m_id);
+	HTMLFormInputPtr id = df->add_text_input("id", "id", m_id);
+	id->setDisabled();
 	df->add_text_input("forename", "Forename", m_forename);
 	df->add_text_input("happiness", "Happiness Level", m_happiness);
 	df->add_text_input("creation_date", "Creation Date", m_created_date);
