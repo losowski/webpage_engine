@@ -87,7 +87,7 @@ void WebPageBase::actionData(void)
 			if (false == m_cgikey.empty())
 			{
 				 // Step 3: Perform the action
-				actionDataUpdateSQL(txn, getCGIEnvironment("key"));
+				actionDataUpdateSQL(txn, m_cgikey);
 			}
 			// Step 4: Get the data to display
 			actionDataSelectSQL(txn);
