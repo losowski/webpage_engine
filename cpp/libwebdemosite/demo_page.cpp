@@ -128,7 +128,7 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 
 void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
-	std::cerr << "UPDATE ID: " << m_id << std::endl;
+	std::cerr << "UPDATE SQL START ID: " << m_id << std::endl;
 	pqxx::result res = txn.exec("SELECT demo_schema.pInsUpdContact(" + m_id + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
 	for (pqxx::result::size_type i = 0; i != res.size(); ++i)
 	{
@@ -138,8 +138,8 @@ void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 			PrimaryKeySet();
 		}
 	}
-	std::cerr << "UPDATE ID: " << m_id << std::endl;
-	//txn.commit(); //Apparently unneeded as stored procedures are automatically transactional
+	std::cerr << "UPDATE SQ: END ID: " << m_id << std::endl;
+	txn.commit();
 }
 
 }
