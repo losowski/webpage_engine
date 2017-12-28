@@ -12,7 +12,8 @@ using namespace cgicc;
 namespace web {
 
 DemoPage::DemoPage(const string & title):
-		web::WebPageBase ( title )
+		web::WebPageBase ( title ),
+		m_id ("NULL")
 {
 
 }
@@ -60,6 +61,7 @@ void DemoPage::actionDataCGI(void)
 	if (itkey != m_cgi->getElements().end() && itkey->getValue().empty() == false)
 	{
 		m_cgikey = itkey->getValue();
+		std::cerr << "CGI KEY ID: " << m_id << std::endl;
 	}
 	// -- Setting the values
 	if (itid != m_cgi->getElements().end()) //&& (itid->getValue().empty() == false))
@@ -71,9 +73,7 @@ void DemoPage::actionDataCGI(void)
 	{
 		//Get QueryString
 		m_id = getCGIEnvironment("id");
-		PrimaryKeySet();
 	}
-	std::cerr << "ID: " << m_id << std::endl;
 	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
 	{
 		m_forename = itforename->getValue();
@@ -86,7 +86,7 @@ void DemoPage::actionDataCGI(void)
 	{
 		m_created_date = itcreation_date->getValue();
 	}
-	std::cerr << "Forename: " << m_forename << std::endl;
+	std::cerr << "ID: " << m_id << std::endl;
 }
 
 
@@ -96,6 +96,7 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 	//Run Query - Must be a traditional SQL statement and not a stored procedure.
 	//		Those return a tuple for the ROW (1 column of concatenated strings) - incompatible
 	//TODO: Perhaps a stored procedure here
+	std::cerr << "SELECT ID: " << m_id << std::endl;
 	pqxx::result res = txn.exec("SELECT \
 		id, \
 		forename, \
@@ -121,12 +122,21 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 			m_created_date.assign(res[i]["created_date"].c_str());
 		}
 	}
-	std::cerr << "FORM NAME SQL:" << m_forename << std::endl;
 }
 
 void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
-	pqxx::result res = txn.exec("SELECT demo_schema.pInsUpdContact(" + txn.quote(m_id) + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
+	std::cerr << "UPDATE ID: " << m_id << std::endl;
+	pqxx::result res = txn.exec("SELECT demo_schema.pInsUpdContact(" + m_id + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
+	for (pqxx::result::size_type i = 0; i != res.size(); ++i)
+	{
+		if (true == m_id.empty())
+		{
+			m_id.assign(res[i]["id"].c_str());
+			PrimaryKeySet();
+		}
+	}
+	std::cerr << "UPDATE ID: " << m_id << std::endl;
 	//txn.commit(); //Apparently unneeded as stored procedures are automatically transactional
 }
 

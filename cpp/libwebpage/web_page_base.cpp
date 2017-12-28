@@ -85,18 +85,18 @@ void WebPageBase::actionData(void)
 		// Action the SQL
 		if (m_dbconnection != NULL)
 		{
-			//Check the Primary Key is set
-			if (false == m_has_primary_key)
+			//Get a transaction
+			pqxx::work txn(*m_dbconnection);
+			// Step 2: Identify key for action
+			// FIXME: This needs to take into account the form input to deliver a true KEY value.
+			if (false == m_cgikey.empty())
 			{
-				//Get a transaction
-				pqxx::work txn(*m_dbconnection);
-				// Step 2: Identify key for action
-				// FIXME: This needs to take into account the form input to deliver a true KEY value.
-				if (false == m_cgikey.empty())
-				{
-					 // Step 3: Perform the action
-					actionDataUpdateSQL(txn, m_cgikey);
-				}
+				 // Step 3: Perform the action
+				actionDataUpdateSQL(txn, m_cgikey);
+			}
+			//Check the Primary Key is set
+			if (true == m_has_primary_key)
+			{
 				// Step 4: Get the data to display
 				actionDataSelectSQL(txn);
 			}
