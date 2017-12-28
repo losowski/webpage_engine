@@ -61,7 +61,6 @@ void DemoPage::actionDataCGI(void)
 	if (itkey != m_cgi->getElements().end() && itkey->getValue().empty() == false)
 	{
 		m_cgikey = itkey->getValue();
-		std::cerr << "CGI KEY ID: " << m_cgikey << std::endl;
 	}
 	// -- Setting the values
 	if (itid != m_cgi->getElements().end()) //&& (itid->getValue().empty() == false))
@@ -86,7 +85,6 @@ void DemoPage::actionDataCGI(void)
 	{
 		m_created_date = itcreation_date->getValue();
 	}
-	std::cerr << "ID: " << m_id << std::endl;
 }
 
 
@@ -96,8 +94,6 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 	//Run Query - Must be a traditional SQL statement and not a stored procedure.
 	//		Those return a tuple for the ROW (1 column of concatenated strings) - incompatible
 	//TODO: Perhaps a stored procedure here
-	std::cerr << "SELECT ID: " << m_id << std::endl;
-	std::cerr << "SELECT START FORENAME: " << m_forename << std::endl;
 	pqxx::result res = txn.exec("SELECT \
 		id, \
 		forename, \
@@ -123,12 +119,10 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 			m_created_date.assign(res[i]["created_date"].c_str());
 		}
 	}
-	std::cerr << "SELECT END FORENAME: " << m_forename << std::endl;
 }
 
 void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
-	std::cerr << "UPDATE SQL START ID: " << m_id << std::endl;
 	pqxx::result res = txn.exec("SELECT demo_schema.pInsUpdContact(" + m_id + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
 	for (pqxx::result::size_type i = 0; i != res.size(); ++i)
 	{
@@ -136,10 +130,8 @@ void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 		{
 			m_id.assign(res[i]["pInsUpdContact"].c_str());
 			PrimaryKeySet();
-			std::cerr << "UPDATE SQ: SETTING ID: " << m_id << std::endl;
 		}
 	}
-	std::cerr << "UPDATE SQ: END ID: " << m_id << std::endl;
 	txn.commit();
 }
 
