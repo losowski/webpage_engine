@@ -28,10 +28,10 @@ $$ LANGUAGE plpgsql;
 
 -- Update-Insert
 CREATE OR REPLACE FUNCTION demo_schema.pInsUpdContact(
-	p_id					demo_schema.tcontact.id%TYPE,
-	p_forename				demo_schema.tcontact.forename%TYPE default NULL,
-	p_happiness				demo_schema.tcontact.happiness%TYPE default NULL,
-	p_created_date			demo_schema.tcontact.created_date%TYPE default NULL
+	IN	p_id					demo_schema.tcontact.id%TYPE default NULL,
+	IN	p_forename				demo_schema.tcontact.forename%TYPE default NULL,
+	IN	p_happiness				demo_schema.tcontact.happiness%TYPE default NULL,
+	IN	p_created_date			demo_schema.tcontact.created_date%TYPE default NULL
 	) RETURNS bigint AS $$
 DECLARE
 	v_id					demo_schema.tcontact.id%TYPE := NULL;
@@ -107,7 +107,9 @@ BEGIN
 	-- Return ID
 	RETURN v_id;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql
+CALLED ON NULL INPUT
+;
 
 
 
