@@ -61,7 +61,7 @@ void DemoPage::actionDataCGI(void)
 	if (itkey != m_cgi->getElements().end() && itkey->getValue().empty() == false)
 	{
 		m_cgikey = itkey->getValue();
-		std::cerr << "CGI KEY ID: " << m_id << std::endl;
+		std::cerr << "CGI KEY ID: " << m_cgikey << std::endl;
 	}
 	// -- Setting the values
 	if (itid != m_cgi->getElements().end()) //&& (itid->getValue().empty() == false))
@@ -97,6 +97,7 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 	//		Those return a tuple for the ROW (1 column of concatenated strings) - incompatible
 	//TODO: Perhaps a stored procedure here
 	std::cerr << "SELECT ID: " << m_id << std::endl;
+	std::cerr << "SELECT START FORENAME: " << m_forename << std::endl;
 	pqxx::result res = txn.exec("SELECT \
 		id, \
 		forename, \
@@ -122,6 +123,7 @@ void DemoPage::actionDataSelectSQL (pqxx::work & txn)
 			m_created_date.assign(res[i]["created_date"].c_str());
 		}
 	}
+	std::cerr << "SELECT END FORENAME: " << m_forename << std::endl;
 }
 
 void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
