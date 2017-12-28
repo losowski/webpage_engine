@@ -65,12 +65,15 @@ void DemoPage::actionDataCGI(void)
 	if (itid != m_cgi->getElements().end()) //&& (itid->getValue().empty() == false))
 	{
 		m_id = itid->getValue();
+		PrimaryKeySet();
 	}
 	if (true == m_id.empty())
 	{
 		//Get QueryString
 		m_id = getCGIEnvironment("id");
+		PrimaryKeySet();
 	}
+	std::cerr << "ID: " << m_id << std::endl;
 	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
 	{
 		m_forename = itforename->getValue();
@@ -83,6 +86,7 @@ void DemoPage::actionDataCGI(void)
 	{
 		m_created_date = itcreation_date->getValue();
 	}
+	std::cerr << "Forename: " << m_forename << std::endl;
 }
 
 

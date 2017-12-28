@@ -14,6 +14,7 @@ namespace web {
 
 WebPageBase::WebPageBase(const string & title):
 		WebPageBaseCGI(),
+		m_has_primary_key(false),
 		m_cdn ("//localhost/"),
 		m_page ( title ),
 		m_dbconnection(NULL)
@@ -49,6 +50,10 @@ void WebPageBase::connectDB(const string & connection)
 	}
 }
 
+void WebPageBase::PrimaryKeySet(void)
+{
+	m_has_primary_key = true;
+}
 
 // CGI and Database
 void WebPageBase::actionData(void)
@@ -80,17 +85,21 @@ void WebPageBase::actionData(void)
 		// Action the SQL
 		if (m_dbconnection != NULL)
 		{
-			//Get a transaction
-			pqxx::work txn(*m_dbconnection);
-			// Step 2: Identify key for action
-			// FIXME: This needs to take into account the form input to deliver a true KEY value.
-			if (false == m_cgikey.empty())
+			//Check the Primary Key is set
+			if (false == m_has_primary_key)
 			{
-				 // Step 3: Perform the action
-				actionDataUpdateSQL(txn, m_cgikey);
+				//Get a transaction
+				pqxx::work txn(*m_dbconnection);
+				// Step 2: Identify key for action
+				// FIXME: This needs to take into account the form input to deliver a true KEY value.
+				if (false == m_cgikey.empty())
+				{
+					 // Step 3: Perform the action
+					actionDataUpdateSQL(txn, m_cgikey);
+				}
+				// Step 4: Get the data to display
+				actionDataSelectSQL(txn);
 			}
-			// Step 4: Get the data to display
-			actionDataSelectSQL(txn);
 		}
 	}
 	catch (const pqxx::sql_error &e)

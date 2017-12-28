@@ -39,72 +39,71 @@ DECLARE
 	v_happiness				demo_schema.tcontact.happiness%TYPE;
 	v_created_date			demo_schema.tcontact.created_date%TYPE;
 BEGIN
-	BEGIN
-		-- Set v_id
-		v_id := p_id;
-		-- Get current Data and lock it
+	-- Get current Data and lock it
+	SELECT
+		id,
+		COALESCE(p_forename, forename),
+		COALESCE(p_happiness, happiness),
+		COALESCE(p_created_date, created_date)
+	INTO
+		v_id,
+		v_forename,
+		v_happiness,
+		v_created_date
+	FROM
+		demo_schema.tContact
+	WHERE
+		id = p_id
+	FOR UPDATE
+	;
+	-- Compare values for each entry
+	IF v_forename != p_forename AND p_forename IS NOT NULL THEN
+		v_forename := p_forename;
+	END IF;
+	IF v_happiness != p_happiness AND p_happiness IS NOT NULL THEN
+		v_happiness := p_happiness;
+	END IF;
+	IF v_created_date != p_created_date AND p_created_date IS NOT NULL THEN
+		v_created_date := p_created_date;
+	END IF;
+
+	-- Update data
+	UPDATE
+		demo_schema.tContact
+	SET
+			forename = v_forename,
+			happiness = v_happiness,
+			created_date = v_created_date
+	WHERE
+		id = v_id
+	;
+	-- WHEN no_data_found THEN
+	IF v_id IS NULL THEN
+
+		-- Insert data
+		INSERT INTO
+			demo_schema.tContact
+			(
+				forename,
+				happiness,
+				created_date
+			)
+		VALUES
+			(
+				p_forename,
+				p_happiness,
+				p_created_date
+			)
+		;
+		-- Return ID
 		SELECT
-			COALESCE(p_forename, forename),
-			COALESCE(p_happiness, happiness),
-			COALESCE(p_created_date, created_date)
+			*
 		INTO
-			v_forename,
-			v_happiness,
-			v_created_date
+			v_id
 		FROM
-			demo_schema.tContact
-		WHERE
-			id = p_id
-		FOR UPDATE
+			LASTVAL()
 		;
-		-- Compare values for each entry
-		IF v_forename != p_forename AND p_forename IS NOT NULL THEN
-			v_forename := p_forename;
-		END IF;
-		IF v_happiness != p_happiness AND p_happiness IS NOT NULL THEN
-			v_happiness := p_happiness;
-		END IF;
-		IF v_created_date != p_created_date AND p_created_date IS NOT NULL THEN
-			v_created_date := p_created_date;
-		END IF;
-
-		-- Update data
-		UPDATE
-			demo_schema.tContact
-		SET
-				forename = v_forename,
-				happiness = v_happiness,
-				created_date = v_created_date
-		WHERE
-			id = v_id
-		;
-	EXCEPTION
-		WHEN no_data_found THEN
-			-- Insert data
-			INSERT INTO
-				demo_schema.tContact
-				(
-					forename,
-					happiness,
-					created_date
-				)
-			VALUES
-				(
-					p_forename,
-					p_happiness,
-					p_created_date
-				)
-			;
-			-- Return ID
-			SELECT
-				*
-			INTO
-				v_id
-			FROM
-				LASTVAL()
-			;
-	END; -- Exception
-
+	END IF;
 	-- Return ID
 	RETURN v_id;
 END;

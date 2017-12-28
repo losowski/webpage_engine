@@ -30,20 +30,18 @@ class WebPageBase : public WebPageBaseCGI
 		~WebPageBase(void);
 	public:
 		void connectDB(const string & connection);
-		virtual void actionDataSelectSQL(pqxx::work & txn) = 0;
-		virtual void actionDataUpdateSQL(pqxx::work & txn, const string & key) = 0;
 		//void parseCGI(void); // IN base class
 		//string getCGIEnvironment(const string & key);
-		virtual void actionDataCGI(void) = 0;
 		void actionData(void);
 		// Media
 		void setCDN(const string & cdn);
 		void setMediaPath(const string & path);
 		void setJavascriptPath(const string & path);
 		void setCSSPath(const string & path);
-		//Header Functions
-		void addJavascript(const string & filename);
-		void addCSS(const string & filename);
+		//Output
+		void buildWebsite(void);
+		void displayWebsite(void);
+	public:
 		// Top panel
 		// Top Menu
 		void TM_addLogo(const string & logo);
@@ -58,10 +56,16 @@ class WebPageBase : public WebPageBaseCGI
 		void BM_addAffiliate(const string & logo, const string & link, const string & text="");
 		void BM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Footer
-		//call these base class functions to run
-		void buildWebsite(void);
-		void displayWebsite(void);
 	protected:
+		virtual void actionDataSelectSQL(pqxx::work & txn) = 0;
+		virtual void actionDataUpdateSQL(pqxx::work & txn, const string & key) = 0;
+		virtual void actionDataCGI(void) = 0;
+		void PrimaryKeySet(void);
+		//Header Functions
+		void addJavascript(const string & filename);
+		void addCSS(const string & filename);
+
+		//call these base class functions to run
 		// Building functions
 		void buildTopPanel(void);
 		void buildTopMenu(void);
@@ -72,6 +76,7 @@ class WebPageBase : public WebPageBaseCGI
 		void buildBottomMenu(void);
 		void buildFooter(void);
 	protected:
+		bool						m_has_primary_key;
 		//Generic
 		string						m_cdn;
 		string						m_media_path;
