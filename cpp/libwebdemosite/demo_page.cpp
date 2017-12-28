@@ -132,10 +132,11 @@ void DemoPage::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 	pqxx::result res = txn.exec("SELECT demo_schema.pInsUpdContact(" + m_id + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
 	for (pqxx::result::size_type i = 0; i != res.size(); ++i)
 	{
-		if (true == m_id.empty())
+		if ("NULL" == m_id)
 		{
-			m_id.assign(res[i]["id"].c_str());
+			m_id.assign(res[i]["pInsUpdContact"].c_str());
 			PrimaryKeySet();
+			std::cerr << "UPDATE SQ: SETTING ID: " << m_id << std::endl;
 		}
 	}
 	std::cerr << "UPDATE SQ: END ID: " << m_id << std::endl;
