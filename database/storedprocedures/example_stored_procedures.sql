@@ -34,7 +34,7 @@ CREATE OR REPLACE FUNCTION demo_schema.pInsUpdContact(
 	p_created_date			demo_schema.tcontact.created_date%TYPE default NULL
 	) RETURNS bigint AS $$
 DECLARE
-	v_id					demo_schema.tcontact.id%TYPE;
+	v_id					demo_schema.tcontact.id%TYPE := NULL;
 	v_forename				demo_schema.tcontact.forename%TYPE;
 	v_happiness				demo_schema.tcontact.happiness%TYPE;
 	v_created_date			demo_schema.tcontact.created_date%TYPE;
