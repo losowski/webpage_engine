@@ -44,7 +44,7 @@ void DemoPage::buildMainMenu(void)
 void DemoPage::actionDataCGI(void)
 {
 	// Setting the Key
-	void parseCGIKey(void);
+	parseCGIKey();
 	// Setting the id value
 	parseCGIPrimaryKey(m_id, "id");
 	// Setting the forename value
