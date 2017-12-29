@@ -49,8 +49,6 @@ void DemoPage::actionDataCGI(void)
 			cgicc::form_iterator it = m_cgi->getElement("libwebsite.cgi");
 		2) For each field in the named form, get the data using "getValue"
 	*/
-	//Get Form
-	m_cgi->getElement("demoform");
 	// -- Iterators
 	cgicc::form_iterator itkey = m_cgi->getElement("key");
 	cgicc::form_iterator itid = m_cgi->getElement("id");
