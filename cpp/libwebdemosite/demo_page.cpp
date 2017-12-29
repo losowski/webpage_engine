@@ -43,48 +43,14 @@ void DemoPage::buildMainMenu(void)
 
 void DemoPage::actionDataCGI(void)
 {
-	/*
-		Code design
-		1) Get the form in the class cgicc::FormEntry
-			cgicc::form_iterator it = m_cgi->getElement("libwebsite.cgi");
-		2) For each field in the named form, get the data using "getValue"
-	*/
 	// Setting the Key
-	cgicc::form_iterator itkey = m_cgi->getElement("key");
-	if (itkey != m_cgi->getElements().end() && itkey->getValue().empty() == false)
-	{
-		m_cgikey = itkey->getValue();
-	}
+	void parseCGIKey(void);
 	// Setting the id value
-		cgicc::form_iterator itid = m_cgi->getElement("id");
-	if (itid != m_cgi->getElements().end()) //&& (itid->getValue().empty() == false))
-	{
-		m_id = itid->getValue();
-		PrimaryKeySet();
-	}
-	if (true == m_id.empty())
-	{
-		//Get QueryString
-		m_id = getCGIEnvironment("id");
-	}
+	parseCGIPrimaryKey(m_id, "id");
 	// Setting the forename value
-	cgicc::form_iterator itforename = m_cgi->getElement("forename");
-	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
-	{
-		m_forename = itforename->getValue();
-	}
-	// Setting the happiness value
-	cgicc::form_iterator ithappiness = m_cgi->getElement("happiness");
-	if (ithappiness != m_cgi->getElements().end() && ithappiness->getValue().empty() == false)
-	{
-		m_happiness = ithappiness->getValue();
-	}
-	// Setting the creation_date value
-	cgicc::form_iterator itcreation_date = m_cgi->getElement("creation_date");
-	if (itcreation_date != m_cgi->getElements().end() && itcreation_date->getValue().empty() == false)
-	{
-		m_created_date = itcreation_date->getValue();
-	}
+	parseCGIParameter(m_forename, "forename");
+	parseCGIParameter(m_happiness, "happiness");
+	parseCGIParameter(m_created_date, "creation_date");
 }
 
 
