@@ -14,7 +14,6 @@ namespace web {
 
 WebPageBase::WebPageBase(const string & title):
 		WebPageBaseCGI(),
-		m_has_primary_key(false),
 		m_cdn ("//localhost/"),
 		m_page ( title ),
 		m_dbconnection(NULL)
@@ -48,11 +47,6 @@ void WebPageBase::connectDB(const string & connection)
 		std::cerr << "Error: " << e.what() << std::endl;
 		exit(EXIT_FAILURE);
 	}
-}
-
-void WebPageBase::PrimaryKeySet(void)
-{
-	m_has_primary_key = true;
 }
 
 // CGI and Database

@@ -60,7 +60,6 @@ class WebPageBase : public WebPageBaseCGI
 		virtual void actionDataSelectSQL(pqxx::work & txn) = 0;
 		virtual void actionDataUpdateSQL(pqxx::work & txn, const string & key) = 0;
 		virtual void actionDataCGI(void) = 0;
-		void PrimaryKeySet(void);
 		//Header Functions
 		void addJavascript(const string & filename);
 		void addCSS(const string & filename);
@@ -76,7 +75,6 @@ class WebPageBase : public WebPageBaseCGI
 		void buildBottomMenu(void);
 		void buildFooter(void);
 	protected:
-		bool						m_has_primary_key;
 		//Generic
 		string						m_cdn;
 		string						m_media_path;

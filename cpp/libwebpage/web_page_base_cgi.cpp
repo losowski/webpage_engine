@@ -5,6 +5,7 @@ using namespace std;
 namespace web {
 
 WebPageBaseCGI::WebPageBaseCGI(void):
+		m_has_primary_key(false),
 		m_cgi	(NULL)
 {
 }
@@ -18,7 +19,7 @@ WebPageBaseCGI::~WebPageBaseCGI(void)
 	}
 }
 
-
+//public:
 void WebPageBaseCGI::parseCGI(void)
 {
 	try
@@ -35,6 +36,54 @@ void WebPageBaseCGI::parseCGI(void)
 	}
 }
 
+//protected:
+void WebPageBaseCGI::PrimaryKeySet(void)
+{
+	m_has_primary_key = true;
+}
+
+void WebPageBaseCGI::parseCGIKey(void)
+{
+	parseCGIParameter(m_cgikey, "key");
+}
+
+void WebPageBaseCGI::parseCGIPrimaryKey(string & variable, const string & querykey)
+{
+	// Setting the pk value
+	cgicc::form_iterator itpk = m_cgi->getElement(querykey);
+	if (itpk != m_cgi->getElements().end() && (itpk->getValue().empty() == false))
+	{
+		variable = itpk->getValue();
+		PrimaryKeySet(); // Special Addition
+	}
+	if (true == variable.empty())
+	{
+		//Get QueryString - Essential for correct behaviour
+		variable = getCGIEnvironment(querykey);
+	}
+}
+
+void WebPageBaseCGI::parseCGIParameter(string & variable, const string & querykey)
+{
+	cgicc::form_iterator itforename = m_cgi->getElement(querykey);
+	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
+	{
+		variable = itforename->getValue();
+	}
+	if (true == variable.empty())
+	{
+		//Get data from query string QueryString
+		variable = getCGIEnvironment(querykey);
+	}
+}
+
+string WebPageBaseCGI::getCGIEnvironment(const string & key)
+{
+	return m_cgi_environment[key];
+}
+
+
+//private:
 void WebPageBaseCGI::parse_getCGIEnvironment(const string & kvp)
 {
 	// Iterate over elements in vector to get instances of "="
@@ -43,11 +92,6 @@ void WebPageBaseCGI::parse_getCGIEnvironment(const string & kvp)
 	string value (kvp, found +1, (kvp.size()-found-1));
 	//Insert the value
 	m_cgi_environment[key] = value;
-}
-
-string WebPageBaseCGI::getCGIEnvironment(const string & key)
-{
-	return m_cgi_environment[key];
 }
 
 void WebPageBaseCGI::process_getCGIEnvironment(void)

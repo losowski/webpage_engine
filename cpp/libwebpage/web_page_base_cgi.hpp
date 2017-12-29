@@ -22,12 +22,18 @@ class WebPageBaseCGI
 		~WebPageBaseCGI(void);
 	public:
 		void parseCGI(void);
+	protected:
 		string getCGIEnvironment(const string & key);
 		//virtual void actionDataCGI(void) = 0; // In derived class
+		void PrimaryKeySet(void);
+		void parseCGIKey(void);
+		void parseCGIPrimaryKey(string & variable, const string & querykey);
+		void parseCGIParameter(string & variable, const string & querykey);
 	private:
 		void process_getCGIEnvironment(void);
 		void parse_getCGIEnvironment(const string & kvp);
 	protected:
+		bool						m_has_primary_key;
 		string						m_cgikey;
 		//CGI Objects
 		cgicc::Cgicc *				m_cgi;
