@@ -6,6 +6,7 @@ namespace web {
 
 WebPageBaseCGI::WebPageBaseCGI(void):
 		m_has_primary_key(false),
+		m_cgikey(),
 		m_cgi	(NULL)
 {
 }
@@ -65,10 +66,10 @@ void WebPageBaseCGI::parseCGIPrimaryKey(string & variable, const string & queryk
 
 void WebPageBaseCGI::parseCGIParameter(string & variable, const string & querykey)
 {
-	cgicc::form_iterator itforename = m_cgi->getElement(querykey);
-	if (itforename != m_cgi->getElements().end() && itforename->getValue().empty() == false)
+	cgicc::form_iterator itvalue = m_cgi->getElement(querykey);
+	if (itvalue != m_cgi->getElements().end() && itvalue->getValue().empty() == false)
 	{
-		variable = itforename->getValue();
+		variable = itvalue->getValue();
 	}
 	if (true == variable.empty())
 	{
