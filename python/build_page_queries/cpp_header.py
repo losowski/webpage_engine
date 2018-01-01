@@ -2,7 +2,9 @@
 #Class to deal with the template for a CPP header
 
 #Import relative to executing python file
-from build_page_queries import cpp_template 
+from build_page_queries import cpp_template
+
+from string import Template
 
 class CPPHeader (cpp_template.CPPTemplate):
 	def __init__(self, output, dataDict):
@@ -11,3 +13,15 @@ class CPPHeader (cpp_template.CPPTemplate):
 
 	def __del__(self):
 		cpp_template.CPPTemplate.__del__(self)
+
+	def generateParameters(self):
+		self.generateParametersTemplate()
+		self.m_datamap[self.CLASS_VARIABLES] = self.generateVariables();
+
+	def generateVariables(self):
+		#Get all the variable names
+		output = str()
+		variableName = Template("string\t\t\tm_$VARIABLE_NAME;\n\t\t")
+		for variables in self.m_datamap.get(self.VARIABLE_LIST):
+			output += variableName.safe_substitute(VARIABLE_NAME=variables)
+		return output

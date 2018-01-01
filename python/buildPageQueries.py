@@ -13,10 +13,17 @@ def main():
 	data =	{	cpp_template.CPPTemplate.CPP_CLASS : "demo_page",
 				cpp_template.CPPTemplate.VARIABLE_LIST: ['id', 'forename', 'happiness', 'created_date'],
 			}
+
+
 	hdr = cpp_header.CPPHeader("demo_page", data)
 	hdr.loadTemplate()
 	hdr.generateParameters()
 	hdr.generateSourceCode()
+
+	impl = cpp_implementation.CPPImplementation("demo_page", data)
+	impl.loadTemplate()
+	impl.generateParameters()
+	impl.generateSourceCode()
 
 if __name__ == "__main__":
 	main()

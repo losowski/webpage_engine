@@ -28,25 +28,16 @@ class CPPTemplate:
 		self.m_template = Template(contents)
 		templateFile.close()
 
-	def generateParameters(self):
+	def generateParametersTemplate(self):
 		#All the specific files to output
 		#Class name is "class_name"
-		className = self.m_datamap[self.CPP_CLASS]
+		className = self.m_datamap[self.CPP_CLASS] #"file_name"
 		titleClassList = className.split('_')
 		titleClassName = ''.join( name.capitalize() for name in titleClassList)
 		#Generators
-		self.m_datamap[self.CLASS_NAME] = titleClassName
-		self.m_datamap[self.HEADER_IFDEF] = className.upper() # UPPER
-		self.m_datamap[self.CLASS_VARIABLES] = self.generateVariables();
-		print self.m_datamap
+		self.m_datamap[self.CLASS_NAME] = titleClassName #"FileName"
+		self.m_datamap[self.HEADER_IFDEF] = className.upper() # "FILE_NAME"
 
-	def generateVariables(self):
-		#Get all the variable names
-		output = str()
-		variableName = Template("string\t\t\tm_$VARIABLE_NAME;\n\t\t")
-		for variables in self.m_datamap.get(self.VARIABLE_LIST):
-			output += variableName.safe_substitute(VARIABLE_NAME=variables)
-		return output
 
 	def generateSourceCode(self):
 		output = self.m_template.safe_substitute(self.m_datamap)
