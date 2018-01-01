@@ -6,7 +6,7 @@ from build_page_queries import cpp_template
 
 class CPPHeader (cpp_template.CPPTemplate):
 	def __init__(self, output, dataDict):
-		cpp_template.CPPTemplate.__init__(self, "page.hpp", output, dataDict)
+		cpp_template.CPPTemplate.__init__(self, "page.hpp", output + ".hpp", dataDict)
 		pass
 
 	def __del__(self):
