@@ -49,7 +49,8 @@ class CPPTemplate:
 		return output
 
 	def generateSourceCode(self):
-		#Output to the self.m_output_file
-		#print self.m_template
 		output = self.m_template.safe_substitute(self.m_datamap)
-		print output
+		outputFile = open("../cpp/libwebcms/" + self.m_output_file, 'w')
+		outputFile.write(output)
+		outputFile.flush()
+		outputFile.close()
