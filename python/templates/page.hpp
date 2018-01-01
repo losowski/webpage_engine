@@ -19,10 +19,7 @@ class {CLASS_NAME} : public web::WebPageBase
 		void actionDataUpdateSQL (pqxx::work & txn, const string & key);
 		void buildMainMenu(void);
 	private:
-		string				m_id;
-		string				m_forename;
-		string				m_happiness;
-		string				m_created_date;
+		{CLASS_VARIABLES}
 };
 }
 #endif //{HEADER_IFDEF}_HPP

@@ -2,16 +2,18 @@
 #Class to deal with the template for a CPP template
 
 
-class CPPTemplage:
-	#CONST
-	CPP_CLASS		=	"cpp_class"
-	HEADER_IFDEF	=	"HEADER_IFDEF"
-	CLASS_NAME		=	"CLASS_NAME"
+class CPPTemplate:
+	#CONSTANTS FROM TEMPLATES
+	CPP_CLASS			=	"cpp_class"
+	HEADER_IFDEF		=	"HEADER_IFDEF"
+	CLASS_NAME			=	"CLASS_NAME"
+	CLASS_VARIABLES		=	"CLASS_VARIABLES"
 
 	def __init__(self, template_file, output_file, datamap):
-		self.m_template_name = template_file
-		self.m_output_file = output
+		self.m_template_file = template_file
+		self.m_output_file = output_file + ".hpp"
 		self.m_datamap = datamap
+		#Template Data
 		self.m_template = str()
 
 
@@ -20,9 +22,9 @@ class CPPTemplage:
 		pass
 
 	def loadTemplate(self):
-		templatFile = open("../template/" + self.m_template_file, 'r')
-		self.m_template = self.templatFile.read()
-		self.templatFile.close()
+		templateFile = open("templates/" + self.m_template_file, 'r')
+		self.m_template = templateFile.read()
+		templateFile.close()
 
 	def generateParameters(self):
 		#All the specific files to output

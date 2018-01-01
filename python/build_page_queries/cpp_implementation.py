@@ -1,7 +1,8 @@
 #!/usr/bin/python
 #Class to deal with the template for a CPP Implementation
 
-import cpp_template
+#Import relative to executing python file
+from build_page_queries import cpp_template 
 
 class CPPImplementation (cpp_template.CPPTemplate):
 	def __init__(self, output, dataDict):
