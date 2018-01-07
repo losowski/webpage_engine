@@ -10,20 +10,21 @@ def main():
 	# my code here
 	print "Autogenerate CGI classes"
 #	data =	{cpp_template.CPP_CLASS : "demo_page",
-	data =	{	cpp_template.CPPTemplate.CPP_CLASS : "demo_page",
-				cpp_template.CPPTemplate.VARIABLE_LIST: ['id', 'forename', 'happiness', 'created_date'],
-			}
+	database =	{	"demo_page" :	{	cpp_template.CPPTemplate.CPP_CLASS : "demo_page",
+										cpp_template.CPPTemplate.VARIABLE_LIST: ['id', 'forename', 'happiness', 'created_date'],
+									}
+				}
 
+	for filename, data in database.iteritems():
+		hdr = cpp_header.CPPHeader(filename, data)
+		hdr.loadTemplate()
+		hdr.generateParameters()
+		hdr.generateSourceCode()
 
-	hdr = cpp_header.CPPHeader("demo_page", data)
-	hdr.loadTemplate()
-	hdr.generateParameters()
-	hdr.generateSourceCode()
-
-	impl = cpp_implementation.CPPImplementation("demo_page", data)
-	impl.loadTemplate()
-	impl.generateParameters()
-	impl.generateSourceCode()
+		impl = cpp_implementation.CPPImplementation(filename, data)
+		impl.loadTemplate()
+		impl.generateParameters()
+		impl.generateSourceCode()
 
 if __name__ == "__main__":
 	main()
