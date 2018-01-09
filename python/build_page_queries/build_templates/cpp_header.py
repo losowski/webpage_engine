@@ -2,7 +2,7 @@
 #Class to deal with the template for a CPP header
 
 #Import relative to executing python file
-from build_page_queries import cpp_template
+import cpp_template
 
 from string import Template
 
