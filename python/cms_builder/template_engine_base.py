@@ -12,10 +12,7 @@ class TemplateEngineBase:
 	def __del__(self):
 		pass
 
-	def getClasses(self):
-		pass
-
-	def getClassFields(self, className):
+	def getData(self):
 		pass
 
 	def buildTemplates(self):
