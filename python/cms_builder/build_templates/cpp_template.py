@@ -9,6 +9,7 @@ class CPPTemplate:
 	RAWDATA_CLASS_NAME			=	'CLASS_NAME'
 	RAWDATA_CLASS_VARIABLES		=	'CLASS_VARIABLES'
 	RAWDATA_VARIABLE_LIST		=	'VARIABLE_LIST'
+	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
 
 	def __init__(self, template_file, output_file, datamap):
 		self.m_template_file = template_file
@@ -43,6 +44,14 @@ class CPPTemplate:
 		#Generators
 		self.m_datamap[self.RAWDATA_CLASS_NAME] = titleClassName #"FileName"
 		self.m_datamap[self.RAWDATA_HEADER_IFDEF] = className.upper() + "_HPP" # "FILE_NAME"
+		#Variable list
+		prettyVariableList = list()
+		for variable in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):
+			splitVariable = variable.split('_')
+			prettyVariable =  ' '.join( name.capitalize() for name in splitVariable)
+			prettyVariableList.append(prettyVariable)
+		self.m_datamap[self.PRETTY_VARIABLE_LIST] = prettyVariableList
+		#, self.m_datamap.get(self.PRETTY_VARIABLE_LIST)):
 
 	def extendSpecificParameters(self):
 		#Overload

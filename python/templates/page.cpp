@@ -44,9 +44,7 @@ void $CLASS_NAME::actionDataCGI(void)
 	// Setting the id value
 	parseCGIPrimaryKey(m_id, "id");
 	// Setting the forename value
-	parseCGIParameter(m_forename, "forename");
-	parseCGIParameter(m_happiness, "happiness");
-	parseCGIParameter(m_created_date, "creation_date");
+$PARSE_CGI_PARAMETERS
 }
 
 
