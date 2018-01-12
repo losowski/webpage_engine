@@ -18,11 +18,12 @@ class TemplateEngineBase:
 	def buildTemplates(self):
 		print "Autogenerate CGI classes"
 		for filename, data in self.database.iteritems():
+			#CPP Header file
 			hdr = cpp_header.CPPHeader(filename, data)
 			hdr.loadTemplate()
 			hdr.generateParameters()
 			hdr.generateSourceCode()
-
+			#CPP Implementation file
 			impl = cpp_implementation.CPPImplementation(filename, data)
 			impl.loadTemplate()
 			impl.generateParameters()

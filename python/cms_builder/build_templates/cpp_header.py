@@ -14,8 +14,7 @@ class CPPHeader (cpp_template.CPPTemplate):
 	def __del__(self):
 		cpp_template.CPPTemplate.__del__(self)
 
-	def generateParameters(self):
-		self.generateParametersTemplate()
+	def extendSpecificParameters(self):
 		self.m_datamap[self.CLASS_VARIABLES] = self.generateVariables();
 
 	def generateVariables(self):

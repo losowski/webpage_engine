@@ -28,6 +28,12 @@ class CPPTemplate:
 		self.m_template = Template(contents)
 		templateFile.close()
 
+	def generateParameters(self):
+		#Basic Functionality
+		self.generateParametersTemplate()
+		#User Specific Functionality
+		self.extendSpecificParameters()
+
 	def generateParametersTemplate(self):
 		#All the specific files to output
 		#Class name is "class_name"
@@ -38,6 +44,9 @@ class CPPTemplate:
 		self.m_datamap[self.CLASS_NAME] = titleClassName #"FileName"
 		self.m_datamap[self.HEADER_IFDEF] = className.upper() # "FILE_NAME"
 
+	def extendSpecificParameters(self):
+		#Overload
+		pass
 
 	def generateSourceCode(self):
 		output = self.m_template.safe_substitute(self.m_datamap)
