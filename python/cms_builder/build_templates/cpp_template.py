@@ -4,11 +4,11 @@ from string import Template
 
 class CPPTemplate:
 	#CONSTANTS FROM TEMPLATES
-	CPP_CLASS			=	'cpp_class'
-	HEADER_IFDEF		=	'HEADER_IFDEF_HPP'
-	CLASS_NAME			=	'CLASS_NAME'
-	CLASS_VARIABLES		=	'CLASS_VARIABLES'
-	VARIABLE_LIST		=	'VARIABLE_LIST'
+	RAWDATA_FILENAME			=	'rawdata_file_name'
+	RAWDATA_HEADER_IFDEF		=	'HEADER_IFDEF_HPP'
+	RAWDATA_CLASS_NAME			=	'CLASS_NAME'
+	RAWDATA_CLASS_VARIABLES		=	'CLASS_VARIABLES'
+	RAWDATA_VARIABLE_LIST		=	'VARIABLE_LIST'
 
 	def __init__(self, template_file, output_file, datamap):
 		self.m_template_file = template_file
@@ -37,12 +37,12 @@ class CPPTemplate:
 	def generateParametersTemplate(self):
 		#All the specific files to output
 		#Class name is "class_name"
-		className = self.m_datamap[self.CPP_CLASS] #"file_name"
+		className = self.m_datamap[self.RAWDATA_FILENAME] #"file_name"
 		titleClassList = className.split('_')
 		titleClassName = ''.join( name.capitalize() for name in titleClassList)
 		#Generators
-		self.m_datamap[self.CLASS_NAME] = titleClassName #"FileName"
-		self.m_datamap[self.HEADER_IFDEF] = className.upper() # "FILE_NAME"
+		self.m_datamap[self.RAWDATA_CLASS_NAME] = titleClassName #"FileName"
+		self.m_datamap[self.RAWDATA_HEADER_IFDEF] = className.upper() + "_HPP" # "FILE_NAME"
 
 	def extendSpecificParameters(self):
 		#Overload

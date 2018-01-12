@@ -15,12 +15,12 @@ class CPPHeader (cpp_template.CPPTemplate):
 		cpp_template.CPPTemplate.__del__(self)
 
 	def extendSpecificParameters(self):
-		self.m_datamap[self.CLASS_VARIABLES] = self.generateVariables();
+		self.m_datamap[self.RAWDATA_CLASS_VARIABLES] = self.generateVariables();
 
 	def generateVariables(self):
 		#Get all the variable names
 		output = str()
 		variableName = Template("string\t\t\tm_$VARIABLE_NAME;\n\t\t")
-		for variables in self.m_datamap.get(self.VARIABLE_LIST):
+		for variables in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):
 			output += variableName.safe_substitute(VARIABLE_NAME=variables)
 		return output

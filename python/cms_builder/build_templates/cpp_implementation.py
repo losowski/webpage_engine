@@ -18,4 +18,4 @@ class CPPImplementation (cpp_template.CPPTemplate):
 		cpp_template.CPPTemplate.__del__(self)
 
 	def extendSpecificParameters(self):
-		self.m_datamap[self.HPP_INCLUDE] = "#include \"" + self.m_datamap[self.CPP_CLASS] + ".hpp\"" #"#include "file_name"
+		self.m_datamap[self.HPP_INCLUDE] = "#include \"" + self.m_datamap[self.RAWDATA_FILENAME] + ".hpp\"" #"#include "file_name"
