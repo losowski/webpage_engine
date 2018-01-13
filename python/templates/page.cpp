@@ -51,16 +51,10 @@ $PARSE_CGI_PARAMETERS
 
 void $CLASS_NAME::actionDataSelectSQL (pqxx::work & txn)
 {
-	//Run Query - Must be a traditional SQL statement and not a stored procedure.
-	//		Those return a tuple for the ROW (1 column of concatenated strings) - incompatible
-	//TODO: Perhaps a stored procedure here
 	pqxx::result res = txn.exec("SELECT \
-		id, \
-		forename, \
-		happiness, \
-		created_date \
+		$SQL_SELECT \
 	FROM \
-		demo_schema.tContact \
+		$RAWDATA_DB_SCHEMA.$RAWDATA_TABLE_NAME \
 	WHERE \
 		id = " + txn.quote(m_id) + ";");
 	//for (pqxx::result::const_iterator row = res.begin(); row != res.end(); ++row) //Maybe try this out?
