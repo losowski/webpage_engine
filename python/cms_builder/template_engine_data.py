@@ -10,7 +10,7 @@ class TemplateEngineData (template_engine_base.TemplateEngineBase):
 		template_engine_base.TemplateEngineBase.__init__(self)
 		#Set the Data
 		self.database =	{	"demo_page" :	{	cpp_template.CPPTemplate.RAWDATA_FILENAME : "demo_page",
-												cpp_template.CPPTemplate.RAWDATA_VARIABLE_LIST: ['id', 'forename', 'happiness', 'created_date'],
+												cpp_template.CPPTemplate.RAWDATA_VARIABLE_LIST: ['forename', 'happiness', 'created_date'],
 											}
 						}
 

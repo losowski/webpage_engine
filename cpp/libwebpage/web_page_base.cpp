@@ -14,6 +14,7 @@ namespace web {
 
 WebPageBase::WebPageBase(const string & title):
 		WebPageBaseCGI(),
+		m_id ("NULL"),
 		m_cdn ("//localhost/"),
 		m_page ( title ),
 		m_dbconnection(NULL)

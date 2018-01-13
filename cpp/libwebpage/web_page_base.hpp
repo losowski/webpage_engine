@@ -76,6 +76,7 @@ class WebPageBase : public WebPageBaseCGI
 		void buildFooter(void);
 	protected:
 		//Generic
+		string						m_id;
 		string						m_cdn;
 		string						m_media_path;
 		string						m_javascript_path;

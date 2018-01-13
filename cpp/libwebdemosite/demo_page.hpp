@@ -19,7 +19,6 @@ class DemoPage : public web::WebPageBase
 		void actionDataUpdateSQL (pqxx::work & txn, const string & key);
 		void buildMainMenu(void);
 	private:
-		string				m_id;
 		string				m_forename;
 		string				m_happiness;
 		string				m_created_date;

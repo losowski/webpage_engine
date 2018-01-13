@@ -12,8 +12,7 @@ using namespace cgicc;
 namespace web {
 
 DemoPage::DemoPage(const string & title):
-		web::WebPageBase ( title ),
-		m_id ("NULL")
+		web::WebPageBase ( title )
 {
 
 }
