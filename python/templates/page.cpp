@@ -66,18 +66,7 @@ void $CLASS_NAME::actionDataSelectSQL (pqxx::work & txn)
 	//for (pqxx::result::const_iterator row = res.begin(); row != res.end(); ++row) //Maybe try this out?
 	for (pqxx::result::size_type i = 0; i != res.size(); ++i)
 	{
-		if (true == m_forename.empty())
-		{
-			m_forename.assign(res[i]["forename"].c_str());
-		}
-		if (true == m_happiness.empty())
-		{
-			m_happiness.assign(res[i]["happiness"].c_str());
-		}
-		if (true == m_created_date.empty())
-		{
-			m_created_date.assign(res[i]["created_date"].c_str());
-		}
+$PROCESS_SQL_RESULT
 	}
 }
 
