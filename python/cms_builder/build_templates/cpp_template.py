@@ -5,6 +5,7 @@ from string import Template
 class CPPTemplate:
 	#CONSTANTS FROM TEMPLATES
 	RAWDATA_FILENAME			=	'rawdata_file_name'
+	RAWDATA_BASE_CLASS			=	'RAWDATA_BASE_CLASS'
 	RAWDATA_TABLE_NAME			=	'RAWDATA_TABLE_NAME'
 	RAWDATA_DB_SCHEMA			=	'RAWDATA_DB_SCHEMA'
 	RAWDATA_HEADER_IFDEF		=	'HEADER_IFDEF_HPP'
@@ -39,6 +40,9 @@ class CPPTemplate:
 
 	def generateParametersTemplate(self):
 		#All the specific files to output
+		#BaseClass
+		if (None == self.m_datamap.get(self.RAWDATA_BASE_CLASS)):
+			self.m_datamap[self.RAWDATA_BASE_CLASS] = "WebPageBase"
 		#Class name is "class_name"
 		className = self.m_datamap[self.RAWDATA_FILENAME] #"file_name"
 		titleClassList = className.split('_')
