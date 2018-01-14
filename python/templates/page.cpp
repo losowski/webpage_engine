@@ -54,7 +54,7 @@ void $CLASS_NAME::actionDataSelectSQL (pqxx::work & txn)
 	pqxx::result res = txn.exec("SELECT \
 		$SQL_SELECT \
 	FROM \
-		$RAWDATA_DB_SCHEMA.$RAWDATA_TABLE_NAME \
+		$RAWDATA_DB_SCHEMA.t$RAWDATA_TABLE_NAME \
 	WHERE \
 		id = " + txn.quote(m_id) + ";");
 	//for (pqxx::result::const_iterator row = res.begin(); row != res.end(); ++row) //Maybe try this out?
@@ -66,12 +66,12 @@ $PROCESS_SQL_RESULT
 
 void $CLASS_NAME::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
-	pqxx::result res = txn.exec("SELECT demo_schema.pInsUpdContact(" + m_id + ","  + txn.quote(m_forename) + ","  + txn.quote(m_happiness) +","  + txn.quote(m_created_date) +")");
+	pqxx::result res = txn.exec("SELECT $RAWDATA_DB_SCHEMA.$SQL_STORED_PROCEDURE_NAME(" + m_id $SQL_STORED_PROCEDURE_PARAMETERS ")");
 	for (pqxx::result::size_type i = 0; i != res.size(); ++i)
 	{
 		if ("NULL" == m_id)
 		{
-			m_id.assign(res[i]["pInsUpdContact"].c_str());
+			m_id.assign(res[i]["$SQL_STORED_PROCEDURE_NAME"].c_str());
 			PrimaryKeySet();
 		}
 	}

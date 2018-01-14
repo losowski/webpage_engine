@@ -8,10 +8,12 @@ from string import Template
 
 class CPPImplementation (cpp_template.CPPTemplate):
 	#Headers
-	HPP_INCLUDE				=	'HEADER_INCLUDE'
-	PARSE_CGI_PARAMETERS	=	'PARSE_CGI_PARAMETERS'
-	SQL_SELECT				=	'SQL_SELECT'
-	PROCESS_SQL_RESULT		=	'PROCESS_SQL_RESULT'
+	HPP_INCLUDE						=	'HEADER_INCLUDE'
+	PARSE_CGI_PARAMETERS			=	'PARSE_CGI_PARAMETERS'
+	SQL_SELECT						=	'SQL_SELECT'
+	PROCESS_SQL_RESULT				=	'PROCESS_SQL_RESULT'
+	SQL_STORED_PROCEDURE_NAME		=	'SQL_STORED_PROCEDURE_NAME'
+	SQL_STORED_PROCEDURE_PARAMETERS	=	'SQL_STORED_PROCEDURE_PARAMETERS'
 
 	def __init__(self, output, dataDict):
 		cpp_template.CPPTemplate.__init__(self, "page.cpp", output + ".cpp", dataDict)
@@ -25,6 +27,8 @@ class CPPImplementation (cpp_template.CPPTemplate):
 		self.m_datamap[self.PARSE_CGI_PARAMETERS] = self.extendParseCGIParameters()
 		self.m_datamap[self.SQL_SELECT] = self.extendSQLSelect()
 		self.m_datamap[self.PROCESS_SQL_RESULT] = self.extendProcesSQLResult()
+		self.m_datamap[self.SQL_STORED_PROCEDURE_NAME] = self.extendSQLStoredProcedureName()
+		self.m_datamap[self.SQL_STORED_PROCEDURE_PARAMETERS] = self.extendSQLStoredProcedureParameters()
 
 	def extendParseCGIParameters(self):
 		output = str()
@@ -44,6 +48,18 @@ class CPPImplementation (cpp_template.CPPTemplate):
 		m_$VARIABLE_NAME.assign(res[i][\"$VARIABLE_NAME\"].c_str());\n\
 		}\n\
 		""")
+		for variable in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):
+			output += variableName.safe_substitute(VARIABLE_NAME=variable)
+		return output
+
+	def extendSQLStoredProcedureName(self):
+		variableName = Template('pInsUpd$RAWDATA_TABLE_NAME')
+		output = variableName.safe_substitute(RAWDATA_TABLE_NAME=self.m_datamap.get(self.RAWDATA_TABLE_NAME).capitalize())
+		return output
+
+	def extendSQLStoredProcedureParameters(self):
+		output = str()
+		variableName = Template("\",\"  + txn.quote(m_$VARIABLE_NAME)")
 		for variable in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):
 			output += variableName.safe_substitute(VARIABLE_NAME=variable)
 		return output
