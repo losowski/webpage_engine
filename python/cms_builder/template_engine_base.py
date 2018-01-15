@@ -4,6 +4,7 @@
 from build_templates import cpp_template
 from build_templates import cpp_header
 from build_templates import cpp_implementation
+from build_templates import cpp_makefile
 
 class TemplateEngineBase:
 	def __init__(self):
@@ -28,6 +29,10 @@ class TemplateEngineBase:
 			impl.loadTemplate()
 			impl.generateParameters()
 			impl.generateSourceCode()
-			#CPP Makefile
 			#Postgresql Stored Procedure
+		#CPP Makefile
+		make = cpp_makefile.CPPMakefile("makefile", data)
+		make.loadTemplate()
+		make.generateParameters()
+		make.generateSourceCode()
 

@@ -65,7 +65,7 @@ CFLAGS = $(TARGET_FLAG) $(COMPILER_OPTIONS) -DVERSION=\"$(VERSION)\" #Other defi
 ###################
 ## PROJECT FILES ##
 ###################
-PROGRAM_NAME=libwebdemosite.so
+PROGRAM_NAME=$MAKEFILE_PROGRAM_NAME
 #INCLUDES
 INCLUDES = -I../libhtml -I../libwebpage
 
@@ -73,7 +73,7 @@ INCLUDES = -I../libhtml -I../libwebpage
 LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lcgicc -lpq -lpqxx -lhtml
 
 #Soures
-SRCS = demo_page.cpp
+SRCS = $MAKEFILE_FILES
 
 ###########
 ## MAGIC ##
