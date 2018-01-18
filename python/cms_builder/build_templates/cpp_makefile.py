@@ -21,7 +21,7 @@ class CPPMakefile (cpp_template.CPPTemplate):
 
 	def extendSpecificParameters(self):
 		#m_datamap.keys() must be first
-		self.m_datamap[self.MAKEFILE_FILES] = ' '.join(self.m_datamap.keys())
+		self.m_datamap[self.MAKEFILE_FILES] = ' '.join(fileName + ".cpp" for fileName in self.m_datamap.keys())
 		#Executable MUST be after (order sensitive)
 		self.m_datamap[self.MAKEFILE_PROGRAM_NAME] = self.executable
 
