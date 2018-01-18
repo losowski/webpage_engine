@@ -2,11 +2,11 @@
 #Class to deal with the template for a CPP Implementation
 
 #Import relative to executing python file
-import cpp_template
+import cpp_code_template
 
 from string import Template
 
-class CPPImplementation (cpp_template.CPPTemplate):
+class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	#Headers
 	HPP_INCLUDE						=	'HEADER_INCLUDE'
 	PARSE_CGI_PARAMETERS			=	'PARSE_CGI_PARAMETERS'
@@ -16,11 +16,11 @@ class CPPImplementation (cpp_template.CPPTemplate):
 	SQL_STORED_PROCEDURE_PARAMETERS	=	'SQL_STORED_PROCEDURE_PARAMETERS'
 
 	def __init__(self, output, dataDict):
-		cpp_template.CPPTemplate.__init__(self, "page.cpp", output + ".cpp", dataDict)
+		cpp_code_template.CPPCodeTemplate.__init__(self, "page.cpp", output + ".cpp", dataDict)
 		pass
 
 	def __del__(self):
-		cpp_template.CPPTemplate.__del__(self)
+		cpp_code_template.CPPCodeTemplate.__del__(self)
 
 	def extendSpecificParameters(self):
 		self.m_datamap[self.HPP_INCLUDE] = "#include \"" + self.m_datamap[self.RAWDATA_FILENAME] + ".hpp\"" #"#include "file_name"
