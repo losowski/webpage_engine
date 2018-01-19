@@ -3,6 +3,13 @@
 from string import Template
 
 class CPPTemplate:
+	#CONSTANTS FROM TEMPLATES
+	RAWDATA_FILENAME			=	'rawdata_file_name'
+	RAWDATA_BASE_CLASS			=	'RAWDATA_BASE_CLASS'
+	RAWDATA_DB_SCHEMA			=	'RAWDATA_DB_SCHEMA'
+	RAWDATA_TABLE_NAME			=	'RAWDATA_TABLE_NAME'
+	RAWDATA_VARIABLE_LIST		=	'VARIABLE_LIST'
+
 	def __init__(self, templateFile, outputFile, datamap):
 		self.m_templateFile = templateFile
 		self.m_outputFile = outputFile

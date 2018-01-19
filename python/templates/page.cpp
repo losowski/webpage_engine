@@ -32,6 +32,8 @@ void $CLASS_NAME::buildMainMenu(void)
 	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "$CLASS_NAME.cgi");
 	HTMLFormInputPtr key = df->add_text_input("key", "key", "update");
 	key->setHidden();
+	HTMLFormInputPtr id = df->add_text_input("id", "id", m_id);
+	id->setHidden();
 	{BUILD_PRIMARY_KEY}
 	{BUILD_FIELDS}
 	df->set_submit_name("Enter");
