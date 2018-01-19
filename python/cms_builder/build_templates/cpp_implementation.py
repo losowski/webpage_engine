@@ -6,10 +6,15 @@ import cpp_code_template
 
 from string import Template
 
+from code_layouts import \
+	basic_form, \
+	basic_page \
+
 class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	#Headers
 	HPP_INCLUDE						=	'HEADER_INCLUDE'
 	PARSE_CGI_PARAMETERS			=	'PARSE_CGI_PARAMETERS'
+	BUILD_CGI_DESIGN				=	'BUILD_CGI_DESIGN'
 	SQL_SELECT						=	'SQL_SELECT'
 	PROCESS_SQL_RESULT				=	'PROCESS_SQL_RESULT'
 	SQL_STORED_PROCEDURE_NAME		=	'SQL_STORED_PROCEDURE_NAME'
@@ -25,10 +30,20 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	def extendSpecificParameters(self):
 		self.m_datamap[self.HPP_INCLUDE] = "#include \"" + self.m_datamap[self.RAWDATA_FILENAME] + ".hpp\"" #"#include "file_name"
 		self.m_datamap[self.PARSE_CGI_PARAMETERS] = self.extendParseCGIParameters()
+		self.m_datamap[self.BUILD_CGI_DESIGN] = self.buildCGIDesign("basicForm")
 		self.m_datamap[self.SQL_SELECT] = self.extendSQLSelect()
 		self.m_datamap[self.PROCESS_SQL_RESULT] = self.extendProcesSQLResult()
 		self.m_datamap[self.SQL_STORED_PROCEDURE_NAME] = self.extendSQLStoredProcedureName()
 		self.m_datamap[self.SQL_STORED_PROCEDURE_PARAMETERS] = self.extendSQLStoredProcedureParameters()
+
+	def buildCGIDesign(self, design = None):
+		if design == "basicForm":
+			cgid = basic_form.BasicForm(self.m_datamap.get(self.RAWDATA_VARIABLE_LIST))
+		else:
+			cgid = basic_page.BasicPage(self.m_datamap.get(self.RAWDATA_VARIABLE_LIST))
+		#Now Run the class
+		cgid.buildPage()
+		return cgid.getPage()
 
 	def extendParseCGIParameters(self):
 		output = str()
