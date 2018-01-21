@@ -67,7 +67,7 @@ $PROCESS_SQL_RESULT
 
 void $CLASS_NAME::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 {
-	pqxx::result res = txn.exec("SELECT $RAWDATA_DB_SCHEMA.$SQL_STORED_PROCEDURE_NAME(" + m_id $SQL_STORED_PROCEDURE_PARAMETERS ")");
+	pqxx::result res = txn.exec("SELECT $RAWDATA_DB_SCHEMA.$SQL_STORED_PROCEDURE_NAME(" + m_id $SQL_STORED_PROCEDURE_PARAMETERS + ")");
 	for (pqxx::result::size_type i = 0; i != res.size(); ++i)
 	{
 		if ("NULL" == m_id)

@@ -74,7 +74,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 
 	def extendSQLStoredProcedureParameters(self):
 		output = str()
-		variableName = Template("\",\"  + txn.quote(m_$VARIABLE_NAME)")
+		variableName = Template(" + \",\"  + txn.quote(m_$VARIABLE_NAME)")
 		for variable in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):
 			output += variableName.safe_substitute(VARIABLE_NAME=variable)
 		return output
