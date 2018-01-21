@@ -18,9 +18,10 @@ class TemplateEngineBase:
 
 	def buildTemplates(self):
 		print "Autogenerate CGI classes"
-		for filename in self.database:
+		for cgi in self.cgiObjects:
 			#CGI File Generation
-			cgi = cgi_files.CGIFiles(filename, data)
+			#cgi = cgi_files.CGIFiles(filename, data)
+			cgi.initialize()
 			cgi.loadTemplate()
 			cgi.generateParameters()
 			cgi.generateSourceCode()

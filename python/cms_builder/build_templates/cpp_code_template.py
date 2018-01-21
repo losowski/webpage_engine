@@ -11,8 +11,8 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 	RAWDATA_CLASS_VARIABLES		=	'CLASS_VARIABLES'
 	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
 
-	def __init__(self, templateFile, outputFile, dataDict):
-		cpp_template.CPPTemplate.__init__(self, templateFile, outputFile, dataDict)
+	def __init__(self, templateFile, outputFile, fileName, baseClass, dbSchema, dbTableName, variableList):
+		cpp_template.CPPTemplate.__init__(self, templateFile, outputFile, fileName, baseClass, dbSchema, dbTableName, variableList)
 
 
 	def __del__(self):

@@ -22,9 +22,13 @@ class CGIFiles:
 	def getFileName(self):
 		return self.fileName
 
-	def loadTemplate(self):
-		self.implementation = cpp_implementaton.CPPImplementation(self.fileName, self.baseClass, self.dbSchema, self.dbTableName, self.variableList)
+	def initialize(self):
+		self.implementation = cpp_implementation.CPPImplementation(self.fileName, self.baseClass, self.dbSchema, self.dbTableName, self.variableList)
 		self.header = cpp_header.CPPHeader(self.fileName, self.baseClass, self.dbSchema, self.dbTableName, self.variableList)
+
+	def loadTemplate(self):
+		self.implementation.loadTemplate()
+		self.header.loadTemplate()
 
 	def generateParameters(self):
 		self.implementation.generateParameters()
