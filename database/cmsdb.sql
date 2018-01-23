@@ -52,12 +52,6 @@ CREATE INDEX idx_cmspage_site_id
   USING btree
   (site_id);
 
--- Foreign Key: fk_cmspage_site_id
--- ALTER TABLE cms_schema.tCMSPage DROP CONSTRAINT fk_cmspage_site_id;
-ALTER TABLE cms_schema.tCMSPage
-  ADD CONSTRAINT fk_cmspage_site_id FOREIGN KEY (site_id)
-      REFERENCES cms_schema.tCMSSite (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION;
 
 -- Table: cms_schema.tCMSField
 
