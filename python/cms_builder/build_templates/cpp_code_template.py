@@ -11,9 +11,9 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 	RAWDATA_CLASS_VARIABLES		=	'CLASS_VARIABLES'
 	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
 
-	def __init__(self, templateFile, outputFile, fileName, baseClass, dbSchema, dbTableName, variableList):
+	def __init__(self, templateFile, outputFile, className, baseClass, dbSchema, dbTableName, variableList):
 		cpp_template.CPPTemplate.__init__(self, templateFile, outputFile)
-		self.fileName = fileName
+		self.className = className
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema
 		self.dbTableName = dbTableName
@@ -26,7 +26,7 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 		pass
 
 	def populateDataMap(self):
-		self.m_datamap = {	self.RAWDATA_FILENAME 		:	self.fileName,
+		self.m_datamap = {	self.RAWDATA_FILENAME 		:	self.className,
 							self.RAWDATA_BASE_CLASS 	:	self.baseClass,
 							self.RAWDATA_DB_SCHEMA 		:	self.dbSchema,
 							self.RAWDATA_TABLE_NAME		:	self.dbTableName,
@@ -39,11 +39,11 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 		if (None == self.baseClass):
 			self.m_datamap[self.RAWDATA_BASE_CLASS] = "WebPageBase"
 		#Class name is "class_name"
-		titleClassList = self.fileName.split('_')
+		titleClassList = self.className.split('_')
 		titleClassName = ''.join( name.capitalize() for name in titleClassList)
 		#Generators
 		self.m_datamap[self.RAWDATA_CLASS_NAME] = titleClassName #"FileName"
-		self.m_datamap[self.RAWDATA_HEADER_IFDEF] = self.fileName.upper() + "_HPP" # "FILE_NAME"
+		self.m_datamap[self.RAWDATA_HEADER_IFDEF] = self.className.upper() + "_HPP" # "FILE_NAME"
 		#Variable list
 		prettyVariableList = list()
 		for variable in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):

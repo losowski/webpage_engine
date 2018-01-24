@@ -20,8 +20,8 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	SQL_STORED_PROCEDURE_NAME		=	'SQL_STORED_PROCEDURE_NAME'
 	SQL_STORED_PROCEDURE_PARAMETERS	=	'SQL_STORED_PROCEDURE_PARAMETERS'
 
-	def __init__(self, fileName, baseClass, dbSchema, dbTableName, variableList):
-		cpp_code_template.CPPCodeTemplate.__init__(self, "page.cpp", fileName + ".cpp", fileName, baseClass, dbSchema, dbTableName, variableList)
+	def __init__(self, className, baseClass, dbSchema, dbTableName, variableList):
+		cpp_code_template.CPPCodeTemplate.__init__(self, "page.cpp", className + ".cpp", className, baseClass, dbSchema, dbTableName, variableList)
 		pass
 
 	def __del__(self):
