@@ -21,6 +21,6 @@ class CPPHeader (cpp_code_template.CPPCodeTemplate):
 		#Get all the variable names
 		output = str()
 		variableName = Template("string\t\t\tm_$VARIABLE_NAME;\n\t\t")
-		for variables in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):
+		for variables in self.variableList:
 			output += variableName.safe_substitute(VARIABLE_NAME=variables)
 		return output

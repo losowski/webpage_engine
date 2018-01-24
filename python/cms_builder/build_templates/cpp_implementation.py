@@ -38,9 +38,9 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 
 	def buildCGIDesign(self, design = None):
 		if design == "basicForm":
-			cgid = basic_form.BasicForm(self.m_datamap.get(self.RAWDATA_VARIABLE_LIST))
+			cgid = basic_form.BasicForm(self.variableList)
 		else:
-			cgid = basic_page.BasicPage(self.m_datamap.get(self.RAWDATA_VARIABLE_LIST))
+			cgid = basic_page.BasicPage(self.variableList)
 		#Now Run the class
 		cgid.buildPage()
 		return cgid.getPage()
@@ -48,12 +48,12 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	def extendParseCGIParameters(self):
 		output = str()
 		variableName = Template("\tparseCGIParameter(m_$VARIABLE_NAME, \"$PRETTY_VARIABLE_NAME\");\n")
-		for variable, pretty_variable in zip(self.m_datamap.get(self.RAWDATA_VARIABLE_LIST), self.m_datamap.get(self.PRETTY_VARIABLE_LIST)):
+		for variable, pretty_variable in zip(self.variableList, self.prettyVariableList):
 			output += variableName.safe_substitute(VARIABLE_NAME=variable, PRETTY_VARIABLE_NAME=pretty_variable)
 		return output
 
 	def extendSQLSelect(self):
-		return ',\\\n\t\t'.join( name for name in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST))
+		return ',\\\n\t\t'.join( name for name in self.variableList)
 
 	def extendProcesSQLResult(self):
 		output = str()
@@ -63,7 +63,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		m_$VARIABLE_NAME.assign(res[i][\"$VARIABLE_NAME\"].c_str());\n\
 		}\n\
 		""")
-		for variable in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):
+		for variable in self.variableList:
 			output += variableName.safe_substitute(VARIABLE_NAME=variable)
 		return output
 
@@ -75,6 +75,6 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	def extendSQLStoredProcedureParameters(self):
 		output = str()
 		variableName = Template(" + \",\"  + txn.quote(m_$VARIABLE_NAME)")
-		for variable in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):
+		for variable in self.variableList:
 			output += variableName.safe_substitute(VARIABLE_NAME=variable)
 		return output

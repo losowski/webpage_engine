@@ -18,6 +18,7 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 		self.dbSchema = dbSchema
 		self.dbTableName = dbTableName
 		self.variableList = variableList
+		self.prettyVariableList = None
 		#Populate
 		self.populateDataMap()
 
@@ -50,6 +51,7 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 			splitVariable = variable.split('_')
 			prettyVariable =  ' '.join( name.capitalize() for name in splitVariable)
 			prettyVariableList.append(prettyVariable)
+		self.prettyVariableList = prettyVariableList
 		self.m_datamap[self.PRETTY_VARIABLE_LIST] = prettyVariableList
 		#, self.m_datamap.get(self.PRETTY_VARIABLE_LIST)):
 
