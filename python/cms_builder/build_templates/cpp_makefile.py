@@ -11,19 +11,24 @@ class CPPMakefile (cpp_template.CPPTemplate):
 	MAKEFILE_FILES			=	'MAKEFILE_FILES'
 	MAKEFILE_PROGRAM_NAME	=	'MAKEFILE_PROGRAM_NAME'
 
-	def __init__(self, output, binaryName, variableList ):
-		cpp_template.CPPTemplate.__init__(self, "makefile", output, dataDict)
-		self.executable = executable
+	def __init__(self, output, binaryName, cgiObjects ):
+		cpp_template.CPPTemplate.__init__(self, "makefile", output, "makefile")
+		self.binaryName = binaryName
+		self.cgiObjects = cgiObjects
 		pass
 
 	def __del__(self):
 		cpp_template.CPPTemplate.__del__(self)
 
+	def populateDataMap(self):
+		#Overload to support dict objects as variables
+		pass
+
 	def extendSpecificParameters(self):
 		#m_datamap.keys() must be first
-		self.m_datamap[self.MAKEFILE_FILES] = ' '.join(fileName + ".cpp" for fileName in self.m_datamap.keys())
+		self.m_datamap[self.MAKEFILE_FILES] = ' '.join(cgiObj.getFileName() + ".cpp" for cgiObj in self.cgiObjects)
 		#Executable MUST be after (order sensitive)
-		self.m_datamap[self.MAKEFILE_PROGRAM_NAME] = self.executable
+		self.m_datamap[self.MAKEFILE_PROGRAM_NAME] = self.binaryName
 
 
 
