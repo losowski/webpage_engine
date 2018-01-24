@@ -10,10 +10,9 @@ class CPPTemplate:
 	RAWDATA_TABLE_NAME			=	'RAWDATA_TABLE_NAME'
 	RAWDATA_VARIABLE_LIST		=	'VARIABLE_LIST'
 
-	def __init__(self, templateFile, outputFile, fileName):
+	def __init__(self, templateFile, outputFile):
 		self.m_templateFile = templateFile
 		self.m_outputFile = outputFile
-		self.fileName = fileName
 		#Template datamap	
 		self.m_datamap = dict()
 		#Template contents

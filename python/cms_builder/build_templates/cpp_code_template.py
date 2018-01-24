@@ -12,7 +12,8 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
 
 	def __init__(self, templateFile, outputFile, fileName, baseClass, dbSchema, dbTableName, variableList):
-		cpp_template.CPPTemplate.__init__(self, templateFile, outputFile, fileName)
+		cpp_template.CPPTemplate.__init__(self, templateFile, outputFile)
+		self.fileName = fileName
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema
 		self.dbTableName = dbTableName
@@ -35,15 +36,14 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 	def generateParametersTemplate(self):
 		#All the specific files to output
 		#BaseClass
-		if (None == self.m_datamap.get(self.RAWDATA_BASE_CLASS)):
+		if (None == self.baseClass):
 			self.m_datamap[self.RAWDATA_BASE_CLASS] = "WebPageBase"
 		#Class name is "class_name"
-		className = self.m_datamap[self.RAWDATA_FILENAME] #"file_name"
-		titleClassList = className.split('_')
+		titleClassList = self.fileName.split('_')
 		titleClassName = ''.join( name.capitalize() for name in titleClassList)
 		#Generators
 		self.m_datamap[self.RAWDATA_CLASS_NAME] = titleClassName #"FileName"
-		self.m_datamap[self.RAWDATA_HEADER_IFDEF] = className.upper() + "_HPP" # "FILE_NAME"
+		self.m_datamap[self.RAWDATA_HEADER_IFDEF] = self.fileName.upper() + "_HPP" # "FILE_NAME"
 		#Variable list
 		prettyVariableList = list()
 		for variable in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):

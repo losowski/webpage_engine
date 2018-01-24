@@ -12,7 +12,7 @@ class CPPMakefile (cpp_template.CPPTemplate):
 	MAKEFILE_PROGRAM_NAME	=	'MAKEFILE_PROGRAM_NAME'
 
 	def __init__(self, output, binaryName, cgiObjects ):
-		cpp_template.CPPTemplate.__init__(self, "makefile", output, "makefile")
+		cpp_template.CPPTemplate.__init__(self, "makefile", output)
 		self.binaryName = binaryName
 		self.cgiObjects = cgiObjects
 		pass
