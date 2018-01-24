@@ -5,11 +5,12 @@ import cpp_implementation
 import cpp_header
 
 class CGIFiles:
-	def __init__(self, fileName, baseClass, dbSchema, dbTableName, variableList):
-		self.fileName = fileName
+	def __init__(self, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
+		self.className = className
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema
 		self.dbTableName = dbTableName
+		self.formDesign = formDesign
 		self.variableList = variableList
 		#Objects
 		self.implementation = None
@@ -20,11 +21,25 @@ class CGIFiles:
 		pass
 
 	def getFileName(self):
-		return self.fileName
+		return self.className
 
 	def initialize(self):
-		self.implementation = cpp_implementation.CPPImplementation(self.fileName, self.baseClass, self.dbSchema, self.dbTableName, self.variableList)
-		self.header = cpp_header.CPPHeader(self.fileName, self.baseClass, self.dbSchema, self.dbTableName, self.variableList)
+		self.implementation = cpp_implementation.CPPImplementation(
+								className = self.className,
+								baseClass = self.baseClass,
+								dbSchema = self.dbSchema,
+								dbTableName = self.dbTableName,
+								formDesign = self.formDesign,
+								variableList = self.variableList
+							)
+		self.header = cpp_header.CPPHeader(
+								className = self.className,
+								baseClass = self.baseClass,
+								dbSchema = self.dbSchema,
+								dbTableName = self.dbTableName,
+								formDesign = self.formDesign,
+								variableList = self.variableList
+							)
 
 	def loadTemplate(self):
 		self.implementation.loadTemplate()

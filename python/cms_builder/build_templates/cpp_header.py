@@ -7,8 +7,8 @@ import cpp_code_template
 from string import Template
 
 class CPPHeader (cpp_code_template.CPPCodeTemplate):
-	def __init__(self, className, baseClass, dbSchema, dbTableName, variableList):
-		cpp_code_template.CPPCodeTemplate.__init__(self, "page.hpp", className + ".hpp", className, baseClass, dbSchema, dbTableName, variableList)
+	def __init__(self, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
+		cpp_code_template.CPPCodeTemplate.__init__(self, "page.hpp", className + ".hpp", className, baseClass, dbSchema, dbTableName, formDesign, variableList)
 		pass
 
 	def __del__(self):

@@ -20,8 +20,8 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	SQL_STORED_PROCEDURE_NAME		=	'SQL_STORED_PROCEDURE_NAME'
 	SQL_STORED_PROCEDURE_PARAMETERS	=	'SQL_STORED_PROCEDURE_PARAMETERS'
 
-	def __init__(self, className, baseClass, dbSchema, dbTableName, variableList):
-		cpp_code_template.CPPCodeTemplate.__init__(self, "page.cpp", className + ".cpp", className, baseClass, dbSchema, dbTableName, variableList)
+	def __init__(self, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
+		cpp_code_template.CPPCodeTemplate.__init__(self, "page.cpp", className + ".cpp", className, baseClass, dbSchema, dbTableName, formDesign, variableList)
 		pass
 
 	def __del__(self):
@@ -30,7 +30,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	def extendSpecificParameters(self):
 		self.m_datamap[self.HPP_INCLUDE] = "#include \"" + self.m_datamap[self.RAWDATA_FILENAME] + ".hpp\"" #"#include "file_name"
 		self.m_datamap[self.PARSE_CGI_PARAMETERS] = self.extendParseCGIParameters()
-		self.m_datamap[self.BUILD_CGI_DESIGN] = self.buildCGIDesign("basicForm")
+		self.m_datamap[self.BUILD_CGI_DESIGN] = self.buildCGIDesign(self.formDesign)
 		self.m_datamap[self.SQL_SELECT] = self.extendSQLSelect()
 		self.m_datamap[self.PROCESS_SQL_RESULT] = self.extendProcesSQLResult()
 		self.m_datamap[self.SQL_STORED_PROCEDURE_NAME] = self.extendSQLStoredProcedureName()

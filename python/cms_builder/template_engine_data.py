@@ -11,7 +11,7 @@ class TemplateEngineData (template_engine_base.TemplateEngineBase):
 		template_engine_base.TemplateEngineBase.__init__(self)
 		#Set the Data
 		self.cgiBinaryName	=	"webcms"
-		self.cgiObjects 	=	{ cgi_files.CGIFiles ("demo_page", None, "demo_schema", "contact", variableList = ['forename', 'happiness', 'created_date'])
+		self.cgiObjects 	=	{ cgi_files.CGIFiles ("demo_page", None, "demo_schema", "contact", None, variableList = ['forename', 'happiness', 'created_date'])
 								}
 
 	def __del__(self):

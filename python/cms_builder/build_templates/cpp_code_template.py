@@ -11,12 +11,13 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 	RAWDATA_CLASS_VARIABLES		=	'CLASS_VARIABLES'
 	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
 
-	def __init__(self, templateFile, outputFile, className, baseClass, dbSchema, dbTableName, variableList):
+	def __init__(self, templateFile, outputFile, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
 		cpp_template.CPPTemplate.__init__(self, templateFile, outputFile)
 		self.className = className
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema
 		self.dbTableName = dbTableName
+		self.formDesign = formDesign
 		self.variableList = variableList
 		self.prettyVariableList = None
 		#Populate
