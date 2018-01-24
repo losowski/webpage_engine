@@ -10,8 +10,9 @@ class TemplateEngineData (template_engine_base.TemplateEngineBase):
 	def __init__(self):
 		template_engine_base.TemplateEngineBase.__init__(self)
 		#Set the Data
-		self.cgiObjects =	{	cgi_files.CGIFiles ("demo_page", None, "demo_schema", "contact", variableList = ['forename', 'happiness', 'created_date'])
-							}
+		self.cgiBinaryName	=	"webcms"
+		self.cgiObjects 	=	{ cgi_files.CGIFiles ("demo_page", None, "demo_schema", "contact", variableList = ['forename', 'happiness', 'created_date'])
+								}
 
 	def __del__(self):
 		template_engine_base.TemplateEngineBase.__del__(self)

@@ -12,12 +12,25 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
 
 	def __init__(self, templateFile, outputFile, fileName, baseClass, dbSchema, dbTableName, variableList):
-		cpp_template.CPPTemplate.__init__(self, templateFile, outputFile, fileName, baseClass, dbSchema, dbTableName, variableList)
-
+		cpp_template.CPPTemplate.__init__(self, templateFile, outputFile, fileName)
+		self.baseClass = baseClass
+		self.dbSchema = dbSchema
+		self.dbTableName = dbTableName
+		self.variableList = variableList
+		#Populate
+		self.populateDataMap()
 
 	def __del__(self):
 		cpp_template.CPPTemplate.__del__(self)
 		pass
+
+	def populateDataMap(self):
+		self.m_datamap = {	self.RAWDATA_FILENAME 		:	self.fileName,
+							self.RAWDATA_BASE_CLASS 	:	self.baseClass,
+							self.RAWDATA_DB_SCHEMA 		:	self.dbSchema,
+							self.RAWDATA_TABLE_NAME		:	self.dbTableName,
+							self.RAWDATA_VARIABLE_LIST	:	self.variableList,
+						}
 
 	def generateParametersTemplate(self):
 		#All the specific files to output

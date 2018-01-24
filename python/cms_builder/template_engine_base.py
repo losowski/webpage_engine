@@ -27,7 +27,7 @@ class TemplateEngineBase:
 			cgi.generateSourceCode()
 			#Postgresql Stored Procedure
 		#CPP Makefile
-		make = cpp_makefile.CPPMakefile("makefile", self.database[self.TEMPLATE_FILES], self.database[self.TEMPLATE_BINARY] )
+		make = cpp_makefile.CPPMakefile("makefile", self.cgiBinaryName, self.cgiObjects.)
 		make.loadTemplate()
 		make.generateParameters()
 		make.generateSourceCode()

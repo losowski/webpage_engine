@@ -11,7 +11,7 @@ class CPPMakefile (cpp_template.CPPTemplate):
 	MAKEFILE_FILES			=	'MAKEFILE_FILES'
 	MAKEFILE_PROGRAM_NAME	=	'MAKEFILE_PROGRAM_NAME'
 
-	def __init__(self, output, dataDict, executable):
+	def __init__(self, output, binaryName, variableList ):
 		cpp_template.CPPTemplate.__init__(self, "makefile", output, dataDict)
 		self.executable = executable
 		pass
