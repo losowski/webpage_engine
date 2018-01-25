@@ -5,14 +5,10 @@ import base_template
 from string import Template
 
 class SQLTemplate (base_template.BaseTemplate):
-	#CONSTANTS FROM TEMPLATES
-	RAWDATA_HEADER_IFDEF		=	'HEADER_IFDEF_HPP'
-	RAWDATA_CLASS_NAME			=	'CLASS_NAME'
-	RAWDATA_CLASS_VARIABLES		=	'CLASS_VARIABLES'
-	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
+
 
 	def __init__(self, templateFile, outputFile, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
-		base_template.BaseTemplate.__init__(self, templateFile, outputFile)
+		base_template.BaseTemplate.__init__(self, templateFile, "database/" + outputFile)
 		self.className = className
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema

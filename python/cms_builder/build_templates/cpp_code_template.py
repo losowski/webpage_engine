@@ -12,7 +12,7 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
 
 	def __init__(self, templateFile, outputFile, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
-		base_template.BaseTemplate.__init__(self, templateFile, outputFile)
+		base_template.BaseTemplate.__init__(self, templateFile, "cpp/libwebcms/" + outputFile)
 		self.className = className
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema
