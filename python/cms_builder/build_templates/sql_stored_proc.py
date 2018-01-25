@@ -2,23 +2,23 @@
 #Class to deal with the template for a CPP Implementation
 
 #Import relative to executing python file
-import cpp_template
+import base_template
 
 from string import Template
 
-class SQLStoredProc (cpp_template.CPPTemplate):
+class SQLStoredProc (base_template.BaseTemplate):
 	#Headers
 	MAKEFILE_FILES			=	'MAKEFILE_FILES'
 	MAKEFILE_PROGRAM_NAME	=	'MAKEFILE_PROGRAM_NAME'
 
 	def __init__(self, output, binaryName, cgiObjects ):
-		cpp_template.CPPTemplate.__init__(self, "makefile", output)
+		base_template.BaseTemplate.__init__(self, "makefile", output)
 		self.binaryName = binaryName
 		self.cgiObjects = cgiObjects
 		pass
 
 	def __del__(self):
-		cpp_template.CPPTemplate.__del__(self)
+		base_template.BaseTemplate.__del__(self)
 
 	def populateDataMap(self):
 		#Overload to support dict objects as variables

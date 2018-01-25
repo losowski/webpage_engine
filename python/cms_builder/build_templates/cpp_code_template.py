@@ -1,10 +1,10 @@
 #!/usr/bin/python
 #Class to deal with the template for a CPP template
-import cpp_template
+import base_template
 
 from string import Template
 
-class CPPCodeTemplate (cpp_template.CPPTemplate):
+class CPPCodeTemplate (base_template.BaseTemplate):
 	#CONSTANTS FROM TEMPLATES
 	RAWDATA_HEADER_IFDEF		=	'HEADER_IFDEF_HPP'
 	RAWDATA_CLASS_NAME			=	'CLASS_NAME'
@@ -12,7 +12,7 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
 
 	def __init__(self, templateFile, outputFile, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
-		cpp_template.CPPTemplate.__init__(self, templateFile, outputFile)
+		base_template.BaseTemplate.__init__(self, templateFile, outputFile)
 		self.className = className
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema
@@ -24,7 +24,7 @@ class CPPCodeTemplate (cpp_template.CPPTemplate):
 		self.populateDataMap()
 
 	def __del__(self):
-		cpp_template.CPPTemplate.__del__(self)
+		base_template.BaseTemplate.__del__(self)
 		pass
 
 	def populateDataMap(self):

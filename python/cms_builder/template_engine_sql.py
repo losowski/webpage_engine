@@ -3,7 +3,7 @@
 
 #Import relative to executing python file
 from cms_builder import template_engine_base
-from build_templates import cpp_template
+from build_templates import base_template
 
 class TemplateEngineSQL (template_engine_base.TemplateEngineBase):
 	def __init__(self):

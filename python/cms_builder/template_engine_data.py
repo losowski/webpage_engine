@@ -3,7 +3,7 @@
 
 #Import relative to executing python file
 from cms_builder import template_engine_base
-from build_templates import cpp_template
+from build_templates import base_template
 from build_templates import cgi_files
 
 class TemplateEngineData (template_engine_base.TemplateEngineBase):
