@@ -28,13 +28,13 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		cpp_code_template.CPPCodeTemplate.__del__(self)
 
 	def extendSpecificParameters(self):
-		self.m_datamap[self.HPP_INCLUDE] = "#include \"" + self.m_datamap[self.RAWDATA_FILENAME] + ".hpp\"" #"#include "file_name"
-		self.m_datamap[self.PARSE_CGI_PARAMETERS] = self.extendParseCGIParameters()
-		self.m_datamap[self.BUILD_CGI_DESIGN] = self.buildCGIDesign(self.formDesign)
-		self.m_datamap[self.SQL_SELECT] = self.extendSQLSelect()
-		self.m_datamap[self.PROCESS_SQL_RESULT] = self.extendProcesSQLResult()
-		self.m_datamap[self.SQL_STORED_PROCEDURE_NAME] = self.extendSQLStoredProcedureName()
-		self.m_datamap[self.SQL_STORED_PROCEDURE_PARAMETERS] = self.extendSQLStoredProcedureParameters()
+		self.dataMap[self.HPP_INCLUDE] = "#include \"" + self.dataMap[self.RAWDATA_FILENAME] + ".hpp\"" #"#include "file_name"
+		self.dataMap[self.PARSE_CGI_PARAMETERS] = self.extendParseCGIParameters()
+		self.dataMap[self.BUILD_CGI_DESIGN] = self.buildCGIDesign(self.formDesign)
+		self.dataMap[self.SQL_SELECT] = self.extendSQLSelect()
+		self.dataMap[self.PROCESS_SQL_RESULT] = self.extendProcesSQLResult()
+		self.dataMap[self.SQL_STORED_PROCEDURE_NAME] = self.extendSQLStoredProcedureName()
+		self.dataMap[self.SQL_STORED_PROCEDURE_PARAMETERS] = self.extendSQLStoredProcedureParameters()
 
 	def buildCGIDesign(self, design = None):
 		if design == "basicForm":
@@ -69,7 +69,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 
 	def extendSQLStoredProcedureName(self):
 		variableName = Template('pInsUpd$RAWDATA_TABLE_NAME')
-		output = variableName.safe_substitute(RAWDATA_TABLE_NAME=self.m_datamap.get(self.RAWDATA_TABLE_NAME).capitalize())
+		output = variableName.safe_substitute(RAWDATA_TABLE_NAME=self.dataMap.get(self.RAWDATA_TABLE_NAME).capitalize())
 		return output
 
 	def extendSQLStoredProcedureParameters(self):

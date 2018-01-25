@@ -15,7 +15,7 @@ class CPPHeader (cpp_code_template.CPPCodeTemplate):
 		cpp_code_template.CPPCodeTemplate.__del__(self)
 
 	def extendSpecificParameters(self):
-		self.m_datamap[self.RAWDATA_CLASS_VARIABLES] = self.generateVariables();
+		self.dataMap[self.RAWDATA_CLASS_VARIABLES] = self.generateVariables();
 
 	def generateVariables(self):
 		#Get all the variable names

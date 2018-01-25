@@ -28,7 +28,7 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 		pass
 
 	def populateDataMap(self):
-		self.m_datamap = {	self.RAWDATA_FILENAME 		:	self.className,
+		self.dataMap = {	self.RAWDATA_FILENAME 		:	self.className,
 							self.RAWDATA_BASE_CLASS 	:	self.baseClass,
 							self.RAWDATA_DB_SCHEMA 		:	self.dbSchema,
 							self.RAWDATA_TABLE_NAME		:	self.dbTableName,
@@ -39,21 +39,21 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 		#All the specific files to output
 		#BaseClass
 		if (None == self.baseClass):
-			self.m_datamap[self.RAWDATA_BASE_CLASS] = "WebPageBase"
+			self.dataMap[self.RAWDATA_BASE_CLASS] = "WebPageBase"
 		#Class name is "class_name"
 		titleClassList = self.className.split('_')
 		titleClassName = ''.join( name.capitalize() for name in titleClassList)
 		#Generators
-		self.m_datamap[self.RAWDATA_CLASS_NAME] = titleClassName #"FileName"
-		self.m_datamap[self.RAWDATA_HEADER_IFDEF] = self.className.upper() + "_HPP" # "FILE_NAME"
+		self.dataMap[self.RAWDATA_CLASS_NAME] = titleClassName #"FileName"
+		self.dataMap[self.RAWDATA_HEADER_IFDEF] = self.className.upper() + "_HPP" # "FILE_NAME"
 		#Variable list
 		prettyVariableList = list()
-		for variable in self.m_datamap.get(self.RAWDATA_VARIABLE_LIST):
+		for variable in self.dataMap.get(self.RAWDATA_VARIABLE_LIST):
 			splitVariable = variable.split('_')
 			prettyVariable =  ' '.join( name.capitalize() for name in splitVariable)
 			prettyVariableList.append(prettyVariable)
 		self.prettyVariableList = prettyVariableList
-		self.m_datamap[self.PRETTY_VARIABLE_LIST] = prettyVariableList
-		#, self.m_datamap.get(self.PRETTY_VARIABLE_LIST)):
+		self.dataMap[self.PRETTY_VARIABLE_LIST] = prettyVariableList
+		#, self.dataMap.get(self.PRETTY_VARIABLE_LIST)):
 
 

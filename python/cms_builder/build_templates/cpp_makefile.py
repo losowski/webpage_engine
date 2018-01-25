@@ -25,10 +25,10 @@ class CPPMakefile (base_template.BaseTemplate):
 		pass
 
 	def extendSpecificParameters(self):
-		#m_datamap.keys() must be first
-		self.m_datamap[self.MAKEFILE_FILES] = ' '.join(cgiObj.getFileName() + ".cpp" for cgiObj in self.cgiObjects)
+		#dataMap.keys() must be first
+		self.dataMap[self.MAKEFILE_FILES] = ' '.join(cgiObj.getFileName() + ".cpp" for cgiObj in self.cgiObjects)
 		#Executable MUST be after (order sensitive)
-		self.m_datamap[self.MAKEFILE_PROGRAM_NAME] = self.binaryName
+		self.dataMap[self.MAKEFILE_PROGRAM_NAME] = self.binaryName
 
 
 
