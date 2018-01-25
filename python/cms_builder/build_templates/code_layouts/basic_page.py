@@ -1,7 +1,6 @@
 #!/usr/bin/python
 #Basic HTML page
 from string import Template
-from cms_builder.build_templates import cpp_template
 
 class BasicPage:
 	def __init__(self, variableList):
