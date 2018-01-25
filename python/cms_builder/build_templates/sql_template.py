@@ -1,11 +1,19 @@
 #!/usr/bin/python
-#Class to deal with the template for a CPP template
+#Class to deal with the template for a SQL template
+"""
+	DESIGN:
+	- Template file offers the general strucure
+	- Wave 1 of templates builds a numbered template (i.e numbered for each field)
+		-- Above two functions are to be called from loadTemplate - so we need to edit that function
+	- Wave 2 Populates those numbers with field_names
+	- Output is returned to the calling function
+"""
+
 import base_template
 
 from string import Template
 
 class SQLTemplate (base_template.BaseTemplate):
-
 
 	def __init__(self, templateFile, outputFile, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
 		base_template.BaseTemplate.__init__(self, templateFile, "database/" + outputFile)
