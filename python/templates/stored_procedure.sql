@@ -33,9 +33,7 @@ $SQL_PARAMETER
 	) RETURNS bigint AS $$
 DECLARE
 	v_id					demo_schema.tcontact.id%TYPE := NULL;
-	v_forename				demo_schema.tcontact.forename%TYPE;
-	v_happiness				demo_schema.tcontact.happiness%TYPE;
-	v_created_date			demo_schema.tcontact.created_date%TYPE;
+$SQL_DECLARED
 BEGIN
 	-- Get current Data and lock it
 	SELECT
