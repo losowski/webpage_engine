@@ -15,13 +15,10 @@ from string import Template
 
 class SQLTemplate (base_template.BaseTemplate):
 
-	def __init__(self, templateFile, outputFile, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
+	def __init__(self, templateFile, outputFile, dbSchema, dbTableName, variableList):
 		base_template.BaseTemplate.__init__(self, templateFile, "database/" + outputFile)
-		self.className = className
-		self.baseClass = baseClass
 		self.dbSchema = dbSchema
 		self.dbTableName = dbTableName
-		self.formDesign = formDesign
 		self.variableList = variableList
 		self.prettyVariableList = None
 		#Populate

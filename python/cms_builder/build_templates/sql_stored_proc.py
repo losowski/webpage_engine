@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#Class to deal with the template for a CPP Implementation
+#Class to deal with the template for a SQL Stored Procedure file
 
 #Import relative to executing python file
 import sql_template
@@ -7,14 +7,8 @@ import sql_template
 from string import Template
 
 class SQLStoredProc (sql_template.SQLTemplate):
-	#Headers
-	MAKEFILE_FILES			=	'MAKEFILE_FILES'
-	MAKEFILE_PROGRAM_NAME	=	'MAKEFILE_PROGRAM_NAME'
-
-	def __init__(self, output, binaryName, cgiObjects ):
-		sql_template.SQLTemplate.__init__(self, "makefile", output)
-		self.binaryName = binaryName
-		self.cgiObjects = cgiObjects
+	def __init__(self, dbSchema, dbTableName, variableList):
+		sql_template.SQLTemplate.__init__(self, "stored_procedure.sql", dbTableName+"_procedure.sql", dbSchema, dbTableName, variableList)
 		pass
 
 	def __del__(self):
@@ -23,12 +17,6 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	def populateDataMap(self):
 		#Overload to support dict objects as variables
 		pass
-
-	def extendSpecificParameters(self):
-		#dataMap.keys() must be first
-		self.dataMap[self.MAKEFILE_FILES] = ' '.join(cgiObj.getFileName() + ".cpp" for cgiObj in self.cgiObjects)
-		#Executable MUST be after (order sensitive)
-		self.dataMap[self.MAKEFILE_PROGRAM_NAME] = self.binaryName
 
 
 

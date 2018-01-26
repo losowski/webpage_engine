@@ -3,6 +3,7 @@
 
 import cpp_implementation
 import cpp_header
+import sql_stored_proc
 
 class CGIFiles:
 	def __init__(self, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
@@ -15,6 +16,7 @@ class CGIFiles:
 		#Objects
 		self.implementation = None
 		self.header = None
+		self.sql_stored_proc = None
 
 	def __del__(self):
 		#Close the template file
@@ -38,6 +40,11 @@ class CGIFiles:
 								dbSchema = self.dbSchema,
 								dbTableName = self.dbTableName,
 								formDesign = self.formDesign,
+								variableList = self.variableList
+							)
+		self.sql_stored_proc = sql_stored_proc.SQLStoredProc(
+								dbSchema = self.dbSchema,
+								dbTableName = self.dbTableName,
 								variableList = self.variableList
 							)
 
