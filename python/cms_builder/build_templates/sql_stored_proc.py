@@ -7,9 +7,11 @@ import sql_template
 from string import Template
 
 class SQLStoredProc (sql_template.SQLTemplate):
-	SQL_PARAMETER			= "SQL_PARAMETER"
-	SQL_DECLARED			= "SQL_DECLARED"
+	SQL_SCHEMA_TABLE			= "SQL_SCHEMA_TABLE"
+	SQL_PARAMETER				= "SQL_PARAMETER"
+	SQL_DECLARED				= "SQL_DECLARED"
 	SQL_FIELDSSELECT4UPDATE		= "SQL_FIELDSSELECT4UPDATE"
+	SQL_DECLARESELECT4UPDATE	= "SQL_DECLARESELECT4UPDATE"
 
 	def __init__(self, dbSchema, dbTableName, variableList):
 		sql_template.SQLTemplate.__init__(self, "stored_procedure.sql", "storedprocedures/" + dbTableName+"_procedure.sql", dbSchema, dbTableName, variableList)
@@ -19,10 +21,16 @@ class SQLStoredProc (sql_template.SQLTemplate):
 		sql_template.SQLTemplate.__del__(self)
 
 	def populateDataMap(self):
-		self.dataMap = {	self.SQL_PARAMETER					:	self.buildParameterList(),
+		self.dataMap = {
+							self.SQL_SCHEMA_TABLE				:	self.buildSchemaTable(),
+							self.SQL_PARAMETER					:	self.buildParameterList(),
 							self.SQL_DECLARED					:	self.buildDeclaredList(),
-							self.SQL_FIELDSSELECT4UPDATE		:	self.buildSelect4UpdateList(),
+							self.SQL_FIELDSSELECT4UPDATE		:	self.buildSelectField4UpdateList(),
+							self.SQL_DECLARESELECT4UPDATE		:	self.buildSelectInto4UpdateList(),
 						}
+	#Build the table Name
+	def buildSchemaTable(self):
+		return "{dbSchema}.{dbTableName}".format(dbSchema=self.dbSchema, dbTableName=self.dbTableName)
 
 	#Build the SQL parameters
 	def buildParameter(self, var, declared, param):
@@ -40,10 +48,18 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	def buildDeclaredList(self):
 		return ("\n".join(self.buildDeclared(var, declared, param) for (var, declared, param) in self.sqlVariableList))
 
-	#Build the SQL Select 4 Update
-	def buildSelect4Update(self, var, declared, param):
+	#Build the SQL Select 4 Update Fields
+	def buildSelectField4Update(self, var, declared, param):
 		#"COALESCE(p_forename, forename),"
 		return "\t\tCOALESCE({param}, {var})".format(param=param, var=var)
 
-	def buildSelect4UpdateList(self):
-		return (",\n".join(self.buildSelect4Update(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+	def buildSelectField4UpdateList(self):
+		return (",\n".join(self.buildSelectField4Update(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+
+	#Build the SQL Select 4 Update Declare
+	def buildSelectInto4Update(self, var, declared, param):
+		#"		v_forename,"
+		return "\t\t{declared}".format(declared=declared)
+
+	def buildSelectInto4UpdateList(self):
+		return (",\n".join(self.buildSelectInto4Update(var, declared, param) for (var, declared, param) in self.sqlVariableList))

@@ -1,10 +1,10 @@
 -- Update-Insert
 CREATE OR REPLACE FUNCTION demo_schema.pInsUpdContact(
-	IN	p_id					demo_schema.tcontact.id%TYPE default NULL,
+	IN	p_id					$SQL_SCHEMA_TABLE.id%TYPE default NULL,
 $SQL_PARAMETER
 	) RETURNS bigint AS $$
 DECLARE
-	v_id					demo_schema.tcontact.id%TYPE := NULL;
+	v_id					$SQL_SCHEMA_TABLE.id%TYPE := NULL;
 $SQL_DECLARED
 BEGIN
 	-- Get current Data and lock it
@@ -13,11 +13,9 @@ BEGIN
 $SQL_FIELDSSELECT4UPDATE
 	INTO
 		v_id,
-		v_forename,
-		v_happiness,
-		v_created_date
+$SQL_DECLARESELECT4UPDATE
 	FROM
-		demo_schema.tContact
+		$SQL_SCHEMA_TABLE
 	WHERE
 		id = p_id
 	FOR UPDATE
@@ -35,7 +33,7 @@ $SQL_FIELDSSELECT4UPDATE
 
 	-- Update data
 	UPDATE
-		demo_schema.tContact
+		$SQL_SCHEMA_TABLE
 	SET
 			forename = v_forename,
 			happiness = v_happiness,
@@ -48,7 +46,7 @@ $SQL_FIELDSSELECT4UPDATE
 
 		-- Insert data
 		INSERT INTO
-			demo_schema.tContact
+			$SQL_SCHEMA_TABLE
 			(
 				forename,
 				happiness,
