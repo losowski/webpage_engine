@@ -7,16 +7,24 @@ import sql_template
 from string import Template
 
 class SQLStoredProc (sql_template.SQLTemplate):
+	SQL_PARAMETER = "SQL_PARAMETER"
+
 	def __init__(self, dbSchema, dbTableName, variableList):
-		sql_template.SQLTemplate.__init__(self, "stored_procedure.sql", dbTableName+"_procedure.sql", dbSchema, dbTableName, variableList)
+		sql_template.SQLTemplate.__init__(self, "stored_procedure.sql", "storedprocedures/" + dbTableName+"_procedure.sql", dbSchema, dbTableName, variableList)
 		pass
 
 	def __del__(self):
 		sql_template.SQLTemplate.__del__(self)
 
 	def populateDataMap(self):
-		#Overload to support dict objects as variables
-		pass
+		self.dataMap = {	self.SQL_PARAMETER	:	self.buildParameterList(),
+						}
 
+	#Build the SQL parameters
+	def buildParameter(self, var, declared, param):
+		return "\tIN\t{param}\t\t\t{dbSchema}.{dbTableName}.{var}%TYPE default NULL".format(param=param, dbSchema=self.dbSchema, dbTableName=self.dbTableName, var=var)
+
+	def buildParameterList(self):
+		return (",\n".join(self.buildParameter(var, declared, param) for (var, declared, param) in self.sqlVariableList))
 
 

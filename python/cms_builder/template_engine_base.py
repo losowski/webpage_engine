@@ -20,12 +20,12 @@ class TemplateEngineBase:
 		print "Autogenerate CGI classes"
 		for cgi in self.cgiObjects:
 			#CGI File Generation
-			#cgi = cgi_files.CGIFiles(filename, data)
 			cgi.initialize()
-			cgi.loadTemplate()
-			cgi.generateParameters()
-			cgi.generateSourceCode()
-			#Postgresql Stored Procedure
+			cgi.buildCGIComponents()
+				#CPP File
+				#HPP File
+				#Postgresql Stored Procedure
+				#Postgresql Create Database
 		#CPP Makefile
 		make = cpp_makefile.CPPMakefile("makefile", self.cgiBinaryName, self.cgiObjects)
 		make.loadTemplate()

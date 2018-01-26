@@ -29,9 +29,7 @@ $$ LANGUAGE plpgsql;
 -- Update-Insert
 CREATE OR REPLACE FUNCTION demo_schema.pInsUpdContact(
 	IN	p_id					demo_schema.tcontact.id%TYPE default NULL,
-	IN	p_forename				demo_schema.tcontact.forename%TYPE default NULL,
-	IN	p_happiness				demo_schema.tcontact.happiness%TYPE default NULL,
-	IN	p_created_date			demo_schema.tcontact.created_date%TYPE default NULL
+$SQL_PARAMETER
 	) RETURNS bigint AS $$
 DECLARE
 	v_id					demo_schema.tcontact.id%TYPE := NULL;

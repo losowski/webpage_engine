@@ -14,9 +14,7 @@ class CGIFiles:
 		self.formDesign = formDesign
 		self.variableList = variableList
 		#Objects
-		self.implementation = None
-		self.header = None
-		self.sql_stored_proc = None
+		self.buildObjects = list()
 
 	def __del__(self):
 		#Close the template file
@@ -26,36 +24,31 @@ class CGIFiles:
 		return self.className
 
 	def initialize(self):
-		self.implementation = cpp_implementation.CPPImplementation(
-								className = self.className,
-								baseClass = self.baseClass,
-								dbSchema = self.dbSchema,
-								dbTableName = self.dbTableName,
-								formDesign = self.formDesign,
-								variableList = self.variableList
-							)
-		self.header = cpp_header.CPPHeader(
-								className = self.className,
-								baseClass = self.baseClass,
-								dbSchema = self.dbSchema,
-								dbTableName = self.dbTableName,
-								formDesign = self.formDesign,
-								variableList = self.variableList
-							)
-		self.sql_stored_proc = sql_stored_proc.SQLStoredProc(
-								dbSchema = self.dbSchema,
-								dbTableName = self.dbTableName,
-								variableList = self.variableList
-							)
+		self.buildObjects = [	cpp_header.CPPHeader(
+									className = self.className,
+									baseClass = self.baseClass,
+									dbSchema = self.dbSchema,
+									dbTableName = self.dbTableName,
+									formDesign = self.formDesign,
+									variableList = self.variableList
+								),
+								cpp_implementation.CPPImplementation(
+									className = self.className,
+									baseClass = self.baseClass,
+									dbSchema = self.dbSchema,
+									dbTableName = self.dbTableName,
+									formDesign = self.formDesign,
+									variableList = self.variableList
+								),
+								sql_stored_proc.SQLStoredProc(
+									dbSchema = self.dbSchema,
+									dbTableName = self.dbTableName,
+									variableList = self.variableList
+								)
+							]
 
-	def loadTemplate(self):
-		self.implementation.loadTemplate()
-		self.header.loadTemplate()
-
-	def generateParameters(self):
-		self.implementation.generateParameters()
-		self.header.generateParameters()
-
-	def generateSourceCode(self):
-		self.implementation.generateSourceCode()
-		self.header.generateSourceCode()
+	def buildCGIComponents(self):
+		for obj in self.buildObjects:
+			obj.loadTemplate()
+			obj.generateParameters()
+			obj.generateSourceCode()
