@@ -48,7 +48,7 @@ class BaseTemplate:
 		pass
 
 	def generateSourceCode(self):
-		print ("Genearating source code file {outputfile}".format(outputfile = self.outputFile))
+		print ("Generating source code file {outputfile}".format(outputfile = self.outputFile))
 		output = self.templateFileContents.safe_substitute(self.dataMap)
 		outputFile = open("../" + self.outputFile, 'w')
 		outputFile.write(output)
