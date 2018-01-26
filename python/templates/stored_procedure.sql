@@ -1,31 +1,3 @@
--- SELECT
-CREATE OR REPLACE FUNCTION demo_schema.pSelContact(
-	p_id				demo_schema.tcontact.id%TYPE
-	) RETURNS RECORD AS $$
-DECLARE
-	v_rowdata					RECORD;
-BEGIN
-	-- Select data
-	SELECT
-		id,
-		forename,
-		happiness,
-		created_date
-	INTO
-		v_rowdata
-	FROM
-		demo_schema.tContact
-	WHERE
-		id = p_id
-	;
-	-- Return Data
- 	RETURN v_rowdata;
-END;
-$$ LANGUAGE plpgsql;
-
-
-
-
 -- Update-Insert
 CREATE OR REPLACE FUNCTION demo_schema.pInsUpdContact(
 	IN	p_id					demo_schema.tcontact.id%TYPE default NULL,
@@ -38,9 +10,7 @@ BEGIN
 	-- Get current Data and lock it
 	SELECT
 		id,
-		COALESCE(p_forename, forename),
-		COALESCE(p_happiness, happiness),
-		COALESCE(p_created_date, created_date)
+$SQL_FIELDSSELECT4UPDATE
 	INTO
 		v_id,
 		v_forename,
@@ -106,33 +76,3 @@ END;
 $$ LANGUAGE plpgsql
 CALLED ON NULL INPUT
 ;
-
-
-
-
-
-
-
-
-
-
-
-
-
--- Delete
-CREATE OR REPLACE FUNCTION demo_schema.pDelContact(
-	p_id					demo_schema.tcontact.id%TYPE
-	) RETURNS bigint AS $$
-DECLARE
-	v_id					demo_schema.tcontact.id%TYPE;
-BEGIN
-	-- Delete data
-	DELETE FROM
-		demo_schema.tContact
-	WHERE
-		id = p_id
-	;
-	-- Return ID
-	RETURN p_id;
-END;
-$$ LANGUAGE plpgsql;
