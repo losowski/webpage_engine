@@ -14,6 +14,7 @@ import base_template
 from string import Template
 
 class SQLTemplate (base_template.BaseTemplate):
+	SQL_SCHEMA_TABLE			= "SQL_SCHEMA_TABLE"
 
 	def __init__(self, templateFile, outputFile, dbSchema, dbTableName, variableList):
 		base_template.BaseTemplate.__init__(self, templateFile, "database/" + outputFile)
@@ -35,4 +36,6 @@ class SQLTemplate (base_template.BaseTemplate):
 			param = "p_" + var
 			self.sqlVariableList.append((var, declared, param)) #tuple
 
-
+	#Build the table Name
+	def buildSchemaTable(self):
+		return "{dbSchema}.{dbTableName}".format(dbSchema=self.dbSchema, dbTableName=self.dbTableName)

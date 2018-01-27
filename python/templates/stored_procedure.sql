@@ -1,5 +1,5 @@
 -- Update-Insert
-CREATE OR REPLACE FUNCTION demo_schema.pInsUpdContact(
+CREATE OR REPLACE FUNCTION $SQL_STOREDPROCNAME(
 	IN	p_id					$SQL_SCHEMA_TABLE.id%TYPE default NULL,
 $SQL_PARAMETER
 	) RETURNS bigint AS $$

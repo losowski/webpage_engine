@@ -7,7 +7,7 @@ import sql_template
 from string import Template
 
 class SQLStoredProc (sql_template.SQLTemplate):
-	SQL_SCHEMA_TABLE			= "SQL_SCHEMA_TABLE"
+	SQL_STOREDPROCNAME			= "SQL_STOREDPROCNAME"
 	SQL_PARAMETER				= "SQL_PARAMETER"
 	SQL_DECLARED				= "SQL_DECLARED"
 	SQL_FIELDSSELECT4UPDATE		= "SQL_FIELDSSELECT4UPDATE"
@@ -22,15 +22,20 @@ class SQLStoredProc (sql_template.SQLTemplate):
 
 	def populateDataMap(self):
 		self.dataMap = {
+							self.SQL_STOREDPROCNAME				:	self.buildStoredProcName(),
 							self.SQL_SCHEMA_TABLE				:	self.buildSchemaTable(),
 							self.SQL_PARAMETER					:	self.buildParameterList(),
 							self.SQL_DECLARED					:	self.buildDeclaredList(),
 							self.SQL_FIELDSSELECT4UPDATE		:	self.buildSelectField4UpdateList(),
 							self.SQL_DECLARESELECT4UPDATE		:	self.buildSelectInto4UpdateList(),
 						}
-	#Build the table Name
-	def buildSchemaTable(self):
-		return "{dbSchema}.{dbTableName}".format(dbSchema=self.dbSchema, dbTableName=self.dbTableName)
+
+	#Build the Stored procedure Name
+	def buildStoredProcName(self):
+		#demo_schema.pInsUpdContact
+		return "{dbSchema}.pInsUpd{dbTableName}".format(dbSchema=self.dbSchema, dbTableName=self.dbTableName)
+		#NOTE: This is used in the CGI script
+		# Important that the code is uniform - preferably calling this function only
 
 	#Build the SQL parameters
 	def buildParameter(self, var, declared, param):
