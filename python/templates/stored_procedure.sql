@@ -26,9 +26,7 @@ $SQL_COMPAREVALUES4UPDATE
 	UPDATE
 		$SQL_SCHEMA_TABLE
 	SET
-			forename = v_forename,
-			happiness = v_happiness,
-			created_date = v_created_date
+$SQL_UPDATESETVALUE
 	WHERE
 		id = v_id
 	;

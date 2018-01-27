@@ -13,6 +13,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	SQL_FIELDSSELECT4UPDATE		= "SQL_FIELDSSELECT4UPDATE"
 	SQL_DECLARESELECT4UPDATE	= "SQL_DECLARESELECT4UPDATE"
 	SQL_COMPAREVALUES4UPDATE	= "SQL_COMPAREVALUES4UPDATE"
+	SQL_UPDATESETVALUE			= "SQL_UPDATESETVALUE"
 
 	def __init__(self, dbSchema, dbTableName, variableList):
 		sql_template.SQLTemplate.__init__(self, "stored_procedure.sql", "storedprocedures/" + dbTableName+"_procedure.sql", dbSchema, dbTableName, variableList)
@@ -30,6 +31,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 							self.SQL_FIELDSSELECT4UPDATE		:	self.buildSelectField4UpdateList(),
 							self.SQL_DECLARESELECT4UPDATE		:	self.buildSelectInto4UpdateList(),
 							self.SQL_COMPAREVALUES4UPDATE		:	self.buildCompareValuesForUpdateList(),
+							self.SQL_UPDATESETVALUE				:	self.buildUpdateSetValueList(),
 						}
 
 	#Build the Stored procedure Name
@@ -73,7 +75,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	def buildSelectInto4UpdateList(self):
 		return (",\n".join(self.buildSelectInto4Update(var, declared, param) for (var, declared, param) in self.sqlVariableList))
 
-	#Build the SQL Select 4 Update Declare
+	#Build the SQL Select 4 Update Compare
 	def buildCompareValuesForUpdate(self, var, declared, param):
 		#IF v_forename != p_forename AND p_forename IS NOT NULL THEN
 		#	v_forename := p_forename;
@@ -82,3 +84,12 @@ class SQLStoredProc (sql_template.SQLTemplate):
 
 	def buildCompareValuesForUpdateList(self):
 		return (",\n".join(self.buildCompareValuesForUpdate(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+
+
+	#Build the SQL Update Set value
+	def buildUpdateSetValue(self, var, declared, param):
+		#forename = v_forename,
+		return "\t{var} = {param}".format(var=var, param=param)
+
+	def buildUpdateSetValueList(self):
+		return (",\n".join(self.buildUpdateSetValue(var, declared, param) for (var, declared, param) in self.sqlVariableList))
