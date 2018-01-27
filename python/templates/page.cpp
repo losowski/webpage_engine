@@ -55,7 +55,7 @@ void $CLASS_NAME::actionDataSelectSQL (pqxx::work & txn)
 	pqxx::result res = txn.exec("SELECT \
 		$SQL_SELECT \
 	FROM \
-		$RAWDATA_DB_SCHEMA.t$RAWDATA_TABLE_NAME \
+		$SQL_SCHEMA_TABLE \
 	WHERE \
 		id = " + txn.quote(m_id) + ";");
 	//for (pqxx::result::const_iterator row = res.begin(); row != res.end(); ++row) //Maybe try this out?

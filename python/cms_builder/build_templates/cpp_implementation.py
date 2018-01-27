@@ -3,6 +3,7 @@
 
 #Import relative to executing python file
 import cpp_code_template
+import sql_template
 import sql_stored_proc
 
 from string import Template
@@ -34,6 +35,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		self.dataMap[self.BUILD_CGI_DESIGN] = self.buildCGIDesign(self.formDesign)
 		self.dataMap[self.SQL_SELECT] = self.extendSQLSelect()
 		self.dataMap[self.PROCESS_SQL_RESULT] = self.extendProcesSQLResult()
+		self.dataMap[sql_stored_proc.SQLStoredProc.SQL_SCHEMA_TABLE] = sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName)
 		self.dataMap[sql_stored_proc.SQLStoredProc.SQL_STOREDPROCNAME] = sql_stored_proc.SQLStoredProc.buildStoredProcName(self.dbSchema, self.dbTableName)
 		self.dataMap[self.SQL_STORED_PROCEDURE_PARAMETERS] = self.extendSQLStoredProcedureParameters()
 
