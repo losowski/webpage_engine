@@ -22,7 +22,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 
 	def populateDataMap(self):
 		self.dataMap = {
-							self.SQL_STOREDPROCNAME				:	self.buildStoredProcName(),
+							self.SQL_STOREDPROCNAME				:	SQLStoredProc.buildStoredProcName(self.dbSchema, self.dbTableName),
 							self.SQL_SCHEMA_TABLE				:	self.buildSchemaTable(),
 							self.SQL_PARAMETER					:	self.buildParameterList(),
 							self.SQL_DECLARED					:	self.buildDeclaredList(),
@@ -31,9 +31,11 @@ class SQLStoredProc (sql_template.SQLTemplate):
 						}
 
 	#Build the Stored procedure Name
-	def buildStoredProcName(self):
+	#Static method
+	@staticmethod
+	def buildStoredProcName(dbSchema, dbTableName):
 		#demo_schema.pInsUpdContact
-		return "{dbSchema}.pInsUpd{dbTableName}".format(dbSchema=self.dbSchema, dbTableName=self.dbTableName)
+		return "{dbSchema}.pInsUpd{dbTableName}".format(dbSchema=dbSchema, dbTableName=dbTableName)
 		#NOTE: This is used in the CGI script
 		# Important that the code is uniform - preferably calling this function only
 

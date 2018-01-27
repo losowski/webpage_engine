@@ -19,7 +19,7 @@ class SQLTemplate (base_template.BaseTemplate):
 	def __init__(self, templateFile, outputFile, dbSchema, dbTableName, variableList):
 		base_template.BaseTemplate.__init__(self, templateFile, "database/" + outputFile)
 		self.dbSchema = dbSchema
-		self.dbTableName = "t"+dbTableName
+		self.dbTableName = dbTableName
 		self.variableList = variableList
 		self.sqlVariableList = list()
 		#Populate
@@ -38,4 +38,4 @@ class SQLTemplate (base_template.BaseTemplate):
 
 	#Build the table Name
 	def buildSchemaTable(self):
-		return "{dbSchema}.{dbTableName}".format(dbSchema=self.dbSchema, dbTableName=self.dbTableName)
+		return "{dbSchema}.t{dbTableName}".format(dbSchema=self.dbSchema, dbTableName=self.dbTableName)
