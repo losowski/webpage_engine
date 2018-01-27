@@ -12,7 +12,7 @@ class CPPMakefile (base_template.BaseTemplate):
 	MAKEFILE_PROGRAM_NAME	=	'MAKEFILE_PROGRAM_NAME'
 
 	def __init__(self, output, binaryName, cgiObjects ):
-		base_template.BaseTemplate.__init__(self, "makefile", output)
+		base_template.BaseTemplate.__init__(self, "makefile", "cpp/libwebcms/" + output)
 		self.binaryName = binaryName
 		self.cgiObjects = cgiObjects
 		pass
