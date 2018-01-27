@@ -14,6 +14,8 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	SQL_DECLARESELECT4UPDATE	= "SQL_DECLARESELECT4UPDATE"
 	SQL_COMPAREVALUES4UPDATE	= "SQL_COMPAREVALUES4UPDATE"
 	SQL_UPDATESETVALUE			= "SQL_UPDATESETVALUE"
+	SQL_VARLIST					= "SQL_VARLIST"
+	SQL_PARAMLIST				= "SQL_PARAMLIST"
 
 	def __init__(self, dbSchema, dbTableName, variableList):
 		sql_template.SQLTemplate.__init__(self, "stored_procedure.sql", "storedprocedures/" + dbTableName+"_procedure.sql", dbSchema, dbTableName, variableList)
@@ -32,6 +34,8 @@ class SQLStoredProc (sql_template.SQLTemplate):
 							self.SQL_DECLARESELECT4UPDATE		:	self.buildSelectInto4UpdateList(),
 							self.SQL_COMPAREVALUES4UPDATE		:	self.buildCompareValuesForUpdateList(),
 							self.SQL_UPDATESETVALUE				:	self.buildUpdateSetValueList(),
+							self.SQL_VARLIST					:	self.buildVarList(),
+							self.SQL_PARAMLIST					:	self.buildParamList(),
 						}
 
 	#Build the Stored procedure Name
@@ -93,3 +97,20 @@ class SQLStoredProc (sql_template.SQLTemplate):
 
 	def buildUpdateSetValueList(self):
 		return (",\n".join(self.buildUpdateSetValue(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+
+	#Build var list
+	def buildVar(self, var, declared, param):
+		#				forename
+		return "\t\t\t\t{var}".format(var=var)
+
+	def buildVarList(self):
+		return (",\n".join(self.buildVar(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+
+	#Build param list
+	def buildParam(self, var, declared, param):
+		#				p_forename
+		return "\t\t\t\t{param}".format(param=param)
+
+	def buildParamList(self):
+		return (",\n".join(self.buildParam(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+

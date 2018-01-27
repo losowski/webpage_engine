@@ -37,15 +37,11 @@ $SQL_UPDATESETVALUE
 		INSERT INTO
 			$SQL_SCHEMA_TABLE
 			(
-				forename,
-				happiness,
-				created_date
+$SQL_VARLIST
 			)
 		VALUES
 			(
-				p_forename,
-				p_happiness,
-				p_created_date
+$SQL_PARAMLIST
 			)
 		;
 		-- Return ID
