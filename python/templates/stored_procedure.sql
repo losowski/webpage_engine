@@ -21,16 +21,7 @@ $SQL_DECLARESELECT4UPDATE
 	FOR UPDATE
 	;
 	-- Compare values for each entry
-	IF v_forename != p_forename AND p_forename IS NOT NULL THEN
-		v_forename := p_forename;
-	END IF;
-	IF v_happiness != p_happiness AND p_happiness IS NOT NULL THEN
-		v_happiness := p_happiness;
-	END IF;
-	IF v_created_date != p_created_date AND p_created_date IS NOT NULL THEN
-		v_created_date := p_created_date;
-	END IF;
-
+$SQL_COMPAREVALUES4UPDATE
 	-- Update data
 	UPDATE
 		$SQL_SCHEMA_TABLE

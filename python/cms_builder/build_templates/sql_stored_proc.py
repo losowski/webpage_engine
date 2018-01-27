@@ -12,6 +12,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	SQL_DECLARED				= "SQL_DECLARED"
 	SQL_FIELDSSELECT4UPDATE		= "SQL_FIELDSSELECT4UPDATE"
 	SQL_DECLARESELECT4UPDATE	= "SQL_DECLARESELECT4UPDATE"
+	SQL_COMPAREVALUES4UPDATE	= "SQL_COMPAREVALUES4UPDATE"
 
 	def __init__(self, dbSchema, dbTableName, variableList):
 		sql_template.SQLTemplate.__init__(self, "stored_procedure.sql", "storedprocedures/" + dbTableName+"_procedure.sql", dbSchema, dbTableName, variableList)
@@ -28,6 +29,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 							self.SQL_DECLARED					:	self.buildDeclaredList(),
 							self.SQL_FIELDSSELECT4UPDATE		:	self.buildSelectField4UpdateList(),
 							self.SQL_DECLARESELECT4UPDATE		:	self.buildSelectInto4UpdateList(),
+							self.SQL_COMPAREVALUES4UPDATE		:	self.buildCompareValuesForUpdateList(),
 						}
 
 	#Build the Stored procedure Name
@@ -42,7 +44,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	#Build the SQL parameters
 	def buildParameter(self, var, declared, param):
 		#"IN	p_forename				demo_schema.tcontact.forename%TYPE default NULL,"
-		return "\tIN\t{param}\t\t\t{dbSchema}.{dbTableName}.{var}%TYPE default NULL".format(param=param, dbSchema=self.dbSchema, dbTableName=self.dbTableName, var=var)
+		return "\tIN\t{param}\t\t\t{dbSchema}.{dbTableName}.{var}%TYPE default NULL".format(var=var, param=param, dbSchema=self.dbSchema, dbTableName=self.dbTableName)
 
 	def buildParameterList(self):
 		return (",\n".join(self.buildParameter(var, declared, param) for (var, declared, param) in self.sqlVariableList))
@@ -50,7 +52,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	#Build the SQL Declared
 	def buildDeclared(self, var, declared, param):
 		#"v_forename				demo_schema.tcontact.forename%TYPE;"
-		return "\t{declared}\t\t\t{dbSchema}.{dbTableName}.{var}%TYPE;".format(declared=declared, dbSchema=self.dbSchema, dbTableName=self.dbTableName, var=var)
+		return "\t{declared}\t\t\t{dbSchema}.{dbTableName}.{var}%TYPE;".format(var=var, declared=declared, dbSchema=self.dbSchema, dbTableName=self.dbTableName)
 
 	def buildDeclaredList(self):
 		return ("\n".join(self.buildDeclared(var, declared, param) for (var, declared, param) in self.sqlVariableList))
@@ -70,3 +72,13 @@ class SQLStoredProc (sql_template.SQLTemplate):
 
 	def buildSelectInto4UpdateList(self):
 		return (",\n".join(self.buildSelectInto4Update(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+
+	#Build the SQL Select 4 Update Declare
+	def buildCompareValuesForUpdate(self, var, declared, param):
+		#IF v_forename != p_forename AND p_forename IS NOT NULL THEN
+		#	v_forename := p_forename;
+		#END IF;
+		return "\tIF {declared} != {param} AND {param} IS NOT NULL THEN\n\t\t{declared} := {param};\n\tEND IF;".format(var=var, param=param, declared=declared)
+
+	def buildCompareValuesForUpdateList(self):
+		return (",\n".join(self.buildCompareValuesForUpdate(var, declared, param) for (var, declared, param) in self.sqlVariableList))
