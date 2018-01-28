@@ -48,8 +48,8 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 		self.dataMap[self.RAWDATA_HEADER_IFDEF] = self.className.upper() + "_HPP" # "FILE_NAME"
 		#Variable list
 		prettyVariableList = list()
-		for variable in self.dataMap.get(self.RAWDATA_VARIABLE_LIST):
-			splitVariable = variable.split('_')
+		for variable in self.variableList:
+			splitVariable = variable[0].split('_')
 			prettyVariable =  ' '.join( name.capitalize() for name in splitVariable)
 			prettyVariableList.append(prettyVariable)
 		self.prettyVariableList = prettyVariableList

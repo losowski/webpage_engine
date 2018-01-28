@@ -23,9 +23,9 @@ class SQLCreateTable (sql_template.SQLTemplate):
 						}
 
 	#Build the SQL parameters
-	def buildColumns(self, var, declared, param):
+	def buildColumns(self, var, declared, param, sqltype):
 		#"forename text NOT NULL,"
-		return "\t{var} {type} NOT NULL".format(var=var, param=param, dbSchema=self.dbSchema, dbTableName=self.dbTableName)
+		return "\t{var} {sqltype} NOT NULL".format(var=var, sqltype=sqltype, dbSchema=self.dbSchema, dbTableName=self.dbTableName)
 
 	def buildColumnsList(self):
-		return (",\n".join(self.buildColumns(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+		return (",\n".join(self.buildColumns(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))

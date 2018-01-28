@@ -22,5 +22,5 @@ class CPPHeader (cpp_code_template.CPPCodeTemplate):
 		output = str()
 		variableName = Template("string\t\t\tm_$VARIABLE_NAME;\n\t\t")
 		for variables in self.variableList:
-			output += variableName.safe_substitute(VARIABLE_NAME=variables)
+			output += variableName.safe_substitute(VARIABLE_NAME=variables[0])
 		return output

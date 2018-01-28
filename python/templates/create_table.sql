@@ -24,21 +24,19 @@ set schema 'demo_schema';
 -- DROP TABLE "tContact";
 CREATE TABLE demo_schema.tContact
 (
-  id bigserial NOT NULL,
-  forename text NOT NULL,
-  happiness numeric	NOT NULL,
-  created_date date NOT NULL,
-  CONSTRAINT pk_contact PRIMARY KEY (id)
+	id bigserial NOT NULL,
+$SQL_CREATECOLUMS
+	CONSTRAINT pk_contact PRIMARY KEY (id)
 )
 WITH (
-  OIDS=FALSE
+	OIDS=FALSE
 );
 ALTER TABLE demo_schema.tContact
-  OWNER TO demo;
+	OWNER TO demo;
 
 -- Index: idx_contact_id
 -- DROP INDEX idx_contact_id;
 CREATE INDEX idx_contact_id
-  ON "demo_schema.tContact"
-  USING btree
-  (id);
+	ON "demo_schema.tContact"
+	USING btree
+	(id);

@@ -48,69 +48,69 @@ class SQLStoredProc (sql_template.SQLTemplate):
 		# Important that the code is uniform - preferably calling this function only
 
 	#Build the SQL parameters
-	def buildParameter(self, var, declared, param):
+	def buildParameter(self, var, declared, param, sqltype):
 		#"IN	p_forename				demo_schema.tcontact.forename%TYPE default NULL,"
 		return "\tIN\t{param}\t\t\t{dbSchema}.{dbTableName}.{var}%TYPE default NULL".format(var=var, param=param, dbSchema=self.dbSchema, dbTableName=self.dbTableName)
 
 	def buildParameterList(self):
-		return (",\n".join(self.buildParameter(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+		return (",\n".join(self.buildParameter(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
 
 	#Build the SQL Declared
-	def buildDeclared(self, var, declared, param):
+	def buildDeclared(self, var, declared, param, sqltype):
 		#"v_forename				demo_schema.tcontact.forename%TYPE;"
 		return "\t{declared}\t\t\t{dbSchema}.{dbTableName}.{var}%TYPE;".format(var=var, declared=declared, dbSchema=self.dbSchema, dbTableName=self.dbTableName)
 
 	def buildDeclaredList(self):
-		return ("\n".join(self.buildDeclared(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+		return ("\n".join(self.buildDeclared(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
 
 	#Build the SQL Select 4 Update Fields
-	def buildSelectField4Update(self, var, declared, param):
+	def buildSelectField4Update(self, var, declared, param, sqltype):
 		#"COALESCE(p_forename, forename),"
 		return "\t\tCOALESCE({param}, {var})".format(param=param, var=var)
 
 	def buildSelectField4UpdateList(self):
-		return (",\n".join(self.buildSelectField4Update(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+		return (",\n".join(self.buildSelectField4Update(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
 
 	#Build the SQL Select 4 Update Declare
-	def buildSelectInto4Update(self, var, declared, param):
+	def buildSelectInto4Update(self, var, declared, param, sqltype):
 		#"		v_forename,"
 		return "\t\t{declared}".format(declared=declared)
 
 	def buildSelectInto4UpdateList(self):
-		return (",\n".join(self.buildSelectInto4Update(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+		return (",\n".join(self.buildSelectInto4Update(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
 
 	#Build the SQL Select 4 Update Compare
-	def buildCompareValuesForUpdate(self, var, declared, param):
+	def buildCompareValuesForUpdate(self, var, declared, param, sqltype):
 		#IF v_forename != p_forename AND p_forename IS NOT NULL THEN
 		#	v_forename := p_forename;
 		#END IF;
 		return "\tIF {declared} != {param} AND {param} IS NOT NULL THEN\n\t\t{declared} := {param};\n\tEND IF;".format(var=var, param=param, declared=declared)
 
 	def buildCompareValuesForUpdateList(self):
-		return (",\n".join(self.buildCompareValuesForUpdate(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+		return (",\n".join(self.buildCompareValuesForUpdate(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
 
 
 	#Build the SQL Update Set value
-	def buildUpdateSetValue(self, var, declared, param):
+	def buildUpdateSetValue(self, var, declared, param, sqltype):
 		#forename = v_forename,
 		return "\t{var} = {param}".format(var=var, param=param)
 
 	def buildUpdateSetValueList(self):
-		return (",\n".join(self.buildUpdateSetValue(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+		return (",\n".join(self.buildUpdateSetValue(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
 
 	#Build var list
-	def buildVar(self, var, declared, param):
+	def buildVar(self, var, declared, param, sqltype):
 		#				forename
 		return "\t\t\t\t{var}".format(var=var)
 
 	def buildVarList(self):
-		return (",\n".join(self.buildVar(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+		return (",\n".join(self.buildVar(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
 
 	#Build param list
-	def buildParam(self, var, declared, param):
+	def buildParam(self, var, declared, param, sqltype):
 		#				p_forename
 		return "\t\t\t\t{param}".format(param=param)
 
 	def buildParamList(self):
-		return (",\n".join(self.buildParam(var, declared, param) for (var, declared, param) in self.sqlVariableList))
+		return (",\n".join(self.buildParam(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
 

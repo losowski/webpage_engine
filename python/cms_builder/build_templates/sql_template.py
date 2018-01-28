@@ -32,9 +32,10 @@ class SQLTemplate (base_template.BaseTemplate):
 
 	def __initialiseVariableLists (self, variableList):
 		for var in variableList:
-			declared = "v_" + var
-			param = "p_" + var
-			self.sqlVariableList.append((var, declared, param)) #tuple
+			declared = "v_" + var[0]
+			param = "p_" + var[0]
+			sqltype = var[1]
+			self.sqlVariableList.append((var, declared, param, sqltype)) #tuple
 
 	#Build the table Name
 	@staticmethod

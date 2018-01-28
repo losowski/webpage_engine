@@ -56,7 +56,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		return output
 
 	def extendSQLSelect(self):
-		return ',\\\n\t\t'.join( name for name in self.variableList)
+		return ',\\\n\t\t'.join( name[0] for name in self.variableList)
 
 	def extendProcesSQLResult(self):
 		output = str()
@@ -67,12 +67,12 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		}\n\
 		""")
 		for variable in self.variableList:
-			output += variableName.safe_substitute(VARIABLE_NAME=variable)
+			output += variableName.safe_substitute(VARIABLE_NAME=variable[0])
 		return output
 
 	def extendSQLStoredProcedureParameters(self):
 		output = str()
 		variableName = Template(" + \",\"  + txn.quote(m_$VARIABLE_NAME)")
 		for variable in self.variableList:
-			output += variableName.safe_substitute(VARIABLE_NAME=variable)
+			output += variableName.safe_substitute(VARIABLE_NAME=variable[0])
 		return output
