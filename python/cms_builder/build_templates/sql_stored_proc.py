@@ -27,7 +27,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	def populateDataMap(self):
 		self.dataMap = {
 							self.SQL_STOREDPROCNAME				:	SQLStoredProc.buildStoredProcName(self.dbSchema, self.dbTableName),
-							self.SQL_SCHEMA_TABLE				:	SQLStoredProc.buildSchemaTable(self.dbSchema, self.dbTableName),
+							self.SQL_SCHEMA_TABLE				:	sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName),
 							self.SQL_PARAMETER					:	self.buildParameterList(),
 							self.SQL_DECLARED					:	self.buildDeclaredList(),
 							self.SQL_FIELDSSELECT4UPDATE		:	self.buildSelectField4UpdateList(),
