@@ -8,7 +8,7 @@ from string import Template
 
 class SQLCreateTable (sql_template.SQLTemplate):
 	def __init__(self, dbSchema, dbTableName, variableList):
-		sql_template.SQLTemplate.__init__(self, "stored_procedure.sql", dbTableName+"_procedure.sql", dbSchema, dbTableName, variableList)
+		sql_template.SQLTemplate.__init__(self, "create_table.sql", "create_"+dbTableName+"_table.sql", dbSchema, dbTableName, variableList)
 		pass
 
 	def __del__(self):

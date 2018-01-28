@@ -4,6 +4,7 @@
 import cpp_implementation
 import cpp_header
 import sql_stored_proc
+import sql_create_table
 
 class CGIFiles:
 	def __init__(self, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
@@ -41,6 +42,11 @@ class CGIFiles:
 									variableList = self.variableList
 								),
 								sql_stored_proc.SQLStoredProc(
+									dbSchema = self.dbSchema,
+									dbTableName = self.dbTableName,
+									variableList = self.variableList
+								),
+								sql_create_table.SQLCreateTable(
 									dbSchema = self.dbSchema,
 									dbTableName = self.dbTableName,
 									variableList = self.variableList
