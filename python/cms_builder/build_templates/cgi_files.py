@@ -7,7 +7,8 @@ import sql_stored_proc
 import sql_create_table
 
 class CGIFiles:
-	def __init__(self, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
+	def __init__(self, project, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
+		self.project = project
 		self.className = className
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema
@@ -26,6 +27,7 @@ class CGIFiles:
 
 	def initialize(self):
 		self.buildObjects = [	cpp_header.CPPHeader(
+									project = self.project,
 									className = self.className,
 									baseClass = self.baseClass,
 									dbSchema = self.dbSchema,
@@ -34,6 +36,7 @@ class CGIFiles:
 									variableList = self.variableList
 								),
 								cpp_implementation.CPPImplementation(
+									project = self.project,
 									className = self.className,
 									baseClass = self.baseClass,
 									dbSchema = self.dbSchema,

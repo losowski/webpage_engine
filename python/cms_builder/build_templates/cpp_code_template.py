@@ -11,8 +11,8 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 	RAWDATA_CLASS_VARIABLES		=	'CLASS_VARIABLES'
 	PRETTY_VARIABLE_LIST		=	'PRETTY_VARIABLE_LIST'
 
-	def __init__(self, templateFile, outputFile, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
-		base_template.BaseTemplate.__init__(self, templateFile, "cpp/libwebcms/" + outputFile)
+	def __init__(self, templateFile, project, outputFile, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
+		base_template.BaseTemplate.__init__(self, templateFile, "cpp/lib"+project+"/" + outputFile)
 		self.className = className
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema

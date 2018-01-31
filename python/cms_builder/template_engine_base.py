@@ -9,6 +9,7 @@ class TemplateEngineBase:
 	TEMPLATE_FILES	=	'TEMPLATE_FILES'
 	def __init__(self):
 		self.database = dict()
+		self.cgiBinaryName	=	"webcms"
 
 	def __del__(self):
 		pass
@@ -27,7 +28,7 @@ class TemplateEngineBase:
 				#Postgresql Stored Procedure
 				#Postgresql Create Database
 		#CPP Makefile
-		make = cpp_makefile.CPPMakefile("makefile", self.cgiBinaryName, self.cgiObjects)
+		make = cpp_makefile.CPPMakefile(self.cgiBinaryName, "makefile", self.cgiBinaryName, self.cgiObjects)
 		make.loadTemplate()
 		make.generateParameters()
 		make.generateSourceCode()
