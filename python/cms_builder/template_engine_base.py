@@ -9,7 +9,7 @@ class TemplateEngineBase:
 	TEMPLATE_FILES	=	'TEMPLATE_FILES'
 	def __init__(self):
 		self.database = dict()
-		self.cgiBinaryName	=	"webcms"
+		self.cgiBinaryName	=	"web"
 
 	def __del__(self):
 		pass
