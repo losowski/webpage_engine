@@ -35,7 +35,7 @@ class SQLTemplate (base_template.BaseTemplate):
 			declared = "v_" + var[0]
 			param = "p_" + var[0]
 			sqltype = var[1]
-			self.sqlVariableList.append((var, declared, param, sqltype)) #tuple
+			self.sqlVariableList.append((var[0], declared, param, sqltype)) #tuple
 
 	#Build the table Name
 	@staticmethod
