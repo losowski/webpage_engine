@@ -37,7 +37,9 @@ class SQLTemplate (base_template.BaseTemplate):
 			sqltype = var[1]
 			self.sqlVariableList.append((var[0], declared, param, sqltype)) #tuple
 
-	#Build the table Name
+	#Build the table Schema Name
 	@staticmethod
 	def buildSchemaTable(dbSchema, dbTableName):
 		return "{dbSchema}.t{dbTableName}".format(dbSchema=dbSchema, dbTableName=dbTableName)
+
+

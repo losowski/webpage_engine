@@ -10,7 +10,7 @@ CREATE DATABASE demodb OWNER demo;
 --
 -- Create the schema
 --
-CREATE SCHEMA IF NOT EXISTS "demo_schema" AUTHORIZATION demo;
+CREATE SCHEMA IF NOT EXISTS $SQL_SCHEMA_TABLE AUTHORIZATION demo;
 --
 -- Grant privileges
 --
@@ -18,11 +18,11 @@ GRANT ALL PRIVILEGES ON demodb TO demo;
 
 -- SCRIPT BEGIN: set up connection and schema
 \connect demodb
-set schema 'demo_schema';
+set schema $SQL_SCHEMA_TABLE;
 -- SCRIPT END
--- Table: "tContact"
--- DROP TABLE "tContact";
-CREATE TABLE demo_schema.tContact
+-- Table: "$SQL_SCHEMA_TABLE"
+-- DROP TABLE "$SQL_SCHEMA_TABLE";
+CREATE TABLE $SQL_SCHEMA_TABLE
 (
 	id bigserial NOT NULL,
 $SQL_CREATECOLUMS
@@ -31,12 +31,14 @@ $SQL_CREATECOLUMS
 WITH (
 	OIDS=FALSE
 );
-ALTER TABLE demo_schema.tContact
+ALTER TABLE $SQL_SCHEMA_TABLE
 	OWNER TO demo;
 
--- Index: idx_contact_id
--- DROP INDEX idx_contact_id;
-CREATE INDEX idx_contact_id
-	ON "demo_schema.tContact"
-	USING btree
-	(id);
+-- Index: $TABLE_INDEX_ID
+-- DROP INDEX $TABLE_INDEX_ID;
+CREATE INDEX $TABLE_INDEX_ID
+  ON $SQL_SCHEMA_TABLE
+  USING btree
+  (id);
+
+$SQL_TABLE_INDEX

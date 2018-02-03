@@ -12,6 +12,8 @@ class TemplateEngineData (template_engine_base.TemplateEngineBase):
 		template_engine_base.TemplateEngineBase.__init__(self)
 		#Set the Data
 		self.cgiBinaryName	=	"webcms"
+		self.databaseName	=	"cms"
+		self.databaseUser	=	"cms"
 		self.cgiObjects 	=	{ cgi_files.CGIFiles (self.cgiBinaryName, "demo_page", None, "demo_schema", "contact", None, variableList = [
 																												('forename',		const.TYPE_SQL_TEXT),
 																												('happiness',		const.TYPE_SQL_INT),
