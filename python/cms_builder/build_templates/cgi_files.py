@@ -1,10 +1,12 @@
 #!/usr/bin/python
 #Generic Template handling
 
-import cpp_implementation
 import cpp_header
-import sql_stored_proc
+import cpp_implementation
+import site_header
 import sql_create_table
+import sql_stored_proc
+
 
 class CGIFiles:
 	def __init__(self, project, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
@@ -44,14 +46,23 @@ class CGIFiles:
 									formDesign = self.formDesign,
 									variableList = self.variableList
 								),
-								sql_stored_proc.SQLStoredProc(
+								site_header.SiteHeader(
+									project = self.project,
+									className = self.className,
+									baseClass = self.baseClass,
 									dbSchema = self.dbSchema,
 									dbTableName = self.dbTableName,
+									formDesign = self.formDesign,
 									variableList = self.variableList
 								),
 								sql_create_table.SQLCreateTable(
 									databaseName = databaseName,
 									databaseUser = databaseUser,
+									dbSchema = self.dbSchema,
+									dbTableName = self.dbTableName,
+									variableList = self.variableList
+								),
+								sql_stored_proc.SQLStoredProc(
 									dbSchema = self.dbSchema,
 									dbTableName = self.dbTableName,
 									variableList = self.variableList
