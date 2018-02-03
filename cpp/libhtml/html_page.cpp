@@ -1,5 +1,6 @@
 #include "html_page.hpp"
 
+#include <iostream>
 #include <string>
 #include <boost/foreach.hpp>
 
