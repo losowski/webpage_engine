@@ -4,6 +4,8 @@ README
 BUILD DEPENDENCIES
 ==================
 libboost-dev
+libcgicc-dev
+libpqxx-dev
 
 
 
@@ -17,7 +19,3 @@ BUILD ORDER
 + BINARIES
 	cms.cgi
 	web.cgi
-
-
-DEPENDENCIES
-============
