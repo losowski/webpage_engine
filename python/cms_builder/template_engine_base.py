@@ -10,6 +10,8 @@ class TemplateEngineBase:
 	def __init__(self):
 		self.database = dict()
 		self.cgiBinaryName	=	"web"
+		self.databaseName	=	"cms"
+		self.databaseUser	=	"cms"
 
 	def __del__(self):
 		pass
@@ -21,7 +23,7 @@ class TemplateEngineBase:
 		print "Autogenerate CGI classes"
 		for cgi in self.cgiObjects:
 			#CGI File Generation
-			cgi.initialize()
+			cgi.initialize(self.databaseName, self.databaseUser)
 			cgi.buildCGIComponents()
 				#CPP File
 				#HPP File

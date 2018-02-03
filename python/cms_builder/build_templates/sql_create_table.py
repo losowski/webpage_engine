@@ -7,11 +7,17 @@ import sql_template
 from string import Template
 
 class SQLCreateTable (sql_template.SQLTemplate):
+	SQL_DATABASE_NAME	=	"SQL_DATABASE_NAME"
+	SQL_DATABASE_USER	=	"SQL_DATABASE_USER"
 	SQL_CREATECOLUMS	=	"SQL_CREATECOLUMS"
+	SQL_TABLE_INDEX_ID	=	"SQL_TABLE_INDEX_ID"
 	SQL_TABLE_INDEX		=	"SQL_TABLE_INDEX"
-	TABLE_INDEX_ID		=	"TABLE_INDEX_ID"
 
-	def __init__(self, dbSchema, dbTableName, variableList):
+
+	def __init__(self, databaseName, databaseUser, dbSchema, dbTableName, variableList):
+		self.databaseName = databaseName
+		self.databaseUser = databaseUser
+		#This calls populateDataMap! so put class specific variables above if it is used there
 		sql_template.SQLTemplate.__init__(self, "create_table.sql", "create_"+dbTableName+"_table.sql", dbSchema, dbTableName, variableList)
 		pass
 
@@ -21,9 +27,11 @@ class SQLCreateTable (sql_template.SQLTemplate):
 	def populateDataMap(self):
 		self.dataMap = {
 							self.SQL_SCHEMA_TABLE				:	sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName),
+							self.SQL_TABLE_INDEX_ID				:	self.buildTableIndexName("id"),
 							self.SQL_TABLE_INDEX				:	self.buildTableIndexList(),
-							self.TABLE_INDEX_ID				:	self.buildTableIndexName("id"),
 							self.SQL_CREATECOLUMS				:	self.buildColumnsList(),
+							self.SQL_DATABASE_NAME				:	self.databaseName+"db",
+							self.SQL_DATABASE_USER				:	self.databaseUser,
 						}
 
 	#Build the Table Columns

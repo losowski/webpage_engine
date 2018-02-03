@@ -25,7 +25,7 @@ class CGIFiles:
 	def getFileName(self):
 		return self.className
 
-	def initialize(self):
+	def initialize(self, databaseName, databaseUser):
 		self.buildObjects = [	cpp_header.CPPHeader(
 									project = self.project,
 									className = self.className,
@@ -50,6 +50,8 @@ class CGIFiles:
 									variableList = self.variableList
 								),
 								sql_create_table.SQLCreateTable(
+									databaseName = databaseName,
+									databaseUser = databaseUser,
 									dbSchema = self.dbSchema,
 									dbTableName = self.dbTableName,
 									variableList = self.variableList

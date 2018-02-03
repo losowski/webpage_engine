@@ -9,6 +9,9 @@ class TemplateEngineSQL (template_engine_base.TemplateEngineBase):
 	def __init__(self):
 		template_engine_base.TemplateEngineBase.__init__(self)
 		self.database = dict()
+		self.cgiBinaryName	=	"web"
+		self.databaseName	=	"site"
+		self.databaseUser	=	"site"
 		#Set the Data
 
 	def __del__(self):
