@@ -1,0 +1,23 @@
+README
+======
+
+BUILD DEPENDENCIES
+==================
+libboost-dev
+
+
+
+BUILD ORDER
+===========
++ LIBRARIES
+	libhtml
+	libwebpage
+	libwebcms
+	libweb
++ BINARIES
+	cms.cgi
+	web.cgi
+
+
+DEPENDENCIES
+============
