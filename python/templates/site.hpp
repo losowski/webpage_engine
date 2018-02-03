@@ -1,35 +1,29 @@
-#ifndef WEB_SITE_CMS_HPP
-#define WEB_SITE_CMS_HPP
+#ifndef WEB_SITE_HPP
+#define WEB_SITE_HPP
 
+#include "web_page_base_cgi.hpp"
 #include "web_page_base.hpp"
+
+#include <tuple>
+#include <map>
 
 using namespace std;
 using namespace html;
 
 namespace web {
 
-typedef map < string, void(*)(string & title) > tpagemap;
-
-class WebSiteCMS : public web::WebPageBase
+class WebSite : public WebPageBaseCGI
 {
 	public:
-		WebSiteCMS(const string & title);
+		WebSiteCMS(void);
 		~WebSiteCMS(void);
-	protected:
-	/* // Menu items to fill in
-		list < MenuItem >			m_lhm_menu_items;
-		list < MenuItem >			m_rhm_menu_items;
-		list < MenuItem >			m_bm_menu_items;
-	*/
+	public:
+		WebPageBase * createObjectFromKey(void);
+		WebPageBase * deleteObjectFromKey(WebPageBase * pagebase);
 	private:
-		void buildMenus(void);
-		//Override normal CGI behaviour to run own magic script
-		void actionData(void);
+		void buildMenus(WebPageBase * pagebase);
 	private:
-		string		m_title;
-		tpagemap 	m_pages;
-		
+		list < MenuItem >			m_menus;
 };
 }
-#endif //WEB_SITE_CMS_HPP
-
+#endif //WEB_SITE_HPP
