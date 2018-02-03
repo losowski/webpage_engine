@@ -254,7 +254,16 @@ void WebPageBase::BM_addMenuItem(const string & name, const string & link, const
 {
 	m_bm_menu_items.emplace_front( MenuItem(name, link, text) ); //C++11
 }
+//Generic Menus
+void WebPageBase::addMenuItem(const string & name, const string & link, const string & text="")
+{
+	LHM_addMenuItem(name, link, text);
+	RHM_addMenuItem(name, link, text);
+	BM_addMenuItem(name, link, text);
+}
 
+
+//Build menus
 void WebPageBase::buildBottomMenu(void)
 {
 	//Style

@@ -56,6 +56,8 @@ class WebPageBase : public WebPageBaseCGI
 		void BM_addAffiliate(const string & logo, const string & link, const string & text="");
 		void BM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Footer
+	public:
+		void addMenuItem(const string & name, const string & link, const string & text="");
 	protected:
 		virtual void actionDataSelectSQL(pqxx::work & txn) = 0;
 		virtual void actionDataUpdateSQL(pqxx::work & txn, const string & key) = 0;
