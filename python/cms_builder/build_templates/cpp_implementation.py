@@ -52,7 +52,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		output = str()
 		variableName = Template("\tparseCGIParameter(m_$VARIABLE_NAME, \"$PRETTY_VARIABLE_NAME\");\n")
 		for variable, pretty_variable in zip(self.variableList, self.prettyVariableList):
-			output += variableName.safe_substitute(VARIABLE_NAME=variable, PRETTY_VARIABLE_NAME=pretty_variable)
+			output += variableName.safe_substitute(VARIABLE_NAME=variable[0], PRETTY_VARIABLE_NAME=pretty_variable)
 		return output
 
 	def extendSQLSelect(self):
