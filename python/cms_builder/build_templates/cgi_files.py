@@ -4,6 +4,7 @@
 import cpp_header
 import cpp_implementation
 import site_header
+import site_implementation
 import sql_create_table
 import sql_stored_proc
 
@@ -47,6 +48,15 @@ class CGIFiles:
 									variableList = self.variableList
 								),
 								site_header.SiteHeader(
+									project = self.project,
+									className = self.className,
+									baseClass = self.baseClass,
+									dbSchema = self.dbSchema,
+									dbTableName = self.dbTableName,
+									formDesign = self.formDesign,
+									variableList = self.variableList
+								),
+								site_implementation.SiteImplementation(
 									project = self.project,
 									className = self.className,
 									baseClass = self.baseClass,

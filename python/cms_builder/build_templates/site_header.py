@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#Class to deal with the template for a CPP header
+#Class to deal with the template for a Site Mapping header
 
 #Import relative to executing python file
 import cpp_code_template
