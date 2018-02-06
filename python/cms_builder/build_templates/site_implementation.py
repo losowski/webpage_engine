@@ -14,6 +14,9 @@ class SiteImplementation (base_template.BaseTemplate):
 
 	def __init__(self, project, output, binaryName, cgiObjects ):
 		base_template.BaseTemplate.__init__(self, "site.cpp", "cpp/lib"+project+"/" + output)
+		self.binaryName = binaryName
+		self.cgiObjects = cgiObjects
+		self.populateDataMap()
 		pass
 
 	def __del__(self):
@@ -42,10 +45,10 @@ class SiteImplementation (base_template.BaseTemplate):
 	"""
 	#Includes
 	def generateInclude(self, val):
-		return "{#inlcude \"{val}.hpp\"}".format(val = val)
+		return "#include \"{val}.hpp\"".format(val = val)
 
 	def generateIncludeList(self):
-		return ("\n".join(self.generateInclude(var) for (var, declared, param, sqltype) in self.sqlVariableList))
+		return ('\n'.join( self.generateInclude( cgiObj.getFileName() ) for cgiObj in self.cgiObjects))
 
 	def generateClassName(self, val):
 		return "{val}".format(val = val)
