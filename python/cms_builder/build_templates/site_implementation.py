@@ -7,10 +7,10 @@ import base_template
 from string import Template
 
 class SiteImplementation (base_template.BaseTemplate):
-	CGI_INCLUDE			=	"CGI_INCLUDE"
-	CGI_DEFAULT_PAGE	=	"CGI_DEFAULT_PAGE"
-	CGI_BUILD_SITE_MAP	=	"CGI_BUILD_SITE_MAP"
-	CGI_MENU_ITEMS		=	"CGI_MENU_ITEMS"
+	CGI_INCLUDE				=	"CGI_INCLUDE"
+	CGI_DEFAULT_PAGE		=	"CGI_DEFAULT_PAGE"
+	CGI_BUILD_SITE_PAGE_MAP	=	"CGI_BUILD_SITE_PAGE_MAP"
+	CGI_MENU_ITEMS			=	"CGI_MENU_ITEMS"
 
 	def __init__(self, project, output, binaryName, cgiObjects ):
 		base_template.BaseTemplate.__init__(self, "site.cpp", "cpp/lib"+project+"/" + output)
@@ -31,7 +31,7 @@ class SiteImplementation (base_template.BaseTemplate):
 		self.dataMap = {
 							self.CGI_INCLUDE					:	self.generateIncludeList(),
 							self.CGI_DEFAULT_PAGE				:	self.generateDefaultPage(),
-							self.CGI_BUILD_SITE_MAP				:	self.CGI_BUILD_SITE_MAP,
+							self.CGI_BUILD_SITE_PAGE_MAP		:	self.generateSitePageMapList(),
 							self.CGI_MENU_ITEMS					:	self.CGI_MENU_ITEMS,
 						}
 	"""
@@ -59,7 +59,20 @@ class SiteImplementation (base_template.BaseTemplate):
 	def generateDefaultPage(self):
 		return self.generateClassName( self.cgiObjects[0].getFileName() )
 
+
 	def generateKeyString(self, val):
-		return "{key}".format(val = val)
+		return "{key}".format(key = val)
+
+	def generateSitePageMap(self, val):
+		key = self.generateKeyString(val)
+		classConstructor = self.generateClassName(val)
+		#"case (key):
+		#		class;
+		#		break;
+		return "\t\t\tcase ({key}):\n\t\t\t\tobject = new {classConstructor}\n\t\t\t\tbreak;".format(key = key, classConstructor = classConstructor)
+
+	def generateSitePageMapList(self):
+		return ('\n'.join( self.generateSitePageMap( cgiObj.getFileName() ) for cgiObj in self.cgiObjects))
+
 
 #	def defaultPage

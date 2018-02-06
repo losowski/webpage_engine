@@ -28,7 +28,7 @@ WebPageBase * WebSiteCMS::createObjectFromKey(void)
 	else
 	{	switch (m_cgikey)
 		{
-			$CGI_BUILD_SITE_MAP
+$CGI_BUILD_SITE_PAGE_MAP
 			default:
 				object = new $CGI_DEFAULT_PAGE ;
 		}
