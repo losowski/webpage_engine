@@ -32,7 +32,7 @@ class SiteImplementation (base_template.BaseTemplate):
 							self.CGI_INCLUDE					:	self.generateIncludeList(),
 							self.CGI_DEFAULT_PAGE				:	self.generateDefaultPage(),
 							self.CGI_BUILD_SITE_PAGE_MAP		:	self.generateSitePageMapList(),
-							self.CGI_MENU_ITEMS					:	self.CGI_MENU_ITEMS,
+							self.CGI_MENU_ITEMS					:	self.generateCGIMenuItemList(),
 						}
 	"""
 	Functions:
@@ -74,5 +74,24 @@ class SiteImplementation (base_template.BaseTemplate):
 	def generateSitePageMapList(self):
 		return ('\n'.join( self.generateSitePageMap( cgiObj.getFileName() ) for cgiObj in self.cgiObjects))
 
+	#Menu Items
+	def generateNameForMenu(self, val):
+		return "{key}".format(key = val)
 
-#	def defaultPage
+	def generateLinkForMenu(self, val):
+		return "/key={key}".format(key = val)
+
+	def generateTextForMenu(self, val):
+		textList = val.split('_')
+		key = ' '.join( name.capitalize() for name in textList)
+		return "{key}".format(key=key)
+
+	def generateCGIMenuItem(self, val):
+		name = self.generateNameForMenu(val)
+		link = self.generateLinkForMenu(val)
+		text = self.generateTextForMenu(val)
+		return "\t\t({name}, {link}, {text})".format(name = name, link = link, text = text)
+
+	def generateCGIMenuItemList(self):
+		return ('\n'.join( self.generateCGIMenuItem( cgiObj.getFileName() ) for cgiObj in self.cgiObjects))
+
