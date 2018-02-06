@@ -12,7 +12,7 @@ using namespace html;
 
 namespace web {
 
-class WebSite : public WebPageBaseCGI
+class WebSiteCMS : public WebPageBaseCGI
 {
 	public:
 		WebSiteCMS(void);

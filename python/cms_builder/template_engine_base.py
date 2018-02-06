@@ -3,6 +3,8 @@
 
 from build_templates import cgi_files
 from build_templates import cpp_makefile
+from build_templates import site_header
+from build_templates import site_implementation
 
 class TemplateEngineBase:
 	TEMPLATE_BINARY	=	'TEMPLATE_BINARY'
@@ -34,4 +36,14 @@ class TemplateEngineBase:
 		make.loadTemplate()
 		make.generateParameters()
 		make.generateSourceCode()
+		#Site Header
+		sHeader = site_header.SiteHeader(self.cgiBinaryName, "web_site_cms.hpp", self.cgiBinaryName, self.cgiObjects)
+		sHeader.loadTemplate()
+		sHeader.generateParameters()
+		sHeader.generateSourceCode()
+		#Site Implementation
+		sImplementation = site_implementation.SiteImplementation(self.cgiBinaryName, "web_site_cms.cpp", self.cgiBinaryName, self.cgiObjects)
+		sImplementation.loadTemplate()
+		sImplementation.generateParameters()
+		sImplementation.generateSourceCode()
 

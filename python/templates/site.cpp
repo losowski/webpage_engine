@@ -1,19 +1,10 @@
-x#include "web_site.hpp"
+#include "web_site.hpp"
 
+$CGI_INCLUDE
 #include <boost/foreach.hpp>
 
 using namespace std;
 using namespace html;
-
-namespace web {
-
-	public:
-		WebPageHelpers(void);
-		~WebPageHelpers(void);
-	public:
-		WebPageBase * createObjectFromKey(void);
-		void buildMenus(WebPageBase * pagebase);
-
 
 WebSiteCMS::WebSiteCMS():
 	web::WebPageBaseCGI ()

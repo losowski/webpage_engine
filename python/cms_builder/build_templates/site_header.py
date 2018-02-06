@@ -2,17 +2,17 @@
 #Class to deal with the template for a Site Mapping header
 
 #Import relative to executing python file
-import cpp_code_template
+import base_template
 
 from string import Template
 
-class SiteHeader (cpp_code_template.CPPCodeTemplate):
-	def __init__(self, project, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
-		cpp_code_template.CPPCodeTemplate.__init__(self, "site.hpp", project, "web_site.hpp", className, baseClass, dbSchema, dbTableName, formDesign, variableList)
+class SiteHeader (base_template.BaseTemplate):
+	def __init__(self, project, output, binaryName, cgiObjects ):
+		base_template.BaseTemplate.__init__(self, "site.hpp", "cpp/lib"+project+"/" + output)
 		pass
 
 	def __del__(self):
-		cpp_code_template.CPPCodeTemplate.__del__(self)
+		base_template.BaseTemplate.__del__(self)
 
 	def populateDataMap(self):
 		#Pass do nothing
