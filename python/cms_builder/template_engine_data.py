@@ -14,12 +14,12 @@ class TemplateEngineData (template_engine_base.TemplateEngineBase):
 		self.cgiBinaryName	=	"webcms"
 		self.databaseName	=	"cms"
 		self.databaseUser	=	"cms"
-		self.cgiObjects 	=	{ cgi_files.CGIFiles (self.cgiBinaryName, "demo_page", None, "demo_schema", "contact", None, variableList = [
+		self.cgiObjects 	=	[ cgi_files.CGIFiles (self.cgiBinaryName, "demo_page", None, "demo_schema", "contact", None, variableList = [
 																												('forename',		const.TYPE_SQL_TEXT),
 																												('happiness',		const.TYPE_SQL_INT),
 																												('created_date',	const.TYPE_SQL_DATE)
 																																		]),
-								}
+								]
 
 	def __del__(self):
 		template_engine_base.TemplateEngineBase.__del__(self)
