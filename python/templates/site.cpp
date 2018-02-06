@@ -6,8 +6,9 @@ $CGI_INCLUDE
 using namespace std;
 using namespace html;
 
-WebSiteCMS::WebSiteCMS():
-	web::WebPageBaseCGI ()
+WebSiteCMS::WebSiteCMS(string & title):
+	web::WebPageBaseCGI (),
+	m_page(title)
 {
 }
 

@@ -6,6 +6,7 @@
 
 #include <tuple>
 #include <map>
+#include <string>
 
 using namespace std;
 using namespace html;
@@ -15,7 +16,7 @@ namespace web {
 class WebSiteCMS : public WebPageBaseCGI
 {
 	public:
-		WebSiteCMS(void);
+		WebSiteCMS(string & title);
 		~WebSiteCMS(void);
 	public:
 		WebPageBase * createObjectFromKey(void);
@@ -23,6 +24,7 @@ class WebSiteCMS : public WebPageBaseCGI
 	private:
 		void buildMenus(WebPageBase * pagebase);
 	private:
+		string						m_page;
 		list < MenuItem >			m_menus;
 };
 }

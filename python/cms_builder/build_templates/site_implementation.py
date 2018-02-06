@@ -30,9 +30,9 @@ class SiteImplementation (base_template.BaseTemplate):
 	def populateDataMap(self):
 		self.dataMap = {
 							self.CGI_INCLUDE					:	self.generateIncludeList(),
-							self.CGI_DEFAULT_PAGE				:	self.generateIncludeList(),
-							self.CGI_BUILD_SITE_MAP				:	self.generateIncludeList(),
-							self.CGI_MENU_ITEMS					:	self.generateIncludeList(),
+							self.CGI_DEFAULT_PAGE				:	self.generateDefaultPage(),
+							self.CGI_BUILD_SITE_MAP				:	self.CGI_BUILD_SITE_MAP,
+							self.CGI_MENU_ITEMS					:	self.CGI_MENU_ITEMS,
 						}
 	"""
 	Functions:
@@ -50,8 +50,14 @@ class SiteImplementation (base_template.BaseTemplate):
 	def generateIncludeList(self):
 		return ('\n'.join( self.generateInclude( cgiObj.getFileName() ) for cgiObj in self.cgiObjects))
 
+	#Class names
 	def generateClassName(self, val):
-		return "{val}".format(val = val)
+		titleClassList = val.split('_')
+		titleClassName = ''.join( name.capitalize() for name in titleClassList)
+		return "{titleClassName}(m_page);".format(titleClassName = titleClassName)
+
+	def generateDefaultPage(self):
+		return self.generateClassName( self.cgiObjects[0].getFileName() )
 
 	def generateKeyString(self, val):
 		return "{key}".format(val = val)
