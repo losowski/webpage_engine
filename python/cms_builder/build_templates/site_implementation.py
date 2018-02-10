@@ -79,12 +79,12 @@ class SiteImplementation (base_template.BaseTemplate):
 		return "\"{key}\"".format(key = val)
 
 	def generateLinkForMenu(self, val):
-		return "/key={key}".format(key = val)
+		return "\"/key={key}\"".format(key = val)
 
 	def generateTextForMenu(self, val):
 		textList = val.split('_')
 		key = ' '.join( name.capitalize() for name in textList)
-		return "{key}".format(key=key)
+		return "\"{key}\"".format(key=key)
 
 	def generateCGIMenuItem(self, val):
 		name = self.generateNameForMenu(val)
