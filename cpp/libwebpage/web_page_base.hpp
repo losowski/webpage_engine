@@ -27,7 +27,7 @@ class WebPageBase : public WebPageBaseCGI
 {
 	public:
 		WebPageBase(const string & title);
-		~WebPageBase(void);
+		virtual ~WebPageBase(void);
 	public:
 		void connectDB(const string & connection);
 		//void parseCGI(void); // IN base class
