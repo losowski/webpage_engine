@@ -90,8 +90,8 @@ class SiteImplementation (base_template.BaseTemplate):
 		name = self.generateNameForMenu(val)
 		link = self.generateLinkForMenu(val)
 		text = self.generateTextForMenu(val)
-		return "\t\t({name}, {link}, {text})".format(name = name, link = link, text = text)
+		return "\t\tMenuItem({name}, {link}, {text})".format(name = name, link = link, text = text)
 
 	def generateCGIMenuItemList(self):
-		return ('\n'.join( self.generateCGIMenuItem( cgiObj.getFileName() ) for cgiObj in self.cgiObjects))
+		return (',\\\n'.join( self.generateCGIMenuItem( cgiObj.getFileName() ) for cgiObj in self.cgiObjects))
 
