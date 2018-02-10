@@ -48,9 +48,9 @@ WebPageBase * WebSiteCMS::deleteObjectFromKey(WebPageBase * pagebase)
 
 void WebSiteCMS::buildMenus(WebPageBase * pagebase)
 {
-	list < MenuItem > itemlist = \
+	list < MenuItem > itemlist {
 $CGI_MENU_ITEMS
-	;
+	};
 	//Add the Menu Entries
 	BOOST_FOREACH(MenuItem item, itemlist)
 	{
