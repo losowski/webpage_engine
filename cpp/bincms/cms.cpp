@@ -8,7 +8,7 @@ int main (int argc, char * argv[])
 	WebSiteCMS cms("CMS");
 	WebPageBase * page = createObjectFromKey();
 	//CGI
-	page.connectDB("host=localhost dbname=demodb user=demo password=demodb");
+	page.connectDB("host=localhost dbname=cmsdb user=cms password=cmsdb");
 	page.parseCGI();
 	page.actionData();
 	//Build
