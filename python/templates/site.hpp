@@ -16,7 +16,7 @@ namespace web {
 class WebSiteCMS : public WebPageBaseCGI
 {
 	public:
-		WebSiteCMS(string & title);
+		WebSiteCMS(const string & title);
 		~WebSiteCMS(void);
 	public:
 		WebPageBase * createObjectFromKey(void);

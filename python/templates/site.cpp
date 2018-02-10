@@ -8,7 +8,7 @@ using namespace html;
 
 namespace web {
 
-WebSiteCMS::WebSiteCMS(string & title):
+WebSiteCMS::WebSiteCMS(const string & title):
 	web::WebPageBaseCGI (),
 	m_page(title)
 {

@@ -1,4 +1,4 @@
-#include "web_page_cms.hpp"
+#include "web_site_cms.hpp"
 
 using namespace std;
 using namespace web;
@@ -6,7 +6,7 @@ using namespace web;
 int main (int argc, char * argv[])
 {
 	WebSiteCMS cms("CMS");
-	WebPageBase * page = createObjectFromKey();
+	WebPageBase * page = cms.createObjectFromKey();
 	//CGI
 	page.connectDB("host=localhost dbname=cmsdb user=cms password=cmsdb");
 	page.parseCGI();
@@ -14,6 +14,6 @@ int main (int argc, char * argv[])
 	//Build
 	page.buildWebsite();
 	page.displayWebsite();
-	deleteObjectFromKey(page);
+	cms.deleteObjectFromKey(page);
 }
 
