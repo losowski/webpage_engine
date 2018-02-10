@@ -61,22 +61,22 @@ class SiteImplementation (base_template.BaseTemplate):
 
 
 	def generateKeyString(self, val):
-		return "{key}".format(key = val)
+		return "\"{key}\"".format(key = val)
 
 	def generateSitePageMap(self, val):
 		key = self.generateKeyString(val)
 		classConstructor = self.generateClassName(val)
-		#"case (key):
-		#		class;
-		#		break;
-		return "\t\t\tcase ({key}):\n\t\t\t\tobject = new {classConstructor}\n\t\t\t\tbreak;".format(key = key, classConstructor = classConstructor)
+		#"elif (0 != m_cgikey.compare(key)) {
+		# object = new $CGI_DEFAULT_PAGE
+		#}"
+		return "\telse if (0 != m_cgikey.compare({key})) {{\n\t\tobject = new {classConstructor}\n\t}}".format(key = key, classConstructor = classConstructor)
 
 	def generateSitePageMapList(self):
 		return ('\n'.join( self.generateSitePageMap( cgiObj.getFileName() ) for cgiObj in self.cgiObjects))
 
 	#Menu Items
 	def generateNameForMenu(self, val):
-		return "{key}".format(key = val)
+		return "\"{key}\"".format(key = val)
 
 	def generateLinkForMenu(self, val):
 		return "/key={key}".format(key = val)

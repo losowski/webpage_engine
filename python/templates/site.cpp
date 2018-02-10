@@ -1,10 +1,12 @@
-#include "web_site.hpp"
+#include "web_site_cms.hpp"
 
 $CGI_INCLUDE
 #include <boost/foreach.hpp>
 
 using namespace std;
 using namespace html;
+
+namespace web {
 
 WebSiteCMS::WebSiteCMS(string & title):
 	web::WebPageBaseCGI (),
@@ -21,18 +23,13 @@ WebPageBase * WebSiteCMS::createObjectFromKey(void)
 	WebPageBase * object = NULL;
 	// Setting the Key
 	parseCGIKey();
-	if (true = m_cgikey.empty())
+	if (true == m_cgikey.empty())
 	{
-		object = new $CGI_DEFAULT_PAGE ;
+		object = new $CGI_DEFAULT_PAGE
 	}
-	else
-	{	switch (m_cgikey)
-		{
 $CGI_BUILD_SITE_PAGE_MAP
-			default:
-				object = new $CGI_DEFAULT_PAGE ;
-		}
-		
+	else {
+			object = new $CGI_DEFAULT_PAGE
 	}
 	//Build menus
 	buildMenus(object);
@@ -58,4 +55,6 @@ $CGI_MENU_ITEMS ;
 	{
 		pagebase->addMenuItem (get<0>(item), get<1>(item), get<2>(item));
 	}
+}
+
 }
