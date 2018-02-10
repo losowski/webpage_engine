@@ -46,7 +46,7 @@ WebPageBase * WebSiteCMS::deleteObjectFromKey(WebPageBase * pagebase)
 	return pagebase;
 }
 
-void WebSiteCMS::buildMenus(WebPageBase * pagebase);
+void WebSiteCMS::buildMenus(WebPageBase * pagebase)
 {
 	list < MenuItem > itemlist = \
 $CGI_MENU_ITEMS ;
