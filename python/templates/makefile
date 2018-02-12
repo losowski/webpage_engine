@@ -73,7 +73,7 @@ INCLUDES = -I../libhtml -I../libwebpage
 LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lcgicc -lpq -lpqxx -lhtml
 
 #Soures
-SRCS = $MAKEFILE_FILES web_site_cms.cpp
+SRCS = web_site_cms.cpp $MAKEFILE_FILES
 
 ###########
 ## MAGIC ##
