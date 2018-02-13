@@ -52,7 +52,7 @@ string HTMLFormInput::getAttributes(void)
 {
 	BOOST_FOREACH(string attr, m_attribute_set)
 	{
-		m_input_attribute += attr + " ";
+		m_input_attribute += " " + attr;
 	}
 
 	return m_input_attribute;
