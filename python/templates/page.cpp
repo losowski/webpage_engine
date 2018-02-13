@@ -29,7 +29,7 @@ void $CLASS_NAME::buildMainMenu(void)
 	//HTML
 	HTMLBodyBasePtr demo = m_page.add_div("demo-layout");
 	//MENU
-	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "$CLASS_NAME.cgi");
+	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "$BINARY_NAME.cgi");
 	HTMLFormInputPtr key = df->add_text_input("key", "key", "update");
 	key->setHidden();
 	HTMLFormInputPtr id = df->add_text_input("id", "id", m_id);

@@ -13,6 +13,7 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 
 	def __init__(self, templateFile, project, outputFile, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
 		base_template.BaseTemplate.__init__(self, templateFile, "cpp/lib"+project+"/" + outputFile)
+		self.project = project
 		self.className = className
 		self.baseClass = baseClass
 		self.dbSchema = dbSchema

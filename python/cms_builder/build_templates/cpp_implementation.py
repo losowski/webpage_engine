@@ -20,6 +20,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	SQL_SELECT						=	'SQL_SELECT'
 	PROCESS_SQL_RESULT				=	'PROCESS_SQL_RESULT'
 	SQL_STORED_PROCEDURE_PARAMETERS	=	'SQL_STORED_PROCEDURE_PARAMETERS'
+	BINARY_NAME						=	'BINARY_NAME'
 
 	def __init__(self, project, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
 		cpp_code_template.CPPCodeTemplate.__init__(self, "page.cpp", project, className + ".cpp", className, baseClass, dbSchema, dbTableName, formDesign, variableList)
@@ -38,6 +39,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		self.dataMap[sql_stored_proc.SQLStoredProc.SQL_SCHEMA_TABLE] = sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName)
 		self.dataMap[sql_stored_proc.SQLStoredProc.SQL_STOREDPROCNAME] = sql_stored_proc.SQLStoredProc.buildStoredProcName(self.dbSchema, self.dbTableName)
 		self.dataMap[self.SQL_STORED_PROCEDURE_PARAMETERS] = self.extendSQLStoredProcedureParameters()
+		self.dataMap[self.BINARY_NAME] = self.project
 
 	def buildCGIDesign(self, design = None):
 		if design == "basicForm":
