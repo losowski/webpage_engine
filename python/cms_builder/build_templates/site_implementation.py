@@ -79,7 +79,7 @@ class SiteImplementation (base_template.BaseTemplate):
 		return "\"{key}\"".format(key = val)
 
 	def generateLinkForMenu(self, val):
-		return "\"/key={key}\"".format(key = val)
+		return "\"?key={key}\"".format(key = val)
 
 	def generateTextForMenu(self, val):
 		textList = val.split('_')
