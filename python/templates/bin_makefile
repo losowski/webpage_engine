@@ -74,7 +74,7 @@ INCLUDES = -I../libwebcms -I../libwebpage -I../libhtml
 LDFLAGS = -L../lib -L/usr/lib/x86_64-linux-gnu -lwebcms -lwebpage -lhtml
 
 #Soures
-SRCS = cms.cpp
+SRCS = web.cpp
 
 ###########
 ## MAGIC ##
