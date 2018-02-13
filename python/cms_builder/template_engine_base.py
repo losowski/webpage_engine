@@ -5,6 +5,7 @@ from build_templates import cgi_files
 from build_templates import cpp_makefile
 from build_templates import site_header
 from build_templates import site_implementation
+from build_templates import bin_makefile
 
 class TemplateEngineBase:
 	TEMPLATE_BINARY	=	'TEMPLATE_BINARY'
@@ -46,4 +47,9 @@ class TemplateEngineBase:
 		sImplementation.loadTemplate()
 		sImplementation.generateParameters()
 		sImplementation.generateSourceCode()
+		#Binary Makefile
+		binmake = bin_makefile.BinMakefile(self.cgiBinaryName, "makefile", self.cgiBinaryName, self.cgiObjects)
+		binmake.loadTemplate()
+		binmake.generateParameters()
+		binmake.generateSourceCode()
 
