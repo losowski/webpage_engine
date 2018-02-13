@@ -21,6 +21,8 @@ WebSiteCMS::~WebSiteCMS(void)
 WebPageBase * WebSiteCMS::createObjectFromKey(void)
 {
 	WebPageBase * object = NULL;
+	// Initialise
+	parseCGI();
 	// Setting the Key
 	parseCGIKey();
 	if (true == m_cgikey.empty())
