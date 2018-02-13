@@ -68,7 +68,7 @@ CFLAGS = $(TARGET_FLAG) $(COMPILER_OPTIONS) #-DVERSION=\"$(VERSION)\" #Other def
 ###################
 PROGRAM_NAME = demopage.cgi
 #INCLUDES
-INCLUDES = -I../../libwebdemosite -I../../libwebpage -I../../libhtml
+INCLUDES = -I../../demowebsite -I../../libwebpage -I../../libhtml
 
 #Libraries
 LDFLAGS = -L../../lib -L/usr/lib/x86_64-linux-gnu -lwebdemosite -lwebpage -lhtml
