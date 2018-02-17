@@ -1,6 +1,9 @@
 #!/usr/bin/python
 #Class to deal with the template for a CPP template
 import base_template
+from code_layouts import \
+	basic_form, \
+	basic_page \
 
 from string import Template
 
@@ -21,11 +24,14 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 		self.formDesign = formDesign
 		self.variableList = variableList
 		self.prettyVariableList = None
+		self.cgid = None
 		#Populate
+		self.definePageObject(formDesign)
 		self.populateDataMap()
 
 	def __del__(self):
 		base_template.BaseTemplate.__del__(self)
+		self.cgid = None
 		pass
 
 	def populateDataMap(self):
@@ -35,6 +41,12 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 							self.RAWDATA_TABLE_NAME		:	self.dbTableName,
 							self.RAWDATA_VARIABLE_LIST	:	self.variableList,
 						}
+
+	def definePageObject(self, design = None):
+		if design == "basicForm":
+			self.cgid = basic_form.BasicForm(self.variableList)
+		else:
+			self.cgid = basic_page.BasicPage(self.variableList)
 
 	def generateParametersTemplate(self):
 		#All the specific files to output
