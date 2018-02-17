@@ -1,17 +1,24 @@
 #!/bin/sh
 # Build a complete repo
 BUILDDIR=/tmp
+GITBRANCH=master
 if [ $# -ge 1 ]; then
-	BUILDDIR=$1
+	GITBRANCH=$1
 else
-	echo "Setting default BUILDDIR"
+	echo "WARN:	Checking out master by default"
+fi
+if [ $# -ge 2 ]; then
+	BUILDDIR=$2
+	echo
+else
+	echo "WARN: Setting default BUILDDIR"
 fi
 echo "Building web_engine in "$BUILDDIR
 mkdir $BUILDDIR
 cd $BUILDDIR
 git clone ssh://eugene@Gears/home/eugene/git/web_engine_repo webengine
 cd webengine
-git checkout B_DEV_MENU_BIN_V2
+git checkout $GITBRANCH
 (
 	cd python
 	./buildCMS.py
