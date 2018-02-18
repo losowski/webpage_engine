@@ -47,6 +47,9 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 			self.cgid = basic_form.BasicForm(self.variableList)
 		else:
 			self.cgid = basic_page.BasicPage(self.variableList)
+		print ("Page Type: {pagetype}".format(pagetype = self.cgid.getPageType()))
+		#Build the CGID FORM
+		self.cgid.formatData()
 
 	def generateParametersTemplate(self):
 		#All the specific files to output
