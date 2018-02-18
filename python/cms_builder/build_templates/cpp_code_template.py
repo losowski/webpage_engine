@@ -1,6 +1,9 @@
 #!/usr/bin/python
 #Class to deal with the template for a CPP template
+from cms_builder import const
+
 import base_template
+
 from code_layouts import \
 	basic_form, \
 	basic_page \
@@ -43,7 +46,8 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 						}
 
 	def definePageObject(self, design = None):
-		if design == "basicForm":
+		print ("Requesting page type: {pagetype}".format(pagetype = design))
+		if design == const.FORM_TYPE_BASIC_FORM:
 			self.cgid = basic_form.BasicForm(self.variableList)
 		else:
 			self.cgid = basic_page.BasicPage(self.variableList)

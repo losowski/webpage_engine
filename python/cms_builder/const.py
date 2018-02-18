@@ -1,4 +1,5 @@
 #!/usr/bin/python
+#SQL TYPES
 TYPE_SQL_SEQUENCE	=	"bigserial"
 TYPE_SQL_INT		=	"bigint"
 
@@ -8,3 +9,7 @@ TYPE_SQL_DECIMAL	=	"numeric"
 
 TYPE_SQL_DATE		=	"date"
 TYPE_SQL_TIMESTAMP	=	"timestamp"
+
+#FORM Designs
+FORM_TYPE_BASIC_PAGE	=	"basicPage"
+FORM_TYPE_BASIC_FORM	=	"basicForm"

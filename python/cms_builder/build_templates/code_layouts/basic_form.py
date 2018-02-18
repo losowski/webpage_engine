@@ -17,7 +17,7 @@ class BasicForm (basic_page.BasicPage):
 		pass
 
 	def formatData(self):
-		for var in self.variableList:
+		for var, datatype in self.variableList:
 			fieldName	= var
 			fieldTitle	= ' '.join(v.capitalize() for v in var.split('_'))
 			self.formattedData.append((fieldName, fieldTitle))
