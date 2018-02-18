@@ -23,21 +23,25 @@ git checkout $GITBRANCH
 	cd python
 	./buildCMS.py
 )
-echo $PWD
-(
-	cd cpp/libhtml
+if [ $# -ge 3 ]; then
 	echo $PWD
-	make local_install
-)
-(
-	cd cpp/libwebpage
-	make local_install
-)
-(
-	cd cpp/libwebcms
-	make local_install
-)
-(
-	cd cpp/binwebcms
-	make local_install
-)
+	MAKEPARAM=$3
+	if [ $MAKEPARAM = "local_install" ] ; then
+		(
+			cd cpp/libhtml
+			make $MAKEPARAM
+		)
+		(
+			cd cpp/libwebpage
+			make $MAKEPARAM
+		)
+		(
+			cd cpp/libwebcms
+			make $MAKEPARAM
+		)
+		(
+			cd cpp/binwebcms
+			make $MAKEPARAM
+		)
+	fi
+fi
