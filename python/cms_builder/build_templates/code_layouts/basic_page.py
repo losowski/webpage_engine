@@ -4,16 +4,19 @@ from string import Template
 
 class BasicPage:
 	def __init__(self, variableList):
-		self.variableList = list()
+		self.variableList = variableList
 		self.cgiCode = str()
-		self.formatData(variableList)
+		self.formattedData = list()
 		#Process Variables
-
+		self.pagetype = "basicPage"
 
 	def __del__(self):
 		pass
 
-	def formatData(self, variableList):
+	def getPageType(self):
+		return self.pagetype
+
+	def formatData(self):
 		pass
 
 	def buildPage(self):
