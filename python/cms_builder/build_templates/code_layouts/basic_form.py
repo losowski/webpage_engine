@@ -10,7 +10,7 @@ class BasicForm (basic_page.BasicPage):
 
 	def __init__(self, variableList):
 		basic_page.BasicPage.__init__(self, variableList)
-		self.pagetype = "basicPage"
+		self.pagetype = "basicForm"
 
 	def __del__(self):
 		basic_page.BasicPage.__del__(self)
