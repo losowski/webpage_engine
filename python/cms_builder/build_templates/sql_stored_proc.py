@@ -50,7 +50,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	#Build the SQL parameters
 	def buildParameter(self, var, declared, param, sqltype):
 		#"IN	p_forename				demo_schema.tcontact.forename%TYPE default NULL,"
-		return "\tIN\t{param}\t\t\t{dbSchema}.{dbTableName}.{var}%TYPE default NULL".format(var=var, param=param, dbSchema=self.dbSchema, dbTableName=self.dbTableName)
+		return "\tIN\t{param}\t\t\t{SQL_SCHEMA_TABLE}.{var}%TYPE default NULL".format(var=var, param=param, SQL_SCHEMA_TABLE = sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName))
 
 	def buildParameterList(self):
 		return (",\n".join(self.buildParameter(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
@@ -58,7 +58,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	#Build the SQL Declared
 	def buildDeclared(self, var, declared, param, sqltype):
 		#"v_forename				demo_schema.tcontact.forename%TYPE;"
-		return "\t{declared}\t\t\t{dbSchema}.{dbTableName}.{var}%TYPE;".format(var=var, declared=declared, dbSchema=self.dbSchema, dbTableName=self.dbTableName)
+		return "\t{declared}\t\t\t{SQL_SCHEMA_TABLE}.{var}%TYPE;".format(var=var, declared=declared, SQL_SCHEMA_TABLE = sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName))
 
 	def buildDeclaredList(self):
 		return ("\n".join(self.buildDeclared(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
