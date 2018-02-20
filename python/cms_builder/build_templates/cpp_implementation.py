@@ -46,7 +46,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		return self.cgid.buildCGIFormDesign(val, fieldTitle)
 
 	def buildCGIDesignList(self):
-		return (",\n".join(self.buildCGIDesign(var) for (var, sqltype) in self.variableList))
+		return ("\n".join(self.buildCGIDesign(var) for (var, sqltype) in self.variableList))
 
 	def extendParseCGIParameters(self):
 		output = str()
