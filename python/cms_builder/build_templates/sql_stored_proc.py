@@ -87,7 +87,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 		return "\tIF {declared} != {param} AND {param} IS NOT NULL THEN\n\t\t{declared} := {param};\n\tEND IF;".format(var=var, param=param, declared=declared)
 
 	def buildCompareValuesForUpdateList(self):
-		return (",\n".join(self.buildCompareValuesForUpdate(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
+		return ("\n".join(self.buildCompareValuesForUpdate(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
 
 
 	#Build the SQL Update Set value
