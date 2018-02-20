@@ -26,6 +26,7 @@ class SQLCreateTable (sql_template.SQLTemplate):
 
 	def populateDataMap(self):
 		self.dataMap = {
+							self.SQL_SCHEMA						:	sql_template.SQLTemplate.buildSchema(self.dbSchema),
 							self.SQL_SCHEMA_TABLE				:	sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName),
 							self.SQL_TABLE_INDEX_ID				:	self.buildTableIndexName("id"),
 							self.SQL_TABLE_INDEX				:	self.buildTableIndexList(),
