@@ -93,7 +93,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	#Build the SQL Update Set value
 	def buildUpdateSetValue(self, var, declared, param, sqltype):
 		#forename = v_forename,
-		return "\t{var} = {param}".format(var=var, param=param)
+		return "\t\t{var} = {param}".format(var=var, param=param)
 
 	def buildUpdateSetValueList(self):
 		return (",\n".join(self.buildUpdateSetValue(var, declared, param, sqltype) for (var, declared, param, sqltype) in self.sqlVariableList))
