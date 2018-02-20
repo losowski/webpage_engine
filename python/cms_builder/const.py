@@ -1,4 +1,8 @@
 #!/usr/bin/python
+CDNMEDIAPATH			=	"www"
+CDNJAVASCRIPTPATH		=	"www"
+CDNCSSPATH				=	"www"
+
 #LIBWEBPAGE
 LIBWEBPAGE_BASE_CLASS	=	"WebPageBase"
 
