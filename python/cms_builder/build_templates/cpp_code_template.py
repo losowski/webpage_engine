@@ -47,22 +47,27 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 
 	def definePageObject(self, design = None):
 		print ("Requesting page type: {pagetype}".format(pagetype = design))
-		if design == const.FORM_TYPE_BASIC_FORM:
+		if design in const.FORM_TYPE_BASIC_FORM:
 			self.cgid = basic_form.BasicForm(self.variableList)
 		else:
 			self.cgid = basic_page.BasicPage(self.variableList)
 		print ("Page Type: {pagetype}".format(pagetype = self.cgid.getPageType()))
-		#Build the CGID FORM
-		self.cgid.formatData()
+
+	@staticmethod
+	def fieldNameToClassName(fieldName):
+		fieldClassList = fieldName.split('_')
+		return ''.join( name.capitalize() for name in fieldClassList)
+
+	def defineClassName (self):
+		return self.fieldNameToClassName(self.className)
 
 	def generateParametersTemplate(self):
 		#All the specific files to output
 		#BaseClass
 		if (None == self.baseClass):
-			self.dataMap[self.RAWDATA_BASE_CLASS] = "WebPageBase"
+			self.dataMap[self.RAWDATA_BASE_CLASS] = const.LIBWEBPAGE_BASE_CLASS
 		#Class name is "class_name"
-		titleClassList = self.className.split('_')
-		titleClassName = ''.join( name.capitalize() for name in titleClassList)
+		titleClassName = self.defineClassName()
 		#Generators
 		self.dataMap[self.RAWDATA_CLASS_NAME] = titleClassName #"FileName"
 		self.dataMap[self.RAWDATA_HEADER_IFDEF] = self.className.upper() + "_HPP" # "FILE_NAME"

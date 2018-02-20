@@ -1,4 +1,7 @@
 #!/usr/bin/python
+#LIBWEBPAGE
+LIBWEBPAGE_BASE_CLASS	=	"WebPageBase"
+
 #SQL TYPES
 TYPE_SQL_SEQUENCE	=	"bigserial"
 TYPE_SQL_INT		=	"bigint"

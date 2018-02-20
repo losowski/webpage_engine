@@ -34,7 +34,7 @@ void $CLASS_NAME::buildMainMenu(void)
 	key->setHidden();
 	HTMLFormInputPtr id = df->add_text_input("id", "id", m_id);
 	id->setHidden();
-	$BUILD_CGI_DESIGN
+$BUILD_CGI_DESIGN
 	df->set_submit_name("Enter");
 }
 

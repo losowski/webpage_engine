@@ -4,10 +4,6 @@ from string import Template
 
 class BasicPage:
 	def __init__(self, variableList):
-		self.variableList = variableList
-		self.cgiCode = str()
-		self.formattedData = list()
-		#Process Variables
 		self.pagetype = "basicPage"
 
 	def __del__(self):
@@ -16,12 +12,5 @@ class BasicPage:
 	def getPageType(self):
 		return self.pagetype
 
-	def formatData(self):
+	def buildCGIFormDesign(self, fieldName, fieldTitle):
 		pass
-
-	def buildPage(self):
-		self.cgiCode = "// Undefined!"
-		pass
-
-	def getPage(self):
-		return self.cgiCode

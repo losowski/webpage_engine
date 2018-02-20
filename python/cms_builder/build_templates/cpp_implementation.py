@@ -33,7 +33,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	def extendSpecificParameters(self):
 		self.dataMap[self.HPP_INCLUDE] = "#include \"" + self.dataMap[self.RAWDATA_FILENAME] + ".hpp\"" #"#include "file_name"
 		self.dataMap[self.PARSE_CGI_PARAMETERS] = self.extendParseCGIParameters()
-		self.dataMap[self.BUILD_CGI_DESIGN] = self.buildCGIDesign()
+		self.dataMap[self.BUILD_CGI_DESIGN] = self.buildCGIDesignList()
 		self.dataMap[self.SQL_SELECT] = self.extendSQLSelect()
 		self.dataMap[self.PROCESS_SQL_RESULT] = self.extendProcesSQLResult()
 		self.dataMap[sql_stored_proc.SQLStoredProc.SQL_SCHEMA_TABLE] = sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName)
@@ -41,10 +41,12 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		self.dataMap[self.SQL_STORED_PROCEDURE_PARAMETERS] = self.extendSQLStoredProcedureParameters()
 		self.dataMap[self.BINARY_NAME] = self.project
 
-	def buildCGIDesign(self):
-		#Now Run the class
-		self.cgid.buildPage()
-		return self.cgid.getPage()
+	def buildCGIDesign(self, val):
+		fieldTitle = self.fieldNameToClassName(val)
+		return self.cgid.buildCGIFormDesign(val, fieldTitle)
+
+	def buildCGIDesignList(self):
+		return (",\n".join(self.buildCGIDesign(var) for (var, sqltype) in self.variableList))
 
 	def extendParseCGIParameters(self):
 		output = str()
