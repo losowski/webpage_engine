@@ -13,7 +13,7 @@ int main (int argc, char * argv[])
 	//Content
 	$LOGO_TOP_MENU
 	//Left Hand menu
-	//page->LHM_addLogo("doggo2.png");
+	$LOGO_LEFT_HAND_MENU
 	//CGI
 	page->connectDB("host=localhost dbname=cmsdb user=cms password=cmsdb");
 	page->parseCGI();
