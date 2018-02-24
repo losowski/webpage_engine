@@ -11,9 +11,9 @@ int main (int argc, char * argv[])
 	$CDN_JAVASCRIPT_PATH
 	$CDN_CSS_PATH
 	//Content
-	//demo.TM_addLogo("doggo.png");
+	$LOGO_TOP_MENU
 	//Left Hand menu
-	//demo.LHM_addLogo("doggo2.png");
+	//page->LHM_addLogo("doggo2.png");
 	//CGI
 	page->connectDB("host=localhost dbname=cmsdb user=cms password=cmsdb");
 	page->parseCGI();
