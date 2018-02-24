@@ -34,13 +34,28 @@ class BinImplementation (base_template.BaseTemplate):
 					}
 
 	def buildCDNMediaPath(self):
-		return "page->setMediaPath(\"{cdnmediapath}\");".format(cdnmediapath = const.CDNMEDIAPATH)
+		path = ""
+		if (None != const.CDNMEDIAPATH):
+			path = "page->setMediaPath(\"{cdnmediapath}\");".format(cdnmediapath = const.CDNMEDIAPATH)
+		return path
 
 	def buildCDNJavaScriptPath(self):
-		return "page->setJavascriptPath(\"{cdnmediapath}\");".format(cdnmediapath = const.CDNJAVASCRIPTPATH)
+		path = ""
+		if (None != const.CDNMEDIAPATH):
+			cdnPath = const.CDNMEDIAPATH
+			if (None != const.CDNJAVASCRIPTPATH):
+				cdnPath = "/".join ((const.CDNMEDIAPATH, const.CDNJAVASCRIPTPATH))
+			path = "page->setJavascriptPath(\"{cdnmediapath}\");".format(cdnmediapath = cdnPath)
+		return path
 
 	def buildCDNCSSPath(self):
-		return "page->setCSSPath(\"{cdnmediapath}\");".format(cdnmediapath = const.CDNCSSPATH)
+		path = ""
+		if (None != const.CDNMEDIAPATH):
+			cdnPath = const.CDNMEDIAPATH
+			if (None != const.CDNCSSPATH):
+				cdnPath = "/".join ((const.CDNMEDIAPATH, const.CDNCSSPATH))
+			path = "page->setCSSPath(\"{cdnmediapath}\");".format(cdnmediapath = cdnPath)
+		return path
 
 	def buildTopMenuLogo(self):
 		#	page->TM_addLogo("doggo.png");

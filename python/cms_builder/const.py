@@ -1,7 +1,7 @@
 #!/usr/bin/python
-CDNMEDIAPATH			=	"www"
-CDNJAVASCRIPTPATH		=	"www"
-CDNCSSPATH				=	"www"
+CDNMEDIAPATH			=	None
+CDNJAVASCRIPTPATH		=	None
+CDNCSSPATH				=	None
 
 #LIBWEBPAGE
 LIBWEBPAGE_BASE_CLASS	=	"WebPageBase"
