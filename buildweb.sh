@@ -44,4 +44,5 @@ if [ $# -ge 3 ]; then
 			make $MAKEPARAM
 		)
 	fi
+	cd $BUILDDIR/webengine/cpp
 fi
