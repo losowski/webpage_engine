@@ -38,6 +38,7 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		self.dataMap[self.PROCESS_SQL_RESULT] = self.extendProcesSQLResult()
 		self.dataMap[sql_stored_proc.SQLStoredProc.SQL_SCHEMA_TABLE] = sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName)
 		self.dataMap[sql_stored_proc.SQLStoredProc.SQL_STOREDPROCNAME] = sql_stored_proc.SQLStoredProc.buildStoredProcName(self.dbSchema, self.dbTableName)
+		self.dataMap[sql_stored_proc.SQLStoredProc.SQL_STOREDPROC_COL] = sql_stored_proc.SQLStoredProc.buildStoredProcColumn(self.dbTableName)
 		self.dataMap[self.SQL_STORED_PROCEDURE_PARAMETERS] = self.extendSQLStoredProcedureParameters()
 		self.dataMap[self.BINARY_NAME] = self.project
 

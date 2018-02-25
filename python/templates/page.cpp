@@ -72,7 +72,7 @@ void $CLASS_NAME::actionDataUpdateSQL (pqxx::work & txn, const string & key)
 	{
 		if ("NULL" == m_id)
 		{
-			m_id.assign(res[i]["$SQL_STOREDPROCNAME"].c_str());
+			m_id.assign(res[i]["$SQL_STOREDPROC_COL"].c_str());
 			PrimaryKeySet();
 		}
 	}

@@ -47,3 +47,8 @@ class SQLTemplate (base_template.BaseTemplate):
 	@staticmethod
 	def buildSchema(dbSchema):
 		return "{dbSchema}".format(dbSchema=dbSchema)
+
+	#Build the table Schema Name
+	@staticmethod
+	def buildTable(dbTableName):
+		return "t{dbTableName}".format(dbTableName=dbTableName)

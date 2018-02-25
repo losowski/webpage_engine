@@ -8,6 +8,7 @@ from string import Template
 
 class SQLStoredProc (sql_template.SQLTemplate):
 	SQL_STOREDPROCNAME			= "SQL_STOREDPROCNAME"
+	SQL_STOREDPROC_COL			= "SQL_STOREDPROC_COL"
 	SQL_PARAMETER				= "SQL_PARAMETER"
 	SQL_DECLARED				= "SQL_DECLARED"
 	SQL_FIELDSSELECT4UPDATE		= "SQL_FIELDSSELECT4UPDATE"
@@ -27,6 +28,7 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	def populateDataMap(self):
 		self.dataMap = {
 							self.SQL_STOREDPROCNAME				:	SQLStoredProc.buildStoredProcName(self.dbSchema, self.dbTableName),
+							self.SQL_STOREDPROC_COL				:	SQLStoredProc.buildStoredProcColumn(self.dbTableName),
 							self.SQL_SCHEMA_TABLE				:	sql_template.SQLTemplate.buildSchemaTable(self.dbSchema, self.dbTableName),
 							self.SQL_PARAMETER					:	self.buildParameterList(),
 							self.SQL_DECLARED					:	self.buildDeclaredList(),
@@ -44,6 +46,13 @@ class SQLStoredProc (sql_template.SQLTemplate):
 	def buildStoredProcName(dbSchema, dbTableName):
 		#demo_schema.pInsUpdContact
 		return "{dbSchema}.pInsUpd{dbTableName}".format(dbSchema=dbSchema, dbTableName=dbTableName)
+		#NOTE: This is used in the CGI script
+		# Important that the code is uniform - preferably calling this function only
+
+	@staticmethod
+	def buildStoredProcColumn(dbTableName):
+		#demo_schema.pInsUpdContact
+		return "pInsUpd{dbTableName}".format(dbTableName=dbTableName)
 		#NOTE: This is used in the CGI script
 		# Important that the code is uniform - preferably calling this function only
 
