@@ -58,6 +58,11 @@ class CPPCodeTemplate (base_template.BaseTemplate):
 		fieldClassList = fieldName.split('_')
 		return ''.join( name.capitalize() for name in fieldClassList)
 
+	@staticmethod
+	def fieldNameToTitleName(fieldName):
+		fieldTitleList = fieldName.split('_')
+		return ' '.join( name.capitalize() for name in fieldTitleList)
+
 	def defineClassName (self):
 		return self.fieldNameToClassName(self.className)
 

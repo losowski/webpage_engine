@@ -15,4 +15,3 @@ class BasicForm (basic_page.BasicPage):
 
 	def buildCGIFormDesign(self, fieldName, fieldTitle):
 		return "\tdf->add_text_input(\"{fieldname}\", \"{fieldtitle}\", m_{fieldname});".format(fieldname = fieldName, fieldtitle = fieldTitle)
-

@@ -14,3 +14,6 @@ class BasicPage:
 
 	def buildCGIFormDesign(self, fieldName, fieldTitle):
 		pass
+
+	def buildCGIFormInput(self, fieldName):
+		return "\tparseCGIParameter(m_{fieldname}, \"{fieldname}\");".format(fieldname = fieldName)
