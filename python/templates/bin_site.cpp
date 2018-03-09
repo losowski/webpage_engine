@@ -16,7 +16,7 @@ int main (int argc, char * argv[])
 	$LOGO_LEFT_HAND_MENU
 	//CGI
 	page->connectDB("host=localhost dbname=cmsdb user=cms password=cmsdb");
-	page->parseCGI();
+	//page->parseCGI(); // REMOVED: Running this twice breaks everything!
 	page->actionData();
 	//Build
 	page->buildWebsite();
