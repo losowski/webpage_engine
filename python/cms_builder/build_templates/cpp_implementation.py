@@ -59,15 +59,15 @@ class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 		return ',\\\n\t\t'.join( name[0] for name in self.variableList)
 
 	def extendProcesSQLResult(self):
+		"""
+		if (true == m_$VARIABLE_NAME.empty())\
+		{\
+		m_$VARIABLE_NAME.assign(res[i][\"$VARIABLE_NAME\"].c_str());\
+		}
+		"""
 		output = str()
-		variableName = Template("""\
-		if (true == m_$VARIABLE_NAME.empty())\n\
-		{\n\
-		m_$VARIABLE_NAME.assign(res[i][\"$VARIABLE_NAME\"].c_str());\n\
-		}\n\
-		""")
 		for variable in self.variableList:
-			output += variableName.safe_substitute(VARIABLE_NAME=variable[0])
+			output += "\t\tif (true == m_{VARIABLE_NAME}.empty())\n\t\t{{\n\t\t\tm_{VARIABLE_NAME}.assign(res[i][\"{VARIABLE_NAME}\"].c_str());\n\t\t}}\n".format(VARIABLE_NAME=variable[0])
 		return output
 
 	def extendSQLStoredProcedureParameters(self):
