@@ -27,6 +27,7 @@ class WebPageBase : public WebPageBaseCGI
 {
 	public:
 		WebPageBase(const string & title);
+		WebPageBase(const string & title, cgicc::Cgicc * m_cgi);
 		virtual ~WebPageBase(void);
 	public:
 		void connectDB(const string & connection);

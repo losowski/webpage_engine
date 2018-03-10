@@ -7,33 +7,53 @@ namespace web {
 WebPageBaseCGI::WebPageBaseCGI(void):
 		m_has_primary_key(false),
 		m_cgikey(),
+		m_owns_cgi (false),
 		m_cgi	(NULL)
+{
+}
+
+
+WebPageBaseCGI::WebPageBaseCGI(cgicc::Cgicc * m_cgi):
+		m_has_primary_key(false),
+		m_cgikey(),
+		m_owns_cgi (true),
+		m_cgi	(m_cgi)
 {
 }
 
 WebPageBaseCGI::~WebPageBaseCGI(void)
 {
-	//Hopefully Clean the m_cgi object
-	if (this->m_cgi != NULL)
+	if (true == this->m_owns_cgi)
 	{
-		delete this->m_cgi;
+		//Hopefully Clean the m_cgi object
+		if (this->m_cgi != NULL)
+		{
+			delete this->m_cgi;
+		}
 	}
 }
 
 //public:
 void WebPageBaseCGI::parseCGI(void)
 {
-	try
+	if (false == this->m_owns_cgi)
 	{
-		//Get the CGI parameters
-		m_cgi = new cgicc::Cgicc;
-		//Process the query string
-		process_getCGIEnvironment();
+		try
+		{
+			//Get the CGI parameters
+			m_cgi = new cgicc::Cgicc;
+			//Process the query string
+			process_getCGIEnvironment();
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << "Error: " << e.what() << std::endl;
+			exit(EXIT_FAILURE);
+		}
 	}
-	catch (const std::exception &e)
+	else
 	{
-		std::cerr << "Error: " << e.what() << std::endl;
-		exit(EXIT_FAILURE);
+		std::cerr << "Attempted to initialise m_cgi without owning object" << std::endl;
 	}
 }
 

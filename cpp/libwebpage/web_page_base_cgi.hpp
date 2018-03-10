@@ -10,7 +10,6 @@
 #include "cgicc/HTMLClasses.h"
 
 
-
 using namespace std;
 
 namespace web {
@@ -19,6 +18,7 @@ class WebPageBaseCGI
 {
 	public:
 		WebPageBaseCGI(void);
+		WebPageBaseCGI(cgicc::Cgicc * m_cgi);
 		~WebPageBaseCGI(void);
 	public:
 		void parseCGI(void);
@@ -36,6 +36,7 @@ class WebPageBaseCGI
 		bool						m_has_primary_key;
 		string						m_cgikey;
 		//CGI Objects
+		bool						m_owns_cgi;
 		cgicc::Cgicc *				m_cgi;
 		map < string, string >		m_cgi_environment;
 };

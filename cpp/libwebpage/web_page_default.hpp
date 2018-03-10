@@ -12,6 +12,7 @@ class WebPageDefault : public web::WebPageBase
 {
 	public:
 		WebPageDefault(const string & title);
+		WebPageDefault(const string & title, cgicc::Cgicc * m_cgi);
 		~WebPageDefault(void);
 	public:
 		void actionDataCGI(void);

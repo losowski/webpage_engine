@@ -11,8 +11,8 @@ using namespace cgicc;
 
 namespace web {
 
-$CLASS_NAME::$CLASS_NAME(const string & title):
-		web::$RAWDATA_BASE_CLASS ( title )
+$CLASS_NAME::$CLASS_NAME(const string & title, cgicc::Cgicc * m_cgi):
+		web::$RAWDATA_BASE_CLASS ( title, m_cgi )
 {
 
 }

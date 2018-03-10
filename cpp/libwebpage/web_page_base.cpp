@@ -21,6 +21,15 @@ WebPageBase::WebPageBase(const string & title):
 {
 }
 
+WebPageBase::WebPageBase(const string & title, cgicc::Cgicc * m_cgi):
+		WebPageBaseCGI(m_cgi),
+		m_id ("NULL"),
+		m_cdn ("//localhost/"),
+		m_page ( title ),
+		m_dbconnection(NULL)
+{
+}
+
 WebPageBase::~WebPageBase(void)
 {
 	//Hopefully Clean the m_dbconnection object

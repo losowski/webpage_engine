@@ -54,7 +54,7 @@ class SiteImplementation (base_template.BaseTemplate):
 	def generateClassName(self, val):
 		titleClassList = val.split('_')
 		titleClassName = ''.join( name.capitalize() for name in titleClassList)
-		return "{titleClassName}(m_page);".format(titleClassName = titleClassName)
+		return "{titleClassName}(m_page, m_cgi);".format(titleClassName = titleClassName)
 
 	def generateDefaultPage(self):
 		return self.generateClassName( self.cgiObjects[0].getFileName() )

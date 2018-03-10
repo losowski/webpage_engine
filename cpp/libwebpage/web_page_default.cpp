@@ -7,10 +7,15 @@ using namespace cgicc;
 namespace web {
 
 WebPageDefault::WebPageDefault(const string & title):
-		web::WebPageBase ( title ),	
+		web::WebPageBase ( title ),
 		m_text ("Adopt Cheese! - He likes chocolate milk")
 {
+}
 
+WebPageDefault::WebPageDefault(const string & title, cgicc::Cgicc * m_cgi):
+		web::WebPageBase (title, m_cgi),
+		m_text ("Adopt Cheese! - He likes chocolate milk")
+{
 }
 
 WebPageDefault::~WebPageDefault(void)
