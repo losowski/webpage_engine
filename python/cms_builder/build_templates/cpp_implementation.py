@@ -14,13 +14,13 @@ from code_layouts import \
 
 class CPPImplementation (cpp_code_template.CPPCodeTemplate):
 	#Headers
-	HPP_INCLUDE						=	'HEADER_INCLUDE'
-	PARSE_CGI_PARAMETERS			=	'PARSE_CGI_PARAMETERS'
-	BUILD_CGI_DESIGN				=	'BUILD_CGI_DESIGN'
-	SQL_SELECT						=	'SQL_SELECT'
-	PROCESS_SQL_RESULT				=	'PROCESS_SQL_RESULT'
-	SQL_STORED_PROCEDURE_PARAMETERS	=	'SQL_STORED_PROCEDURE_PARAMETERS'
-	BINARY_NAME						=	'BINARY_NAME'
+	HPP_INCLUDE								=	'HEADER_INCLUDE'
+	PARSE_CGI_PARAMETERS					=	'PARSE_CGI_PARAMETERS'
+	BUILD_CGI_DESIGN						=	'BUILD_CGI_DESIGN'
+	SQL_SELECT								=	'SQL_SELECT'
+	PROCESS_SQL_RESULT						=	'PROCESS_SQL_RESULT'
+	SQL_STORED_PROCEDURE_PARAMETERS			=	'SQL_STORED_PROCEDURE_PARAMETERS'
+	BINARY_NAME								=	'BINARY_NAME'
 
 	def __init__(self, project, className, baseClass, dbSchema, dbTableName, formDesign, variableList):
 		cpp_code_template.CPPCodeTemplate.__init__(self, "page.cpp", project, className + ".cpp", className, baseClass, dbSchema, dbTableName, formDesign, variableList)
