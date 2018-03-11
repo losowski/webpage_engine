@@ -1,0 +1,15 @@
+div.right-hand-menu {
+	position: absolute;
+	right: 7px;
+	width: 200px;
+	background-color: DarkGrey;
+}
+div.right-hand-menu div.logo img.right-hand-menu-logo {
+	width: 200px;
+	height: 50px;
+}
+div.right-hand-menu div.rhm-menu-item {
+    text-align: right;
+	font-size: 20px;
+    color: red;
+}
