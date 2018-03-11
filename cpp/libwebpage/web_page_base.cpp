@@ -288,9 +288,9 @@ void WebPageBase::buildBottomMenu(void)
 		HTMLBodyBasePtr bmimage = HTMLElementFactory::add_image(bmlink, get<0>(bmaffiliate), get<2>(bmaffiliate));
 	}
 	//Menu Items
+	HTMLBodyBasePtr bmspan = HTMLElementFactory::add_div(bm, "bottom-menu-item");
 	BOOST_FOREACH(MenuItem bmitem, m_bm_menu_items)
 	{
-		HTMLBodyBasePtr bmspan = HTMLElementFactory::add_div(bm, "bottom-menu-item");
 		HTMLBodyBasePtr bmlink = HTMLElementFactory::add_link(bmspan, get<0>(bmitem), get<1>(bmitem), get<2>(bmitem));
 	}
 }

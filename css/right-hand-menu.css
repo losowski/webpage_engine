@@ -1,8 +1,10 @@
 div.right-hand-menu {
 	position: absolute;
-	right: 7px;
+	right: 5px;
 	width: 200px;
 	background-color: DarkGrey;
+	border-style: solid;
+	border-color: white;
 }
 div.right-hand-menu div.rhm-menu-item.a {
     text-align: right;
