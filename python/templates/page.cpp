@@ -30,7 +30,7 @@ void $CLASS_NAME::buildMainMenu(void)
 	HTMLBodyBasePtr demo = m_page.add_div("demo-layout");
 	//MENU
 	HTMLFormPtr df = HTMLElementFactory::add_form(demo, "demoform", "$BINARY_NAME.cgi");
-	HTMLFormInputPtr key = df->add_text_input("key", "key", "$rawdata_file_name");
+	HTMLFormInputPtr key = df->add_text_input("page", "page", "$rawdata_file_name");
 	key->setHidden();
 	HTMLFormInputPtr id = df->add_text_input("id", "id", m_id);
 	id->setHidden();

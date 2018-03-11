@@ -36,7 +36,7 @@ class SiteImplementation (base_template.BaseTemplate):
 						}
 	"""
 	Functions:
-	1) Generate Key name (per input)
+	1) Generate Page name (per input)
 	2) Generate Class names
 	3) Generate: "case (VALUE):
 					object = new CLASSNAME (from function 2);
@@ -60,31 +60,31 @@ class SiteImplementation (base_template.BaseTemplate):
 		return self.generateClassName( self.cgiObjects[0].getFileName() )
 
 
-	def generateKeyString(self, val):
-		return "\"{key}\"".format(key = val)
+	def generatePageString(self, val):
+		return "\"{page}\"".format(page = val)
 
 	def generateSitePageMap(self, val):
-		key = self.generateKeyString(val)
+		page = self.generatePageString(val)
 		classConstructor = self.generateClassName(val)
-		#"elif (0 != m_cgikey.compare(key)) {
+		#"elif (0 != m_cgipage.compare(page)) {
 		# object = new $CGI_DEFAULT_PAGE
 		#}"
-		return "\telse if (0 != m_cgikey.compare({key})) {{\n\t\tobject = new {classConstructor}\n\t}}".format(key = key, classConstructor = classConstructor)
+		return "\telse if (0 != m_cgipage.compare({page})) {{\n\t\tobject = new {classConstructor}\n\t}}".format(page = page, classConstructor = classConstructor)
 
 	def generateSitePageMapList(self):
 		return ('\n'.join( self.generateSitePageMap( cgiObj.getFileName() ) for cgiObj in self.cgiObjects))
 
 	#Menu Items
 	def generateNameForMenu(self, val):
-		return "\"{key}\"".format(key = val)
+		return "\"{page}\"".format(page = val)
 
 	def generateLinkForMenu(self, val):
-		return "\"?key={key}\"".format(key = val)
+		return "\"?page={page}\"".format(page = val)
 
 	def generateTextForMenu(self, val):
 		textList = val.split('_')
-		key = ' '.join( name.capitalize() for name in textList)
-		return "\"{key}\"".format(key=key)
+		page = ' '.join( name.capitalize() for name in textList)
+		return "\"{page}\"".format(page=page)
 
 	def generateCGIMenuItem(self, val):
 		name = self.generateNameForMenu(val)

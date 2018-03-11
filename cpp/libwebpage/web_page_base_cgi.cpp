@@ -7,6 +7,7 @@ namespace web {
 WebPageBaseCGI::WebPageBaseCGI(void):
 		m_has_primary_key(false),
 		m_cgikey(),
+		m_cgipage(),
 		m_owns_cgi (false),
 		m_cgi	(NULL)
 {
@@ -16,6 +17,7 @@ WebPageBaseCGI::WebPageBaseCGI(void):
 WebPageBaseCGI::WebPageBaseCGI(cgicc::Cgicc * m_cgi):
 		m_has_primary_key(false),
 		m_cgikey(),
+		m_cgipage(),
 		m_owns_cgi (true),
 		m_cgi	(m_cgi)
 {
@@ -66,6 +68,11 @@ void WebPageBaseCGI::PrimaryKeySet(void)
 void WebPageBaseCGI::parseCGIKey(void)
 {
 	parseCGIParameter(m_cgikey, "key");
+}
+
+void WebPageBaseCGI::parseCGIPage(void)
+{
+	parseCGIParameter(m_cgipage, "page");
 }
 
 void WebPageBaseCGI::parseCGIPrimaryKey(string & variable, const string & querykey)

@@ -25,7 +25,9 @@ WebPageBase * WebSiteCMS::createObjectFromKey(void)
 	parseCGI();
 	// Setting the Key
 	parseCGIKey();
-	if (true == m_cgikey.empty())
+	// Setting the Page
+	parseCGIPage();
+	if (true == m_cgipage.empty())
 	{
 		object = new $CGI_DEFAULT_PAGE
 	}

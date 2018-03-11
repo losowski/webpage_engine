@@ -27,6 +27,7 @@ class WebPageBaseCGI
 		//virtual void actionDataCGI(void) = 0; // In derived class
 		void PrimaryKeySet(void);
 		void parseCGIKey(void);
+		void parseCGIPage(void);
 		void parseCGIPrimaryKey(string & variable, const string & querykey);
 		void parseCGIParameter(string & variable, const string & querykey);
 	private:
@@ -35,6 +36,7 @@ class WebPageBaseCGI
 	protected:
 		bool						m_has_primary_key;
 		string						m_cgikey;
+		string						m_cgipage;
 		//CGI Objects
 		bool						m_owns_cgi;
 		cgicc::Cgicc *				m_cgi;
