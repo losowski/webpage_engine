@@ -1,7 +1,7 @@
 div.right-hand-menu div.menu-icon img.right-hand-menu-icon {
-	position: fixed;
-	top: 8px;
-	right:	8px;
+	position: absolute;
+	top: -104px;
+	right:	0px;
 	height: 106px;
 	width: 100px;
 }
