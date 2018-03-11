@@ -4,12 +4,9 @@ div.right-hand-menu {
 	width: 200px;
 	background-color: DarkGrey;
 }
-div.right-hand-menu div.logo img.right-hand-menu-logo {
-	width: 200px;
-	height: 50px;
-}
-div.right-hand-menu div.rhm-menu-item {
+div.right-hand-menu div.rhm-menu-item.a {
     text-align: right;
 	font-size: 20px;
     color: red;
+	width: 200px;
 }
