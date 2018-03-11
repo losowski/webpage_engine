@@ -229,6 +229,11 @@ void WebPageBase::buildLeftMenu(void)
 	}
 }
 // Right hand menu
+void WebPageBase::RHM_addLogo(const string & logo)
+{
+	m_rhm_logo = PAGE_CDN_IMAGE(logo);
+}
+
 void WebPageBase::RHM_addMenuItem(const string & name, const string & link, const string & text)
 {
 	m_rhm_menu_items.emplace_front( MenuItem(name, link, text) ); //C++11
@@ -240,9 +245,13 @@ void WebPageBase::buildRightMenu(void)
 	addCSS("right-hand-menu");
 	//Scripts
 	HTMLBodyBasePtr rhm = m_page.add_div("right-hand-menu");
+	//Provide a menu icon
+	HTMLBodyBasePtr rhmspanlogo = HTMLElementFactory::add_div(rhm, "menu-icon");
+	HTMLBodyBasePtr rhmlogo = HTMLElementFactory::add_image(rhmspanlogo, "right-hand-menu-icon", m_rhm_logo);
+	//Populate the menu items - use Javascript to hide
+	HTMLBodyBasePtr rhmspan = HTMLElementFactory::add_div(rhm, "rhm-menu-item");
 	BOOST_FOREACH(MenuItem rhmitem, m_rhm_menu_items)
 	{
-		HTMLBodyBasePtr rhmspan = HTMLElementFactory::add_div(rhm, "rhm-menu-item");
 		HTMLBodyBasePtr link = HTMLElementFactory::add_link(rhmspan, get<0>(rhmitem), get<1>(rhmitem), get<2>(rhmitem));
 	}
 }

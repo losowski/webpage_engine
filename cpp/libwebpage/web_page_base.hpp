@@ -51,6 +51,7 @@ class WebPageBase : public WebPageBaseCGI
 		void LHM_addLogo(const string & logo);
 		void LHM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Right hand menu
+		void RHM_addLogo(const string & logo);
 		void RHM_addMenuItem(const string & name, const string & link, const string & text="");
 		// Main page area
 		// Bottom menu
@@ -93,6 +94,7 @@ class WebPageBase : public WebPageBaseCGI
 		string						m_lhm_logo;
 		list < MenuItem >			m_lhm_menu_items;
 		// Right hand menu
+		string						m_rhm_logo;
 		list < MenuItem >			m_rhm_menu_items;
 		// Main page area
 		// Bottom menu

@@ -1,14 +1,25 @@
+div.right-hand-menu div.menu-icon img.right-hand-menu-icon {
+	position: fixed;
+	top: 8px;
+	right:	8px;
+	height: 106px;
+	width: 100px;
+}
 div.right-hand-menu {
 	position: absolute;
 	right: 5px;
-	width: 200px;
+	/*width: 200px;*/
 	background-color: DarkGrey;
 	border-style: solid;
 	border-color: white;
 }
-div.right-hand-menu div.rhm-menu-item.a {
-    text-align: right;
+div.right-hand-menu div.rhm-menu-item {
+	width: 200px;
+	top: 100px;
+}
+div.right-hand-menu.div div.rhm-menu-item.a {
+    text-align: left;
 	font-size: 20px;
     color: red;
-	width: 200px;
 }
+

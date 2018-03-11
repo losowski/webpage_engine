@@ -13,6 +13,7 @@ class BinImplementation (base_template.BaseTemplate):
 	CDN_CSS_PATH			= "CDN_CSS_PATH"
 	LOGO_TOP_MENU			= "LOGO_TOP_MENU"
 	LOGO_LEFT_HAND_MENU		= "LOGO_LEFT_HAND_MENU"
+	LOGO_RIGHT_HAND_MENU	= "LOGO_RIGHT_HAND_MENU"
 
 	def __init__(self, project, output, binaryName, cgiObjects ):
 		base_template.BaseTemplate.__init__(self, "bin_site.cpp", "cpp/bin"+project+"/" + output)
@@ -31,6 +32,7 @@ class BinImplementation (base_template.BaseTemplate):
 						self.CDN_CSS_PATH				:	self.buildCDNCSSPath(),
 						self.LOGO_TOP_MENU				:	self.buildTopMenuLogo(),
 						self.LOGO_LEFT_HAND_MENU		:	self.buildLeftHandMenuLogo(),
+						self.LOGO_RIGHT_HAND_MENU		:	self.buildRightHandMenuLogo(),
 					}
 
 	def buildCDNMediaPath(self):
@@ -64,3 +66,7 @@ class BinImplementation (base_template.BaseTemplate):
 	def buildLeftHandMenuLogo(self):
 		#	page->LHM_addLogo("doggo2.png");
 		return "page->LHM_addLogo(\"{logoImage}_lhm.png\");".format(logoImage = self.binaryName)
+
+	def buildRightHandMenuLogo(self):
+		#	page->LHM_addLogo("doggo2.png");
+		return "page->RHM_addLogo(\"{logoImage}-menu-icon.png\");".format(logoImage = self.binaryName)
