@@ -290,7 +290,7 @@ void WebPageBase::buildBottomMenu(void)
 	//Menu Items
 	BOOST_FOREACH(MenuItem bmitem, m_bm_menu_items)
 	{
-		HTMLBodyBasePtr bmspan = HTMLElementFactory::add_div(bm, "rhm-menu-item");
+		HTMLBodyBasePtr bmspan = HTMLElementFactory::add_div(bm, "bottom-menu-item");
 		HTMLBodyBasePtr bmlink = HTMLElementFactory::add_link(bmspan, get<0>(bmitem), get<1>(bmitem), get<2>(bmitem));
 	}
 }
