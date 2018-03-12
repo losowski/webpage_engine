@@ -1,4 +1,5 @@
 #include "web_page_base_cgi.hpp"
+#include <stdlib.h>
 
 using namespace std;
 
@@ -126,6 +127,7 @@ void WebPageBaseCGI::process_getCGIEnvironment(void)
 {
 	// CGICC get the environment
 	string query = m_cgi->getEnvironment().getQueryString();
+	//string query = getenv("QUERY_STRING"); //Equivalent to the above
 	//Iterate over query to get all instances of "&"
 	std::size_t unfound = 0;
 	std::size_t found = query.find_first_of("&");
