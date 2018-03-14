@@ -19,6 +19,9 @@ cd $BUILDDIR
 git clone ssh://eugene@Gears/home/eugene/git/web_engine_repo webengine
 cd webengine
 git checkout $GITBRANCH
+git submodule init
+git submodule update --init
+git submodule foreach checkout $GITBRANCH
 (
 	cd python
 	./buildCMS.py
