@@ -1,3 +1,3 @@
 [submodule "cpp/libhtml"]
 	path = cpp/libhtml
-	url = ssh://eugene@Gears/home/eugene/git/libhtml_repo
+	url = ssh://eugene@Gears/home/eugene/git/libhtml
