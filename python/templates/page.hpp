@@ -1,7 +1,7 @@
 #ifndef $HEADER_IFDEF_HPP
 #define $HEADER_IFDEF_HPP
 
-#include "web_page_base.hpp"
+#include "web_page_pgsql.hpp"
 //CGI
 #include "cgicc/CgiDefs.h"
 #include "cgicc/Cgicc.h"
@@ -13,7 +13,7 @@ using namespace html;
 
 namespace web {
 
-class $CLASS_NAME : public web::WebPageBase
+class $CLASS_NAME : public web::WebPagePgSQL
 {
 	public:
 		$CLASS_NAME(const string & title, cgicc::Cgicc * m_cgi);
