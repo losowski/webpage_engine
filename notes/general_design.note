@@ -23,6 +23,7 @@ libwebpge
 		+ Main page area
 
 libcms
+	- NOTE: 2018-08-20: I think this is not so much needed. Can write a CMS to build from (rather than making one on the fly!)
 	- LINK: libwebpage
 	- LINK: libhtml
 	- LINK: libcgicc
@@ -33,6 +34,25 @@ libcms
 	- Enables macro and low-level web page generation from the contents of the DB
 	- Also links to the actual data database
 
+cms sub-directory
+	-	LINK:	libwebpage
+	-	LINK:	libpq++
+	-	LINK:	libcgicc
+	+	BUILT using a python static script (static data array)
+		+ Same data in the python script as that used in the database
+	+	Allows editing the CMS database. CMS database is used by a script to autogenerate the website
+
+cms/*.cgi
+	-	LINK:	libwebpage
+	-	LINK:	libpq++
+	-	LINK:	libcgicc
+	+	Sets of binaries for the CMS
+	+	PLAN:
+		+	One binary per CMS database table
+		+	Menu to link to all the CMS CGI scripts
+
+*.cgi *.html
+	+ Site pages
 
 libconfig
 	- XML reader library to provide the configuration
